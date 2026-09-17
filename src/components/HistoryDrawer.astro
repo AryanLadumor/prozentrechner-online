@@ -1,0 +1,230 @@
+---
+// History Drawer Slide-Over Component
+---
+
+<div
+  id="history-drawer-backdrop"
+  class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs transition-opacity duration-300 opacity-0 pointer-events-none"
+  aria-hidden="true"
+></div>
+
+<aside
+  id="history-drawer"
+  class="fixed top-0 right-0 bottom-0 z-50 w-full sm:w-96 max-w-[100vw] sm:max-w-md transform translate-x-full transition-transform duration-300 ease-in-out border-l shadow-2xl flex flex-col"
+  style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
+  aria-label="Calculation History"
+>
+  <!-- Drawer Header -->
+  <div class="p-4 border-b flex items-center justify-between" style="border-color: var(--border-hairline);">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl flex items-center justify-center border shadow-xs" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--accent);">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+      </div>
+      <div>
+        <h2 class="font-bold text-base tracking-tight">Calculation History</h2>
+        <p class="text-xs" style="color: var(--text-muted);"><span id="history-count">0</span> saved items</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="clear-all-history-btn"
+        class="text-xs px-2.5 py-1.5 rounded-lg border font-medium text-red-500 hover:bg-red-50 hover:border-red-200 dark:hover:bg-red-950/30 transition-colors cursor-pointer hidden touch-target"
+        style="border-color: var(--border-hairline);"
+        title="Clear all history"
+      >
+        Clear All
+      </button>
+      <button
+        type="button"
+        id="close-history-btn"
+        class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer text-lg leading-none touch-target"
+        aria-label="Close history drawer"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- History Items List -->
+  <div id="history-items-container" class="flex-1 overflow-y-auto p-4 space-y-3">
+    <!-- Items dynamically injected here -->
+  </div>
+
+  <!-- Empty State -->
+  <div id="history-empty-state" class="hidden flex-1 flex flex-col items-center justify-center p-6 text-center">
+    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-3 border shadow-xs" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+      </svg>
+    </div>
+    <h3 class="font-bold text-sm mb-1">No calculations yet</h3>
+    <p class="text-xs max-w-xs" style="color: var(--text-muted);">
+      As you calculate, your recent results will be automatically saved here for quick reference and one-click recall.
+    </p>
+  </div>
+</aside>
+
+<script>
+  import { getHistory, deleteHistoryItem, clearHistory } from '../utils/history';
+
+  function initHistoryDrawer() {
+    const drawer = document.getElementById('history-drawer');
+    const backdrop = document.getElementById('history-drawer-backdrop');
+    const closeBtn = document.getElementById('close-history-btn');
+    const clearBtn = document.getElementById('clear-all-history-btn');
+    const container = document.getElementById('history-items-container');
+    const emptyState = document.getElementById('history-empty-state');
+    const countEl = document.getElementById('history-count');
+    const headerBadge = document.getElementById('history-badge-count');
+
+    function openDrawer() {
+      drawer?.classList.remove('translate-x-full');
+      backdrop?.classList.remove('opacity-0', 'pointer-events-none');
+      backdrop?.classList.add('opacity-100', 'pointer-events-auto');
+      renderHistory();
+    }
+
+    function closeDrawer() {
+      drawer?.classList.add('translate-x-full');
+      backdrop?.classList.add('opacity-0', 'pointer-events-none');
+      backdrop?.classList.remove('opacity-100', 'pointer-events-auto');
+    }
+
+    (window as any).openHistoryDrawer = openDrawer;
+    (window as any).closeHistoryDrawer = closeDrawer;
+
+    closeBtn?.addEventListener('click', closeDrawer);
+    backdrop?.addEventListener('click', closeDrawer);
+
+    clearBtn?.addEventListener('click', () => {
+      if (confirm('Clear all calculation history?')) {
+        clearHistory();
+        renderHistory();
+        (window as any).showToast?.('Calculation history cleared');
+      }
+    });
+
+    function formatTime(timestamp: number): string {
+      const diff = Date.now() - timestamp;
+      if (diff < 60000) return 'Just now';
+      if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
+      if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
+      return new Date(timestamp).toLocaleDateString();
+    }
+
+    function renderHistory() {
+      const items = getHistory();
+      if (countEl) countEl.textContent = String(items.length);
+      if (headerBadge) {
+        headerBadge.textContent = String(items.length);
+        if (items.length > 0) {
+          headerBadge.classList.remove('hidden');
+        } else {
+          headerBadge.classList.add('hidden');
+        }
+      }
+
+      if (!container || !emptyState) return;
+
+      if (items.length === 0) {
+        container.innerHTML = '';
+        container.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        clearBtn?.classList.add('hidden');
+        return;
+      }
+
+      container.classList.remove('hidden');
+      emptyState.classList.add('hidden');
+      clearBtn?.classList.remove('hidden');
+
+      container.innerHTML = items.map(item => `
+        <div class="p-3.5 rounded-xl border transition-all hover:border-black/20 dark:hover:border-white/20 relative group shadow-xs"
+             style="background-color: var(--bg-card); border-color: var(--border-hairline);">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md"
+                  style="background-color: var(--bg-surface); color: var(--text-ink); border: 1px solid var(--border-hairline);">
+              ${item.toolName}
+            </span>
+            <span class="text-[11px]" style="color: var(--text-subtle);">
+              ${formatTime(item.timestamp)}
+            </span>
+          </div>
+
+          <div class="text-xs font-medium mb-2 break-words" style="color: var(--text-body);">
+            ${item.summary}
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t" style="border-color: var(--border-hairline);">
+            <div class="font-bold text-sm tracking-tight" style="color: var(--text-ink);">
+              ${item.result}
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button
+                type="button"
+                class="copy-hist-btn inline-flex items-center gap-1 text-xs px-2.5 py-1.5 rounded-lg border font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-all active:scale-95 cursor-pointer touch-target"
+                style="border-color: var(--border-hairline); color: var(--text-body);"
+                data-text="${item.summary} = ${item.result}"
+                title="Copy result"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy</span>
+              </button>
+              <button
+                type="button"
+                class="delete-hist-btn w-8 h-8 rounded-lg flex items-center justify-center hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-950/30 transition-all cursor-pointer opacity-70 hover:opacity-100 touch-target"
+                data-id="${item.id}"
+                title="Delete this item"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Attach copy listeners
+      container.querySelectorAll('.copy-hist-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const text = btn.getAttribute('data-text') || '';
+          navigator.clipboard.writeText(text).then(() => {
+            (window as any).showToast?.('Copied to clipboard!');
+          });
+        });
+      });
+
+      // Attach delete listeners
+      container.querySelectorAll('.delete-hist-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = btn.getAttribute('data-id') || '';
+          deleteHistoryItem(id);
+          renderHistory();
+        });
+      });
+    }
+
+    window.addEventListener('historyUpdated', renderHistory);
+    renderHistory();
+  }
+
+  document.addEventListener('DOMContentLoaded', initHistoryDrawer);
+</script>

@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+@layer base {
+  :root,
+  [data-theme="clay"] {
+    --bg-canvas: #fffaf0;
+    --bg-surface: #ffffff;
+    --bg-surface-soft: #faf5e8;
+    --bg-card: #f5f0e0;
+    --bg-card-hover: #ebe5d4;
+    --border-hairline: #e6dfcf;
+    --border-strong: #0a0a0a;
+    --text-ink: #0a0a0a;
+    --text-body: #333333;
+    --text-muted: #666666;
+    --text-subtle: #888888;
+    
+    --brand-primary: #0a0a0a;
+    --brand-primary-text: #ffffff;
+    --brand-pink: #ff4d8b;
+    --brand-teal: #1a3a3a;
+    --brand-lavender: #8b5cf6;
+    --brand-peach: #ea580c;
+    --brand-ochre: #d97706;
+    --brand-mint: #059669;
+
+    --badge-bg: #f5f0e0;
+    --badge-text: #0a0a0a;
+    --input-bg: #ffffff;
+    --input-border: #ded8c7;
+    --input-focus: #0a0a0a;
+    --result-bg: #0a0a0a;
+    --result-text: #ffffff;
+    --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  [data-theme="dark"] {
+    --bg-canvas: #090a0f;
+    --bg-surface: #11131c;
+    --bg-surface-soft: #171a26;
+    --bg-card: #1d2130;
+    --bg-card-hover: #252a3d;
+    --border-hairline: #262c40;
+    --border-strong: #38bdf8;
+    --text-ink: #f8fafc;
+    --text-body: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-subtle: #64748b;
+    
+    --brand-primary: #38bdf8;
+    --brand-primary-text: #090a0f;
+    --brand-pink: #f43f5e;
+    --brand-teal: #0d9488;
+    --brand-lavender: #a855f7;
+    --brand-peach: #f97316;
+    --brand-ochre: #eab308;
+    --brand-mint: #10b981;
+
+    --badge-bg: #1e293b;
+    --badge-text: #38bdf8;
+    --input-bg: #11131c;
+    --input-border: #334155;
+    --input-focus: #38bdf8;
+    --result-bg: #1e293b;
+    --result-text: #38bdf8;
+    --card-shadow: 0 4px 25px -2px rgba(0, 0, 0, 0.4);
+  }
+
+  [data-theme="white"] {
+    --bg-canvas: #ffffff;
+    --bg-surface: #ffffff;
+    --bg-surface-soft: #f8fafc;
+    --bg-card: #f8fafc;
+    --bg-card-hover: #f1f5f9;
+    --border-hairline: #e2e8f0;
+    --border-strong: #0f172a;
+    --text-ink: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --text-subtle: #94a3b8;
+    
+    --brand-primary: #0f172a;
+    --brand-primary-text: #ffffff;
+    --brand-pink: #e11d48;
+    --brand-teal: #0f766e;
+    --brand-lavender: #7c3aed;
+    --brand-peach: #c2410c;
+    --brand-ochre: #b45309;
+    --brand-mint: #047857;
+
+    --badge-bg: #f1f5f9;
+    --badge-text: #0f172a;
+    --input-bg: #ffffff;
+    --input-border: #cbd5e1;
+    --input-focus: #0f172a;
+    --result-bg: #0f172a;
+    --result-text: #ffffff;
+    --card-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.04);
+  }
+
+  [data-theme="nordic"] {
+    --bg-canvas: #f1f5f9;
+    --bg-surface: #ffffff;
+    --bg-surface-soft: #e2e8f0;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8fafc;
+    --border-hairline: #cbd5e1;
+    --border-strong: #0284c7;
+    --text-ink: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --text-subtle: #94a3b8;
+    
+    --brand-primary: #0284c7;
+    --brand-primary-text: #ffffff;
+    --brand-pink: #e11d48;
+    --brand-teal: #0f766e;
+    --brand-lavender: #6366f1;
+    --brand-peach: #d97706;
+    --brand-ochre: #ca8a04;
+    --brand-mint: #059669;
+
+    --badge-bg: #e0f2fe;
+    --badge-text: #0369a1;
+    --input-bg: #ffffff;
+    --input-border: #94a3b8;
+    --input-focus: #0284c7;
+    --result-bg: #0f172a;
+    --result-text: #38bdf8;
+    --card-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.06);
+  }
+
+  html,
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom Display Typography Header Classes */
+.font-display {
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.035em;
+}
+
+/* Smooth Focus & Transitions */
+input, button, select, a {
+  transition: all 0.15s ease-in-out;
+}
+
+/* Ensure inputs on iOS safari are at least 16px to prevent automatic zooming */
+input, select {
+  font-size: 16px;
+}
+@media (min-width: 640px) {
+  input.text-sm, select.text-sm {
+    font-size: 0.875rem;
+  }
+  input.text-xs, select.text-xs {
+    font-size: 0.75rem;
+  }
+}
+
+/* Chrome/Safari number input arrows removal */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Responsive Touch-Friendly Targets */
+.touch-target {
+  min-height: 36px;
+  min-width: 36px;
+}
+@media (min-width: 640px) {
+  .touch-target {
+    min-height: 42px;
+    min-width: 42px;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hairline);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

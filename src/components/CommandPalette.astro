@@ -1,0 +1,277 @@
+---
+// Command Palette (Cmd/Ctrl + K) for rapid tool jumping & search
+---
+
+<div
+  id="command-palette-backdrop"
+  class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs transition-opacity duration-200 opacity-0 pointer-events-none flex items-start justify-center pt-12 sm:pt-20 px-3 sm:px-4"
+  aria-hidden="true"
+>
+  <div
+    id="command-palette-modal"
+    class="w-full max-w-lg rounded-2xl border shadow-2xl overflow-hidden transform scale-95 transition-transform duration-200"
+    style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Quick Search"
+  >
+    <!-- Search Input Bar -->
+    <div class="p-3 sm:p-3.5 border-b flex items-center gap-3" style="border-color: var(--border-hairline);">
+      <svg class="w-5 h-5 opacity-40 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input
+        type="text"
+        id="command-search-input"
+        placeholder="Search calculators, formulas, tools... (e.g. VAT, discount, Dreisatz)"
+        class="w-full bg-transparent border-none outline-none text-base sm:text-sm font-medium placeholder:text-neutral-400"
+        autocomplete="off"
+      />
+      <button
+        type="button"
+        id="command-close-mobile-btn"
+        class="sm:hidden p-1 rounded-lg opacity-60 hover:opacity-100 touch-target"
+        aria-label="Close search"
+        onclick="window.closeCommandPalette?.()"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <kbd class="hidden sm:inline px-2 py-0.5 text-[10px] font-mono rounded border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-500">
+        ESC
+      </kbd>
+    </div>
+
+    <!-- Quick Navigation List -->
+    <div class="max-h-[60vh] sm:max-h-80 overflow-y-auto p-2 space-y-1" id="command-results-list">
+      <div class="px-2 py-1.5 text-[10px] font-bold uppercase tracking-wider opacity-50" style="color: var(--text-muted);">
+        Calculators
+      </div>
+
+      <a
+        href="/#main-calc"
+        class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
+        data-keywords="percentage of base value rate change add subtract general prozentrechner"
+      >
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);">%</span>
+          <div>
+            <div class="font-bold text-sm sm:text-xs">Main Percentage Calculator</div>
+            <div class="text-[11px] opacity-70">5 core percentage question modes with Rechenweg</div>
+          </div>
+        </div>
+        <span class="text-[11px] opacity-40">Jump →</span>
+      </a>
+
+      <a
+        href="/discount-calculator"
+        class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
+        data-keywords="discount sale rabatt coupon promo savings price clearance"
+      >
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg flex items-center justify-center border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--accent);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+          </span>
+          <div>
+            <div class="font-bold text-sm sm:text-xs">Discount Calculator</div>
+            <div class="text-[11px] opacity-70">Single, extra coupons, tax & net savings</div>
+          </div>
+        </div>
+        <span class="text-[11px] opacity-40">Jump →</span>
+      </a>
+
+      <a
+        href="/vat-calculator"
+        class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
+        data-keywords="vat sales tax mwst mehrwertsteuer gross net brutto netto 19% 7%"
+      >
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg flex items-center justify-center border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--accent);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </span>
+          <div>
+            <div class="font-bold text-sm sm:text-xs">VAT / Sales Tax Calculator</div>
+            <div class="text-[11px] opacity-70">Net ↔ Gross conversions with standard & custom rates</div>
+          </div>
+        </div>
+        <span class="text-[11px] opacity-40">Jump →</span>
+      </a>
+
+      <a
+        href="/rule-of-three-calculator"
+        class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
+        data-keywords="rule of three dreisatz proportion ratio direct inverse cross multiplication"
+      >
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg flex items-center justify-center border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--accent);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+              <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+              <path d="M7 21h10"></path>
+              <path d="M12 3v18"></path>
+              <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>
+            </svg>
+          </span>
+          <div>
+            <div class="font-bold text-sm sm:text-xs">Rule of Three (Dreisatz)</div>
+            <div class="text-[11px] opacity-70">Direct and inverse proportion ratio solver</div>
+          </div>
+        </div>
+        <span class="text-[11px] opacity-40">Jump →</span>
+      </a>
+
+      <a
+        href="/percentage-difference"
+        class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
+        data-keywords="percentage difference diff increase decrease change variance comparison"
+      >
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg flex items-center justify-center border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--accent);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+          </span>
+          <div>
+            <div class="font-bold text-sm sm:text-xs">Percentage Difference & Change</div>
+            <div class="text-[11px] opacity-70">Compare two numbers: relative and absolute difference</div>
+          </div>
+        </div>
+        <span class="text-[11px] opacity-40">Jump →</span>
+      </a>
+
+      <a
+        href="/salary-raise-calculator"
+        class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
+        data-keywords="salary raise pay increase wage compensation gehalt stundenlohn"
+      >
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg flex items-center justify-center border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--accent);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </span>
+          <div>
+            <div class="font-bold text-sm sm:text-xs">Salary & Pay Raise Calculator</div>
+            <div class="text-[11px] opacity-70">Hourly, monthly, and yearly wage increase visualizer</div>
+          </div>
+        </div>
+        <span class="text-[11px] opacity-40">Jump →</span>
+      </a>
+
+      <div class="px-2 pt-3 py-1.5 text-[10px] font-bold uppercase tracking-wider opacity-50" style="color: var(--text-muted);">
+        Learn & Formulas
+      </div>
+
+      <a
+        href="/percentage-formula"
+        class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
+        data-keywords="formula explanations math how to calculate cheat sheet guide rechenweg formeln"
+      >
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg flex items-center justify-center border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--accent);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </span>
+          <div>
+            <div class="font-bold text-sm sm:text-xs">Formulas & Mathematical Guide</div>
+            <div class="text-[11px] opacity-70">Step-by-step math rules, examples, and cheat sheets</div>
+          </div>
+        </div>
+        <span class="text-[11px] opacity-40">Jump →</span>
+      </a>
+    </div>
+
+    <!-- Footer shortcut helper -->
+    <div class="p-2.5 bg-black/5 dark:bg-white/5 border-t text-[11px] flex items-center justify-between opacity-70" style="border-color: var(--border-hairline);">
+      <span>Press <kbd class="font-mono bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded">↑</kbd> <kbd class="font-mono bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded">↓</kbd> to navigate</span>
+      <span>Press <kbd class="font-mono bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded">ESC</kbd> to exit</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initCommandPalette() {
+    const backdrop = document.getElementById('command-palette-backdrop');
+    const modal = document.getElementById('command-palette-modal');
+    const input = document.getElementById('command-search-input') as HTMLInputElement | null;
+    const items = document.querySelectorAll('.command-item') as NodeListOf<HTMLElement>;
+
+    function openPalette() {
+      backdrop?.classList.remove('opacity-0', 'pointer-events-none');
+      backdrop?.classList.add('opacity-100', 'pointer-events-auto');
+      modal?.classList.remove('scale-95');
+      modal?.classList.add('scale-100');
+      if (input) {
+        input.value = '';
+        input.focus();
+      }
+      filterItems('');
+    }
+
+    function closePalette() {
+      backdrop?.classList.add('opacity-0', 'pointer-events-none');
+      backdrop?.classList.remove('opacity-100', 'pointer-events-auto');
+      modal?.classList.add('scale-95');
+      modal?.classList.remove('scale-100');
+    }
+
+    (window as any).openCommandPalette = openPalette;
+    (window as any).closeCommandPalette = closePalette;
+
+    backdrop?.addEventListener('click', (e) => {
+      if (e.target === backdrop) closePalette();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (backdrop?.classList.contains('opacity-100')) {
+          closePalette();
+        } else {
+          openPalette();
+        }
+      }
+      if (e.key === 'Escape') {
+        closePalette();
+      }
+    });
+
+    function filterItems(query: string) {
+      const q = query.toLowerCase().trim();
+      items.forEach(item => {
+        const text = item.textContent?.toLowerCase() || '';
+        const keywords = item.getAttribute('data-keywords')?.toLowerCase() || '';
+        if (q === '' || text.includes(q) || keywords.includes(q)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    input?.addEventListener('input', (e) => {
+      filterItems((e.target as HTMLInputElement).value);
+    });
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        closePalette();
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initCommandPalette);
+</script>

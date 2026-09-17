@@ -1,0 +1,262 @@
+---
+---
+
+<div class="rounded-2xl sm:rounded-3xl border p-3.5 sm:p-6 lg:p-8 shadow-sm transition-all" style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);" id="vat-calc-card">
+  <!-- Header -->
+  <div class="flex items-center justify-between pb-4 sm:pb-6 border-b" style="border-color: var(--border-hairline);">
+    <div class="flex items-center gap-2.5 sm:gap-3">
+      <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center font-bold text-lg bg-teal-100 dark:bg-teal-950 text-teal-600 dark:text-teal-400 shrink-0 shadow-2xs">
+        <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.333A12.018 12.018 0 0012 9c-2.49 0-4.82.76-6.75 2.065V21h13.5z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-display font-extrabold text-lg xs:text-xl sm:text-2xl" style="color: var(--text-ink);">
+          VAT / Tax Calculator
+        </h3>
+        <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
+          Calculate Net to Gross, Gross to Net, and tax amounts with standard or custom rates.
+        </p>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      id="vat-reset-btn"
+      class="p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-1.5 touch-target"
+      style="border-color: var(--border-hairline); color: var(--text-muted);"
+      title="Reset VAT inputs"
+      aria-label="Reset VAT inputs"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+      <span class="hidden sm:inline">Reset</span>
+    </button>
+  </div>
+
+  <!-- Mode Selector: Net -> Gross vs Gross -> Net -->
+  <div class="pt-4 sm:pt-6">
+    <div class="inline-flex rounded-2xl border p-1 w-full sm:w-auto flex-col xs:flex-row gap-1 xs:gap-0" style="background-color: var(--bg-card); border-color: var(--border-hairline);">
+      <button
+        type="button"
+        id="vat-mode-net-to-gross"
+        class="vat-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-teal-600 text-white shadow-xs touch-target text-center"
+        data-mode="netToGross"
+      >
+        Add VAT (Net &rarr; Gross)
+      </button>
+      <button
+        type="button"
+        id="vat-mode-gross-to-net"
+        class="vat-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target text-center"
+        data-mode="grossToNet"
+      >
+        Extract VAT (Gross &rarr; Net)
+      </button>
+    </div>
+  </div>
+
+  <!-- Form Fields Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 sm:pt-6">
+    <!-- Inputs Column -->
+    <div class="space-y-4">
+      <div>
+        <label for="vat-amount" class="block text-xs font-bold uppercase tracking-wider mb-1.5" id="vat-amount-label" style="color: var(--text-ink);">
+          Net Amount ($ / €)
+        </label>
+        <input
+          type="text"
+          id="vat-amount"
+          inputmode="decimal"
+          placeholder="100.00"
+          class="w-full px-4 py-2.5 sm:py-3 rounded-xl border font-bold text-base sm:text-lg outline-none shadow-2xs"
+          style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+        />
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--text-ink);">
+          VAT Tax Rate (%)
+        </label>
+        
+        <!-- Tax Rate Presets -->
+        <div class="grid grid-cols-2 xs:grid-cols-4 gap-1.5 sm:gap-2 mb-2">
+          <button type="button" class="vat-rate-chip px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold border transition-all cursor-pointer bg-teal-50 dark:bg-teal-950/50 border-teal-500 text-teal-700 dark:text-teal-300 touch-target text-center" data-rate="19">
+            19% (Std)
+          </button>
+          <button type="button" class="vat-rate-chip px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold border transition-all cursor-pointer hover:border-teal-400 touch-target text-center" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);" data-rate="7">
+            7% (Red)
+          </button>
+          <button type="button" class="vat-rate-chip px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold border transition-all cursor-pointer hover:border-teal-400 touch-target text-center" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);" data-rate="20">
+            20% (UK)
+          </button>
+          <button type="button" class="vat-rate-chip px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold border transition-all cursor-pointer hover:border-teal-400 touch-target text-center" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);" data-rate="custom">
+            Custom %
+          </button>
+        </div>
+
+        <div class="relative" id="vat-custom-wrap">
+          <input
+            type="text"
+            id="vat-rate-input"
+            inputmode="decimal"
+            value="19"
+            placeholder="19"
+            class="w-full px-4 py-2 sm:py-2.5 pr-8 rounded-xl border font-bold text-sm sm:text-base outline-none shadow-2xs"
+            style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+          />
+          <span class="absolute right-3.5 top-2 sm:top-2.5 font-bold text-sm pointer-events-none opacity-50">%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Table & Summary -->
+    <div class="flex flex-col justify-between p-4 sm:p-6 rounded-2xl border space-y-4" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between pb-2 border-b" style="border-color: var(--border-hairline);">
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">Tax Summary</span>
+          <button
+            type="button"
+            id="vat-copy-btn"
+            class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs touch-target"
+            style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
+            title="Copy tax summary"
+            aria-label="Copy tax summary"
+          >
+            <svg class="w-3.5 h-3.5 opacity-75 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+            </svg>
+            <span class="copy-text">Copy Summary</span>
+          </button>
+        </div>
+
+        <!-- Metric 1: Net -->
+        <div class="flex items-center justify-between text-xs sm:text-sm">
+          <span style="color: var(--text-muted);">Net Amount (excl. VAT):</span>
+          <span class="font-mono font-bold" id="vat-res-net" style="color: var(--text-ink);">$0.00</span>
+        </div>
+
+        <!-- Metric 2: VAT -->
+        <div class="flex items-center justify-between text-xs sm:text-sm">
+          <span style="color: var(--text-muted);">VAT Amount (<span id="vat-res-rate-label">19%</span>):</span>
+          <span class="font-mono font-bold text-teal-600 dark:text-teal-400" id="vat-res-vat">$0.00</span>
+        </div>
+
+        <!-- Metric 3: Gross Highlight -->
+        <div class="flex items-center justify-between pt-3 border-t text-sm sm:text-base font-bold" style="border-color: var(--border-hairline);">
+          <span style="color: var(--text-ink);">Gross Total (incl. VAT):</span>
+          <span class="font-display font-black text-2xl sm:text-3xl text-teal-600 dark:text-teal-400" id="vat-res-gross">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Educational Pro-Tip: The VAT Trap -->
+      <div class="p-3 rounded-xl bg-teal-500/10 border border-teal-500/20 text-[11px] leading-relaxed" style="color: var(--text-body);">
+        <strong class="text-teal-700 dark:text-teal-300">💡 The VAT Calculation Rule:</strong>
+        To remove 19% VAT from Gross $119, divide by <strong>1.19</strong> ($100), rather than subtracting 19% ($119 &times; 0.81 = $96.39).
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { calcVat, formatNumber } from '../../utils/math';
+  import { saveHistoryItem } from '../../utils/history';
+
+  function initVatCalc() {
+    let mode: 'netToGross' | 'grossToNet' = 'netToGross';
+    const amountInput = document.getElementById('vat-amount') as HTMLInputElement | null;
+    const rateInput = document.getElementById('vat-rate-input') as HTMLInputElement | null;
+    const amountLabel = document.getElementById('vat-amount-label');
+
+    const resNet = document.getElementById('vat-res-net');
+    const resVat = document.getElementById('vat-res-vat');
+    const resGross = document.getElementById('vat-res-gross');
+    const rateLabel = document.getElementById('vat-res-rate-label');
+    const copyBtn = document.getElementById('vat-copy-btn');
+    const resetBtn = document.getElementById('vat-reset-btn');
+
+    const btnN2G = document.getElementById('vat-mode-net-to-gross');
+    const btnG2N = document.getElementById('vat-mode-gross-to-net');
+    const chips = document.querySelectorAll('.vat-rate-chip');
+
+    function evalVat() {
+      if (!amountInput || !rateInput || !resNet || !resVat || !resGross || !rateLabel) return;
+
+      const res = calcVat(amountInput.value, rateInput.value, mode);
+      if (res) {
+        resNet.textContent = `$${formatNumber(res.net, 2)}`;
+        resVat.textContent = `$${formatNumber(res.vatAmount, 2)}`;
+        resGross.textContent = `$${formatNumber(res.gross, 2)}`;
+        rateLabel.textContent = `${formatNumber(res.vatRate)}%`;
+
+        saveHistoryItem({
+          toolType: 'vat',
+          toolName: 'VAT Calculator',
+          inputs: { amount: amountInput.value, rate: rateInput.value, mode },
+          result: `Net: $${formatNumber(res.net, 2)} | VAT: $${formatNumber(res.vatAmount, 2)} | Gross: $${formatNumber(res.gross, 2)}`,
+          summary: `${mode === 'netToGross' ? 'Net' : 'Gross'} $${amountInput.value} at ${rateInput.value}% VAT`
+        });
+      } else {
+        resNet.textContent = '$0.00';
+        resVat.textContent = '$0.00';
+        resGross.textContent = '$0.00';
+      }
+    }
+
+    btnN2G?.addEventListener('click', () => {
+      mode = 'netToGross';
+      btnN2G.className = 'vat-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-teal-600 text-white shadow-xs touch-target';
+      if (btnG2N) btnG2N.className = 'vat-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target';
+      if (amountLabel) amountLabel.textContent = 'Net Amount ($ / €)';
+      evalVat();
+    });
+
+    btnG2N?.addEventListener('click', () => {
+      mode = 'grossToNet';
+      btnG2N.className = 'vat-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-teal-600 text-white shadow-xs touch-target';
+      if (btnN2G) btnN2G.className = 'vat-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target';
+      if (amountLabel) amountLabel.textContent = 'Gross Total ($ / €)';
+      evalVat();
+    });
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const rateVal = chip.getAttribute('data-rate');
+        chips.forEach(c => c.className = 'vat-rate-chip px-3 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer hover:border-teal-400 bg-transparent text-current touch-target');
+        chip.className = 'vat-rate-chip px-3 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer bg-teal-50 dark:bg-teal-950/50 border-teal-500 text-teal-700 dark:text-teal-300 touch-target';
+        
+        if (rateVal && rateVal !== 'custom' && rateInput) {
+          rateInput.value = rateVal;
+          evalVat();
+        } else if (rateInput) {
+          rateInput.focus();
+        }
+      });
+    });
+
+    amountInput?.addEventListener('input', evalVat);
+    rateInput?.addEventListener('input', evalVat);
+
+    copyBtn?.addEventListener('click', () => {
+      const summary = `Net: ${resNet?.textContent} | VAT: ${resVat?.textContent} | Gross: ${resGross?.textContent}`;
+      navigator.clipboard.writeText(summary).then(() => {
+        (window as any).showToast?.('Tax summary copied!');
+        const label = copyBtn.querySelector('.copy-text');
+        if (label) {
+          const prev = label.textContent;
+          label.textContent = 'Copied!';
+          setTimeout(() => { label.textContent = prev; }, 1500);
+        }
+      });
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      if (amountInput) amountInput.value = '';
+      if (rateInput) rateInput.value = '19';
+      evalVat();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initVatCalc);
+</script>

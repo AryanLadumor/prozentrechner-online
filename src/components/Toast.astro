@@ -1,0 +1,58 @@
+---
+// Floating Toast Notification Component
+---
+
+<div
+  id="global-toast"
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:right-6 sm:translate-x-0 z-50 transform translate-y-16 opacity-0 pointer-events-none transition-all duration-300 ease-out flex items-center gap-2.5 px-4 py-3 rounded-2xl border shadow-2xl text-xs sm:text-sm font-semibold max-w-[90vw] whitespace-nowrap"
+  style="background-color: var(--bg-surface); color: var(--text-ink); border-color: var(--border-hairline); box-shadow: var(--card-shadow);"
+  role="alert"
+>
+  <div id="toast-icon-wrap" class="w-6 h-6 rounded-full flex items-center justify-center bg-emerald-500 text-white shrink-0 shadow-xs">
+    <svg id="toast-svg-success" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+    </svg>
+    <svg id="toast-svg-info" class="w-3.5 h-3.5 hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+    </svg>
+  </div>
+  <span id="toast-message" class="truncate">Result copied to clipboard!</span>
+</div>
+
+<script>
+  let toastTimer: any = null;
+
+  export function showToast(message: string, isSuccess: boolean = true) {
+    const toast = document.getElementById('global-toast');
+    const msgEl = document.getElementById('toast-message');
+    const iconWrap = document.getElementById('toast-icon-wrap');
+    const svgSuccess = document.getElementById('toast-svg-success');
+    const svgInfo = document.getElementById('toast-svg-info');
+
+    if (!toast || !msgEl || !iconWrap) return;
+
+    msgEl.textContent = message;
+    if (isSuccess) {
+      iconWrap.className = 'w-6 h-6 rounded-full flex items-center justify-center bg-emerald-500 text-white shrink-0 shadow-xs';
+      svgSuccess?.classList.remove('hidden');
+      svgInfo?.classList.add('hidden');
+    } else {
+      iconWrap.className = 'w-6 h-6 rounded-full flex items-center justify-center bg-amber-500 text-white shrink-0 shadow-xs';
+      svgSuccess?.classList.add('hidden');
+      svgInfo?.classList.remove('hidden');
+    }
+
+    // Show toast
+    toast.classList.remove('translate-y-16', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+      toast.classList.add('translate-y-16', 'opacity-0', 'pointer-events-none');
+    }, 2500);
+  }
+
+  // Expose globally for vanilla scripts
+  (window as any).showToast = showToast;
+</script>

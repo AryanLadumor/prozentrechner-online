@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RuleOfThreeCalc from '../components/calculators/RuleOfThreeCalc.astro';
+---
+
+<Layout
+  title="Rule of Three Calculator: Direct & Inverse Proportions (Dreisatz)"
+  description="Solve proportional math problems easily with our Rule of Three (Dreisatz) calculator. Includes step-by-step 3-line tables for direct and inverse ratios."
+  canonicalUrl="https://prozentrechner-online.com/rule-of-three-calculator"
+>
+  <!-- Breadcrumb & Header -->
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">Rule of Three Calculator</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Rule of Three (Dreisatz) Calculator
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Solve direct and inverse proportions step-by-step with clear 3-line breakdown tables.
+    </p>
+  </div>
+
+  <!-- Interactive Tool -->
+  <div class="mb-16">
+    <RuleOfThreeCalc />
+  </div>
+
+  <!-- Educational Guide -->
+  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+      Understanding the Rule of Three (Dreisatz)
+    </h2>
+
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      The Rule of Three is one of the most fundamental math techniques used worldwide for solving ratio and proportion problems.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-purple-600 dark:text-purple-400">Direct Proportion (Proportional)</h3>
+        <p style="color: var(--text-muted);">As one quantity increases, the other increases at the same rate ("more yields more").</p>
+        <code class="block font-bold">D = (B &times; C) &divide; A</code>
+        <p style="color: var(--text-muted);">Example: 3 apples cost $6 &rarr; 5 apples cost $10.</p>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-purple-600 dark:text-purple-400">Inverse Proportion (Antiproportional)</h3>
+        <p style="color: var(--text-muted);">As one quantity increases, the other decreases ("more takes less").</p>
+        <code class="block font-bold">D = (A &times; B) &divide; C</code>
+        <p style="color: var(--text-muted);">Example: 4 workers take 6 hours &rarr; 8 workers take 3 hours.</p>
+      </div>
+    </div>
+  </div>
+</Layout>

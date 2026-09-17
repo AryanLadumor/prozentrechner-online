@@ -1,23 +1,114 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HistoryDrawer from '../components/HistoryDrawer.astro';
+import CommandPalette from '../components/CommandPalette.astro';
+import Toast from '../components/Toast.astro';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = "Percentage Calculator: Fast & Accurate Online Math Tools",
+  description = "Free online percentage calculator with instant step-by-step Rechenweg. Calculate discounts, VAT (MwSt), Rule of Three (Dreisatz), salary raises, and percentage change.",
+  canonicalUrl = "https://prozentrechner-online.com"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="clay">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%</text></svg>" />
+
+    <!-- Open Graph / Facebook / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Schema.org JSON-LD Structured Data: MathSolver & WebApplication -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://prozentrechner-online.com/#webapp",
+            "name": "Percentage Calculator",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript",
+            "url": "https://prozentrechner-online.com",
+            "description": "Fast online percentage calculation tool with step-by-step Rechenweg, discount, VAT, Rule of Three, and salary raise solvers.",
+            "isAccessibleForFree": true
+          },
+          {
+            "@type": ["MathSolver", "LearningResource"],
+            "@id": "https://prozentrechner-online.com/#mathsolver",
+            "name": "Percentage Math Solver & Rechenweg",
+            "url": "https://prozentrechner-online.com",
+            "learningResourceType": "Math solver / calculator",
+            "educationalLevel": "Primary, Secondary, Higher Education, Professional",
+            "isAccessibleForFree": true,
+            "mathExpression": [
+              "Percentage Value = (Base Value * Percentage Rate) / 100",
+              "Percentage Rate = (Part Value / Base Value) * 100",
+              "Base Value = (Part Value * 100) / Percentage Rate",
+              "Percentage Change = ((New Value - Old Value) / Old Value) * 100"
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <!-- Synchronous Theme Setup (Prevents FOUC) -->
+    <script is:inline>
+      (function() {
+        const savedTheme = localStorage.getItem('pct_theme') || 'clay';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col antialiased selection:bg-amber-300 selection:text-neutral-900 w-full max-w-full overflow-x-hidden">
+    <!-- Top Navigation Header -->
+    <Header />
+
+    <!-- Main Content Slot -->
+    <main class="flex-1 w-full max-w-6xl mx-auto px-3 sm:px-6 py-6 sm:py-10 overflow-x-hidden">
+      <slot />
+    </main>
+
+    <!-- Slide-over History Drawer -->
+    <HistoryDrawer />
+
+    <!-- Command Palette (Ctrl+K) -->
+    <CommandPalette />
+
+    <!-- Global Floating Toast Notification -->
+    <Toast />
+
+    <!-- Warm Footer -->
+    <Footer />
+  </body>
+</html>

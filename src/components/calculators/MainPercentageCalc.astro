@@ -1,0 +1,803 @@
+---
+import PresetChips from '../PresetChips.astro';
+import RechenwegBox from '../RechenwegBox.astro';
+---
+
+<section id="main-calc" class="w-full">
+  <div class="rounded-2xl sm:rounded-3xl border p-3.5 sm:p-6 lg:p-8 shadow-sm transition-all" style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);">
+    
+    <!-- Header with Precision and Mode Indicator -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-4 sm:pb-6 border-b" style="border-color: var(--border-hairline);">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2" style="background-color: var(--bg-card); color: var(--text-ink);">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span> Instant Percentage Solver
+        </div>
+        <h2 class="font-display font-black text-xl xs:text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
+          Main Percentage Calculator
+        </h2>
+        <p class="text-xs sm:text-sm mt-1" style="color: var(--text-muted);">
+          Choose any of the 5 standard percentage questions below. Live calculations update instantly as you type.
+        </p>
+      </div>
+
+      <!-- Precision Controls -->
+      <div class="flex items-center gap-2 self-center sm:self-auto bg-black/5 dark:bg-white/5 p-1.5 rounded-2xl border" style="border-color: var(--border-hairline);">
+        <label for="global-precision" class="text-xs font-semibold pl-2" style="color: var(--text-muted);">Decimals:</label>
+        <select
+          id="global-precision"
+          class="px-3 py-1.5 rounded-xl border text-xs font-bold outline-none cursor-pointer"
+          style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
+        >
+          <option value="auto" selected>Auto</option>
+          <option value="2">2 (0.00)</option>
+          <option value="4">4 (0.0000)</option>
+          <option value="0">0 (Integer)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- The 5 Natural Language Question Units -->
+    <div class="space-y-4 sm:space-y-6 pt-4 sm:pt-6">
+      
+      <!-- ================= UNIT 1: What is X% of Y? ================= -->
+      <div class="calc-unit p-3.5 sm:p-5 rounded-2xl border transition-all" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);" id="unit-pct-of" data-tool="percentage-of">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
+          <!-- Question Inputs Container -->
+          <div class="flex-1 flex flex-wrap items-center justify-center lg:justify-start gap-1.5 xs:gap-2 sm:gap-3 text-sm xs:text-base sm:text-lg font-medium text-center lg:text-left" style="color: var(--text-ink);">
+            <span class="font-bold whitespace-nowrap">What is</span>
+            
+            <!-- Percentage Input (P) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u1-p"
+                inputmode="decimal"
+                placeholder="15"
+                class="calc-input w-20 xs:w-22 sm:w-28 px-2.5 sm:px-3 py-2 sm:py-2.5 pr-6 sm:pr-7 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="Percentage rate"
+              />
+              <span class="absolute right-2 font-bold text-xs sm:text-sm pointer-events-none opacity-50">%</span>
+            </div>
+
+            <span class="whitespace-nowrap">of</span>
+
+            <!-- Base Value Input (V) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u1-v"
+                inputmode="decimal"
+                placeholder="250"
+                class="calc-input w-24 xs:w-28 sm:w-36 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="Base value"
+              />
+            </div>
+
+            <span class="font-bold whitespace-nowrap">?</span>
+          </div>
+
+          <!-- Result & Action Box -->
+          <div class="flex items-center justify-center lg:justify-end gap-2 w-full lg:w-auto pt-1 lg:pt-0">
+            <div
+              class="result-badge flex-1 sm:flex-none px-4 py-2 sm:py-2.5 rounded-xl border font-mono font-black text-lg sm:text-xl min-w-[110px] sm:min-w-[130px] text-center shadow-xs"
+              style="background-color: var(--result-bg); color: var(--result-text); border-color: var(--border-hairline);"
+              id="u1-result"
+            >
+              —
+            </div>
+
+            <button
+              type="button"
+              class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
+              data-target="u1-result"
+              title="Copy result"
+              aria-label="Copy result"
+            >
+              <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+              </svg>
+              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+            </button>
+
+            <button
+              type="button"
+              class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
+              data-unit="unit-pct-of"
+              title="Reset inputs"
+              aria-label="Reset inputs"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Presets & Rechenweg -->
+        <div class="mt-3 flex flex-col gap-2">
+          <PresetChips targetInputId="u1-p" />
+          <RechenwegBox id="u1" />
+        </div>
+      </div>
+
+      <!-- ================= UNIT 2: X is what % of Y? ================= -->
+      <div class="calc-unit p-3.5 sm:p-5 rounded-2xl border transition-all" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);" id="unit-pct-rate" data-tool="percentage-rate">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
+          <!-- Question Inputs Container -->
+          <div class="flex-1 flex flex-wrap items-center justify-center lg:justify-start gap-1.5 xs:gap-2 sm:gap-3 text-sm xs:text-base sm:text-lg font-medium text-center lg:text-left" style="color: var(--text-ink);">
+            <!-- Part Value Input (V1) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u2-v1"
+                inputmode="decimal"
+                placeholder="45"
+                class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="Part value"
+              />
+            </div>
+
+            <span class="whitespace-nowrap">is what</span>
+            <span class="font-bold text-emerald-600 dark:text-emerald-400">%</span>
+            <span class="whitespace-nowrap">of</span>
+
+            <!-- Base Value Input (V2) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u2-v2"
+                inputmode="decimal"
+                placeholder="180"
+                class="calc-input w-24 xs:w-28 sm:w-36 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="Total base value"
+              />
+            </div>
+
+            <span class="font-bold whitespace-nowrap">?</span>
+          </div>
+
+          <!-- Result & Action Box -->
+          <div class="flex items-center justify-center lg:justify-end gap-2 w-full lg:w-auto pt-1 lg:pt-0">
+            <div
+              class="result-badge flex-1 sm:flex-none px-4 py-2 sm:py-2.5 rounded-xl border font-mono font-black text-lg sm:text-xl min-w-[110px] sm:min-w-[130px] text-center shadow-xs"
+              style="background-color: var(--result-bg); color: var(--result-text); border-color: var(--border-hairline);"
+              id="u2-result"
+            >
+              —
+            </div>
+
+            <button
+              type="button"
+              class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
+              data-target="u2-result"
+              title="Copy result"
+              aria-label="Copy result"
+            >
+              <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+              </svg>
+              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+            </button>
+
+            <button
+              type="button"
+              class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
+              data-unit="unit-pct-rate"
+              title="Reset inputs"
+              aria-label="Reset inputs"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Rechenweg -->
+        <div class="mt-3">
+          <RechenwegBox id="u2" />
+        </div>
+      </div>
+
+      <!-- ================= UNIT 3: X is Y% of what? ================= -->
+      <div class="calc-unit p-3.5 sm:p-5 rounded-2xl border transition-all" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);" id="unit-base-val" data-tool="base-value">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
+          <!-- Question Inputs Container -->
+          <div class="flex-1 flex flex-wrap items-center justify-center lg:justify-start gap-1.5 xs:gap-2 sm:gap-3 text-sm xs:text-base sm:text-lg font-medium text-center lg:text-left" style="color: var(--text-ink);">
+            <!-- Part Value Input (V) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u3-v"
+                inputmode="decimal"
+                placeholder="60"
+                class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="Part amount"
+              />
+            </div>
+
+            <span class="whitespace-nowrap">is</span>
+
+            <!-- Percentage Input (P) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u3-p"
+                inputmode="decimal"
+                placeholder="20"
+                class="calc-input w-20 xs:w-22 sm:w-28 px-2.5 sm:px-3 py-2 sm:py-2.5 pr-6 sm:pr-7 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="Percentage rate"
+              />
+              <span class="absolute right-2 font-bold text-xs sm:text-sm pointer-events-none opacity-50">%</span>
+            </div>
+
+            <span class="font-bold whitespace-nowrap">of what?</span>
+          </div>
+
+          <!-- Result & Action Box -->
+          <div class="flex items-center justify-center lg:justify-end gap-2 w-full lg:w-auto pt-1 lg:pt-0">
+            <div
+              class="result-badge flex-1 sm:flex-none px-4 py-2 sm:py-2.5 rounded-xl border font-mono font-black text-lg sm:text-xl min-w-[110px] sm:min-w-[130px] text-center shadow-xs"
+              style="background-color: var(--result-bg); color: var(--result-text); border-color: var(--border-hairline);"
+              id="u3-result"
+            >
+              —
+            </div>
+
+            <button
+              type="button"
+              class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
+              data-target="u3-result"
+              title="Copy result"
+              aria-label="Copy result"
+            >
+              <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+              </svg>
+              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+            </button>
+
+            <button
+              type="button"
+              class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
+              data-unit="unit-base-val"
+              title="Reset inputs"
+              aria-label="Reset inputs"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Presets & Rechenweg -->
+        <div class="mt-3 flex flex-col gap-2">
+          <PresetChips targetInputId="u3-p" />
+          <RechenwegBox id="u3" />
+        </div>
+      </div>
+
+      <!-- ================= UNIT 4: Percentage Change from X to Y ================= -->
+      <div class="calc-unit p-3.5 sm:p-5 rounded-2xl border transition-all" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);" id="unit-change" data-tool="percentage-change">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
+          <!-- Question Inputs Container -->
+          <div class="flex-1 flex flex-wrap items-center justify-center lg:justify-start gap-1.5 xs:gap-2 sm:gap-3 text-sm xs:text-base sm:text-lg font-medium text-center lg:text-left" style="color: var(--text-ink);">
+            <span class="font-bold whitespace-nowrap">From</span>
+
+            <!-- Initial Value (V1) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u4-v1"
+                inputmode="decimal"
+                placeholder="100"
+                class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="Initial old value"
+              />
+            </div>
+
+            <span class="font-bold whitespace-nowrap">to</span>
+
+            <!-- New Value (V2) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u4-v2"
+                inputmode="decimal"
+                placeholder="150"
+                class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="New value"
+              />
+            </div>
+
+            <span class="whitespace-nowrap">: what % change?</span>
+          </div>
+
+          <!-- Result & Action Box -->
+          <div class="flex items-center justify-center lg:justify-end gap-2 w-full lg:w-auto pt-1 lg:pt-0">
+            <div
+              class="result-badge flex-1 sm:flex-none px-4 py-2 sm:py-2.5 rounded-xl border font-mono font-black text-lg sm:text-xl min-w-[110px] sm:min-w-[130px] text-center shadow-xs"
+              style="background-color: var(--result-bg); color: var(--result-text); border-color: var(--border-hairline);"
+              id="u4-result"
+            >
+              —
+            </div>
+
+            <button
+              type="button"
+              class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
+              data-target="u4-result"
+              title="Copy result"
+              aria-label="Copy result"
+            >
+              <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+              </svg>
+              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+            </button>
+
+            <button
+              type="button"
+              class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
+              data-unit="unit-change"
+              title="Reset inputs"
+              aria-label="Reset inputs"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Rechenweg -->
+        <div class="mt-3">
+          <RechenwegBox id="u4" />
+        </div>
+      </div>
+
+      <!-- ================= UNIT 5: Add or Subtract % ================= -->
+      <div class="calc-unit p-3.5 sm:p-5 rounded-2xl border transition-all" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);" id="unit-add-sub" data-tool="add-subtract">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
+          <!-- Question Inputs Container -->
+          <div class="flex-1 flex flex-wrap items-center justify-center lg:justify-start gap-1.5 xs:gap-2 sm:gap-3 text-sm xs:text-base sm:text-lg font-medium text-center lg:text-left" style="color: var(--text-ink);">
+            <!-- Base Value (V) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u5-v"
+                inputmode="decimal"
+                placeholder="200"
+                class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="Base value"
+              />
+            </div>
+
+            <!-- Operation Selector (Plus / Minus) -->
+            <div class="inline-flex rounded-xl border p-0.5" style="background-color: var(--bg-card); border-color: var(--border-hairline);">
+              <button
+                type="button"
+                id="u5-op-add"
+                class="op-btn px-3 py-1.5 rounded-lg text-sm font-black transition-all cursor-pointer bg-emerald-500 text-white shadow-2xs"
+                data-op="add"
+              >
+                +
+              </button>
+              <button
+                type="button"
+                id="u5-op-sub"
+                class="op-btn px-3 py-1.5 rounded-lg text-sm font-black transition-all cursor-pointer text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                data-op="subtract"
+              >
+                −
+              </button>
+            </div>
+
+            <!-- Percentage Rate Input (P) -->
+            <div class="relative inline-flex items-center">
+              <input
+                type="text"
+                id="u5-p"
+                inputmode="decimal"
+                placeholder="19"
+                class="calc-input w-20 xs:w-22 sm:w-28 px-2.5 sm:px-3 py-2 sm:py-2.5 pr-6 sm:pr-7 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
+                style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+                aria-label="Percentage rate"
+              />
+              <span class="absolute right-2 font-bold text-xs sm:text-sm pointer-events-none opacity-50">%</span>
+            </div>
+
+            <span class="font-bold whitespace-nowrap">=</span>
+          </div>
+
+          <!-- Result & Action Box -->
+          <div class="flex items-center justify-center lg:justify-end gap-2 w-full lg:w-auto pt-1 lg:pt-0">
+            <div
+              class="result-badge flex-1 sm:flex-none px-4 py-2 sm:py-2.5 rounded-xl border font-mono font-black text-lg sm:text-xl min-w-[110px] sm:min-w-[130px] text-center shadow-xs"
+              style="background-color: var(--result-bg); color: var(--result-text); border-color: var(--border-hairline);"
+              id="u5-result"
+            >
+              —
+            </div>
+
+            <button
+              type="button"
+              class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
+              data-target="u5-result"
+              title="Copy result"
+              aria-label="Copy result"
+            >
+              <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+              </svg>
+              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+            </button>
+
+            <button
+              type="button"
+              class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
+              style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
+              data-unit="unit-add-sub"
+              title="Reset inputs"
+              aria-label="Reset inputs"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Presets & Rechenweg -->
+        <div class="mt-3 flex flex-col gap-2">
+          <PresetChips targetInputId="u5-p" />
+          <RechenwegBox id="u5" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import {
+    calcPercentageOf,
+    calcPercentageRate,
+    calcBaseValue,
+    calcPercentageChange,
+    calcAddSubtractPercentage,
+    formatNumber
+  } from '../../utils/math';
+  import { saveHistoryItem } from '../../utils/history';
+  import { syncUrlParams, getUrlParam } from '../../utils/urlState';
+
+  function initMainPercentageCalc() {
+    const precisionSelect = document.getElementById('global-precision') as HTMLSelectElement | null;
+    let currentPrecision: 'auto' | 0 | 2 | 4 = 'auto';
+
+    // Unit 1 Elements
+    const u1p = document.getElementById('u1-p') as HTMLInputElement | null;
+    const u1v = document.getElementById('u1-v') as HTMLInputElement | null;
+    const u1res = document.getElementById('u1-result');
+
+    // Unit 2 Elements
+    const u2v1 = document.getElementById('u2-v1') as HTMLInputElement | null;
+    const u2v2 = document.getElementById('u2-v2') as HTMLInputElement | null;
+    const u2res = document.getElementById('u2-result');
+
+    // Unit 3 Elements
+    const u3v = document.getElementById('u3-v') as HTMLInputElement | null;
+    const u3p = document.getElementById('u3-p') as HTMLInputElement | null;
+    const u3res = document.getElementById('u3-result');
+
+    // Unit 4 Elements
+    const u4v1 = document.getElementById('u4-v1') as HTMLInputElement | null;
+    const u4v2 = document.getElementById('u4-v2') as HTMLInputElement | null;
+    const u4res = document.getElementById('u4-result');
+
+    // Unit 5 Elements
+    const u5v = document.getElementById('u5-v') as HTMLInputElement | null;
+    const u5p = document.getElementById('u5-p') as HTMLInputElement | null;
+    const u5res = document.getElementById('u5-result');
+    let u5op: 'add' | 'subtract' = 'add';
+    const u5btnAdd = document.getElementById('u5-op-add');
+    const u5btnSub = document.getElementById('u5-op-sub');
+
+    function updateRechenwegUI(boxId: string, steps: any[], proportion?: any) {
+      const contentBox = document.getElementById(`rw-content-${boxId}`);
+      if (!contentBox) return;
+
+      const stepsList = contentBox.querySelector('.rw-steps-list');
+      const propContainer = contentBox.querySelector('.rw-proportion-container');
+      const propBar = contentBox.querySelector('.rw-proportion-bar') as HTMLElement | null;
+      const propLabel = contentBox.querySelector('.rw-pct-label');
+      const copyBtn = contentBox.querySelector('.rw-copy-btn');
+
+      if (steps && steps.length > 0) {
+        if (stepsList) {
+          stepsList.innerHTML = steps.map(s => `
+            <div class="p-2 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5">
+              <div class="font-bold text-xs mb-0.5 opacity-90">${s.title}</div>
+              ${s.formula ? `<div class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 mb-0.5">${s.formula}</div>` : ''}
+              ${s.substitution ? `<div class="text-[11px] font-mono font-bold">${s.substitution}</div>` : ''}
+              ${s.explanation ? `<div class="text-[11px] opacity-75 mt-0.5 font-sans">${s.explanation}</div>` : ''}
+            </div>
+          `).join('');
+        }
+
+        if (copyBtn) {
+          copyBtn.setAttribute('data-steps', steps.map(s => `${s.title}: ${s.formula || s.substitution || ''} ${s.explanation || ''}`).join('\n'));
+        }
+
+        if (proportion && propContainer && propBar && propLabel) {
+          propContainer.classList.remove('hidden');
+          const pct = Math.min(Math.max(proportion.percentage, 0), 100);
+          propBar.style.width = `${pct}%`;
+          propLabel.textContent = `${pct.toFixed(1)}%`;
+        } else if (propContainer) {
+          propContainer.classList.add('hidden');
+        }
+      } else {
+        if (stepsList) {
+          stepsList.innerHTML = `<p class="opacity-60 italic font-sans text-xs">Enter numbers above to see the complete mathematical steps.</p>`;
+        }
+        if (propContainer) propContainer.classList.add('hidden');
+      }
+    }
+
+    // Debounce helper for history saving
+    const saveTimers: Record<string, any> = {};
+    function debouncedSaveHistory(key: string, fn: () => void) {
+      clearTimeout(saveTimers[key]);
+      saveTimers[key] = setTimeout(fn, 800);
+    }
+
+    // Evaluate Unit 1
+    function evalU1() {
+      if (!u1p || !u1v || !u1res) return;
+      const res = calcPercentageOf(u1p.value, u1v.value);
+      if (res.isValid && res.value !== null) {
+        const formatted = formatNumber(res.value, currentPrecision);
+        u1res.textContent = formatted;
+        updateRechenwegUI('u1', res.steps, res.proportion);
+        syncUrlParams({ u1_p: u1p.value, u1_v: u1v.value });
+        debouncedSaveHistory('u1', () => {
+          saveHistoryItem({
+            toolType: 'percentage-of',
+            toolName: 'Percentage Value',
+            inputs: { percentage: u1p.value, base: u1v.value },
+            result: formatted,
+            summary: `${u1p.value}% of ${u1v.value}`
+          });
+        });
+      } else {
+        u1res.textContent = '—';
+        updateRechenwegUI('u1', []);
+      }
+    }
+
+    // Evaluate Unit 2
+    function evalU2() {
+      if (!u2v1 || !u2v2 || !u2res) return;
+      const res = calcPercentageRate(u2v1.value, u2v2.value);
+      if (res.isValid && res.value !== null) {
+        const formatted = `${formatNumber(res.value, currentPrecision)}%`;
+        u2res.textContent = formatted;
+        updateRechenwegUI('u2', res.steps, res.proportion);
+        syncUrlParams({ u2_v1: u2v1.value, u2_v2: u2v2.value });
+        debouncedSaveHistory('u2', () => {
+          saveHistoryItem({
+            toolType: 'percentage-rate',
+            toolName: 'Percentage Rate',
+            inputs: { part: u2v1.value, total: u2v2.value },
+            result: formatted,
+            summary: `${u2v1.value} of ${u2v2.value}`
+          });
+        });
+      } else {
+        u2res.textContent = res.error ? 'Error' : '—';
+        updateRechenwegUI('u2', res.steps);
+      }
+    }
+
+    // Evaluate Unit 3
+    function evalU3() {
+      if (!u3v || !u3p || !u3res) return;
+      const res = calcBaseValue(u3v.value, u3p.value);
+      if (res.isValid && res.value !== null) {
+        const formatted = formatNumber(res.value, currentPrecision);
+        u3res.textContent = formatted;
+        updateRechenwegUI('u3', res.steps, res.proportion);
+        syncUrlParams({ u3_v: u3v.value, u3_p: u3p.value });
+        debouncedSaveHistory('u3', () => {
+          saveHistoryItem({
+            toolType: 'base-value',
+            toolName: 'Base Value',
+            inputs: { part: u3v.value, rate: u3p.value },
+            result: formatted,
+            summary: `${u3v.value} is ${u3p.value}%`
+          });
+        });
+      } else {
+        u3res.textContent = '—';
+        updateRechenwegUI('u3', res.steps);
+      }
+    }
+
+    // Evaluate Unit 4
+    function evalU4() {
+      if (!u4v1 || !u4v2 || !u4res) return;
+      const res = calcPercentageChange(u4v1.value, u4v2.value);
+      if (res.isValid && res.value !== null) {
+        const sign = res.value > 0 ? '+' : '';
+        const formatted = `${sign}${formatNumber(res.value, currentPrecision)}%`;
+        u4res.textContent = formatted;
+        updateRechenwegUI('u4', res.steps);
+        syncUrlParams({ u4_v1: u4v1.value, u4_v2: u4v2.value });
+        debouncedSaveHistory('u4', () => {
+          saveHistoryItem({
+            toolType: 'percentage-change',
+            toolName: 'Percentage Change',
+            inputs: { oldVal: u4v1.value, newVal: u4v2.value },
+            result: formatted,
+            summary: `${u4v1.value} → ${u4v2.value}`
+          });
+        });
+      } else {
+        u4res.textContent = '—';
+        updateRechenwegUI('u4', res.steps);
+      }
+    }
+
+    // Evaluate Unit 5
+    function evalU5() {
+      if (!u5v || !u5p || !u5res) return;
+      const res = calcAddSubtractPercentage(u5v.value, u5p.value, u5op);
+      if (res.isValid && res.value !== null) {
+        const formatted = formatNumber(res.value, currentPrecision);
+        u5res.textContent = formatted;
+        updateRechenwegUI('u5', res.steps);
+        syncUrlParams({ u5_v: u5v.value, u5_p: u5p.value, u5_op: u5op });
+        debouncedSaveHistory('u5', () => {
+          saveHistoryItem({
+            toolType: 'add-subtract',
+            toolName: u5op === 'add' ? 'Add Percentage' : 'Subtract Percentage',
+            inputs: { base: u5v.value, rate: u5p.value, op: u5op },
+            result: formatted,
+            summary: `${u5v.value} ${u5op === 'add' ? '+' : '−'} ${u5p.value}%`
+          });
+        });
+      } else {
+        u5res.textContent = '—';
+        updateRechenwegUI('u5', res.steps);
+      }
+    }
+
+    // Attach Input Event Listeners
+    u1p?.addEventListener('input', evalU1);
+    u1v?.addEventListener('input', evalU1);
+
+    u2v1?.addEventListener('input', evalU2);
+    u2v2?.addEventListener('input', evalU2);
+
+    u3v?.addEventListener('input', evalU3);
+    u3p?.addEventListener('input', evalU3);
+
+    u4v1?.addEventListener('input', evalU4);
+    u4v2?.addEventListener('input', evalU4);
+
+    u5v?.addEventListener('input', evalU5);
+    u5p?.addEventListener('input', evalU5);
+
+    // Precision change
+    precisionSelect?.addEventListener('change', () => {
+      const val = precisionSelect.value;
+      currentPrecision = val === 'auto' ? 'auto' : Number(val) as any;
+      evalU1(); evalU2(); evalU3(); evalU4(); evalU5();
+    });
+
+    // Operation toggle Unit 5
+    u5btnAdd?.addEventListener('click', () => {
+      u5op = 'add';
+      u5btnAdd.className = 'op-btn px-3 py-1 rounded-lg text-sm font-black transition-all cursor-pointer bg-emerald-500 text-white shadow-2xs';
+      if (u5btnSub) u5btnSub.className = 'op-btn px-3 py-1 rounded-lg text-sm font-black transition-all cursor-pointer text-neutral-500 hover:text-neutral-900 dark:hover:text-white';
+      evalU5();
+    });
+
+    u5btnSub?.addEventListener('click', () => {
+      u5op = 'subtract';
+      u5btnSub.className = 'op-btn px-3 py-1 rounded-lg text-sm font-black transition-all cursor-pointer bg-red-500 text-white shadow-2xs';
+      if (u5btnAdd) u5btnAdd.className = 'op-btn px-3 py-1 rounded-lg text-sm font-black transition-all cursor-pointer text-neutral-500 hover:text-neutral-900 dark:hover:text-white';
+      evalU5();
+    });
+
+    // Copy Buttons with visual feedback
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        if (!targetId) return;
+        const target = document.getElementById(targetId);
+        const text = target?.textContent?.trim() || '';
+        if (text && text !== '—') {
+          navigator.clipboard.writeText(text).then(() => {
+            (window as any).showToast?.(`Copied ${text} to clipboard!`);
+            
+            // Visual state feedback on button
+            const label = btn.querySelector('.copy-label');
+            const originalHtml = btn.innerHTML;
+            btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+            btn.innerHTML = `
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              <span class="copy-label hidden xs:inline sm:inline font-bold">Copied!</span>
+            `;
+            setTimeout(() => {
+              btn.innerHTML = originalHtml;
+              btn.classList.remove('bg-emerald-500', 'text-white', 'border-emerald-600');
+            }, 1500);
+          });
+        }
+      });
+    });
+
+    // Rechenweg Copy Buttons
+    document.querySelectorAll('.rw-copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const steps = btn.getAttribute('data-steps') || '';
+        if (steps) {
+          navigator.clipboard.writeText(steps).then(() => {
+            (window as any).showToast?.('Calculation steps copied!');
+          });
+        }
+      });
+    });
+
+    // Reset Buttons
+    document.querySelectorAll('.reset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const unitId = btn.getAttribute('data-unit');
+        const unitEl = document.getElementById(unitId || '');
+        if (unitEl) {
+          unitEl.querySelectorAll('input').forEach(inp => {
+            inp.value = '';
+          });
+          evalU1(); evalU2(); evalU3(); evalU4(); evalU5();
+        }
+      });
+    });
+
+    // Load initial values from URL query parameters if present
+    const p1 = getUrlParam('u1_p'); const v1 = getUrlParam('u1_v');
+    if (p1 && u1p) u1p.value = p1;
+    if (v1 && u1v) u1v.value = v1;
+
+    // Run initial calculations on load with sample placeholders
+    if (u1p && u1v && u1p.value && u1v.value) evalU1();
+    if (u2v1 && u2v2 && u2v1.value && u2v2.value) evalU2();
+    if (u3v && u3p && u3v.value && u3p.value) evalU3();
+    if (u4v1 && u4v2 && u4v1.value && u4v2.value) evalU4();
+    if (u5v && u5p && u5v.value && u5p.value) evalU5();
+  }
+
+  document.addEventListener('DOMContentLoaded', initMainPercentageCalc);
+</script>

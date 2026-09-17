@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SalaryCalc from '../components/calculators/SalaryCalc.astro';
+---
+
+<Layout
+  title="Salary & Pay Raise Calculator: Hourly, Monthly & Annual Wage Increases"
+  description="Calculate your pay raise, new hourly rate, monthly earnings, and total annual salary increase with our easy salary calculator."
+  canonicalUrl="https://prozentrechner-online.com/salary-raise-calculator"
+>
+  <!-- Breadcrumb & Header -->
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">Salary Raise Calculator</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Salary & Pay Raise Calculator
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Calculate your wage increase, new compensation across hourly/monthly/annual frequencies, and extra cash in your pocket.
+    </p>
+  </div>
+
+  <!-- Interactive Tool -->
+  <div class="mb-16">
+    <SalaryCalc />
+  </div>
+
+  <!-- Educational Guide -->
+  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+      How to Calculate a Percentage Pay Raise
+    </h2>
+
+    <div class="space-y-3 text-xs sm:text-sm">
+      <div class="p-4 rounded-2xl border space-y-1" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-orange-600 dark:text-orange-400">Step 1: Calculate the Extra Annual Amount</div>
+        <div class="font-mono font-bold">Raise Amount = Current Salary &times; (Raise% &divide; 100)</div>
+        <div style="color: var(--text-muted);">Example: $60,000 &times; 0.05 = $3,000 annual increase.</div>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-1" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-orange-600 dark:text-orange-400">Step 2: Calculate New Total Salary</div>
+        <div class="font-mono font-bold">New Salary = Current Salary + Raise Amount</div>
+        <div style="color: var(--text-muted);">Example: $60,000 + $3,000 = $63,000 new annual salary ($5,250/mo).</div>
+      </div>
+    </div>
+  </div>
+</Layout>

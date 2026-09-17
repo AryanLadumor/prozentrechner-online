@@ -1,0 +1,273 @@
+---
+import ThemeSwitcher from './ThemeSwitcher.astro';
+---
+
+<header
+  class="sticky top-0 z-40 w-full border-b backdrop-blur-md transition-colors"
+  style="background-color: color-mix(in srgb, var(--bg-canvas) 88%, transparent); border-color: var(--border-hairline);"
+>
+  <div class="max-w-6xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-1.5 sm:gap-4">
+    <!-- Logo & Brand -->
+    <a href="/" class="flex items-center gap-2 sm:gap-2.5 group text-decoration-none shrink-0 min-w-0">
+      <div
+        class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-base sm:text-lg transition-transform group-hover:scale-105 shadow-xs shrink-0"
+        style="background-color: var(--brand-primary); color: var(--brand-primary-text);"
+      >
+        %
+      </div>
+      <div class="min-w-0">
+        <div class="font-display font-extrabold text-sm xs:text-base sm:text-lg tracking-tight leading-none truncate" style="color: var(--text-ink);">
+          Percentage<span class="opacity-60 font-medium">Calculator</span>
+        </div>
+        <div class="text-[10px] font-semibold tracking-wider uppercase opacity-50 hidden md:block" style="color: var(--text-muted);">
+          prozentrechner-online.com
+        </div>
+      </div>
+    </a>
+
+    <!-- Desktop Nav Tools (Large screens) -->
+    <nav class="hidden lg:flex items-center gap-1 text-xs font-semibold" style="color: var(--text-body);">
+      <a
+        href="/"
+        class="px-2.5 py-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+        style="color: var(--text-ink);"
+      >
+        Main Hub
+      </a>
+      <a
+        href="/discount-calculator"
+        class="px-2.5 py-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      >
+        Discount
+      </a>
+      <a
+        href="/vat-calculator"
+        class="px-2.5 py-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      >
+        VAT / Tax
+      </a>
+      <a
+        href="/rule-of-three-calculator"
+        class="px-2.5 py-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      >
+        Rule of Three
+      </a>
+      <a
+        href="/percentage-difference"
+        class="px-2.5 py-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      >
+        Difference
+      </a>
+      <a
+        href="/salary-raise-calculator"
+        class="px-2.5 py-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      >
+        Salary
+      </a>
+      <a
+        href="/percentage-formula"
+        class="px-2.5 py-1.5 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      >
+        Formulas
+      </a>
+    </nav>
+
+    <!-- Action Cluster (Search, History, Theme, Mobile Menu Toggle) -->
+    <div class="flex items-center gap-1 xs:gap-1.5 sm:gap-2 shrink-0">
+      <!-- Search Trigger (Cmd+K) -->
+      <button
+        type="button"
+        id="search-trigger-btn"
+        class="w-8.5 h-8.5 sm:w-auto sm:h-auto flex items-center justify-center gap-1.5 sm:px-2.5 sm:py-1.5 rounded-xl border text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer shadow-xs touch-target shrink-0"
+        style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-body);"
+        title="Quick search (Ctrl+K / Cmd+K)"
+        aria-label="Search tools"
+      >
+        <svg class="w-4 h-4 opacity-70 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>
+        <span class="hidden sm:inline opacity-80 text-xs font-semibold">Search</span>
+        <kbd class="hidden md:inline px-1 py-0.2 text-[9px] font-mono rounded bg-black/5 dark:bg-white/10 opacity-60">⌘K</kbd>
+      </button>
+
+      <!-- History Trigger with Active Item Badge -->
+      <button
+        type="button"
+        id="history-trigger-btn"
+        class="relative w-8.5 h-8.5 sm:w-auto sm:h-auto flex items-center justify-center gap-1.5 sm:px-2.5 sm:py-1.5 rounded-xl border text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer shadow-xs touch-target shrink-0"
+        style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-body);"
+        title="View Calculation History"
+        aria-label="View history"
+      >
+        <svg class="w-4 h-4 opacity-70 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="hidden sm:inline text-xs font-semibold">History</span>
+        <span
+          id="history-badge-count"
+          class="hidden absolute -top-1 -right-1 sm:static sm:top-auto sm:right-auto px-1 sm:px-1.5 py-0.2 rounded-full text-[9px] sm:text-[10px] font-bold bg-amber-500 text-white"
+        >
+          0
+        </span>
+      </button>
+
+      <!-- Theme Switcher -->
+      <ThemeSwitcher />
+
+      <!-- Mobile Menu Button (Visible on mobile and tablet) -->
+      <button
+        type="button"
+        id="mobile-nav-toggle-btn"
+        class="lg:hidden w-8.5 h-8.5 sm:w-auto sm:h-auto flex items-center justify-center p-2 rounded-xl border hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer shadow-xs touch-target shrink-0"
+        style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <svg id="mobile-nav-burger-icon" class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <svg id="mobile-nav-close-icon" class="w-4.5 h-4.5 sm:w-5 sm:h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Dropdown Sheet (Collapsible) -->
+  <div
+    id="mobile-nav-drawer"
+    class="hidden lg:hidden border-t px-4 py-3 space-y-1 shadow-lg transition-all"
+    style="background-color: var(--bg-surface); border-color: var(--border-hairline);"
+  >
+    <div class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider opacity-50" style="color: var(--text-muted);">
+      Calculators & Tools
+    </div>
+
+    <a
+      href="/"
+      class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      style="color: var(--text-ink);"
+    >
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-lg flex items-center justify-center font-black text-xs" style="background-color: var(--bg-card); color: var(--text-ink);">%</span>
+        <span>Main Percentage Solver</span>
+      </div>
+      <span class="opacity-40">&rarr;</span>
+    </a>
+
+    <a
+      href="/discount-calculator"
+      class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      style="color: var(--text-ink);"
+    >
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs bg-pink-100 dark:bg-pink-950 text-pink-600 dark:text-pink-400">🏷️</span>
+        <span>Discount & Sale Calculator</span>
+      </div>
+      <span class="opacity-40">&rarr;</span>
+    </a>
+
+    <a
+      href="/vat-calculator"
+      class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      style="color: var(--text-ink);"
+    >
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs bg-teal-100 dark:bg-teal-950 text-teal-600 dark:text-teal-400">🏛️</span>
+        <span>VAT / Tax Calculator</span>
+      </div>
+      <span class="opacity-40">&rarr;</span>
+    </a>
+
+    <a
+      href="/rule-of-three-calculator"
+      class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      style="color: var(--text-ink);"
+    >
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400">⚖️</span>
+        <span>Rule of Three (Dreisatz)</span>
+      </div>
+      <span class="opacity-40">&rarr;</span>
+    </a>
+
+    <a
+      href="/percentage-difference"
+      class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      style="color: var(--text-ink);"
+    >
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400">📊</span>
+        <span>Percentage Difference & Change</span>
+      </div>
+      <span class="opacity-40">&rarr;</span>
+    </a>
+
+    <a
+      href="/salary-raise-calculator"
+      class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      style="color: var(--text-ink);"
+    >
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs bg-orange-100 dark:bg-orange-950 text-orange-600 dark:text-orange-400">💼</span>
+        <span>Salary & Pay Raise Calculator</span>
+      </div>
+      <span class="opacity-40">&rarr;</span>
+    </a>
+
+    <a
+      href="/percentage-formula"
+      class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      style="color: var(--text-ink);"
+    >
+      <div class="flex items-center gap-2.5">
+        <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400">📐</span>
+        <span>Formulas & Math Reference</span>
+      </div>
+      <span class="opacity-40">&rarr;</span>
+    </a>
+  </div>
+</header>
+
+<script>
+  // Mobile Nav Drawer Toggle
+  const navBtn = document.getElementById('mobile-nav-toggle-btn');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const burgerIcon = document.getElementById('mobile-nav-burger-icon');
+  const closeIcon = document.getElementById('mobile-nav-close-icon');
+
+  function toggleMobileNav() {
+    const isExpanded = navBtn?.getAttribute('aria-expanded') === 'true';
+    if (isExpanded) {
+      drawer?.classList.add('hidden');
+      burgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      navBtn?.setAttribute('aria-expanded', 'false');
+    } else {
+      drawer?.classList.remove('hidden');
+      burgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      navBtn?.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  navBtn?.addEventListener('click', toggleMobileNav);
+
+  // Close drawer on clicking links
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      drawer?.classList.add('hidden');
+      burgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      navBtn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.getElementById('search-trigger-btn')?.addEventListener('click', () => {
+    (window as any).openCommandPalette?.();
+  });
+
+  document.getElementById('history-trigger-btn')?.addEventListener('click', () => {
+    (window as any).openHistoryDrawer?.();
+  });
+</script>

@@ -1,0 +1,258 @@
+---
+import PresetChips from '../PresetChips.astro';
+---
+
+<div class="rounded-2xl sm:rounded-3xl border p-3.5 sm:p-6 lg:p-8 shadow-sm transition-all" style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);" id="discount-calc-card">
+  <!-- Header -->
+  <div class="flex items-center justify-between pb-4 sm:pb-6 border-b" style="border-color: var(--border-hairline);">
+    <div class="flex items-center gap-2.5 sm:gap-3">
+      <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center font-bold text-lg bg-pink-100 dark:bg-pink-950 text-pink-600 dark:text-pink-400 shrink-0 shadow-2xs">
+        <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.386l4.412-2.593c.826-.486 1.169-1.503.771-2.375L18.15 9.878A2.25 2.25 0 0016.559 9H12.25" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-display font-extrabold text-lg xs:text-xl sm:text-2xl" style="color: var(--text-ink);">
+          Discount & Sale Calculator
+        </h3>
+        <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
+          Calculate sale prices, stacked coupons, and total amount saved.
+        </p>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      id="discount-reset-btn"
+      class="p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-1.5 touch-target"
+      style="border-color: var(--border-hairline); color: var(--text-muted);"
+      title="Reset discount inputs"
+      aria-label="Reset discount inputs"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+      <span class="hidden sm:inline">Reset</span>
+    </button>
+  </div>
+
+  <!-- Form Fields Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 sm:pt-6">
+    <!-- Inputs Column -->
+    <div class="space-y-4">
+      <div>
+        <label for="disc-orig-price" class="block text-xs font-bold uppercase tracking-wider mb-1.5" style="color: var(--text-ink);">
+          Original Price ($ / €)
+        </label>
+        <input
+          type="text"
+          id="disc-orig-price"
+          inputmode="decimal"
+          placeholder="89.99"
+          class="w-full px-4 py-2.5 sm:py-3 rounded-xl border font-bold text-base sm:text-lg outline-none shadow-2xs"
+          style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+        />
+      </div>
+
+      <div>
+        <label for="disc-pct" class="block text-xs font-bold uppercase tracking-wider mb-1.5" style="color: var(--text-ink);">
+          Primary Discount Rate (%)
+        </label>
+        <div class="relative">
+          <input
+            type="text"
+            id="disc-pct"
+            inputmode="decimal"
+            placeholder="25"
+            class="w-full px-4 py-2.5 sm:py-3 pr-8 rounded-xl border font-bold text-base sm:text-lg outline-none shadow-2xs"
+            style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+          />
+          <span class="absolute right-3.5 top-2.5 sm:top-3 font-bold text-sm pointer-events-none opacity-50">%</span>
+        </div>
+        <div class="mt-2.5">
+          <PresetChips
+            targetInputId="disc-pct"
+            presets={[
+              { label: '10%', value: 10 },
+              { label: '15%', value: 15 },
+              { label: '20%', value: 20 },
+              { label: '25%', value: 25 },
+              { label: '30%', value: 30 },
+              { label: '50% (Half)', value: 50 },
+              { label: '70% (Clearance)', value: 70 }
+            ]}
+          />
+        </div>
+      </div>
+
+      <!-- Advanced options: Extra Coupon & Sales Tax -->
+      <div class="grid grid-cols-2 gap-3 pt-2">
+        <div>
+          <label for="disc-extra-pct" class="block text-[11px] font-bold tracking-wider mb-1" style="color: var(--text-muted);">
+            Extra Coupon (%)
+          </label>
+          <div class="relative">
+            <input
+              type="text"
+              id="disc-extra-pct"
+              inputmode="decimal"
+              placeholder="0"
+              class="w-full px-3 py-2 pr-7 rounded-xl border font-bold text-sm outline-none shadow-2xs"
+              style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+            />
+            <span class="absolute right-2.5 top-2 font-bold text-xs pointer-events-none opacity-50">%</span>
+          </div>
+        </div>
+
+        <div>
+          <label for="disc-tax-pct" class="block text-[11px] font-bold tracking-wider mb-1" style="color: var(--text-muted);">
+            Sales Tax (%)
+          </label>
+          <div class="relative">
+            <input
+              type="text"
+              id="disc-tax-pct"
+              inputmode="decimal"
+              placeholder="0"
+              class="w-full px-3 py-2 pr-7 rounded-xl border font-bold text-sm outline-none shadow-2xs"
+              style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+            />
+            <span class="absolute right-2.5 top-2 font-bold text-xs pointer-events-none opacity-50">%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Display Column -->
+    <div class="flex flex-col justify-between p-4 sm:p-6 rounded-2xl border space-y-4" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">Final Sale Price</span>
+          <button
+            type="button"
+            id="disc-copy-btn"
+            class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs touch-target"
+            style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
+            title="Copy final sale price"
+            aria-label="Copy final sale price"
+          >
+            <svg class="w-3.5 h-3.5 opacity-75 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+            </svg>
+            <span class="copy-text">Copy Price</span>
+          </button>
+        </div>
+
+        <!-- Big Highlight Price -->
+        <div class="font-display font-black text-4xl sm:text-5xl tracking-tight text-pink-600 dark:text-pink-400" id="disc-res-final">
+          $0.00
+        </div>
+
+        <!-- Savings Badge & Metrics -->
+        <div class="space-y-2 pt-2 border-t text-xs sm:text-sm" style="border-color: var(--border-hairline);">
+          <div class="flex items-center justify-between">
+            <span style="color: var(--text-muted);">Total Money Saved:</span>
+            <span class="font-bold text-emerald-600 dark:text-emerald-400" id="disc-res-saved">$0.00</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span style="color: var(--text-muted);">Effective Total Discount:</span>
+            <span class="font-bold font-mono" id="disc-res-effective" style="color: var(--text-ink);">0.0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Math Explanation -->
+      <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 text-[11px] font-mono leading-relaxed" id="disc-explanation" style="color: var(--text-body);">
+        Enter price and discount rate to view savings breakdown.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { calcDiscount, formatNumber } from '../../utils/math';
+  import { saveHistoryItem } from '../../utils/history';
+
+  function initDiscountCalc() {
+    const origInput = document.getElementById('disc-orig-price') as HTMLInputElement | null;
+    const pctInput = document.getElementById('disc-pct') as HTMLInputElement | null;
+    const extraInput = document.getElementById('disc-extra-pct') as HTMLInputElement | null;
+    const taxInput = document.getElementById('disc-tax-pct') as HTMLInputElement | null;
+    
+    const finalEl = document.getElementById('disc-res-final');
+    const savedEl = document.getElementById('disc-res-saved');
+    const effectiveEl = document.getElementById('disc-res-effective');
+    const expEl = document.getElementById('disc-explanation');
+    const copyBtn = document.getElementById('disc-copy-btn');
+    const resetBtn = document.getElementById('discount-reset-btn');
+
+    function evalDiscount() {
+      if (!origInput || !pctInput || !finalEl || !savedEl || !effectiveEl || !expEl) return;
+
+      const res = calcDiscount(
+        origInput.value,
+        pctInput.value,
+        extraInput?.value || '0',
+        taxInput?.value || '0'
+      );
+
+      if (res) {
+        finalEl.textContent = `$${formatNumber(res.finalPrice, 2)}`;
+        savedEl.textContent = `$${formatNumber(res.totalSaved, 2)}`;
+        effectiveEl.textContent = `${formatNumber(res.effectiveDiscountPct, 1)}% OFF`;
+
+        expEl.innerHTML = `
+          <strong>Breakdown:</strong><br/>
+          • Original: $${formatNumber(res.originalPrice, 2)}<br/>
+          • Discount: -${formatNumber(res.discountPct)}% (-$${formatNumber((res.originalPrice * res.discountPct) / 100, 2)})<br/>
+          ${res.extraDiscountPct > 0 ? `• Extra Coupon: -${formatNumber(res.extraDiscountPct)}%<br/>` : ''}
+          ${res.taxPct > 0 ? `• Sales Tax: +${formatNumber(res.taxPct)}%<br/>` : ''}
+          • <strong>You Pay: $${formatNumber(res.finalPrice, 2)} (Saved $${formatNumber(res.totalSaved, 2)})</strong>
+        `;
+
+        saveHistoryItem({
+          toolType: 'discount',
+          toolName: 'Discount Calculator',
+          inputs: { price: origInput.value, discount: pctInput.value },
+          result: `$${formatNumber(res.finalPrice, 2)} (Saved $${formatNumber(res.totalSaved, 2)})`,
+          summary: `$${origInput.value} with ${pctInput.value}% off`
+        });
+      } else {
+        finalEl.textContent = '$0.00';
+        savedEl.textContent = '$0.00';
+        effectiveEl.textContent = '0.0%';
+        expEl.textContent = 'Enter price and discount rate to view savings breakdown.';
+      }
+    }
+
+    origInput?.addEventListener('input', evalDiscount);
+    pctInput?.addEventListener('input', evalDiscount);
+    extraInput?.addEventListener('input', evalDiscount);
+    taxInput?.addEventListener('input', evalDiscount);
+
+    copyBtn?.addEventListener('click', () => {
+      const text = finalEl?.textContent || '';
+      if (text && text !== '$0.00') {
+        navigator.clipboard.writeText(text).then(() => {
+          (window as any).showToast?.(`Copied ${text} to clipboard!`);
+          const label = copyBtn.querySelector('.copy-text');
+          if (label) {
+            const prev = label.textContent;
+            label.textContent = 'Copied!';
+            setTimeout(() => { label.textContent = prev; }, 1500);
+          }
+        });
+      }
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      if (origInput) origInput.value = '';
+      if (pctInput) pctInput.value = '';
+      if (extraInput) extraInput.value = '';
+      if (taxInput) taxInput.value = '';
+      evalDiscount();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initDiscountCalc);
+</script>

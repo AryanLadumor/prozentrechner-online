@@ -1,0 +1,255 @@
+---
+---
+
+<div class="rounded-2xl sm:rounded-3xl border p-3.5 sm:p-6 lg:p-8 shadow-sm transition-all" style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);" id="dreisatz-calc-card">
+  <!-- Header -->
+  <div class="flex items-center justify-between pb-4 sm:pb-6 border-b" style="border-color: var(--border-hairline);">
+    <div class="flex items-center gap-2.5 sm:gap-3">
+      <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center font-bold text-lg bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 shrink-0 shadow-2xs">
+        <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-display font-extrabold text-lg xs:text-xl sm:text-2xl" style="color: var(--text-ink);">
+          Rule of Three Calculator (Dreisatz)
+        </h3>
+        <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
+          Solve direct and inverse proportions with step-by-step 3-line ratio tables.
+        </p>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      id="dreisatz-reset-btn"
+      class="p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-1.5 touch-target"
+      style="border-color: var(--border-hairline); color: var(--text-muted);"
+      title="Reset Dreisatz inputs"
+      aria-label="Reset Dreisatz inputs"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+      <span class="hidden sm:inline">Reset</span>
+    </button>
+  </div>
+
+  <!-- Proportion Type Switcher -->
+  <div class="pt-4 sm:pt-6">
+    <div class="inline-flex rounded-2xl border p-1 w-full sm:w-auto flex-col xs:flex-row gap-1 xs:gap-0" style="background-color: var(--bg-card); border-color: var(--border-hairline);">
+      <button
+        type="button"
+        id="dreisatz-mode-direct"
+        class="dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-purple-600 text-white shadow-xs touch-target text-center"
+        data-mode="direct"
+      >
+        Direct Proportion (More &rarr; More)
+      </button>
+      <button
+        type="button"
+        id="dreisatz-mode-inverse"
+        class="dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target text-center"
+        data-mode="inverse"
+      >
+        Inverse Proportion (More &rarr; Less)
+      </button>
+    </div>
+  </div>
+
+  <!-- Interactive 3-Line Dreisatz Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 sm:pt-6">
+    <!-- Form Inputs Container -->
+    <div class="space-y-4">
+      <div class="p-4 rounded-2xl border space-y-3" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="text-xs font-bold uppercase tracking-wider opacity-70" style="color: var(--text-muted);">
+          1. Known Relation (If A yields B)
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="dreisatz-a" class="block text-xs font-bold mb-1" style="color: var(--text-ink);">Value A (Qty)</label>
+            <input
+              type="text"
+              id="dreisatz-a"
+              inputmode="decimal"
+              placeholder="3"
+              class="w-full px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-sm sm:text-base outline-none shadow-2xs"
+              style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+            />
+          </div>
+          <div>
+            <label for="dreisatz-b" class="block text-xs font-bold mb-1" style="color: var(--text-ink);">Value B (Cost/Yield)</label>
+            <input
+              type="text"
+              id="dreisatz-b"
+              inputmode="decimal"
+              placeholder="15"
+              class="w-full px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-sm sm:text-base outline-none shadow-2xs"
+              style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-3" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="text-xs font-bold uppercase tracking-wider opacity-70" style="color: var(--text-muted);">
+          2. Target Value (Then C yields ...)
+        </div>
+        <div>
+          <label for="dreisatz-c" class="block text-xs font-bold mb-1" style="color: var(--text-ink);">Value C (New Quantity)</label>
+          <input
+            type="text"
+            id="dreisatz-c"
+            inputmode="decimal"
+            placeholder="8"
+            class="w-full px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-sm sm:text-base outline-none shadow-2xs"
+            style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-Line Step-by-Step Table Breakdown -->
+    <div class="flex flex-col justify-between p-4 sm:p-6 rounded-2xl border space-y-4" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between pb-2 border-b" style="border-color: var(--border-hairline);">
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">Dreisatz Steps Table</span>
+          <button
+            type="button"
+            id="dreisatz-copy-btn"
+            class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs touch-target"
+            style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
+            title="Copy Dreisatz solution"
+            aria-label="Copy Dreisatz solution"
+          >
+            <svg class="w-3.5 h-3.5 opacity-75 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+            </svg>
+            <span class="copy-text">Copy Solution</span>
+          </button>
+        </div>
+
+        <!-- 3-Step Visual Cards -->
+        <div class="space-y-2 text-xs" id="dreisatz-steps-box">
+          <div class="p-2.5 rounded-xl border flex items-center justify-between" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+            <span class="font-bold">Step 1 (Given):</span>
+            <span class="font-mono" id="d-step1">3 &rarr; 15</span>
+          </div>
+          <div class="p-2.5 rounded-xl border flex items-center justify-between" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+            <span class="font-bold">Step 2 (Unit of 1):</span>
+            <span class="font-mono text-purple-600 dark:text-purple-400 font-bold" id="d-step2">1 &rarr; 5</span>
+          </div>
+          <div class="p-2.5 rounded-xl border flex items-center justify-between" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+            <span class="font-bold">Step 3 (Target):</span>
+            <span class="font-mono font-bold" id="d-step3">8 &rarr; 40</span>
+          </div>
+        </div>
+
+        <!-- Final Highlight Result -->
+        <div class="pt-3 border-t flex items-center justify-between" style="border-color: var(--border-hairline);">
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">Result (D):</span>
+          <span class="font-display font-black text-3xl sm:text-4xl text-purple-600 dark:text-purple-400" id="dreisatz-res-d">
+            0
+          </span>
+        </div>
+      </div>
+
+      <!-- Description Note -->
+      <div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 text-[11px] leading-relaxed" id="dreisatz-note" style="color: var(--text-body);">
+        Direct proportionality: When quantity increases, total yield/cost increases by the exact same ratio.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { calcRuleOfThree, formatNumber } from '../../utils/math';
+  import { saveHistoryItem } from '../../utils/history';
+
+  function initDreisatzCalc() {
+    let mode: 'direct' | 'inverse' = 'direct';
+    const inputA = document.getElementById('dreisatz-a') as HTMLInputElement | null;
+    const inputB = document.getElementById('dreisatz-b') as HTMLInputElement | null;
+    const inputC = document.getElementById('dreisatz-c') as HTMLInputElement | null;
+
+    const step1El = document.getElementById('d-step1');
+    const step2El = document.getElementById('d-step2');
+    const step3El = document.getElementById('d-step3');
+    const resDEl = document.getElementById('dreisatz-res-d');
+    const noteEl = document.getElementById('dreisatz-note');
+    const copyBtn = document.getElementById('dreisatz-copy-btn');
+    const resetBtn = document.getElementById('dreisatz-reset-btn');
+
+    const btnDirect = document.getElementById('dreisatz-mode-direct');
+    const btnInverse = document.getElementById('dreisatz-mode-inverse');
+
+    function evalDreisatz() {
+      if (!inputA || !inputB || !inputC || !resDEl || !step1El || !step2El || !step3El) return;
+
+      const res = calcRuleOfThree(inputA.value, inputB.value, inputC.value, mode);
+      if (res) {
+        resDEl.textContent = formatNumber(res.d);
+        step1El.textContent = `${formatNumber(res.a)} → ${formatNumber(res.b)}`;
+        step2El.textContent = mode === 'direct'
+          ? `1 → ${formatNumber(res.b / res.a, 4)}`
+          : `1 → ${formatNumber(res.a * res.b, 4)}`;
+        step3El.textContent = `${formatNumber(res.c)} → ${formatNumber(res.d)}`;
+
+        saveHistoryItem({
+          toolType: 'rule-of-three',
+          toolName: 'Rule of Three (Dreisatz)',
+          inputs: { a: inputA.value, b: inputB.value, c: inputC.value, mode },
+          result: `${inputA.value} : ${inputB.value} = ${inputC.value} : ${formatNumber(res.d)}`,
+          summary: `Dreisatz (${mode}): ${inputA.value} → ${inputB.value}, ${inputC.value} → ${formatNumber(res.d)}`
+        });
+      } else {
+        resDEl.textContent = '—';
+        step1El.textContent = '—';
+        step2El.textContent = '—';
+        step3El.textContent = '—';
+      }
+    }
+
+    btnDirect?.addEventListener('click', () => {
+      mode = 'direct';
+      btnDirect.className = 'dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-purple-600 text-white shadow-xs touch-target';
+      if (btnInverse) btnInverse.className = 'dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target';
+      if (noteEl) noteEl.textContent = 'Direct proportionality: When quantity increases, total yield/cost increases by the exact same ratio.';
+      evalDreisatz();
+    });
+
+    btnInverse?.addEventListener('click', () => {
+      mode = 'inverse';
+      btnInverse.className = 'dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-purple-600 text-white shadow-xs touch-target';
+      if (btnDirect) btnDirect.className = 'dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target';
+      if (noteEl) noteEl.textContent = 'Inverse proportionality: When workers/speed increases, time required decreases proportionally (constant total product).';
+      evalDreisatz();
+    });
+
+    inputA?.addEventListener('input', evalDreisatz);
+    inputB?.addEventListener('input', evalDreisatz);
+    inputC?.addEventListener('input', evalDreisatz);
+
+    copyBtn?.addEventListener('click', () => {
+      const summary = `${step1El?.textContent} | ${step2El?.textContent} | ${step3El?.textContent} (Result: ${resDEl?.textContent})`;
+      navigator.clipboard.writeText(summary).then(() => {
+        (window as any).showToast?.('Dreisatz solution copied!');
+        const label = copyBtn.querySelector('.copy-text');
+        if (label) {
+          const prev = label.textContent;
+          label.textContent = 'Copied!';
+          setTimeout(() => { label.textContent = prev; }, 1500);
+        }
+      });
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      if (inputA) inputA.value = '';
+      if (inputB) inputB.value = '';
+      if (inputC) inputC.value = '';
+      evalDreisatz();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initDreisatzCalc);
+</script>
