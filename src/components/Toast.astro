@@ -55,4 +55,25 @@
 
   // Expose globally for vanilla scripts
   (window as any).showToast = showToast;
+
+  // Import and expose the robust clipboard copy utility
+  import { copyToClipboard } from '../utils/clipboard';
+
+  /**
+   * Combined copy + toast notification helper.
+   * Copies text to clipboard using the robust mobile-compatible utility
+   * and shows a toast notification with the result.
+   */
+  async function copyAndToast(text: string, successMsg?: string, failMsg?: string): Promise<boolean> {
+    const ok = await copyToClipboard(text);
+    if (ok) {
+      showToast(successMsg || 'Copied to clipboard!');
+    } else {
+      showToast(failMsg || 'Copy failed — please copy manually', false);
+    }
+    return ok;
+  }
+
+  (window as any).copyToClipboard = copyToClipboard;
+  (window as any).copyAndToast = copyAndToast;
 </script>

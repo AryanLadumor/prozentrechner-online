@@ -230,17 +230,17 @@
     inputB?.addEventListener('input', evalDreisatz);
     inputC?.addEventListener('input', evalDreisatz);
 
-    copyBtn?.addEventListener('click', () => {
+    copyBtn?.addEventListener('click', async () => {
       const summary = `${step1El?.textContent} | ${step2El?.textContent} | ${step3El?.textContent} (Result: ${resDEl?.textContent})`;
-      navigator.clipboard.writeText(summary).then(() => {
-        (window as any).showToast?.('Dreisatz solution copied!');
+      const ok = await (window as any).copyAndToast?.(summary, 'Dreisatz solution copied!');
+      if (ok) {
         const label = copyBtn.querySelector('.copy-text');
         if (label) {
           const prev = label.textContent;
           label.textContent = 'Copied!';
           setTimeout(() => { label.textContent = prev; }, 1500);
         }
-      });
+      }
     });
 
     resetBtn?.addEventListener('click', () => {

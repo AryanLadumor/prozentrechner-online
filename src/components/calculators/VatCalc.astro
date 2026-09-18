@@ -238,17 +238,17 @@
     amountInput?.addEventListener('input', evalVat);
     rateInput?.addEventListener('input', evalVat);
 
-    copyBtn?.addEventListener('click', () => {
+    copyBtn?.addEventListener('click', async () => {
       const summary = `Net: ${resNet?.textContent} | VAT: ${resVat?.textContent} | Gross: ${resGross?.textContent}`;
-      navigator.clipboard.writeText(summary).then(() => {
-        (window as any).showToast?.('Tax summary copied!');
+      const ok = await (window as any).copyAndToast?.(summary, 'Tax summary copied!');
+      if (ok) {
         const label = copyBtn.querySelector('.copy-text');
         if (label) {
           const prev = label.textContent;
           label.textContent = 'Copied!';
           setTimeout(() => { label.textContent = prev; }, 1500);
         }
-      });
+      }
     });
 
     resetBtn?.addEventListener('click', () => {

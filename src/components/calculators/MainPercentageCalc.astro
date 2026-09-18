@@ -732,17 +732,15 @@ import RechenwegBox from '../RechenwegBox.astro';
 
     // Copy Buttons with visual feedback
     document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         const targetId = btn.getAttribute('data-target');
         if (!targetId) return;
         const target = document.getElementById(targetId);
         const text = target?.textContent?.trim() || '';
         if (text && text !== '—') {
-          navigator.clipboard.writeText(text).then(() => {
-            (window as any).showToast?.(`Copied ${text} to clipboard!`);
-            
+          const ok = await (window as any).copyAndToast?.(text, `Copied ${text} to clipboard!`);
+          if (ok) {
             // Visual state feedback on button
-            const label = btn.querySelector('.copy-label');
             const originalHtml = btn.innerHTML;
             btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
             btn.innerHTML = `
@@ -755,19 +753,17 @@ import RechenwegBox from '../RechenwegBox.astro';
               btn.innerHTML = originalHtml;
               btn.classList.remove('bg-emerald-500', 'text-white', 'border-emerald-600');
             }, 1500);
-          });
+          }
         }
       });
     });
 
     // Rechenweg Copy Buttons
     document.querySelectorAll('.rw-copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         const steps = btn.getAttribute('data-steps') || '';
         if (steps) {
-          navigator.clipboard.writeText(steps).then(() => {
-            (window as any).showToast?.('Calculation steps copied!');
-          });
+          await (window as any).copyAndToast?.(steps, 'Calculation steps copied!');
         }
       });
     });

@@ -203,11 +203,9 @@
 
       // Attach copy listeners
       container.querySelectorAll('.copy-hist-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', async () => {
           const text = btn.getAttribute('data-text') || '';
-          navigator.clipboard.writeText(text).then(() => {
-            (window as any).showToast?.('Copied to clipboard!');
-          });
+          await (window as any).copyAndToast?.(text, 'Copied to clipboard!');
         });
       });
 

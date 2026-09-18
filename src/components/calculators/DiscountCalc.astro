@@ -230,18 +230,18 @@ import PresetChips from '../PresetChips.astro';
     extraInput?.addEventListener('input', evalDiscount);
     taxInput?.addEventListener('input', evalDiscount);
 
-    copyBtn?.addEventListener('click', () => {
+    copyBtn?.addEventListener('click', async () => {
       const text = finalEl?.textContent || '';
       if (text && text !== '$0.00') {
-        navigator.clipboard.writeText(text).then(() => {
-          (window as any).showToast?.(`Copied ${text} to clipboard!`);
+        const ok = await (window as any).copyAndToast?.(text, `Copied ${text} to clipboard!`);
+        if (ok) {
           const label = copyBtn.querySelector('.copy-text');
           if (label) {
             const prev = label.textContent;
             label.textContent = 'Copied!';
             setTimeout(() => { label.textContent = prev; }, 1500);
           }
-        });
+        }
       }
     });
 

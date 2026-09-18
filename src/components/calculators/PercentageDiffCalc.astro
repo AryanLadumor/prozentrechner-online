@@ -167,17 +167,17 @@
     v1Input?.addEventListener('input', evalDiff);
     v2Input?.addEventListener('input', evalDiff);
 
-    copyBtn?.addEventListener('click', () => {
+    copyBtn?.addEventListener('click', async () => {
       const summary = `Change ${v1Input?.value} → ${v2Input?.value}: ${resV1toV2?.textContent} (Absolute diff: ${resAbs?.textContent})`;
-      navigator.clipboard.writeText(summary).then(() => {
-        (window as any).showToast?.('Comparison summary copied!');
+      const ok = await (window as any).copyAndToast?.(summary, 'Comparison summary copied!');
+      if (ok) {
         const label = copyBtn.querySelector('.copy-text');
         if (label) {
           const prev = label.textContent;
           label.textContent = 'Copied!';
           setTimeout(() => { label.textContent = prev; }, 1500);
         }
-      });
+      }
     });
 
     resetBtn?.addEventListener('click', () => {

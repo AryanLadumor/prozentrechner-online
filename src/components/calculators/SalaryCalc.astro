@@ -245,17 +245,17 @@ import PresetChips from '../PresetChips.astro';
     baseInput?.addEventListener('input', evalSalary);
     raiseInput?.addEventListener('input', evalSalary);
 
-    copyBtn?.addEventListener('click', () => {
+    copyBtn?.addEventListener('click', async () => {
       const summary = `New Salary: ${resAnnual?.textContent}/yr (${resMonthly?.textContent}/mo, ${resHourly?.textContent}/hr)`;
-      navigator.clipboard.writeText(summary).then(() => {
-        (window as any).showToast?.('Salary calculation copied!');
+      const ok = await (window as any).copyAndToast?.(summary, 'Salary calculation copied!');
+      if (ok) {
         const label = copyBtn.querySelector('.copy-text');
         if (label) {
           const prev = label.textContent;
           label.textContent = 'Copied!';
           setTimeout(() => { label.textContent = prev; }, 1500);
         }
-      });
+      }
     });
 
     resetBtn?.addEventListener('click', () => {

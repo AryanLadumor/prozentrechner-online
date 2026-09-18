@@ -24,7 +24,13 @@ export function getUrlParam(key: string): string | null {
   return url.searchParams.get(key);
 }
 
-export function copyShareLink(): Promise<boolean> {
-  if (typeof window === 'undefined' || !navigator.clipboard) return Promise.resolve(false);
-  return navigator.clipboard.writeText(window.location.href).then(() => true).catch(() => false);
+export async function copyShareLink(): Promise<boolean> {
+  if (typeof window === 'undefined') return false;
+  // Use the global robust copy utility if available, otherwise try Clipboard API with fallback
+  if ((window as any).copyToClipboard) {
+    return (window as any).copyToClipboard(window.location.href);
+  }
+  // Fallback: dynamic import
+  const { copyToClipboard } = await import('./clipboard');
+  return copyToClipboard(window.location.href);
 }
