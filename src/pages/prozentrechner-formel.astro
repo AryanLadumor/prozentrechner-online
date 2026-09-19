@@ -1,0 +1,302 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  lang="de"
+  title="Prozentrechner Formel: Alle Formeln & Rechenwege Erklärt"
+  description="Komplette Übersicht aller Prozentrechner-Formeln: Prozentwert, Prozentsatz, Grundwert berechnen. Mit Rechenweg, Beispielen und Merkhilfen für Schule und Alltag."
+  canonicalUrl="https://prozentrechner-online.com/prozentrechner-formel"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/prozentrechner-formel",
+    en: "https://prozentrechner-online.com/en/percentage-formula"
+  }}
+>
+  <!-- Breadcrumb & Header -->
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/" class="hover:underline">Startseite</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">Prozentrechner Formeln</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Prozentrechnung Formeln: Komplett-Übersicht mit Rechenweg
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Alle wichtigen Formeln der Prozentrechnung übersichtlich erklärt mit Rechenweg, Beispielen und Merkhilfen. Perfekt für Schule, Studium und Alltag.
+    </p>
+  </div>
+
+  <!-- Quick Formula Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+    <div class="p-6 rounded-2xl border" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 mb-3">W</div>
+      <h3 class="font-display font-bold text-lg mb-2" style="color: var(--text-ink);">Prozentwert (W)</h3>
+      <div class="font-mono text-sm font-bold text-emerald-600 dark:text-emerald-400 mb-2">W = (G × p) ÷ 100</div>
+      <p class="text-xs" style="color: var(--text-muted);">
+        "Wie viel sind X% von Y?" – Berechnet den konkreten Anteil.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-2xl border" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 mb-3">p</div>
+      <h3 class="font-display font-bold text-lg mb-2" style="color: var(--text-ink);">Prozentsatz (p)</h3>
+      <div class="font-mono text-sm font-bold text-purple-600 dark:text-purple-400 mb-2">p = (W ÷ G) × 100</div>
+      <p class="text-xs" style="color: var(--text-muted);">
+        "X ist wie viel % von Y?" – Findet den Prozentsatz heraus.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-2xl border" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 mb-3">G</div>
+      <h3 class="font-display font-bold text-lg mb-2" style="color: var(--text-ink);">Grundwert (G)</h3>
+      <div class="font-mono text-sm font-bold text-amber-600 dark:text-amber-400 mb-2">G = (W × 100) ÷ p</div>
+      <p class="text-xs" style="color: var(--text-muted);">
+        "X ist Y% von was?" – Ermittelt die Gesamtmenge (100%).
+      </p>
+    </div>
+  </div>
+
+  <!-- Detailed Explanations -->
+  <div class="space-y-8">
+    <!-- Section 1: Grundformeln -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+        Die 3 Grundformeln der Prozentrechnung
+      </h2>
+
+      <div class="space-y-6">
+        <!-- Formel 1: Prozentwert -->
+        <div class="p-5 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-display font-bold text-lg mb-3 text-emerald-600 dark:text-emerald-400">1. Prozentwert berechnen (W)</h3>
+          <div class="font-mono text-base font-bold mb-3">W = (G × p) ÷ 100</div>
+          <p class="text-sm mb-3" style="color: var(--text-body);">
+            <strong>Fragestellung:</strong> "Wie viel sind X% von Y?"
+          </p>
+          <div class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/20">
+            <div class="font-bold text-sm mb-2" style="color: var(--text-ink);">📝 Beispiel:</div>
+            <p class="text-sm mb-2" style="color: var(--text-body);">Wie viel sind 15% von 200€?</p>
+            <div class="font-mono text-sm space-y-1">
+              <div>G = 200€ (Grundwert)</div>
+              <div>p = 15% (Prozentsatz)</div>
+              <div>W = (200 × 15) ÷ 100 = 3.000 ÷ 100 = <strong class="text-emerald-600 dark:text-emerald-400">30€</strong></div>
+            </div>
+          </div>
+          <div class="mt-3 text-xs" style="color: var(--text-muted);">
+            <strong>Merkhilfe:</strong> Grundwert mal Prozentsatz, dann durch 100 teilen.
+          </div>
+        </div>
+
+        <!-- Formel 2: Prozentsatz -->
+        <div class="p-5 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-display font-bold text-lg mb-3 text-purple-600 dark:text-purple-400">2. Prozentsatz berechnen (p)</h3>
+          <div class="font-mono text-base font-bold mb-3">p = (W ÷ G) × 100</div>
+          <p class="text-sm mb-3" style="color: var(--text-body);">
+            <strong>Fragestellung:</strong> "X ist wie viel Prozent von Y?"
+          </p>
+          <div class="p-4 rounded-xl bg-purple-50 dark:bg-purple-950/20">
+            <div class="font-bold text-sm mb-2" style="color: var(--text-ink);">📝 Beispiel:</div>
+            <p class="text-sm mb-2" style="color: var(--text-body);">50€ sind wie viel % von 250€?</p>
+            <div class="font-mono text-sm space-y-1">
+              <div>W = 50€ (Prozentwert)</div>
+              <div>G = 250€ (Grundwert)</div>
+              <div>p = (50 ÷ 250) × 100 = 0,2 × 100 = <strong class="text-purple-600 dark:text-purple-400">20%</strong></div>
+            </div>
+          </div>
+          <div class="mt-3 text-xs" style="color: var(--text-muted);">
+            <strong>Merkhilfe:</strong> Teil durch Ganzes, dann mal 100.
+          </div>
+        </div>
+
+        <!-- Formel 3: Grundwert -->
+        <div class="p-5 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-display font-bold text-lg mb-3 text-amber-600 dark:text-amber-400">3. Grundwert berechnen (G)</h3>
+          <div class="font-mono text-base font-bold mb-3">G = (W × 100) ÷ p</div>
+          <p class="text-sm mb-3" style="color: var(--text-body);">
+            <strong>Fragestellung:</strong> "X ist Y% von welcher Zahl?"
+          </p>
+          <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/20">
+            <div class="font-bold text-sm mb-2" style="color: var(--text-ink);">📝 Beispiel:</div>
+            <p class="text-sm mb-2" style="color: var(--text-body);">60€ sind 30% von wie viel?</p>
+            <div class="font-mono text-sm space-y-1">
+              <div>W = 60€ (Prozentwert)</div>
+              <div>p = 30% (Prozentsatz)</div>
+              <div>G = (60 × 100) ÷ 30 = 6.000 ÷ 30 = <strong class="text-amber-600 dark:text-amber-400">200€</strong></div>
+            </div>
+          </div>
+          <div class="mt-3 text-xs" style="color: var(--text-muted);">
+            <strong>Merkhilfe:</strong> Prozentwert mal 100, dann durch Prozentsatz teilen.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Erweiterte Formeln -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+        Erweiterte Formeln für praktische Anwendungen
+      </h2>
+
+      <div class="space-y-4">
+        <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-bold text-sm mb-2" style="color: var(--text-ink);">Prozentuale Veränderung (Wachstum/Rückgang)</h3>
+          <div class="font-mono text-sm font-bold text-blue-600 dark:text-blue-400 mb-2">
+            Veränderung = ((Neuer Wert − Alter Wert) ÷ Alter Wert) × 100
+          </div>
+          <p class="text-xs" style="color: var(--text-muted);">
+            Beispiel: Preis von 50€ auf 60€ → ((60−50) ÷ 50) × 100 = <strong>+20%</strong>
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-bold text-sm mb-2" style="color: var(--text-ink);">Endwert nach Prozentänderung</h3>
+          <div class="font-mono text-sm font-bold text-indigo-600 dark:text-indigo-400 mb-2">
+            Endwert = Startwert × (1 + p ÷ 100)
+          </div>
+          <p class="text-xs" style="color: var(--text-muted);">
+            Beispiel: 100€ + 20% → 100 × 1,20 = <strong>120€</strong> | 100€ − 15% → 100 × 0,85 = <strong>85€</strong>
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-bold text-sm mb-2" style="color: var(--text-ink);">Rabatt-Formel (Endpreis nach Rabatt)</h3>
+          <div class="font-mono text-sm font-bold text-pink-600 dark:text-pink-400 mb-2">
+            Endpreis = Originalpreis × (1 − Rabatt% ÷ 100)
+          </div>
+          <p class="text-xs" style="color: var(--text-muted);">
+            Beispiel: 80€ mit 25% Rabatt → 80 × 0,75 = <strong>60€</strong>
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-bold text-sm mb-2" style="color: var(--text-ink);">MwSt hinzufügen (Netto → Brutto)</h3>
+          <div class="font-mono text-sm font-bold text-teal-600 dark:text-teal-400 mb-2">
+            Brutto = Netto × (1 + MwSt% ÷ 100)
+          </div>
+          <p class="text-xs" style="color: var(--text-muted);">
+            Beispiel (19% MwSt): 100€ netto → 100 × 1,19 = <strong>119€ brutto</strong>
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-bold text-sm mb-2" style="color: var(--text-ink);">MwSt abziehen (Brutto → Netto)</h3>
+          <div class="font-mono text-sm font-bold text-cyan-600 dark:text-cyan-400 mb-2">
+            Netto = Brutto ÷ (1 + MwSt% ÷ 100)
+          </div>
+          <p class="text-xs" style="color: var(--text-muted);">
+            Beispiel (19% MwSt): 119€ brutto → 119 ÷ 1,19 = <strong>100€ netto</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Prozentdreieck -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight mb-6" style="color: var(--text-ink);">
+        Das Prozentdreieck: Merkhilfe für alle Formeln
+      </h2>
+
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="w-full md:w-1/2">
+          <div class="relative w-64 h-64 mx-auto">
+            <!-- Triangle -->
+            <svg viewBox="0 0 200 200" class="w-full h-full">
+              <!-- Triangle outline -->
+              <path d="M 100 20 L 180 180 L 20 180 Z" fill="none" stroke="currentColor" stroke-width="3" class="text-purple-600 dark:text-purple-400"/>
+
+              <!-- Horizontal divider -->
+              <line x1="50" y1="100" x2="150" y2="100" stroke="currentColor" stroke-width="2" class="text-purple-600 dark:text-purple-400"/>
+
+              <!-- Labels -->
+              <text x="100" y="70" text-anchor="middle" font-size="32" font-weight="bold" fill="currentColor" class="fill-emerald-600 dark:fill-emerald-400">W</text>
+              <text x="70" y="150" text-anchor="middle" font-size="28" font-weight="bold" fill="currentColor" class="fill-purple-600 dark:fill-purple-400">G</text>
+              <text x="130" y="150" text-anchor="middle" font-size="28" font-weight="bold" fill="currentColor" class="fill-amber-600 dark:fill-amber-400">p</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 space-y-3">
+          <h3 class="font-bold text-lg mb-4" style="color: var(--text-ink);">So funktioniert's:</h3>
+          <div class="p-3 rounded-xl border text-sm" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <strong class="text-emerald-600 dark:text-emerald-400">W berechnen:</strong>
+            <div class="mt-1" style="color: var(--text-body);">W oben zudecken → G × p ÷ 100</div>
+          </div>
+          <div class="p-3 rounded-xl border text-sm" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <strong class="text-purple-600 dark:text-purple-400">G berechnen:</strong>
+            <div class="mt-1" style="color: var(--text-body);">G unten links zudecken → W × 100 ÷ p</div>
+          </div>
+          <div class="p-3 rounded-xl border text-sm" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <strong class="text-amber-600 dark:text-amber-400">p berechnen:</strong>
+            <div class="mt-1" style="color: var(--text-body);">p unten rechts zudecken → W × 100 ÷ G</div>
+          </div>
+          <p class="text-xs pt-3" style="color: var(--text-muted);">
+            <strong>Tipp:</strong> Halte die gesuchte Größe im Dreieck zu und lies die Formel ab!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Übungsaufgaben -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight mb-6" style="color: var(--text-ink);">
+        Übungsaufgaben mit Lösungen
+      </h2>
+
+      <div class="space-y-4">
+        <details class="p-4 rounded-2xl border cursor-pointer group" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold text-sm list-none flex items-center justify-between" style="color: var(--text-ink);">
+            <span>Aufgabe 1: Ein T-Shirt kostet 25€. Im Sale gibt es 20% Rabatt. Was ist der neue Preis?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="mt-4 pt-4 border-t text-sm space-y-2" style="border-color: var(--border-hairline); color: var(--text-body);">
+            <div><strong>Lösung:</strong></div>
+            <div class="font-mono text-xs">1. Rabattbetrag: 25€ × 0,20 = 5€</div>
+            <div class="font-mono text-xs">2. Neuer Preis: 25€ − 5€ = <strong class="text-emerald-600 dark:text-emerald-400">20€</strong></div>
+            <div class="mt-2 text-xs"><em>Alternative: 25€ × 0,80 = 20€</em></div>
+          </div>
+        </details>
+
+        <details class="p-4 rounded-2xl border cursor-pointer group" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold text-sm list-none flex items-center justify-between" style="color: var(--text-ink);">
+            <span>Aufgabe 2: In einer Klasse sind 12 Mädchen, das sind 40%. Wie viele Schüler insgesamt?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="mt-4 pt-4 border-t text-sm space-y-2" style="border-color: var(--border-hairline); color: var(--text-body);">
+            <div><strong>Lösung (Grundwert berechnen):</strong></div>
+            <div class="font-mono text-xs">G = (W × 100) ÷ p</div>
+            <div class="font-mono text-xs">G = (12 × 100) ÷ 40 = 1.200 ÷ 40 = <strong class="text-amber-600 dark:text-amber-400">30 Schüler</strong></div>
+          </div>
+        </details>
+
+        <details class="p-4 rounded-2xl border cursor-pointer group" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold text-sm list-none flex items-center justify-between" style="color: var(--text-ink);">
+            <span>Aufgabe 3: Ein Gehalt steigt von 2.800€ auf 3.080€. Um wie viel Prozent?</span>
+            <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="mt-4 pt-4 border-t text-sm space-y-2" style="border-color: var(--border-hairline); color: var(--text-body);">
+            <div><strong>Lösung (Prozentuale Veränderung):</strong></div>
+            <div class="font-mono text-xs">1. Differenz: 3.080€ − 2.800€ = 280€</div>
+            <div class="font-mono text-xs">2. Prozent: (280 ÷ 2.800) × 100 = 0,1 × 100 = <strong class="text-purple-600 dark:text-purple-400">10%</strong></div>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <!-- Back to Calculator CTA -->
+  <div class="mt-12 p-8 rounded-3xl border text-center" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h3 class="font-display font-bold text-xl mb-3" style="color: var(--text-ink);">
+      Bereit zum Rechnen?
+    </h3>
+    <p class="text-sm mb-6" style="color: var(--text-muted);">
+      Nutzen Sie unsere kostenlosen Online-Rechner mit automatischem Rechenweg
+    </p>
+    <a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95 shadow-md" style="background-color: var(--accent); color: white;">
+      <span>Zu den Rechnern</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      </svg>
+    </a>
+  </div>
+</Layout>

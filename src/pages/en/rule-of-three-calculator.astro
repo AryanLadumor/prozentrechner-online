@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RuleOfThreeCalc from '../../components/calculators/RuleOfThreeCalc.astro';
+---
+
+<Layout
+  lang="en"
+  title="Rule of Three Calculator: Solve Proportions Online"
+  description="Free Rule of Three calculator: Solve proportional problems in 3 steps. Perfect for conversions, ratios, and proportion calculations."
+  canonicalUrl="https://prozentrechner-online.com/en/rule-of-three-calculator"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/dreisatz-rechner",
+    en: "https://prozentrechner-online.com/en/rule-of-three-calculator"
+  }}
+>
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/en" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">Rule of Three Calculator</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Rule of Three Calculator: Solve Proportions
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Solve proportional problems with the classic Rule of Three method in 3 simple steps. Perfect for conversions, recipes, and ratio calculations.
+    </p>
+  </div>
+
+  <div class="mb-16">
+    <RuleOfThreeCalc lang="en" />
+  </div>
+
+  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+      What is the Rule of Three?
+    </h2>
+
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      The <strong>Rule of Three</strong> is a mathematical method for solving proportion problems in three steps:
+    </p>
+
+    <div class="p-4 rounded-2xl border space-y-2 font-mono text-xs sm:text-sm" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+      <div><strong>Step 1:</strong> Set up the known relationship (A → B)</div>
+      <div><strong>Step 2:</strong> Calculate the unit rate (divide by A)</div>
+      <div><strong>Step 3:</strong> Scale to target quantity (multiply by C)</div>
+    </div>
+  </div>
+</Layout>

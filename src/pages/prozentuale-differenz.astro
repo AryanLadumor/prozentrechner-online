@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PercentageDiffCalc from '../components/calculators/PercentageDiffCalc.astro';
+---
+
+<Layout
+  lang="de"
+  title="Prozentuale Differenz & Veränderung Berechnen Online"
+  description="Berechnen Sie die prozentuale Differenz zwischen zwei Zahlen oder die prozentuale Veränderung (Wachstum/Rückgang) in Euro. Kostenloser Online-Rechner mit Rechenweg."
+  canonicalUrl="https://prozentrechner-online.com/prozentuale-differenz"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/prozentuale-differenz",
+    en: "https://prozentrechner-online.com/en/percentage-difference"
+  }}
+>
+  <!-- Breadcrumb & Header -->
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/" class="hover:underline">Startseite</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">Prozentuale Differenz</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Prozentuale Differenz & Veränderung Berechnen
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Berechnen Sie die prozentuale Differenz zwischen zwei Werten oder die prozentuale Veränderung (Wachstum oder Rückgang) von einem Startwert zu einem Endwert.
+    </p>
+  </div>
+
+  <!-- Interactive Tool -->
+  <div class="mb-16">
+    <PercentageDiffCalc lang="de" />
+  </div>
+
+  <!-- Deep Guide & SEO Explanations -->
+  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+      Prozentuale Differenz vs. Prozentuale Veränderung
+    </h2>
+
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      Diese beiden Begriffe werden oft verwechselt, haben aber unterschiedliche Bedeutungen und Formeln:
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm text-purple-600 dark:text-purple-400">Prozentuale Veränderung</h3>
+        <div class="font-mono text-xs font-bold">
+          ((Neu − Alt) ÷ Alt) × 100
+        </div>
+        <p class="text-[11px]" style="color: var(--text-muted);">
+          <strong>Gerichtet:</strong> Vom alten zum neuen Wert. Zeigt Wachstum (+) oder Rückgang (−). Basis ist der Ausgangswert.
+        </p>
+        <div class="text-[11px] space-y-0.5">
+          <div>Beispiel: 50€ → 75€</div>
+          <div class="font-bold text-emerald-600 dark:text-emerald-400">= +50% Zunahme</div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm text-amber-600 dark:text-amber-400">Prozentuale Differenz</h3>
+        <div class="font-mono text-xs font-bold">
+          (|A − B| ÷ ((A + B) ÷ 2)) × 100
+        </div>
+        <p class="text-[11px]" style="color: var(--text-muted);">
+          <strong>Symmetrisch:</strong> Vergleicht zwei Werte ohne Richtung. Basis ist der Durchschnitt beider Werte. Immer positiv.
+        </p>
+        <div class="text-[11px] space-y-0.5">
+          <div>Beispiel: 50€ & 75€</div>
+          <div class="font-bold text-amber-600 dark:text-amber-400">= 40% Unterschied</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Wann welche Formel verwenden?
+    </h3>
+
+    <div class="space-y-3">
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">✅ Prozentuale Veränderung verwenden bei:</div>
+        <ul class="list-disc list-inside space-y-1 text-xs" style="color: var(--text-muted);">
+          <li>Preisentwicklungen (Produkt kostete 100€, jetzt 120€ → +20% Teuerung)</li>
+          <li>Umsatzwachstum (Vorjahr 1 Mio€, dieses Jahr 1,2 Mio€ → +20% Wachstum)</li>
+          <li>Gehaltsentwicklung (alt 3.000€, neu 3.300€ → +10% Erhöhung)</li>
+          <li>Aktienperformance (Kaufpreis 50€, Verkaufspreis 65€ → +30% Gewinn)</li>
+        </ul>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">✅ Prozentuale Differenz verwenden bei:</div>
+        <ul class="list-disc list-inside space-y-1 text-xs" style="color: var(--text-muted);">
+          <li>Vergleich von Messwerten ohne klare Richtung (Experiment A: 45ml, B: 52ml)</li>
+          <li>Produktvergleich (Laptop A: 899€, Laptop B: 1.099€ → wie groß ist der Unterschied?)</li>
+          <li>Toleranzbereiche in der Fertigung (Sollwert vs. Istwert)</li>
+          <li>Wissenschaftliche Messungen mit symmetrischem Vergleich</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Schritt-für-Schritt Beispiele
+    </h3>
+
+    <div class="space-y-4">
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-2 text-sm" style="color: var(--text-ink);">Beispiel 1: Gehaltserhöhung (Prozentuale Veränderung)</div>
+        <p class="text-xs mb-2" style="color: var(--text-muted);">
+          Ihr Gehalt steigt von 2.500€ auf 2.750€. Wie viel Prozent Erhöhung?
+        </p>
+        <div class="space-y-1 text-xs font-mono">
+          <div>1. Differenz berechnen: 2.750€ − 2.500€ = 250€</div>
+          <div>2. Durch alten Wert teilen: 250€ ÷ 2.500€ = 0,10</div>
+          <div>3. Mit 100 multiplizieren: 0,10 × 100 = <strong class="text-emerald-600 dark:text-emerald-400">10%</strong></div>
+        </div>
+        <div class="mt-3 p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 font-bold text-sm text-emerald-700 dark:text-emerald-400">
+          ✓ Antwort: +10% Gehaltserhöhung
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-2 text-sm" style="color: var(--text-ink);">Beispiel 2: Produktvergleich (Prozentuale Differenz)</div>
+        <p class="text-xs mb-2" style="color: var(--text-muted);">
+          Smartphone A kostet 699€, Smartphone B kostet 899€. Wie groß ist der prozentuale Unterschied?
+        </p>
+        <div class="space-y-1 text-xs font-mono">
+          <div>1. Differenz: |699€ − 899€| = 200€</div>
+          <div>2. Durchschnitt: (699€ + 899€) ÷ 2 = 799€</div>
+          <div>3. Formel: (200€ ÷ 799€) × 100 = <strong class="text-amber-600 dark:text-amber-400">25,03%</strong></div>
+        </div>
+        <div class="mt-3 p-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 font-bold text-sm text-amber-700 dark:text-amber-400">
+          ✓ Antwort: 25% prozentualer Unterschied
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-2 text-sm" style="color: var(--text-ink);">Beispiel 3: Umsatzrückgang (Negative Veränderung)</div>
+        <p class="text-xs mb-2" style="color: var(--text-muted);">
+          Der Umsatz fällt von 50.000€ auf 42.000€. Wie viel Prozent Rückgang?
+        </p>
+        <div class="space-y-1 text-xs font-mono">
+          <div>1. Differenz: 42.000€ − 50.000€ = −8.000€</div>
+          <div>2. Durch alten Wert: −8.000€ ÷ 50.000€ = −0,16</div>
+          <div>3. Mit 100 multiplizieren: −0,16 × 100 = <strong class="text-red-600 dark:text-red-400">−16%</strong></div>
+        </div>
+        <div class="mt-3 p-3 rounded-xl bg-red-50 dark:bg-red-950/20 font-bold text-sm text-red-700 dark:text-red-400">
+          ✓ Antwort: −16% Umsatzrückgang
+        </div>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Häufige Fehler vermeiden
+    </h3>
+    <div class="space-y-2 text-xs sm:text-sm">
+      <div class="p-3 rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/20">
+        <strong class="text-amber-700 dark:text-amber-400">⚠️ Fehler:</strong>
+        <span style="color: var(--text-body);"> Die Basis verwechseln. Bei prozentualer Veränderung ist die Basis immer der <em>alte</em> Wert, nicht der neue!</span>
+      </div>
+      <div class="p-3 rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/20">
+        <strong class="text-amber-700 dark:text-amber-400">⚠️ Fehler:</strong>
+        <span style="color: var(--text-body);"> Prozentpunkte mit Prozent verwechseln. Von 10% auf 15% ist eine Änderung um <strong>5 Prozentpunkte</strong>, aber <strong>+50% relative Steigerung</strong>!</span>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,5 +1,22 @@
 ---
 // Command Palette (Cmd/Ctrl + K) for rapid tool jumping & search
+import { useTranslations, getLangFromUrl } from '../i18n';
+import { getLocalizedPath } from '../i18n/routes';
+
+interface Props {
+  lang?: 'de' | 'en';
+}
+
+const currentLang = Astro.props.lang || getLangFromUrl(Astro.url) || 'de';
+const t = useTranslations(currentLang);
+
+const mainRoute = getLocalizedPath('/', currentLang);
+const discountRoute = getLocalizedPath('/discount-calculator', currentLang);
+const vatRoute = getLocalizedPath('/vat-calculator', currentLang);
+const ruleOfThreeRoute = getLocalizedPath('/rule-of-three-calculator', currentLang);
+const differenceRoute = getLocalizedPath('/percentage-difference', currentLang);
+const salaryRoute = getLocalizedPath('/salary-raise-calculator', currentLang);
+const formulaRoute = getLocalizedPath('/percentage-formula', currentLang);
 ---
 
 <div
@@ -13,7 +30,7 @@
     style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
     role="dialog"
     aria-modal="true"
-    aria-label="Quick Search"
+    aria-label={t('palette.quickSearch')}
   >
     <!-- Search Input Bar -->
     <div class="p-3 sm:p-3.5 border-b flex items-center gap-3" style="border-color: var(--border-hairline);">
@@ -23,7 +40,7 @@
       <input
         type="text"
         id="command-search-input"
-        placeholder="Search calculators, formulas, tools... (e.g. VAT, discount, Dreisatz)"
+        placeholder={t('palette.searchPlaceholder')}
         class="w-full bg-transparent border-none outline-none text-base sm:text-sm font-medium placeholder:text-neutral-400"
         autocomplete="off"
       />
@@ -31,7 +48,7 @@
         type="button"
         id="command-close-mobile-btn"
         class="sm:hidden p-1 rounded-lg opacity-60 hover:opacity-100 touch-target"
-        aria-label="Close search"
+        aria-label={t('palette.close')}
         onclick="window.closeCommandPalette?.()"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
@@ -47,26 +64,26 @@
     <!-- Quick Navigation List -->
     <div class="max-h-[60vh] sm:max-h-80 overflow-y-auto p-2 space-y-1" id="command-results-list">
       <div class="px-2 py-1.5 text-[10px] font-bold uppercase tracking-wider opacity-50" style="color: var(--text-muted);">
-        Calculators
+        {t('palette.calculators')}
       </div>
 
       <a
-        href="/#main-calc"
+        href={`${mainRoute}#main-calc`}
         class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
         data-keywords="percentage of base value rate change add subtract general prozentrechner"
       >
         <div class="flex items-center gap-3">
           <span class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);">%</span>
           <div>
-            <div class="font-bold text-sm sm:text-xs">Main Percentage Calculator</div>
-            <div class="text-[11px] opacity-70">5 core percentage question modes with Rechenweg</div>
+            <div class="font-bold text-sm sm:text-xs">{t('palette.mainTitle')}</div>
+            <div class="text-[11px] opacity-70">{t('palette.mainDesc')}</div>
           </div>
         </div>
-        <span class="text-[11px] opacity-40">Jump →</span>
+        <span class="text-[11px] opacity-40">{t('palette.jump')}</span>
       </a>
 
       <a
-        href="/discount-calculator"
+        href={discountRoute}
         class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
         data-keywords="discount sale rabatt coupon promo savings price clearance"
       >
@@ -78,15 +95,15 @@
             </svg>
           </span>
           <div>
-            <div class="font-bold text-sm sm:text-xs">Discount Calculator</div>
-            <div class="text-[11px] opacity-70">Single, extra coupons, tax & net savings</div>
+            <div class="font-bold text-sm sm:text-xs">{t('palette.discountTitle')}</div>
+            <div class="text-[11px] opacity-70">{t('palette.discountDesc')}</div>
           </div>
         </div>
-        <span class="text-[11px] opacity-40">Jump →</span>
+        <span class="text-[11px] opacity-40">{t('palette.jump')}</span>
       </a>
 
       <a
-        href="/vat-calculator"
+        href={vatRoute}
         class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
         data-keywords="vat sales tax mwst mehrwertsteuer gross net brutto netto 19% 7%"
       >
@@ -98,15 +115,15 @@
             </svg>
           </span>
           <div>
-            <div class="font-bold text-sm sm:text-xs">VAT / Sales Tax Calculator</div>
-            <div class="text-[11px] opacity-70">Net ↔ Gross conversions with standard & custom rates</div>
+            <div class="font-bold text-sm sm:text-xs">{t('palette.vatTitle')}</div>
+            <div class="text-[11px] opacity-70">{t('palette.vatDesc')}</div>
           </div>
         </div>
-        <span class="text-[11px] opacity-40">Jump →</span>
+        <span class="text-[11px] opacity-40">{t('palette.jump')}</span>
       </a>
 
       <a
-        href="/rule-of-three-calculator"
+        href={ruleOfThreeRoute}
         class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
         data-keywords="rule of three dreisatz proportion ratio direct inverse cross multiplication"
       >
@@ -121,15 +138,15 @@
             </svg>
           </span>
           <div>
-            <div class="font-bold text-sm sm:text-xs">Rule of Three (Dreisatz)</div>
-            <div class="text-[11px] opacity-70">Direct and inverse proportion ratio solver</div>
+            <div class="font-bold text-sm sm:text-xs">{t('palette.dreisatzTitle')}</div>
+            <div class="text-[11px] opacity-70">{t('palette.dreisatzDesc')}</div>
           </div>
         </div>
-        <span class="text-[11px] opacity-40">Jump →</span>
+        <span class="text-[11px] opacity-40">{t('palette.jump')}</span>
       </a>
 
       <a
-        href="/percentage-difference"
+        href={differenceRoute}
         class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
         data-keywords="percentage difference diff increase decrease change variance comparison"
       >
@@ -142,15 +159,15 @@
             </svg>
           </span>
           <div>
-            <div class="font-bold text-sm sm:text-xs">Percentage Difference & Change</div>
-            <div class="text-[11px] opacity-70">Compare two numbers: relative and absolute difference</div>
+            <div class="font-bold text-sm sm:text-xs">{t('palette.diffTitle')}</div>
+            <div class="text-[11px] opacity-70">{t('palette.diffDesc')}</div>
           </div>
         </div>
-        <span class="text-[11px] opacity-40">Jump →</span>
+        <span class="text-[11px] opacity-40">{t('palette.jump')}</span>
       </a>
 
       <a
-        href="/salary-raise-calculator"
+        href={salaryRoute}
         class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
         data-keywords="salary raise pay increase wage compensation gehalt stundenlohn"
       >
@@ -162,19 +179,19 @@
             </svg>
           </span>
           <div>
-            <div class="font-bold text-sm sm:text-xs">Salary & Pay Raise Calculator</div>
-            <div class="text-[11px] opacity-70">Hourly, monthly, and yearly wage increase visualizer</div>
+            <div class="font-bold text-sm sm:text-xs">{t('palette.salaryTitle')}</div>
+            <div class="text-[11px] opacity-70">{t('palette.salaryDesc')}</div>
           </div>
         </div>
-        <span class="text-[11px] opacity-40">Jump →</span>
+        <span class="text-[11px] opacity-40">{t('palette.jump')}</span>
       </a>
 
       <div class="px-2 pt-3 py-1.5 text-[10px] font-bold uppercase tracking-wider opacity-50" style="color: var(--text-muted);">
-        Learn & Formulas
+        {t('palette.learnFormulas')}
       </div>
 
       <a
-        href="/percentage-formula"
+        href={formulaRoute}
         class="command-item flex items-center justify-between p-2.5 rounded-xl text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer touch-target"
         data-keywords="formula explanations math how to calculate cheat sheet guide rechenweg formeln"
       >
@@ -186,18 +203,18 @@
             </svg>
           </span>
           <div>
-            <div class="font-bold text-sm sm:text-xs">Formulas & Mathematical Guide</div>
-            <div class="text-[11px] opacity-70">Step-by-step math rules, examples, and cheat sheets</div>
+            <div class="font-bold text-sm sm:text-xs">{t('palette.formulaTitle')}</div>
+            <div class="text-[11px] opacity-70">{t('palette.formulaDesc')}</div>
           </div>
         </div>
-        <span class="text-[11px] opacity-40">Jump →</span>
+        <span class="text-[11px] opacity-40">{t('palette.jump')}</span>
       </a>
     </div>
 
     <!-- Footer shortcut helper -->
     <div class="p-2.5 bg-black/5 dark:bg-white/5 border-t text-[11px] flex items-center justify-between opacity-70" style="border-color: var(--border-hairline);">
-      <span>Press <kbd class="font-mono bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded">↑</kbd> <kbd class="font-mono bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded">↓</kbd> to navigate</span>
-      <span>Press <kbd class="font-mono bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded">ESC</kbd> to exit</span>
+      <span>{t('palette.navigate')} <kbd class="font-mono bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded">↑</kbd> <kbd class="font-mono bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded">↓</kbd></span>
+      <span>{t('palette.exit')} <kbd class="font-mono bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded">ESC</kbd></span>
     </div>
   </div>
 </div>

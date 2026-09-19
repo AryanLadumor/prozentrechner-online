@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VatCalc from '../components/calculators/VatCalc.astro';
+---
+
+<Layout
+  lang="de"
+  title="MwSt Rechner: Mehrwertsteuer 19% & 7% Berechnen Online"
+  description="Kostenloser MwSt-Rechner für Deutschland: Berechnen Sie Mehrwertsteuer mit 19% oder 7%, Brutto zu Netto, Netto zu Brutto in Euro. Inklusive Rechenweg."
+  canonicalUrl="https://prozentrechner-online.com/mehrwertsteuerrechner"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/mehrwertsteuerrechner",
+    en: "https://prozentrechner-online.com/en/vat-calculator"
+  }}
+>
+  <!-- Breadcrumb & Header -->
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/" class="hover:underline">Startseite</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">MwSt-Rechner</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Mehrwertsteuer-Rechner: MwSt 19% & 7% Berechnen
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Berechnen Sie die deutsche Mehrwertsteuer (MwSt) mit 19% Regelsatz oder 7% ermäßigtem Satz. Konvertieren Sie zwischen Netto- und Bruttopreisen in Euro mit Schritt-für-Schritt Rechenweg.
+    </p>
+  </div>
+
+  <!-- Interactive Tool -->
+  <div class="mb-16">
+    <VatCalc lang="de" />
+  </div>
+
+  <!-- Deep Guide & SEO Explanations -->
+  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+      Mehrwertsteuer in Deutschland: Sätze & Berechnung
+    </h2>
+
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      In Deutschland gibt es zwei Mehrwertsteuersätze: den <strong>Regelsatz von 19%</strong> für die meisten Waren und Dienstleistungen und den <strong>ermäßigten Satz von 7%</strong> für bestimmte Güter wie Lebensmittel, Bücher und Zeitungen.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm" style="color: var(--text-ink);">MwSt hinzurechnen (Netto → Brutto)</h3>
+        <div class="font-mono text-xs space-y-1">
+          <div class="font-bold text-teal-600 dark:text-teal-400">Brutto = Netto × 1,19 (bei 19%)</div>
+          <div class="font-bold text-teal-600 dark:text-teal-400">Brutto = Netto × 1,07 (bei 7%)</div>
+        </div>
+        <p class="text-[11px]" style="color: var(--text-muted);">
+          Beispiel: 100€ netto + 19% MwSt = 119€ brutto
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm" style="color: var(--text-ink);">MwSt abziehen (Brutto → Netto)</h3>
+        <div class="font-mono text-xs space-y-1">
+          <div class="font-bold text-purple-600 dark:text-purple-400">Netto = Brutto ÷ 1,19 (bei 19%)</div>
+          <div class="font-bold text-purple-600 dark:text-purple-400">Netto = Brutto ÷ 1,07 (bei 7%)</div>
+        </div>
+        <p class="text-[11px]" style="color: var(--text-muted);">
+          Beispiel: 119€ brutto ÷ 1,19 = 100€ netto
+        </p>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Die MwSt-Falle: Warum +19% und -19% nicht umkehrbar sind
+    </h3>
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      Ein häufiger Fehler: Wenn Sie zu 100€ netto 19% MwSt addieren, erhalten Sie 119€ brutto. Wenn Sie jetzt von 119€ einfach 19% abziehen, erhalten Sie <strong>96,39€</strong> statt 100€!
+    </p>
+    <div class="p-4 rounded-2xl border bg-amber-50 dark:bg-amber-950/20" style="border-color: var(--border-hairline);">
+      <div class="font-bold text-sm mb-2 text-amber-700 dark:text-amber-400">⚠️ Richtige Berechnung:</div>
+      <ul class="list-disc list-inside space-y-1 text-xs" style="color: var(--text-body);">
+        <li><strong>MwSt hinzufügen:</strong> Netto × 1,19 = Brutto</li>
+        <li><strong>MwSt abziehen:</strong> Brutto ÷ 1,19 = Netto</li>
+      </ul>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Welche Produkte haben 7% MwSt in Deutschland?
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+      <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5" style="color: var(--text-ink);">7% ermäßigter Satz:</div>
+        <ul class="list-disc list-inside space-y-0.5" style="color: var(--text-muted);">
+          <li>Lebensmittel (außer Getränke)</li>
+          <li>Bücher, Zeitungen, Zeitschriften</li>
+          <li>Nahverkehrstickets</li>
+          <li>Kulturelle Veranstaltungen</li>
+          <li>Übernachtungen (ohne Frühstück)</li>
+        </ul>
+      </div>
+
+      <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5" style="color: var(--text-ink);">19% Regelsatz:</div>
+        <ul class="list-disc list-inside space-y-0.5" style="color: var(--text-muted);">
+          <li>Elektronik & Haushaltsgeräte</li>
+          <li>Kleidung & Schuhe</li>
+          <li>Möbel & Einrichtung</li>
+          <li>Dienstleistungen (Handwerk, Friseur)</li>
+          <li>Alkohol & Tabakwaren</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Vorsteuerabzug für Unternehmen
+    </h3>
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      Unternehmen können die beim Einkauf gezahlte MwSt (Vorsteuer) von der beim Verkauf eingenommenen MwSt (Umsatzsteuer) abziehen. Unser Rechner hilft Ihnen, die korrekte MwSt für Ihre Rechnungen zu ermitteln.
+    </p>
+  </div>
+</Layout>

@@ -88,7 +88,7 @@ export function formatNumber(
  * Tool 1A: What is P% of V? (Prozentwert)
  * Formula: W = (V * P) / 100
  */
-export function calcPercentageOf(pStr: string, vStr: string): CalculationResult {
+export function calcPercentageOf(pStr: string, vStr: string, lang: 'de' | 'en' = 'de'): CalculationResult {
   const p = parseNumber(pStr);
   const v = parseNumber(vStr);
 
@@ -97,7 +97,22 @@ export function calcPercentageOf(pStr: string, vStr: string): CalculationResult 
   }
 
   const result = (v * p) / 100;
-  const steps: CalculationStep[] = [
+  const steps: CalculationStep[] = lang === 'de' ? [
+    {
+      title: 'Mathematische Formel',
+      formula: 'Prozentwert (W) = (Grundwert × Prozentsatz) ÷ 100',
+      explanation: 'Multipliziere den Grundwert mit dem Prozentsatz und dividiere durch 100.'
+    },
+    {
+      title: 'Werte einsetzen',
+      substitution: `W = (${formatNumber(v)} × ${formatNumber(p)}) ÷ 100 = ${formatNumber(v * p)} ÷ 100`,
+      explanation: `Berechne ${formatNumber(p)}% von ${formatNumber(v)}.`
+    },
+    {
+      title: 'Endergebnis',
+      result: `${formatNumber(p)}% von ${formatNumber(v)} ist ${formatNumber(result)}`
+    }
+  ] : [
     {
       title: 'Mathematical Formula',
       formula: 'Percentage Value (W) = (Base Value × Percentage Rate) ÷ 100',
@@ -131,7 +146,7 @@ export function calcPercentageOf(pStr: string, vStr: string): CalculationResult 
  * Tool 1B: V1 is what % of V2? (Prozentsatz)
  * Formula: p = (V1 / V2) * 100
  */
-export function calcPercentageRate(v1Str: string, v2Str: string): CalculationResult {
+export function calcPercentageRate(v1Str: string, v2Str: string, lang: 'de' | 'en' = 'de'): CalculationResult {
   const v1 = parseNumber(v1Str);
   const v2 = parseNumber(v2Str);
 
@@ -142,15 +157,33 @@ export function calcPercentageRate(v1Str: string, v2Str: string): CalculationRes
   if (v2 === 0) {
     return {
       value: null,
-      formatted: 'Cannot divide by 0',
+      formatted: lang === 'de' ? 'Division durch 0 nicht möglich' : 'Cannot divide by 0',
       isValid: false,
-      error: 'Base value cannot be zero.',
-      steps: [{ title: 'Error', explanation: 'Division by zero is mathematically undefined.' }]
+      error: lang === 'de' ? 'Der Grundwert darf nicht Null sein.' : 'Base value cannot be zero.',
+      steps: [{
+        title: lang === 'de' ? 'Fehler' : 'Error',
+        explanation: lang === 'de' ? 'Division durch Null ist mathematisch nicht definiert.' : 'Division by zero is mathematically undefined.'
+      }]
     };
   }
 
   const result = (v1 / v2) * 100;
-  const steps: CalculationStep[] = [
+  const steps: CalculationStep[] = lang === 'de' ? [
+    {
+      title: 'Mathematische Formel',
+      formula: 'Prozentsatz (p%) = (Prozentwert ÷ Grundwert) × 100',
+      explanation: 'Dividiere den Anteil durch den Grundwert und multipliziere mit 100, um den Prozentsatz zu erhalten.'
+    },
+    {
+      title: 'Werte einsetzen',
+      substitution: `p% = (${formatNumber(v1)} ÷ ${formatNumber(v2)}) × 100 = ${(v1 / v2).toFixed(6)} × 100`,
+      explanation: `Bestimme, welchen Anteil ${formatNumber(v1)} von ${formatNumber(v2)} darstellt.`
+    },
+    {
+      title: 'Endergebnis',
+      result: `${formatNumber(v1)} ist ${formatNumber(result)}% von ${formatNumber(v2)}`
+    }
+  ] : [
     {
       title: 'Mathematical Formula',
       formula: 'Percentage Rate (p%) = (Part Value ÷ Base Value) × 100',
@@ -184,7 +217,7 @@ export function calcPercentageRate(v1Str: string, v2Str: string): CalculationRes
  * Tool 1C: V is P% of what? (Grundwert)
  * Formula: G = (V * 100) / P
  */
-export function calcBaseValue(vStr: string, pStr: string): CalculationResult {
+export function calcBaseValue(vStr: string, pStr: string, lang: 'de' | 'en' = 'de'): CalculationResult {
   const v = parseNumber(vStr);
   const p = parseNumber(pStr);
 
@@ -195,15 +228,33 @@ export function calcBaseValue(vStr: string, pStr: string): CalculationResult {
   if (p === 0) {
     return {
       value: null,
-      formatted: 'Percentage cannot be 0',
+      formatted: lang === 'de' ? 'Prozentsatz darf nicht 0 sein' : 'Percentage cannot be 0',
       isValid: false,
-      error: 'Percentage rate cannot be zero.',
-      steps: [{ title: 'Error', explanation: 'Cannot compute base value for 0%.' }]
+      error: lang === 'de' ? 'Der Prozentsatz darf nicht Null sein.' : 'Percentage rate cannot be zero.',
+      steps: [{
+        title: lang === 'de' ? 'Fehler' : 'Error',
+        explanation: lang === 'de' ? 'Grundwert kann nicht für 0% berechnet werden.' : 'Cannot compute base value for 0%.'
+      }]
     };
   }
 
   const result = (v * 100) / p;
-  const steps: CalculationStep[] = [
+  const steps: CalculationStep[] = lang === 'de' ? [
+    {
+      title: 'Mathematische Formel',
+      formula: 'Grundwert (G) = (Prozentwert × 100) ÷ Prozentsatz',
+      explanation: 'Multipliziere den Prozentwert mit 100 und dividiere durch den Prozentsatz.'
+    },
+    {
+      title: 'Werte einsetzen',
+      substitution: `G = (${formatNumber(v)} × 100) ÷ ${formatNumber(p)} = ${formatNumber(v * 100)} ÷ ${formatNumber(p)}`,
+      explanation: `Finde das 100%-Ganze, wenn ${formatNumber(v)} genau ${formatNumber(p)}% entspricht.`
+    },
+    {
+      title: 'Endergebnis',
+      result: `Wenn ${formatNumber(v)} gleich ${formatNumber(p)}% ist, beträgt der Grundwert ${formatNumber(result)}`
+    }
+  ] : [
     {
       title: 'Mathematical Formula',
       formula: 'Base Value (G) = (Part Value × 100) ÷ Percentage Rate',
@@ -237,7 +288,7 @@ export function calcBaseValue(vStr: string, pStr: string): CalculationResult {
  * Tool 1D: Percentage Change from V1 to V2
  * Formula: % Change = ((V2 - V1) / V1) * 100
  */
-export function calcPercentageChange(v1Str: string, v2Str: string): CalculationResult {
+export function calcPercentageChange(v1Str: string, v2Str: string, lang: 'de' | 'en' = 'de'): CalculationResult {
   const v1 = parseNumber(v1Str);
   const v2 = parseNumber(v2Str);
 
@@ -248,10 +299,13 @@ export function calcPercentageChange(v1Str: string, v2Str: string): CalculationR
   if (v1 === 0) {
     return {
       value: null,
-      formatted: 'Initial value cannot be 0',
+      formatted: lang === 'de' ? 'Ausgangswert darf nicht 0 sein' : 'Initial value cannot be 0',
       isValid: false,
-      error: 'Initial value cannot be zero for percentage change.',
-      steps: [{ title: 'Error', explanation: 'Change from 0 cannot be expressed as a finite percentage.' }]
+      error: lang === 'de' ? 'Der Ausgangswert darf für prozentuale Veränderung nicht Null sein.' : 'Initial value cannot be zero for percentage change.',
+      steps: [{
+        title: lang === 'de' ? 'Fehler' : 'Error',
+        explanation: lang === 'de' ? 'Veränderung von 0 kann nicht als endlicher Prozentsatz ausgedrückt werden.' : 'Change from 0 cannot be expressed as a finite percentage.'
+      }]
     };
   }
 
@@ -260,7 +314,29 @@ export function calcPercentageChange(v1Str: string, v2Str: string): CalculationR
   const isIncrease = diff > 0;
   const sign = isIncrease ? '+' : '';
 
-  const steps: CalculationStep[] = [
+  const steps: CalculationStep[] = lang === 'de' ? [
+    {
+      title: 'Mathematische Formel',
+      formula: 'Prozentuale Veränderung = ((Neuer Wert − Alter Wert) ÷ Alter Wert) × 100',
+      explanation: 'Berechne die absolute Veränderung, dividiere durch den ursprünglichen Wert und multipliziere mit 100.'
+    },
+    {
+      title: 'Schritt 1: Absolute Differenz berechnen',
+      substitution: `Differenz = ${formatNumber(v2)} − ${formatNumber(v1)} = ${formatNumber(diff)}`,
+      explanation: isIncrease
+        ? `Der Wert ist um ${formatNumber(diff)} gestiegen.`
+        : `Der Wert ist um ${formatNumber(Math.abs(diff))} gesunken.`
+    },
+    {
+      title: 'Schritt 2: Prozentsatz berechnen',
+      substitution: `Veränderung% = (${formatNumber(diff)} ÷ ${formatNumber(v1)}) × 100 = ${sign}${formatNumber(result)}%`,
+      explanation: `Relativ zum Ausgangswert ${formatNumber(v1)}.`
+    },
+    {
+      title: 'Endergebnis',
+      result: `Von ${formatNumber(v1)} auf ${formatNumber(v2)} ist eine ${isIncrease ? 'Steigerung' : 'Verringerung'} von ${sign}${formatNumber(result)}%`
+    }
+  ] : [
     {
       title: 'Mathematical Formula',
       formula: 'Percentage Change = ((New Value − Old Value) ÷ Old Value) × 100',
@@ -299,7 +375,8 @@ export function calcPercentageChange(v1Str: string, v2Str: string): CalculationR
 export function calcAddSubtractPercentage(
   vStr: string,
   pStr: string,
-  operation: 'add' | 'subtract' = 'add'
+  operation: 'add' | 'subtract' = 'add',
+  lang: 'de' | 'en' = 'de'
 ): CalculationResult {
   const v = parseNumber(vStr);
   const p = parseNumber(pStr);
@@ -311,9 +388,26 @@ export function calcAddSubtractPercentage(
   const changeAmount = (v * p) / 100;
   const result = operation === 'add' ? v + changeAmount : v - changeAmount;
   const opSymbol = operation === 'add' ? '+' : '−';
-  const opWord = operation === 'add' ? 'increase' : 'discount/reduction';
+  const opWord = lang === 'de'
+    ? (operation === 'add' ? 'Erhöhung' : 'Rabatt/Verringerung')
+    : (operation === 'add' ? 'increase' : 'discount/reduction');
 
-  const steps: CalculationStep[] = [
+  const steps: CalculationStep[] = lang === 'de' ? [
+    {
+      title: 'Schritt 1: Prozentwert berechnen',
+      formula: `Delta = (${formatNumber(v)} × ${formatNumber(p)}) ÷ 100 = ${formatNumber(changeAmount)}`,
+      explanation: `${formatNumber(p)}% von ${formatNumber(v)} entspricht ${formatNumber(changeAmount)}.`
+    },
+    {
+      title: `Schritt 2: ${operation === 'add' ? 'Zum' : 'Vom'} Grundwert ${operation === 'add' ? 'addieren' : 'subtrahieren'}`,
+      substitution: `Ergebnis = ${formatNumber(v)} ${opSymbol} ${formatNumber(changeAmount)} = ${formatNumber(result)}`,
+      explanation: `${opWord} anwenden.`
+    },
+    {
+      title: 'Endergebnis',
+      result: `${formatNumber(v)} ${opSymbol} ${formatNumber(p)}% = ${formatNumber(result)} (Differenz von ${opSymbol}${formatNumber(changeAmount)})`
+    }
+  ] : [
     {
       title: 'Step 1: Calculate Percentage Amount',
       formula: `Delta = (${formatNumber(v)} × ${formatNumber(p)}) ÷ 100 = ${formatNumber(changeAmount)}`,
@@ -356,7 +450,8 @@ export function calcDiscount(
   priceStr: string,
   discountStr: string,
   extraDiscountStr: string = '0',
-  taxStr: string = '0'
+  taxStr: string = '0',
+  lang: 'de' | 'en' = 'de'
 ): DiscountCalculation | null {
   const price = parseNumber(priceStr);
   const discount = parseNumber(discountStr);
@@ -402,7 +497,8 @@ export interface VatCalculation {
 export function calcVat(
   amountStr: string,
   rateStr: string,
-  mode: 'netToGross' | 'grossToNet' = 'netToGross'
+  mode: 'netToGross' | 'grossToNet' = 'netToGross',
+  lang: 'de' | 'en' = 'de'
 ): VatCalculation | null {
   const amount = parseNumber(amountStr);
   const rate = parseNumber(rateStr);
@@ -456,7 +552,8 @@ export function calcRuleOfThree(
   cStr: string,
   mode: 'direct' | 'inverse' = 'direct',
   unit1: string = 'Unit A',
-  unit2: string = 'Unit B'
+  unit2: string = 'Unit B',
+  lang: 'de' | 'en' = 'de'
 ): RuleOfThreeCalculation | null {
   const a = parseNumber(aStr);
   const b = parseNumber(bStr);
@@ -470,7 +567,11 @@ export function calcRuleOfThree(
   if (mode === 'direct') {
     const unitRate = b / a;
     d = unitRate * c;
-    steps = {
+    steps = lang === 'de' ? {
+      step1: `Gegeben: ${formatNumber(a)} ${unit1} entspricht ${formatNumber(b)} ${unit2}.`,
+      step2: `Einzelsatz: 1 ${unit1} = ${formatNumber(b)} ÷ ${formatNumber(a)} = ${formatNumber(unitRate, 4)} ${unit2}.`,
+      step3: `Zielsatz: Multipliziere mit ${formatNumber(c)}: ${formatNumber(unitRate, 4)} × ${formatNumber(c)} = ${formatNumber(d)} ${unit2}.`
+    } : {
       step1: `Given: ${formatNumber(a)} ${unit1} corresponds to ${formatNumber(b)} ${unit2}.`,
       step2: `Unit Step: 1 ${unit1} = ${formatNumber(b)} ÷ ${formatNumber(a)} = ${formatNumber(unitRate, 4)} ${unit2}.`,
       step3: `Target Step: Multiply by ${formatNumber(c)}: ${formatNumber(unitRate, 4)} × ${formatNumber(c)} = ${formatNumber(d)} ${unit2}.`
@@ -479,7 +580,11 @@ export function calcRuleOfThree(
     if (c === 0) return null;
     const totalWork = a * b;
     d = totalWork / c;
-    steps = {
+    steps = lang === 'de' ? {
+      step1: `Gegeben: ${formatNumber(a)} ${unit1} entspricht ${formatNumber(b)} ${unit2} (Konstantes Produkt = ${formatNumber(totalWork)}).`,
+      step2: `Einzelsatz: 1 ${unit1} würde ${formatNumber(a)} × ${formatNumber(b)} = ${formatNumber(totalWork)} ${unit2} benötigen.`,
+      step3: `Zielsatz: Dividiere durch ${formatNumber(c)}: ${formatNumber(totalWork)} ÷ ${formatNumber(c)} = ${formatNumber(d)} ${unit2}.`
+    } : {
       step1: `Given: ${formatNumber(a)} ${unit1} corresponds to ${formatNumber(b)} ${unit2} (Constant Product = ${formatNumber(totalWork)}).`,
       step2: `Unit Step: 1 ${unit1} would take ${formatNumber(a)} × ${formatNumber(b)} = ${formatNumber(totalWork)} ${unit2}.`,
       step3: `Target Step: Divide by ${formatNumber(c)}: ${formatNumber(totalWork)} ÷ ${formatNumber(c)} = ${formatNumber(d)} ${unit2}.`
@@ -503,7 +608,8 @@ export interface PercentageDiffCalculation {
 
 export function calcPercentageDifference(
   v1Str: string,
-  v2Str: string
+  v2Str: string,
+  lang: 'de' | 'en' = 'de'
 ): PercentageDiffCalculation | null {
   const v1 = parseNumber(v1Str);
   const v2 = parseNumber(v2Str);
@@ -548,7 +654,8 @@ export function calcSalaryRaise(
   raisePctStr: string,
   raiseAmountStr?: string,
   hoursPerWeek: number = 40,
-  weeksPerYear: number = 52
+  weeksPerYear: number = 52,
+  lang: 'de' | 'en' = 'de'
 ): SalaryCalculation | null {
   const baseSalary = parseNumber(baseSalaryStr);
   const raisePctInput = parseNumber(raisePctStr);

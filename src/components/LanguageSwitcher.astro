@@ -1,0 +1,71 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n';
+import { getLocalizedPath } from '../i18n/routes';
+
+const currentLang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname;
+const t = useTranslations(currentLang);
+
+// Get the equivalent path in each language
+const dePath = getLocalizedPath(currentPath, 'de');
+const enPath = getLocalizedPath(currentPath, 'en');
+---
+
+<div class="relative">
+  <button
+    type="button"
+    id="lang-switcher-btn"
+    class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer shadow-xs touch-target"
+    style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-body);"
+    title="Sprache wechseln / Switch language"
+    aria-label={t('lang.switcher')}
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+    </svg>
+    <span class="font-bold uppercase">{currentLang}</span>
+  </button>
+
+  <!-- Dropdown -->
+  <div
+    id="lang-dropdown"
+    class="hidden absolute right-0 top-full mt-2 w-40 rounded-xl border shadow-lg overflow-hidden z-50"
+    style="background-color: var(--bg-surface); border-color: var(--border-hairline);"
+  >
+    <a
+      href={dePath}
+      class="flex items-center justify-between px-4 py-2.5 text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors {currentLang === 'de' ? 'bg-black/5 dark:bg-white/5' : ''}"
+      style="color: var(--text-ink);"
+    >
+      <span>🇩🇪 Deutsch</span>
+      {currentLang === 'de' && <span class="text-emerald-500">✓</span>}
+    </a>
+    <a
+      href={enPath}
+      class="flex items-center justify-between px-4 py-2.5 text-xs font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors {currentLang === 'en' ? 'bg-black/5 dark:bg-white/5' : ''}"
+      style="color: var(--text-ink);"
+    >
+      <span>🇬🇧 English</span>
+      {currentLang === 'en' && <span class="text-emerald-500">✓</span>}
+    </a>
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById('lang-switcher-btn');
+  const dropdown = document.getElementById('lang-dropdown');
+
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown?.classList.toggle('hidden');
+  });
+
+  // Close on outside click
+  document.addEventListener('click', () => {
+    dropdown?.classList.add('hidden');
+  });
+
+  dropdown?.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+</script>

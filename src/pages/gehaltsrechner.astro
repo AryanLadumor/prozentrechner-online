@@ -1,0 +1,183 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SalaryCalc from '../components/calculators/SalaryCalc.astro';
+---
+
+<Layout
+  lang="de"
+  title="Gehaltserhöhung Berechnen: Prozentuale Lohnsteigerung in Euro"
+  description="Berechnen Sie Ihre Gehaltserhöhung in Prozent und Euro. Finden Sie heraus, wie viel mehr Netto-Gehalt Sie nach einer Lohnerhöhung bekommen. Kostenloser Gehaltsrechner."
+  canonicalUrl="https://prozentrechner-online.com/gehaltsrechner"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/gehaltsrechner",
+    en: "https://prozentrechner-online.com/en/salary-raise-calculator"
+  }}
+>
+  <!-- Breadcrumb & Header -->
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/" class="hover:underline">Startseite</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">Gehaltsrechner</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Gehaltserhöhung Berechnen: Lohnsteigerung in Euro & Prozent
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Berechnen Sie schnell, wie sich eine prozentuale Gehaltserhöhung auf Ihr Brutto- und Netto-Einkommen auswirkt. Ideal für Gehaltsverhandlungen und Finanzplanung.
+    </p>
+  </div>
+
+  <!-- Interactive Tool -->
+  <div class="mb-16">
+    <SalaryCalc lang="de" />
+  </div>
+
+  <!-- Deep Guide & SEO Explanations -->
+  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+      Gehaltserhöhung richtig berechnen & verhandeln
+    </h2>
+
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      Eine Gehaltserhöhung kann auf zwei Arten angegeben werden: als <strong>absoluter Betrag in Euro</strong> oder als <strong>prozentuale Steigerung</strong>. Beide Werte lassen sich ineinander umrechnen.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm" style="color: var(--text-ink);">Prozentuale Erhöhung → Euro-Betrag</h3>
+        <div class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">
+          Erhöhung = Altes Gehalt × (Prozent ÷ 100)
+        </div>
+        <p class="text-[11px]" style="color: var(--text-muted);">
+          Beispiel: 3.000€ + 5% = 3.000€ × 0,05 = <strong>150€</strong> mehr
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm" style="color: var(--text-ink);">Euro-Betrag → Prozentuale Erhöhung</h3>
+        <div class="font-mono text-xs font-bold text-purple-600 dark:text-purple-400">
+          Prozent = (Erhöhung ÷ Altes Gehalt) × 100
+        </div>
+        <p class="text-[11px]" style="color: var(--text-muted);">
+          Beispiel: 3.000€ + 150€ = (150 ÷ 3.000) × 100 = <strong>5%</strong>
+        </p>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Durchschnittliche Gehaltserhöhungen in Deutschland 2026
+    </h3>
+
+    <div class="space-y-3">
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">📊 Typische Erhöhungsraten nach Anlass</div>
+        <ul class="list-none space-y-1.5 text-xs" style="color: var(--text-muted);">
+          <li><strong>Jährliche Anpassung:</strong> 2-4% (Inflationsausgleich)</li>
+          <li><strong>Beförderung:</strong> 10-15% (neue Verantwortung)</li>
+          <li><strong>Jobwechsel intern:</strong> 8-12% (neue Position)</li>
+          <li><strong>Außergewöhnliche Leistung:</strong> 5-8% (Bonus zusätzlich)</li>
+          <li><strong>Externe Jobwechsel:</strong> 15-25% (Marktvergleich)</li>
+        </ul>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">💡 Was ist realistisch zu fordern?</div>
+        <p class="text-xs" style="color: var(--text-muted);">
+          Bei normaler Performance: 3-5% jährlich. Bei überdurchschnittlicher Leistung oder Beförderung: 8-15%. Berücksichtigen Sie die aktuelle Inflationsrate (2026: ca. 2-3%) als Untergrenze.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Brutto vs. Netto: So viel bleibt wirklich übrig
+    </h3>
+
+    <p class="text-xs sm:text-sm leading-relaxed mb-4" style="color: var(--text-muted);">
+      Wichtig: Eine Gehaltserhöhung wird auf das <strong>Brutto-Gehalt</strong> angewendet. Nach Abzug von Steuern und Sozialabgaben bleibt netto weniger übrig. Als Faustregel in Deutschland:
+    </p>
+
+    <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+      <div class="font-bold text-sm mb-2" style="color: var(--text-ink);">Netto-Faustformel (abhängig von Steuerklasse):</div>
+      <ul class="list-disc list-inside space-y-1 text-xs" style="color: var(--text-muted);">
+        <li><strong>Steuerklasse I (ledig):</strong> ca. 60-65% vom Brutto bleiben netto</li>
+        <li><strong>Steuerklasse III (verheiratet, Alleinverdiener):</strong> ca. 70-75% netto</li>
+        <li><strong>Steuerklasse IV (verheiratet, beide berufstätig):</strong> ca. 65-70% netto</li>
+      </ul>
+      <div class="mt-3 p-3 rounded-xl bg-blue-50 dark:bg-blue-950/20 text-xs text-blue-700 dark:text-blue-400">
+        💡 <strong>Beispiel:</strong> 200€ Brutto-Erhöhung ≈ 120-140€ Netto-Erhöhung (je nach Steuerklasse)
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Tipps für erfolgreiche Gehaltsverhandlungen
+    </h3>
+
+    <div class="space-y-2 text-xs sm:text-sm">
+      <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <strong style="color: var(--text-ink);">1. Vorbereitung ist alles:</strong>
+        <span style="color: var(--text-muted);"> Dokumentieren Sie Ihre Erfolge, Mehrleistungen und Projekte der letzten 12 Monate.</span>
+      </div>
+      <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <strong style="color: var(--text-ink);">2. Marktgehalt recherchieren:</strong>
+        <span style="color: var(--text-muted);"> Vergleichen Sie Ihr Gehalt mit Branchendurchschnitt (Glassdoor, StepStone, Kununu).</span>
+      </div>
+      <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <strong style="color: var(--text-ink);">3. Zeitpunkt wählen:</strong>
+        <span style="color: var(--text-muted);"> Ideal nach Projekterfolg, bei Jahresgesprächen oder nach erweiterter Verantwortung.</span>
+      </div>
+      <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <strong style="color: var(--text-ink);">4. Konkrete Zahl nennen:</strong>
+        <span style="color: var(--text-muted);"> Statt "mehr Gehalt" fordern Sie z.B. "8% Erhöhung" oder "300€ mehr pro Monat".</span>
+      </div>
+      <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <strong style="color: var(--text-ink);">5. Alternativen parat haben:</strong>
+        <span style="color: var(--text-muted);"> Falls Gehalt nicht möglich: Bonus, mehr Urlaubstage, Weiterbildung, Homeoffice-Tage.</span>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Rechenbeispiele für verschiedene Gehaltsklassen
+    </h3>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-xs border-collapse">
+        <thead>
+          <tr class="border-b" style="border-color: var(--border-hairline);">
+            <th class="text-left p-2 font-bold" style="color: var(--text-ink);">Altes Gehalt</th>
+            <th class="text-left p-2 font-bold" style="color: var(--text-ink);">Erhöhung</th>
+            <th class="text-left p-2 font-bold" style="color: var(--text-ink);">Neues Gehalt</th>
+            <th class="text-left p-2 font-bold" style="color: var(--text-ink);">Mehr pro Jahr</th>
+          </tr>
+        </thead>
+        <tbody class="text-xs">
+          <tr class="border-b" style="border-color: var(--border-hairline);">
+            <td class="p-2" style="color: var(--text-body);">2.500€</td>
+            <td class="p-2 text-emerald-600 dark:text-emerald-400">+5% (125€)</td>
+            <td class="p-2 font-bold" style="color: var(--text-ink);">2.625€</td>
+            <td class="p-2" style="color: var(--text-muted);">1.500€</td>
+          </tr>
+          <tr class="border-b" style="border-color: var(--border-hairline);">
+            <td class="p-2" style="color: var(--text-body);">3.500€</td>
+            <td class="p-2 text-emerald-600 dark:text-emerald-400">+8% (280€)</td>
+            <td class="p-2 font-bold" style="color: var(--text-ink);">3.780€</td>
+            <td class="p-2" style="color: var(--text-muted);">3.360€</td>
+          </tr>
+          <tr class="border-b" style="border-color: var(--border-hairline);">
+            <td class="p-2" style="color: var(--text-body);">5.000€</td>
+            <td class="p-2 text-emerald-600 dark:text-emerald-400">+10% (500€)</td>
+            <td class="p-2 font-bold" style="color: var(--text-ink);">5.500€</td>
+            <td class="p-2" style="color: var(--text-muted);">6.000€</td>
+          </tr>
+          <tr>
+            <td class="p-2" style="color: var(--text-body);">7.000€</td>
+            <td class="p-2 text-emerald-600 dark:text-emerald-400">+12% (840€)</td>
+            <td class="p-2 font-bold" style="color: var(--text-ink);">7.840€</td>
+            <td class="p-2" style="color: var(--text-muted);">10.080€</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</Layout>

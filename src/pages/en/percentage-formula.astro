@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  lang="en"
+  title="Percentage Formulas: Complete Guide with Examples"
+  description="Complete overview of all percentage formulas: percentage value, percentage rate, base value. With step-by-step calculations, examples and memory aids."
+  canonicalUrl="https://prozentrechner-online.com/en/percentage-formula"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/prozentrechner-formel",
+    en: "https://prozentrechner-online.com/en/percentage-formula"
+  }}
+>
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/en" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">Percentage Formulas</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Percentage Formulas: Complete Overview
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      All important percentage formulas clearly explained with step-by-step calculations, examples and memory aids. Perfect for school, studies and everyday use.
+    </p>
+  </div>
+
+  <!-- Quick Formula Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+    <div class="p-6 rounded-2xl border" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 mb-3">W</div>
+      <h3 class="font-display font-bold text-lg mb-2" style="color: var(--text-ink);">Percentage Value (W)</h3>
+      <div class="font-mono text-sm font-bold text-emerald-600 dark:text-emerald-400 mb-2">W = (G × p) ÷ 100</div>
+      <p class="text-xs" style="color: var(--text-muted);">
+        "What is X% of Y?" – Calculates the concrete portion.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-2xl border" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 mb-3">p</div>
+      <h3 class="font-display font-bold text-lg mb-2" style="color: var(--text-ink);">Percentage Rate (p)</h3>
+      <div class="font-mono text-sm font-bold text-purple-600 dark:text-purple-400 mb-2">p = (W ÷ G) × 100</div>
+      <p class="text-xs" style="color: var(--text-muted);">
+        "X is what % of Y?" – Finds the percentage rate.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-2xl border" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 mb-3">G</div>
+      <h3 class="font-display font-bold text-lg mb-2" style="color: var(--text-ink);">Base Value (G)</h3>
+      <div class="font-mono text-sm font-bold text-amber-600 dark:text-amber-400 mb-2">G = (W × 100) ÷ p</div>
+      <p class="text-xs" style="color: var(--text-muted);">
+        "X is Y% of what?" – Determines the total amount (100%).
+      </p>
+    </div>
+  </div>
+
+  <!-- Back to Calculator CTA -->
+  <div class="mt-12 p-8 rounded-3xl border text-center" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h3 class="font-display font-bold text-xl mb-3" style="color: var(--text-ink);">
+      Ready to Calculate?
+    </h3>
+    <p class="text-sm mb-6" style="color: var(--text-muted);">
+      Use our free online calculators with automatic step-by-step solutions
+    </p>
+    <a href="/en" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95 shadow-md" style="background-color: var(--accent); color: white;">
+      <span>Go to Calculators</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      </svg>
+    </a>
+  </div>
+</Layout>

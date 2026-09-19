@@ -1,5 +1,13 @@
 ---
 // Floating Toast Notification Component
+import { useTranslations, getLangFromUrl } from '../i18n';
+
+interface Props {
+  lang?: 'de' | 'en';
+}
+
+const currentLang = Astro.props.lang || getLangFromUrl(Astro.url) || 'de';
+const t = useTranslations(currentLang);
 ---
 
 <div
@@ -16,11 +24,25 @@
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
     </svg>
   </div>
-  <span id="toast-message" class="truncate">Result copied to clipboard!</span>
+  <span id="toast-message" class="truncate">{t('toast.copied')}</span>
+  <script
+    type="application/json"
+    id="toast-i18n"
+    set:html={JSON.stringify({
+      copied: t('toast.copied'),
+      copyFailed: t('toast.copyFailed'),
+    })}
+  />
 </div>
 
 <script>
   let toastTimer: any = null;
+
+  // Translations injected at build time
+  const toastI18nEl = document.getElementById('toast-i18n');
+  const TOAST_L = toastI18nEl?.textContent
+    ? JSON.parse(toastI18nEl.textContent)
+    : { copied: 'Copied to clipboard!', copyFailed: 'Copy failed — please copy manually' };
 
   export function showToast(message: string, isSuccess: boolean = true) {
     const toast = document.getElementById('global-toast');
@@ -67,9 +89,9 @@
   async function copyAndToast(text: string, successMsg?: string, failMsg?: string): Promise<boolean> {
     const ok = await copyToClipboard(text);
     if (ok) {
-      showToast(successMsg || 'Copied to clipboard!');
+      showToast(successMsg || TOAST_L.copied);
     } else {
-      showToast(failMsg || 'Copy failed — please copy manually', false);
+      showToast(failMsg || TOAST_L.copyFailed, false);
     }
     return ok;
   }

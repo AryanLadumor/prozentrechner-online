@@ -1,4 +1,13 @@
 ---
+import { useTranslations } from '../../i18n';
+
+interface Props {
+  lang?: 'de' | 'en';
+}
+
+const { lang = 'de' } = Astro.props;
+const t = useTranslations(lang);
+const currency = t('currency.symbol');
 ---
 
 <div class="rounded-2xl sm:rounded-3xl border p-3.5 sm:p-6 lg:p-8 shadow-sm transition-all" style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);" id="dreisatz-calc-card">
@@ -12,10 +21,10 @@
       </div>
       <div>
         <h3 class="font-display font-extrabold text-lg xs:text-xl sm:text-2xl" style="color: var(--text-ink);">
-          Rule of Three Calculator (Dreisatz)
+          {t('calc.dreisatz.title')}
         </h3>
         <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
-          Solve direct and inverse proportions with step-by-step 3-line ratio tables.
+          {t('calc.dreisatz.subtitle')}
         </p>
       </div>
     </div>
@@ -25,13 +34,13 @@
       id="dreisatz-reset-btn"
       class="p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-1.5 touch-target"
       style="border-color: var(--border-hairline); color: var(--text-muted);"
-      title="Reset Dreisatz inputs"
-      aria-label="Reset Dreisatz inputs"
+      title={t('a11y.resetDreisatzInputs')}
+      aria-label={t('a11y.resetDreisatzInputs')}
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
       </svg>
-      <span class="hidden sm:inline">Reset</span>
+      <span class="hidden sm:inline">{t('calc.reset')}</span>
     </button>
   </div>
 
@@ -44,7 +53,7 @@
         class="dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-purple-600 text-white shadow-xs touch-target text-center"
         data-mode="direct"
       >
-        Direct Proportion (More &rarr; More)
+        {t('calc.dreisatz.modeDirect')}
       </button>
       <button
         type="button"
@@ -52,7 +61,7 @@
         class="dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target text-center"
         data-mode="inverse"
       >
-        Inverse Proportion (More &rarr; Less)
+        {t('calc.dreisatz.modeInverse')}
       </button>
     </div>
   </div>
@@ -63,11 +72,11 @@
     <div class="space-y-4">
       <div class="p-4 rounded-2xl border space-y-3" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
         <div class="text-xs font-bold uppercase tracking-wider opacity-70" style="color: var(--text-muted);">
-          1. Known Relation (If A yields B)
+          {t('calc.dreisatz.known')}
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label for="dreisatz-a" class="block text-xs font-bold mb-1" style="color: var(--text-ink);">Value A (Qty)</label>
+            <label for="dreisatz-a" class="block text-xs font-bold mb-1" style="color: var(--text-ink);">{t('calc.dreisatz.if')}</label>
             <input
               type="text"
               id="dreisatz-a"
@@ -78,7 +87,7 @@
             />
           </div>
           <div>
-            <label for="dreisatz-b" class="block text-xs font-bold mb-1" style="color: var(--text-ink);">Value B (Cost/Yield)</label>
+            <label for="dreisatz-b" class="block text-xs font-bold mb-1" style="color: var(--text-ink);">{t('calc.dreisatz.corresponds')}</label>
             <input
               type="text"
               id="dreisatz-b"
@@ -93,10 +102,10 @@
 
       <div class="p-4 rounded-2xl border space-y-3" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
         <div class="text-xs font-bold uppercase tracking-wider opacity-70" style="color: var(--text-muted);">
-          2. Target Value (Then C yields ...)
+          {t('calc.dreisatz.target')}
         </div>
         <div>
-          <label for="dreisatz-c" class="block text-xs font-bold mb-1" style="color: var(--text-ink);">Value C (New Quantity)</label>
+          <label for="dreisatz-c" class="block text-xs font-bold mb-1" style="color: var(--text-ink);">{t('calc.dreisatz.howMuch')}</label>
           <input
             type="text"
             id="dreisatz-c"
@@ -113,41 +122,41 @@
     <div class="flex flex-col justify-between p-4 sm:p-6 rounded-2xl border space-y-4" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
       <div class="space-y-4">
         <div class="flex items-center justify-between pb-2 border-b" style="border-color: var(--border-hairline);">
-          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">Dreisatz Steps Table</span>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">{t('calc.dreisatz.result')}</span>
           <button
             type="button"
             id="dreisatz-copy-btn"
             class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs touch-target"
             style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
-            title="Copy Dreisatz solution"
-            aria-label="Copy Dreisatz solution"
+            title={t('a11y.copyDreisatzSolution')}
+            aria-label={t('a11y.copyDreisatzSolution')}
           >
             <svg class="w-3.5 h-3.5 opacity-75 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
             </svg>
-            <span class="copy-text">Copy Solution</span>
+            <span class="copy-text">{t('calc.dreisatz.copyResult')}</span>
           </button>
         </div>
 
         <!-- 3-Step Visual Cards -->
         <div class="space-y-2 text-xs" id="dreisatz-steps-box">
           <div class="p-2.5 rounded-xl border flex items-center justify-between" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-            <span class="font-bold">Step 1 (Given):</span>
+            <span class="font-bold">{t('calc.dreisatz.step1')}:</span>
             <span class="font-mono" id="d-step1">3 &rarr; 15</span>
           </div>
           <div class="p-2.5 rounded-xl border flex items-center justify-between" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-            <span class="font-bold">Step 2 (Unit of 1):</span>
+            <span class="font-bold">{t('calc.dreisatz.step2')}:</span>
             <span class="font-mono text-purple-600 dark:text-purple-400 font-bold" id="d-step2">1 &rarr; 5</span>
           </div>
           <div class="p-2.5 rounded-xl border flex items-center justify-between" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-            <span class="font-bold">Step 3 (Target):</span>
+            <span class="font-bold">{t('calc.dreisatz.step3')}:</span>
             <span class="font-mono font-bold" id="d-step3">8 &rarr; 40</span>
           </div>
         </div>
 
         <!-- Final Highlight Result -->
         <div class="pt-3 border-t flex items-center justify-between" style="border-color: var(--border-hairline);">
-          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">Result (D):</span>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">{t('calc.dreisatz.resultLabel')}</span>
           <span class="font-display font-black text-3xl sm:text-4xl text-purple-600 dark:text-purple-400" id="dreisatz-res-d">
             0
           </span>
@@ -156,7 +165,7 @@
 
       <!-- Description Note -->
       <div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 text-[11px] leading-relaxed" id="dreisatz-note" style="color: var(--text-body);">
-        Direct proportionality: When quantity increases, total yield/cost increases by the exact same ratio.
+        {t('calc.dreisatz.directNote')}
       </div>
     </div>
   </div>
@@ -165,8 +174,12 @@
 <script>
   import { calcRuleOfThree, formatNumber } from '../../utils/math';
   import { saveHistoryItem } from '../../utils/history';
+  import { useTranslations } from '../../i18n';
 
   function initDreisatzCalc() {
+    const lang = (document.documentElement.lang === 'en' ? 'en' : 'de') as 'de' | 'en';
+    const t = useTranslations(lang);
+
     let mode: 'direct' | 'inverse' = 'direct';
     const inputA = document.getElementById('dreisatz-a') as HTMLInputElement | null;
     const inputB = document.getElementById('dreisatz-b') as HTMLInputElement | null;
@@ -186,7 +199,7 @@
     function evalDreisatz() {
       if (!inputA || !inputB || !inputC || !resDEl || !step1El || !step2El || !step3El) return;
 
-      const res = calcRuleOfThree(inputA.value, inputB.value, inputC.value, mode);
+      const res = calcRuleOfThree(inputA.value, inputB.value, inputC.value, mode, 'Unit A', 'Unit B', lang);
       if (res) {
         resDEl.textContent = formatNumber(res.d);
         step1El.textContent = `${formatNumber(res.a)} → ${formatNumber(res.b)}`;
@@ -214,7 +227,7 @@
       mode = 'direct';
       btnDirect.className = 'dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-purple-600 text-white shadow-xs touch-target';
       if (btnInverse) btnInverse.className = 'dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target';
-      if (noteEl) noteEl.textContent = 'Direct proportionality: When quantity increases, total yield/cost increases by the exact same ratio.';
+      if (noteEl) noteEl.textContent = t('calc.dreisatz.directNote');
       evalDreisatz();
     });
 
@@ -222,7 +235,7 @@
       mode = 'inverse';
       btnInverse.className = 'dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-purple-600 text-white shadow-xs touch-target';
       if (btnDirect) btnDirect.className = 'dreisatz-mode-btn flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target';
-      if (noteEl) noteEl.textContent = 'Inverse proportionality: When workers/speed increases, time required decreases proportionally (constant total product).';
+      if (noteEl) noteEl.textContent = t('calc.dreisatz.inverseNote');
       evalDreisatz();
     });
 
@@ -232,12 +245,12 @@
 
     copyBtn?.addEventListener('click', async () => {
       const summary = `${step1El?.textContent} | ${step2El?.textContent} | ${step3El?.textContent} (Result: ${resDEl?.textContent})`;
-      const ok = await (window as any).copyAndToast?.(summary, 'Dreisatz solution copied!');
+      const ok = await (window as any).copyAndToast?.(summary, t('calc.dreisatz.copyToast'));
       if (ok) {
         const label = copyBtn.querySelector('.copy-text');
         if (label) {
           const prev = label.textContent;
-          label.textContent = 'Copied!';
+          label.textContent = t('calc.copied');
           setTimeout(() => { label.textContent = prev; }, 1500);
         }
       }

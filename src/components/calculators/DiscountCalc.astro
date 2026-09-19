@@ -1,5 +1,14 @@
 ---
 import PresetChips from '../PresetChips.astro';
+import { useTranslations } from '../../i18n';
+
+interface Props {
+  lang?: 'de' | 'en';
+}
+
+const { lang = 'de' } = Astro.props;
+const t = useTranslations(lang);
+const currency = t('currency.symbol');
 ---
 
 <div class="rounded-2xl sm:rounded-3xl border p-3.5 sm:p-6 lg:p-8 shadow-sm transition-all" style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);" id="discount-calc-card">
@@ -13,10 +22,10 @@ import PresetChips from '../PresetChips.astro';
       </div>
       <div>
         <h3 class="font-display font-extrabold text-lg xs:text-xl sm:text-2xl" style="color: var(--text-ink);">
-          Discount & Sale Calculator
+          {t('calc.discount.title')}
         </h3>
         <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
-          Calculate sale prices, stacked coupons, and total amount saved.
+          {t('calc.discount.subtitle')}
         </p>
       </div>
     </div>
@@ -26,13 +35,13 @@ import PresetChips from '../PresetChips.astro';
       id="discount-reset-btn"
       class="p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-1.5 touch-target"
       style="border-color: var(--border-hairline); color: var(--text-muted);"
-      title="Reset discount inputs"
-      aria-label="Reset discount inputs"
+      title={t('a11y.resetDiscountInputs')}
+      aria-label={t('a11y.resetDiscountInputs')}
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
       </svg>
-      <span class="hidden sm:inline">Reset</span>
+      <span class="hidden sm:inline">{t('calc.reset')}</span>
     </button>
   </div>
 
@@ -42,7 +51,7 @@ import PresetChips from '../PresetChips.astro';
     <div class="space-y-4">
       <div>
         <label for="disc-orig-price" class="block text-xs font-bold uppercase tracking-wider mb-1.5" style="color: var(--text-ink);">
-          Original Price ($ / €)
+          {t('calc.discount.originalPrice')}
         </label>
         <input
           type="text"
@@ -56,7 +65,7 @@ import PresetChips from '../PresetChips.astro';
 
       <div>
         <label for="disc-pct" class="block text-xs font-bold uppercase tracking-wider mb-1.5" style="color: var(--text-ink);">
-          Primary Discount Rate (%)
+          {t('calc.discount.primaryRate')}
         </label>
         <div class="relative">
           <input
@@ -72,14 +81,15 @@ import PresetChips from '../PresetChips.astro';
         <div class="mt-2.5">
           <PresetChips
             targetInputId="disc-pct"
+            lang={lang}
             presets={[
               { label: '10%', value: 10 },
               { label: '15%', value: 15 },
               { label: '20%', value: 20 },
               { label: '25%', value: 25 },
               { label: '30%', value: 30 },
-              { label: '50% (Half)', value: 50 },
-              { label: '70% (Clearance)', value: 70 }
+              { label: t('preset.half'), value: 50 },
+              { label: t('preset.clearance'), value: 70 }
             ]}
           />
         </div>
@@ -89,7 +99,7 @@ import PresetChips from '../PresetChips.astro';
       <div class="grid grid-cols-2 gap-3 pt-2">
         <div>
           <label for="disc-extra-pct" class="block text-[11px] font-bold tracking-wider mb-1" style="color: var(--text-muted);">
-            Extra Coupon (%)
+            {t('calc.discount.extraCoupon')}
           </label>
           <div class="relative">
             <input
@@ -106,7 +116,7 @@ import PresetChips from '../PresetChips.astro';
 
         <div>
           <label for="disc-tax-pct" class="block text-[11px] font-bold tracking-wider mb-1" style="color: var(--text-muted);">
-            Sales Tax (%)
+            {t('calc.discount.salesTax')}
           </label>
           <div class="relative">
             <input
@@ -127,35 +137,35 @@ import PresetChips from '../PresetChips.astro';
     <div class="flex flex-col justify-between p-4 sm:p-6 rounded-2xl border space-y-4" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
       <div class="space-y-4">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">Final Sale Price</span>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">{t('calc.discount.finalPrice')}</span>
           <button
             type="button"
             id="disc-copy-btn"
             class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs touch-target"
             style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
-            title="Copy final sale price"
-            aria-label="Copy final sale price"
+            title={t('a11y.copySalePrice')}
+            aria-label={t('a11y.copySalePrice')}
           >
             <svg class="w-3.5 h-3.5 opacity-75 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
             </svg>
-            <span class="copy-text">Copy Price</span>
+            <span class="copy-text">{t('calc.discount.copyPrice')}</span>
           </button>
         </div>
 
         <!-- Big Highlight Price -->
         <div class="font-display font-black text-4xl sm:text-5xl tracking-tight text-pink-600 dark:text-pink-400" id="disc-res-final">
-          $0.00
+          {currency}0.00
         </div>
 
         <!-- Savings Badge & Metrics -->
         <div class="space-y-2 pt-2 border-t text-xs sm:text-sm" style="border-color: var(--border-hairline);">
           <div class="flex items-center justify-between">
-            <span style="color: var(--text-muted);">Total Money Saved:</span>
-            <span class="font-bold text-emerald-600 dark:text-emerald-400" id="disc-res-saved">$0.00</span>
+            <span style="color: var(--text-muted);">{t('calc.discount.saved')}</span>
+            <span class="font-bold text-emerald-600 dark:text-emerald-400" id="disc-res-saved">{currency}0.00</span>
           </div>
           <div class="flex items-center justify-between">
-            <span style="color: var(--text-muted);">Effective Total Discount:</span>
+            <span style="color: var(--text-muted);">{t('calc.discount.effective')}</span>
             <span class="font-bold font-mono" id="disc-res-effective" style="color: var(--text-ink);">0.0%</span>
           </div>
         </div>
@@ -163,7 +173,7 @@ import PresetChips from '../PresetChips.astro';
 
       <!-- Quick Math Explanation -->
       <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 text-[11px] font-mono leading-relaxed" id="disc-explanation" style="color: var(--text-body);">
-        Enter price and discount rate to view savings breakdown.
+        {t('calc.discount.placeholder')}
       </div>
     </div>
   </div>
@@ -172,8 +182,13 @@ import PresetChips from '../PresetChips.astro';
 <script>
   import { calcDiscount, formatNumber } from '../../utils/math';
   import { saveHistoryItem } from '../../utils/history';
+  import { useTranslations } from '../../i18n';
 
   function initDiscountCalc() {
+    const lang = (document.documentElement.lang === 'en' ? 'en' : 'de') as 'de' | 'en';
+    const t = useTranslations(lang);
+    const currency = t('currency.symbol');
+
     const origInput = document.getElementById('disc-orig-price') as HTMLInputElement | null;
     const pctInput = document.getElementById('disc-pct') as HTMLInputElement | null;
     const extraInput = document.getElementById('disc-extra-pct') as HTMLInputElement | null;
@@ -193,35 +208,36 @@ import PresetChips from '../PresetChips.astro';
         origInput.value,
         pctInput.value,
         extraInput?.value || '0',
-        taxInput?.value || '0'
+        taxInput?.value || '0',
+        lang
       );
 
       if (res) {
-        finalEl.textContent = `$${formatNumber(res.finalPrice, 2)}`;
-        savedEl.textContent = `$${formatNumber(res.totalSaved, 2)}`;
-        effectiveEl.textContent = `${formatNumber(res.effectiveDiscountPct, 1)}% OFF`;
+        finalEl.textContent = `${currency}${formatNumber(res.finalPrice, 2)}`;
+        savedEl.textContent = `${currency}${formatNumber(res.totalSaved, 2)}`;
+        effectiveEl.textContent = `${formatNumber(res.effectiveDiscountPct, 1)}% ${t('calc.discount.offSuffix')}`;
 
         expEl.innerHTML = `
-          <strong>Breakdown:</strong><br/>
-          • Original: $${formatNumber(res.originalPrice, 2)}<br/>
-          • Discount: -${formatNumber(res.discountPct)}% (-$${formatNumber((res.originalPrice * res.discountPct) / 100, 2)})<br/>
-          ${res.extraDiscountPct > 0 ? `• Extra Coupon: -${formatNumber(res.extraDiscountPct)}%<br/>` : ''}
-          ${res.taxPct > 0 ? `• Sales Tax: +${formatNumber(res.taxPct)}%<br/>` : ''}
-          • <strong>You Pay: $${formatNumber(res.finalPrice, 2)} (Saved $${formatNumber(res.totalSaved, 2)})</strong>
+          <strong>${t('calc.discount.breakdown')}:</strong><br/>
+          • ${t('calc.discount.original')}: ${currency}${formatNumber(res.originalPrice, 2)}<br/>
+          • ${t('calc.discount.discount')}: -${formatNumber(res.discountPct)}% (-${currency}${formatNumber((res.originalPrice * res.discountPct) / 100, 2)})<br/>
+          ${res.extraDiscountPct > 0 ? `• ${t('calc.discount.extraCoupon')}: -${formatNumber(res.extraDiscountPct)}%<br/>` : ''}
+          ${res.taxPct > 0 ? `• ${t('calc.discount.salesTax')}: +${formatNumber(res.taxPct)}%<br/>` : ''}
+          • <strong>${t('calc.discount.youPay')}: ${currency}${formatNumber(res.finalPrice, 2)} (${t('calc.discount.saved')}: ${currency}${formatNumber(res.totalSaved, 2)})</strong>
         `;
 
         saveHistoryItem({
           toolType: 'discount',
           toolName: 'Discount Calculator',
           inputs: { price: origInput.value, discount: pctInput.value },
-          result: `$${formatNumber(res.finalPrice, 2)} (Saved $${formatNumber(res.totalSaved, 2)})`,
-          summary: `$${origInput.value} with ${pctInput.value}% off`
+          result: `${currency}${formatNumber(res.finalPrice, 2)} (${t('calc.discount.saved')}: ${currency}${formatNumber(res.totalSaved, 2)})`,
+          summary: `${currency}${origInput.value} ${t('calc.discount.primaryRate')}: ${pctInput.value}%`
         });
       } else {
-        finalEl.textContent = '$0.00';
-        savedEl.textContent = '$0.00';
+        finalEl.textContent = `${currency}0.00`;
+        savedEl.textContent = `${currency}0.00`;
         effectiveEl.textContent = '0.0%';
-        expEl.textContent = 'Enter price and discount rate to view savings breakdown.';
+        expEl.textContent = t('calc.discount.placeholder');
       }
     }
 
@@ -232,13 +248,13 @@ import PresetChips from '../PresetChips.astro';
 
     copyBtn?.addEventListener('click', async () => {
       const text = finalEl?.textContent || '';
-      if (text && text !== '$0.00') {
-        const ok = await (window as any).copyAndToast?.(text, `Copied ${text} to clipboard!`);
+      if (text && text !== `${currency}0.00`) {
+        const ok = await (window as any).copyAndToast?.(text, `${t('calc.copied')} ${text}`);
         if (ok) {
           const label = copyBtn.querySelector('.copy-text');
           if (label) {
             const prev = label.textContent;
-            label.textContent = 'Copied!';
+            label.textContent = t('calc.copied');
             setTimeout(() => { label.textContent = prev; }, 1500);
           }
         }

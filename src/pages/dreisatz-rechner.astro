@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RuleOfThreeCalc from '../components/calculators/RuleOfThreeCalc.astro';
+---
+
+<Layout
+  lang="de"
+  title="Dreisatz-Rechner Online: Proportionale Zuordnungen Berechnen"
+  description="Kostenloser Dreisatz-Rechner: Lösen Sie proportionale Rechenaufgaben in 3 Schritten. Ideal für Umrechnungen, Mischungsverhältnisse und Verhältnisrechnungen."
+  canonicalUrl="https://prozentrechner-online.com/dreisatz-rechner"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/dreisatz-rechner",
+    en: "https://prozentrechner-online.com/en/rule-of-three-calculator"
+  }}
+>
+  <!-- Breadcrumb & Header -->
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/" class="hover:underline">Startseite</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">Dreisatz-Rechner</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Dreisatz-Rechner: Proportionen & Verhältnisse Online Berechnen
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Lösen Sie proportionale Zuordnungen mit dem klassischen Dreisatz in 3 einfachen Schritten. Perfekt für Umrechnungen, Rezepte, Mischungsverhältnisse und Verhältnisrechnungen.
+    </p>
+  </div>
+
+  <!-- Interactive Tool -->
+  <div class="mb-16">
+    <RuleOfThreeCalc lang="de" />
+  </div>
+
+  <!-- Deep Guide & SEO Explanations -->
+  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+      Was ist der Dreisatz? Erklärung & Beispiele
+    </h2>
+
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      Der <strong>Dreisatz</strong> ist eine mathematische Methode zur Lösung von Proportionsaufgaben. Er funktioniert in drei Schritten:
+    </p>
+
+    <div class="p-4 rounded-2xl border space-y-2 font-mono text-xs sm:text-sm" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+      <div><strong>Schritt 1:</strong> Bekanntes Verhältnis aufstellen (A → B)</div>
+      <div><strong>Schritt 2:</strong> Auf Einzelwert zurückrechnen (durch A teilen)</div>
+      <div><strong>Schritt 3:</strong> Auf gesuchte Menge hochrechnen (mit C multiplizieren)</div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-4" style="color: var(--text-ink);">
+      Beispiel: Preis-Mengen-Verhältnis
+    </h3>
+    <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+      <p class="text-sm mb-3" style="color: var(--text-body);">
+        <strong>Aufgabe:</strong> 3 Äpfel kosten 4,50€. Wie viel kosten 8 Äpfel?
+      </p>
+      <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm" style="color: var(--text-body);">
+        <li><strong>Schritt 1:</strong> 3 Äpfel → 4,50€</li>
+        <li><strong>Schritt 2:</strong> 1 Apfel → 4,50€ ÷ 3 = 1,50€</li>
+        <li><strong>Schritt 3:</strong> 8 Äpfel → 1,50€ × 8 = 12,00€</li>
+      </ol>
+      <div class="mt-3 p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 font-bold text-sm text-emerald-700 dark:text-emerald-400">
+        ✓ Antwort: 8 Äpfel kosten 12,00€
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Proportionaler vs. Antiproportionaler Dreisatz
+    </h3>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h4 class="font-bold text-sm text-purple-600 dark:text-purple-400">Proportional (je mehr, desto mehr)</h4>
+        <p class="text-xs" style="color: var(--text-muted);">
+          Beide Werte ändern sich in die gleiche Richtung. Mehr Produkte = höherer Preis, mehr Arbeiter = mehr Produktion.
+        </p>
+        <div class="text-[11px] font-mono">Formel: x = (B × C) ÷ A</div>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h4 class="font-bold text-sm text-amber-600 dark:text-amber-400">Antiproportional (je mehr, desto weniger)</h4>
+        <p class="text-xs" style="color: var(--text-muted);">
+          Werte ändern sich in entgegengesetzte Richtungen. Mehr Arbeiter = weniger Zeit, höhere Geschwindigkeit = kürzere Fahrzeit.
+        </p>
+        <div class="text-[11px] font-mono">Formel: x = (A × B) ÷ C</div>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Praktische Anwendungen des Dreisatzes
+    </h3>
+
+    <div class="space-y-3">
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">🧑‍🍳 Rezepte umrechnen</div>
+        <p class="text-xs" style="color: var(--text-muted);">
+          Ein Rezept für 4 Personen benötigt 300g Mehl. Wie viel Mehl für 6 Personen? → 4 Personen : 300g = 6 Personen : x → x = 450g
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">🚗 Benzinverbrauch</div>
+        <p class="text-xs" style="color: var(--text-muted);">
+          Ein Auto verbraucht 7 Liter auf 100km. Wie viel auf 350km? → 100km : 7L = 350km : x → x = 24,5L
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">💱 Währungsumrechnung</div>
+        <p class="text-xs" style="color: var(--text-muted);">
+          1€ = 1,09 USD. Wie viel USD sind 50€? → 1€ : 1,09$ = 50€ : x → x = 54,50$
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">⏱️ Arbeitszeit & Produktivität</div>
+        <p class="text-xs" style="color: var(--text-muted);">
+          5 Arbeiter bauen eine Mauer in 12 Tagen. Wie lange brauchen 8 Arbeiter? (Antiproportional!) → 5 × 12 = 8 × x → x = 7,5 Tage
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">🎨 Mischungsverhältnisse</div>
+        <p class="text-xs" style="color: var(--text-muted);">
+          Farbe im Verhältnis 3:1 (3 Teile Farbe, 1 Teil Verdünner). Für 200ml Farbe brauche ich wie viel Verdünner? → 3:1 = 200:x → x = 66,7ml
+        </p>
+      </div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Dreisatz in der Schule: Textaufgaben lösen
+    </h3>
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      Der Dreisatz ist eine Standardmethode in der Schulmathematik (Klasse 6-8). Tipps zum Lösen von Textaufgaben:
+    </p>
+    <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm" style="color: var(--text-body);">
+      <li>Aufgabe genau lesen und bekannte Werte herausschreiben</li>
+      <li>Prüfen: Proportional oder antiproportional?</li>
+      <li>Verhältnis aufstellen und schrittweise berechnen</li>
+      <li>Ergebnis auf Plausibilität prüfen (macht das Sinn?)</li>
+    </ol>
+  </div>
+</Layout>

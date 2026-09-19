@@ -1,5 +1,13 @@
 ---
 // Theme Switcher Component supporting 4 distinctive, refined themes
+import { useTranslations, getLangFromUrl } from '../i18n';
+
+interface Props {
+  lang?: 'de' | 'en';
+}
+
+const currentLang = Astro.props.lang || getLangFromUrl(Astro.url) || 'de';
+const t = useTranslations(currentLang);
 ---
 
 <div class="relative inline-block text-left" id="theme-menu-container">
@@ -10,10 +18,10 @@
     style="background-color: var(--bg-surface); color: var(--text-ink); border-color: var(--border-hairline);"
     aria-expanded="false"
     aria-haspopup="true"
-    title="Change Theme"
+    title={t('theme.title')}
   >
     <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block shrink-0" id="current-theme-dot"></span>
-    <span id="current-theme-name" class="hidden md:inline">Theme</span>
+    <span id="current-theme-name" class="hidden md:inline">{t('theme.label')}</span>
     <svg class="w-3.5 h-3.5 opacity-60 hidden sm:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
     </svg>
@@ -27,7 +35,7 @@
     role="menu"
   >
     <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider opacity-60" style="color: var(--text-muted);">
-      Color Theme
+      {t('theme.heading')}
     </div>
 
     <button
@@ -38,7 +46,7 @@
     >
       <div class="flex items-center gap-2.5">
         <span class="w-3.5 h-3.5 rounded-full border border-amber-300 shrink-0" style="background-color: #fffaf0;"></span>
-        <span>Clay (Warm Cream)</span>
+        <span>{t('theme.clay')}</span>
       </div>
       <span class="theme-check hidden font-bold text-emerald-600 dark:text-emerald-400">✓</span>
     </button>
@@ -51,7 +59,7 @@
     >
       <div class="flex items-center gap-2.5">
         <span class="w-3.5 h-3.5 rounded-full border border-cyan-700 shrink-0" style="background-color: #090a0f;"></span>
-        <span>Midnight Dark</span>
+        <span>{t('theme.dark')}</span>
       </div>
       <span class="theme-check hidden font-bold text-emerald-600 dark:text-emerald-400">✓</span>
     </button>
@@ -64,7 +72,7 @@
     >
       <div class="flex items-center gap-2.5">
         <span class="w-3.5 h-3.5 rounded-full border border-slate-300 shrink-0" style="background-color: #ffffff;"></span>
-        <span>Pure White</span>
+        <span>{t('theme.white')}</span>
       </div>
       <span class="theme-check hidden font-bold text-emerald-600 dark:text-emerald-400">✓</span>
     </button>
@@ -77,11 +85,22 @@
     >
       <div class="flex items-center gap-2.5">
         <span class="w-3.5 h-3.5 rounded-full border border-sky-400 shrink-0" style="background-color: #f1f5f9;"></span>
-        <span>Nordic Slate</span>
+        <span>{t('theme.nordic')}</span>
       </div>
       <span class="theme-check hidden font-bold text-emerald-600 dark:text-emerald-400">✓</span>
     </button>
   </div>
+
+  <script
+    type="application/json"
+    id="theme-i18n"
+    set:html={JSON.stringify({
+      clay: t('theme.clayShort'),
+      dark: t('theme.darkShort'),
+      white: t('theme.white'),
+      nordic: t('theme.nordic'),
+    })}
+  />
 </div>
 
 <script>
@@ -92,11 +111,17 @@
     const dotSpan = document.getElementById('current-theme-dot');
     const options = document.querySelectorAll('.theme-option');
 
+    // Translations injected at build time
+    const themeI18nEl = document.getElementById('theme-i18n');
+    const TL = themeI18nEl?.textContent
+      ? JSON.parse(themeI18nEl.textContent)
+      : { clay: 'Clay Cream', dark: 'Midnight', white: 'Pure White', nordic: 'Nordic Slate' };
+
     const themeMeta: Record<string, { label: string; color: string }> = {
-      clay: { label: 'Clay Cream', color: '#e8b94a' },
-      dark: { label: 'Midnight', color: '#38bdf8' },
-      white: { label: 'Pure White', color: '#0f172a' },
-      nordic: { label: 'Nordic Slate', color: '#0284c7' }
+      clay: { label: TL.clay, color: '#e8b94a' },
+      dark: { label: TL.dark, color: '#38bdf8' },
+      white: { label: TL.white, color: '#0f172a' },
+      nordic: { label: TL.nordic, color: '#0284c7' }
     };
 
     function updateActiveThemeUI(theme: string) {

@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import VatCalc from '../../components/calculators/VatCalc.astro';
+---
+
+<Layout
+  lang="en"
+  title="VAT Calculator: Calculate Value Added Tax Online"
+  description="Free VAT calculator: Calculate value added tax, convert between net and gross prices. Supports multiple VAT rates with step-by-step calculation."
+  canonicalUrl="https://prozentrechner-online.com/en/vat-calculator"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/mehrwertsteuerrechner",
+    en: "https://prozentrechner-online.com/en/vat-calculator"
+  }}
+>
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/en" class="hover:underline">Home</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">VAT Calculator</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      VAT Calculator: Calculate Value Added Tax
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Calculate VAT (Value Added Tax), convert between net and gross prices with step-by-step calculation. Supports multiple tax rates.
+    </p>
+  </div>
+
+  <div class="mb-16">
+    <VatCalc lang="en" />
+  </div>
+
+  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+      Understanding VAT Calculations
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm" style="color: var(--text-ink);">Add VAT (Net → Gross)</h3>
+        <div class="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">
+          Gross = Net × (1 + VAT% ÷ 100)
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm" style="color: var(--text-ink);">Remove VAT (Gross → Net)</h3>
+        <div class="font-mono text-xs font-bold text-purple-600 dark:text-purple-400">
+          Net = Gross ÷ (1 + VAT% ÷ 100)
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

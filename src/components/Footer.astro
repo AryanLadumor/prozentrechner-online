@@ -1,5 +1,22 @@
 ---
-// Footer Component following DESIGN.md warm cream guidelines
+import { useTranslations, type getLangFromUrl } from '../i18n';
+import { getLocalizedPath } from '../i18n/routes';
+
+interface Props {
+  lang: 'de' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Get localized routes
+const mainRoute = getLocalizedPath('/', lang);
+const discountRoute = getLocalizedPath('/discount-calculator', lang);
+const vatRoute = getLocalizedPath('/vat-calculator', lang);
+const ruleOfThreeRoute = getLocalizedPath('/rule-of-three-calculator', lang);
+const differenceRoute = getLocalizedPath('/percentage-difference', lang);
+const salaryRoute = getLocalizedPath('/salary-raise-calculator', lang);
+const formulaRoute = getLocalizedPath('/percentage-formula', lang);
 ---
 
 <footer class="border-t mt-20 pt-16 pb-12 transition-colors" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline); color: var(--text-body);">
@@ -11,14 +28,14 @@
           <div class="w-8 h-8 rounded-xl flex items-center justify-center font-black text-sm" style="background-color: var(--brand-primary); color: var(--brand-primary-text);">
             %
           </div>
-          <span class="font-display font-bold text-base" style="color: var(--text-ink);">Percentage Calculator</span>
+          <span class="font-display font-bold text-base" style="color: var(--text-ink);">{t('footer.brand')}</span>
         </div>
         <p class="text-xs leading-relaxed" style="color: var(--text-muted);">
-          The fastest, most comprehensive online percentage calculation platform with interactive step-by-step solutions (Rechenweg) and instant precision.
+          {t('footer.description')}
         </p>
         <div class="flex items-center gap-2 pt-2">
           <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold" style="background-color: var(--bg-card); color: var(--text-ink); border: 1px solid var(--border-hairline);">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 100% Free & Ad-Free UX
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> {t('footer.freeBadge')}
           </span>
         </div>
       </div>
@@ -26,41 +43,41 @@
       <!-- Column 2: Core Calculators -->
       <div>
         <h3 class="font-display font-bold text-xs uppercase tracking-wider mb-3.5" style="color: var(--text-ink);">
-          Percentage Tools
+          {t('footer.percentageTools')}
         </h3>
         <ul class="space-y-2 text-xs">
-          <li><a href="/#percentage_quotation" class="hover:underline opacity-80 hover:opacity-100">What is X% of Y? (Percentage Value)</a></li>
-          <li><a href="/#percentage_rate" class="hover:underline opacity-80 hover:opacity-100">X is what % of Y? (Percentage Rate)</a></li>
-          <li><a href="/#base_value" class="hover:underline opacity-80 hover:opacity-100">X is Y% of what? (Base Value)</a></li>
-          <li><a href="/#percentage_change" class="hover:underline opacity-80 hover:opacity-100">Percentage Change & Growth</a></li>
-          <li><a href="/#final_value" class="hover:underline opacity-80 hover:opacity-100">Add or Subtract % (Markup / Markdown)</a></li>
+          <li><a href={`${mainRoute}#percentage_quotation`} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Was sind X% von Y? (Prozentwert)' : 'What is X% of Y? (Percentage Value)'}</a></li>
+          <li><a href={`${mainRoute}#percentage_rate`} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'X ist wie viel % von Y? (Prozentsatz)' : 'X is what % of Y? (Percentage Rate)'}</a></li>
+          <li><a href={`${mainRoute}#base_value`} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'X ist Y% von was? (Grundwert)' : 'X is Y% of what? (Base Value)'}</a></li>
+          <li><a href={`${mainRoute}#percentage_change`} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Prozentuale Veränderung & Wachstum' : 'Percentage Change & Growth'}</a></li>
+          <li><a href={`${mainRoute}#final_value`} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? '% Addieren oder Subtrahieren' : 'Add or Subtract % (Markup / Markdown)'}</a></li>
         </ul>
       </div>
 
       <!-- Column 3: Specialized Calculators -->
       <div>
         <h3 class="font-display font-bold text-xs uppercase tracking-wider mb-3.5" style="color: var(--text-ink);">
-          Specialized Calculators
+          {t('footer.specializedCalcs')}
         </h3>
         <ul class="space-y-2 text-xs">
-          <li><a href="/discount-calculator" class="hover:underline opacity-80 hover:opacity-100">Discount & Sale Calculator</a></li>
-          <li><a href="/vat-calculator" class="hover:underline opacity-80 hover:opacity-100">VAT / MwSt Calculator</a></li>
-          <li><a href="/rule-of-three-calculator" class="hover:underline opacity-80 hover:opacity-100">Rule of Three (Dreisatz)</a></li>
-          <li><a href="/percentage-difference" class="hover:underline opacity-80 hover:opacity-100">Percentage Difference</a></li>
-          <li><a href="/salary-raise-calculator" class="hover:underline opacity-80 hover:opacity-100">Salary & Pay Raise Calculator</a></li>
+          <li><a href={discountRoute} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Rabattrechner' : 'Discount & Sale Calculator'}</a></li>
+          <li><a href={vatRoute} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'MwSt-Rechner' : 'VAT / MwSt Calculator'}</a></li>
+          <li><a href={ruleOfThreeRoute} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Dreisatz-Rechner' : 'Rule of Three (Dreisatz)'}</a></li>
+          <li><a href={differenceRoute} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Prozentuale Differenz' : 'Percentage Difference'}</a></li>
+          <li><a href={salaryRoute} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Gehaltserhöhungsrechner' : 'Salary & Pay Raise Calculator'}</a></li>
         </ul>
       </div>
 
       <!-- Column 4: Guides & Educational -->
       <div>
         <h3 class="font-display font-bold text-xs uppercase tracking-wider mb-3.5" style="color: var(--text-ink);">
-          Formulas & Learning
+          {t('footer.formulasLearning')}
         </h3>
         <ul class="space-y-2 text-xs">
-          <li><a href="/percentage-formula" class="hover:underline opacity-80 hover:opacity-100">Mathematical Formulas</a></li>
-          <li><a href="/percentage-formula#rechenweg-guide" class="hover:underline opacity-80 hover:opacity-100">Rechenweg & Calculation Steps</a></li>
-          <li><a href="/percentage-formula#vat-trap" class="hover:underline opacity-80 hover:opacity-100">The VAT Calculation Trap (+/- 19%)</a></li>
-          <li><a href="/percentage-formula#cheat-sheet" class="hover:underline opacity-80 hover:opacity-100">Printable Math Cheat Sheet</a></li>
+          <li><a href={formulaRoute} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Mathematische Formeln' : 'Mathematical Formulas'}</a></li>
+          <li><a href={`${formulaRoute}#rechenweg-guide`} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Rechenweg & Rechenschritte' : 'Rechenweg & Calculation Steps'}</a></li>
+          <li><a href={`${formulaRoute}#vat-trap`} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Die MwSt-Falle (+/- 19%)' : 'The VAT Calculation Trap (+/- 19%)'}</a></li>
+          <li><a href={`${formulaRoute}#cheat-sheet`} class="hover:underline opacity-80 hover:opacity-100">{lang === 'de' ? 'Druckbare Mathe-Formelsammlung' : 'Printable Math Cheat Sheet'}</a></li>
         </ul>
       </div>
     </div>
@@ -68,12 +85,12 @@
     <!-- Bottom Bar -->
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs" style="color: var(--text-muted);">
       <div>
-        &copy; {new Date().getFullYear()} prozentrechner-online.com &middot; All rights reserved.
+        &copy; {new Date().getFullYear()} {t('footer.copyright')}
       </div>
       <div class="flex items-center gap-4 text-[11px]">
-        <span>⚡ Built with Astro & Tailwind CSS</span>
+        <span>{t('footer.builtWith')}</span>
         <span>&middot;</span>
-        <span>🌍 Multi-locale ready (EN / DE)</span>
+        <span>{t('footer.multilocale')}</span>
       </div>
     </div>
   </div>

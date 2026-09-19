@@ -1,4 +1,13 @@
 ---
+import { useTranslations } from '../../i18n';
+
+interface Props {
+  lang?: 'de' | 'en';
+}
+
+const { lang = 'de' } = Astro.props;
+const t = useTranslations(lang);
+const currency = t('currency.symbol');
 ---
 
 <div class="rounded-2xl sm:rounded-3xl border p-3.5 sm:p-6 lg:p-8 shadow-sm transition-all" style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);" id="diff-calc-card">
@@ -12,10 +21,10 @@
       </div>
       <div>
         <h3 class="font-display font-extrabold text-lg xs:text-xl sm:text-2xl" style="color: var(--text-ink);">
-          Percentage Difference & Change
+          {t('calc.diff.title')}
         </h3>
         <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
-          Compare two numbers to compute absolute difference, relative change, and average difference.
+          {t('calc.diff.subtitle')}
         </p>
       </div>
     </div>
@@ -25,13 +34,13 @@
       id="diff-reset-btn"
       class="p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-1.5 touch-target"
       style="border-color: var(--border-hairline); color: var(--text-muted);"
-      title="Reset difference inputs"
-      aria-label="Reset difference inputs"
+      title={t('a11y.resetDiffInputs')}
+      aria-label={t('a11y.resetDiffInputs')}
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
       </svg>
-      <span class="hidden sm:inline">Reset</span>
+      <span class="hidden sm:inline">{t('calc.reset')}</span>
     </button>
   </div>
 
@@ -41,7 +50,7 @@
     <div class="space-y-4">
       <div>
         <label for="diff-v1" class="block text-xs font-bold uppercase tracking-wider mb-1.5" style="color: var(--text-ink);">
-          First Value (Value 1)
+          {t('calc.diff.value1')}
         </label>
         <input
           type="text"
@@ -55,7 +64,7 @@
 
       <div>
         <label for="diff-v2" class="block text-xs font-bold uppercase tracking-wider mb-1.5" style="color: var(--text-ink);">
-          Second Value (Value 2)
+          {t('calc.diff.value2')}
         </label>
         <input
           type="text"
@@ -72,50 +81,50 @@
     <div class="flex flex-col justify-between p-4 sm:p-6 rounded-2xl border space-y-4" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
       <div class="space-y-3">
         <div class="flex items-center justify-between pb-2 border-b" style="border-color: var(--border-hairline);">
-          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">Comparison Metrics</span>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">{t('calc.diff.result')}</span>
           <button
             type="button"
             id="diff-copy-btn"
             class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs touch-target"
             style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
-            title="Copy comparison metrics"
-            aria-label="Copy comparison metrics"
+            title={t('a11y.copyMetrics')}
+            aria-label={t('a11y.copyMetrics')}
           >
             <svg class="w-3.5 h-3.5 opacity-75 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
             </svg>
-            <span class="copy-text">Copy Metrics</span>
+            <span class="copy-text">{t('calc.diff.copyResult')}</span>
           </button>
         </div>
 
         <!-- Metric 1: Relative Change from V1 to V2 -->
         <div class="flex items-center justify-between text-xs sm:text-sm">
-          <span style="color: var(--text-muted);">Change (V1 &rarr; V2):</span>
+          <span style="color: var(--text-muted);">{t('calc.diff.value1')} &rarr; {t('calc.diff.value2')}:</span>
           <span class="font-mono font-bold text-amber-600 dark:text-amber-400 text-sm sm:text-base" id="diff-res-v1-to-v2">+0.0%</span>
         </div>
 
         <!-- Metric 2: Reverse Change from V2 to V1 -->
         <div class="flex items-center justify-between text-xs sm:text-sm">
-          <span style="color: var(--text-muted);">Reverse Change (V2 &rarr; V1):</span>
+          <span style="color: var(--text-muted);">{t('calc.diff.value2')} &rarr; {t('calc.diff.value1')}:</span>
           <span class="font-mono font-bold text-sm sm:text-base" id="diff-res-v2-to-v1" style="color: var(--text-ink);">-0.0%</span>
         </div>
 
         <!-- Metric 3: Difference Relative to Average -->
         <div class="flex items-center justify-between text-xs sm:text-sm">
-          <span style="color: var(--text-muted);">Difference Relative to Midpoint:</span>
+          <span style="color: var(--text-muted);">{t('calc.diff.symmetric')}:</span>
           <span class="font-mono font-bold" id="diff-res-avg">0.0%</span>
         </div>
 
         <!-- Metric 4: Absolute Difference -->
         <div class="flex items-center justify-between pt-3 border-t text-sm font-bold" style="border-color: var(--border-hairline);">
-          <span style="color: var(--text-ink);">Absolute Difference (|V1 − V2|):</span>
+          <span style="color: var(--text-ink);">{t('calc.diff.absolute')}:</span>
           <span class="font-display font-black text-2xl text-amber-600 dark:text-amber-400" id="diff-res-abs">0</span>
         </div>
       </div>
 
       <!-- Explanation note -->
       <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-[11px] leading-relaxed" style="color: var(--text-body);">
-        <strong>Difference vs Change:</strong> Percentage change depends on which value is the baseline starting point, whereas difference compares both numbers symmetrically relative to their midpoint average.
+        <strong>{t('calc.diff.note')}</strong>
       </div>
     </div>
   </div>
@@ -124,8 +133,12 @@
 <script>
   import { calcPercentageDifference, formatNumber } from '../../utils/math';
   import { saveHistoryItem } from '../../utils/history';
+  import { useTranslations } from '../../i18n';
 
   function initPercentageDiffCalc() {
+    const lang = (document.documentElement.lang === 'en' ? 'en' : 'de') as 'de' | 'en';
+    const t = useTranslations(lang);
+
     const v1Input = document.getElementById('diff-v1') as HTMLInputElement | null;
     const v2Input = document.getElementById('diff-v2') as HTMLInputElement | null;
 
@@ -139,7 +152,7 @@
     function evalDiff() {
       if (!v1Input || !v2Input || !resV1toV2 || !resV2toV1 || !resAvg || !resAbs) return;
 
-      const res = calcPercentageDifference(v1Input.value, v2Input.value);
+      const res = calcPercentageDifference(v1Input.value, v2Input.value, lang);
       if (res) {
         const sign1 = res.relativeChangeV1toV2 > 0 ? '+' : '';
         const sign2 = res.relativeChangeV2toV1 > 0 ? '+' : '';
@@ -169,12 +182,12 @@
 
     copyBtn?.addEventListener('click', async () => {
       const summary = `Change ${v1Input?.value} → ${v2Input?.value}: ${resV1toV2?.textContent} (Absolute diff: ${resAbs?.textContent})`;
-      const ok = await (window as any).copyAndToast?.(summary, 'Comparison summary copied!');
+      const ok = await (window as any).copyAndToast?.(summary, t('calc.diff.copyToast'));
       if (ok) {
         const label = copyBtn.querySelector('.copy-text');
         if (label) {
           const prev = label.textContent;
-          label.textContent = 'Copied!';
+          label.textContent = t('calc.copied');
           setTimeout(() => { label.textContent = prev; }, 1500);
         }
       }

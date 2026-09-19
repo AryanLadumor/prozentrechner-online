@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DiscountCalc from '../components/calculators/DiscountCalc.astro';
+---
+
+<Layout
+  lang="de"
+  title="Rabattrechner: Sale Preise, Rabatte & Ersparnisse Berechnen"
+  description="Berechnen Sie Sale-Rabatte, Endpreise nach gestaffelten Gutscheinen und Gesamtersparnis mit unserem kostenlosen Rabattrechner in Euro."
+  canonicalUrl="https://prozentrechner-online.com/rabattrechner"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/rabattrechner",
+    en: "https://prozentrechner-online.com/en/discount-calculator"
+  }}
+>
+  <!-- Breadcrumb & Header -->
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href="/" class="hover:underline">Startseite</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">Rabattrechner</span>
+    </nav>
+
+    <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
+      Rabattrechner Online: Prozente & Sale Preise Berechnen
+    </h1>
+    <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
+      Ermitteln Sie den exakten Sale-Preis in Euro, wie viel Geld Sie sparen und kombinieren Sie zusätzliche Aktionsgutscheine oder MwSt in Echtzeit.
+    </p>
+  </div>
+
+  <!-- Interactive Tool -->
+  <div class="mb-16">
+    <DiscountCalc lang="de" />
+  </div>
+
+  <!-- Deep Guide & SEO Explanations -->
+  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+      Wie man Rabatte berechnet: Formel & Methoden
+    </h2>
+
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      Ein Rabatt stellt eine prozentuale Reduktion vom ursprünglichen Listenpreis eines Produkts oder einer Dienstleistung dar. So berechnen Sie einen Rabatt von Hand:
+    </p>
+
+    <div class="p-4 rounded-2xl border font-mono text-xs sm:text-sm space-y-1" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+      <div class="font-bold text-pink-600 dark:text-pink-400">Rabattbetrag = Originalpreis × (Rabatt% ÷ 100)</div>
+      <div class="font-bold text-emerald-600 dark:text-emerald-400">Endpreis = Originalpreis − Rabattbetrag</div>
+    </div>
+
+    <h3 class="font-display font-bold text-lg pt-2" style="color: var(--text-ink);">
+      Beispiel: 30% Rabatt auf eine 80€ Jacke
+    </h3>
+    <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm" style="color: var(--text-body);">
+      <li>Multiplizieren Sie den Originalpreis mit 0,30: <code>80€ × 0,30 = 24€</code> (Ersparnis).</li>
+      <li>Subtrahieren Sie die Ersparnis vom Originalpreis: <code>80€ − 24€ = 56€</code> (Endpreis im Sale).</li>
+    </ol>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Mehrfachrabatte berechnen (gestaffelte Gutscheine)
+    </h3>
+    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+      Wenn Sie mehrere Rabatte kombinieren (z.B. 20% Sale + 10% Gutschein), werden diese nacheinander angewendet, nicht addiert:
+    </p>
+    <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm" style="color: var(--text-body);">
+      <li>Ersten Rabatt anwenden: <code>100€ − 20% = 80€</code></li>
+      <li>Zweiten Rabatt auf den reduzierten Preis anwenden: <code>80€ − 10% = 72€</code></li>
+      <li>Gesamtersparnis: <code>28€ (28% effektiver Rabatt, nicht 30%)</code></li>
+    </ol>
+
+    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
+      Häufige Rabatt-Szenarien in Deutschland
+    </h3>
+    <div class="space-y-3">
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1 text-sm" style="color: var(--text-ink);">Black Friday & Cyber Monday</div>
+        <div class="text-xs" style="color: var(--text-muted);">
+          Typische Rabatte: 20-50% auf Elektronik, Mode und Haushaltswaren. Nutzen Sie unseren Rechner, um den echten Endpreis mit MwSt zu sehen.
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1 text-sm" style="color: var(--text-ink);">Winterschlussverkauf (WSV)</div>
+        <div class="text-xs" style="color: var(--text-muted);">
+          Modehändler bieten oft 30-70% Rabatt auf Winterware. Berechnen Sie schnell, ob sich der Sale lohnt.
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold mb-1 text-sm" style="color: var(--text-ink);">Gutscheincode + Sale kombinieren</div>
+        <div class="text-xs" style="color: var(--text-muted);">
+          Viele Online-Shops erlauben das Stapeln von Sale-Rabatten mit Gutscheincodes. Unser Rechner zeigt den finalen Preis nach allen Rabatten.
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

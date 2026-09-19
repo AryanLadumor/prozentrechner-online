@@ -5,22 +5,35 @@ import Footer from '../components/Footer.astro';
 import HistoryDrawer from '../components/HistoryDrawer.astro';
 import CommandPalette from '../components/CommandPalette.astro';
 import Toast from '../components/Toast.astro';
+import { getLangFromUrl } from '../i18n';
 
 interface Props {
   title?: string;
   description?: string;
   canonicalUrl?: string;
+  lang?: 'de' | 'en';
+  alternateUrls?: {
+    de?: string;
+    en?: string;
+  };
 }
 
+const currentLang = Astro.props.lang || getLangFromUrl(Astro.url) || 'de';
+
 const {
-  title = "Percentage Calculator: Fast & Accurate Online Math Tools",
-  description = "Free online percentage calculator with instant step-by-step Rechenweg. Calculate discounts, VAT (MwSt), Rule of Three (Dreisatz), salary raises, and percentage change.",
-  canonicalUrl = "https://prozentrechner-online.com"
+  title = currentLang === 'de'
+    ? "Prozentrechner: Kostenlos Online Prozent Berechnen mit Rechenweg"
+    : "Percentage Calculator: Fast & Accurate Online Math Tools",
+  description = currentLang === 'de'
+    ? "Kostenloser Online Prozentrechner mit Schritt-für-Schritt Rechenweg. Berechnen Sie Rabatte, MwSt, Dreisatz, Gehaltserhöhungen und prozentuale Veränderungen sofort."
+    : "Free online percentage calculator with instant step-by-step Rechenweg. Calculate discounts, VAT (MwSt), Rule of Three (Dreisatz), salary raises, and percentage change.",
+  canonicalUrl = "https://prozentrechner-online.com",
+  alternateUrls = {}
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="clay">
+<html lang={currentLang} data-theme="clay">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,6 +41,11 @@ const {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <meta name="robots" content="index, follow" />
+
+    <!-- Hreflang Tags for International SEO -->
+    {alternateUrls.de && <link rel="alternate" hreflang="de" href={alternateUrls.de} />}
+    {alternateUrls.en && <link rel="alternate" hreflang="en" href={alternateUrls.en} />}
+    <link rel="alternate" hreflang="x-default" href="https://prozentrechner-online.com/" />
 
     <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -92,7 +110,7 @@ const {
   </head>
   <body class="min-h-screen flex flex-col antialiased selection:bg-amber-300 selection:text-neutral-900 w-full max-w-full overflow-x-hidden">
     <!-- Top Navigation Header -->
-    <Header />
+    <Header lang={currentLang} />
 
     <!-- Main Content Slot -->
     <main class="flex-1 w-full max-w-6xl mx-auto px-3 sm:px-6 py-6 sm:py-10 overflow-x-hidden">
@@ -100,15 +118,15 @@ const {
     </main>
 
     <!-- Slide-over History Drawer -->
-    <HistoryDrawer />
+    <HistoryDrawer lang={currentLang} />
 
     <!-- Command Palette (Ctrl+K) -->
-    <CommandPalette />
+    <CommandPalette lang={currentLang} />
 
     <!-- Global Floating Toast Notification -->
-    <Toast />
+    <Toast lang={currentLang} />
 
     <!-- Warm Footer -->
-    <Footer />
+    <Footer lang={currentLang} />
   </body>
 </html>

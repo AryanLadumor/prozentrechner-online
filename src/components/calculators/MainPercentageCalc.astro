@@ -1,6 +1,15 @@
 ---
 import PresetChips from '../PresetChips.astro';
 import RechenwegBox from '../RechenwegBox.astro';
+import { useTranslations } from '../../i18n';
+
+interface Props {
+  lang?: 'de' | 'en';
+}
+
+const { lang = 'de' } = Astro.props;
+const t = useTranslations(lang);
+const currency = t('currency.symbol');
 ---
 
 <section id="main-calc" class="w-full">
@@ -10,28 +19,28 @@ import RechenwegBox from '../RechenwegBox.astro';
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-4 sm:pb-6 border-b" style="border-color: var(--border-hairline);">
       <div>
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2" style="background-color: var(--bg-card); color: var(--text-ink);">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span> Instant Percentage Solver
+          <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span> {t('calc.main.badge')}
         </div>
         <h2 class="font-display font-black text-xl xs:text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
-          Main Percentage Calculator
+          {t('calc.main.title')}
         </h2>
         <p class="text-xs sm:text-sm mt-1" style="color: var(--text-muted);">
-          Choose any of the 5 standard percentage questions below. Live calculations update instantly as you type.
+          {t('calc.main.subtitle')}
         </p>
       </div>
 
       <!-- Precision Controls -->
       <div class="flex items-center gap-2 self-center sm:self-auto bg-black/5 dark:bg-white/5 p-1.5 rounded-2xl border" style="border-color: var(--border-hairline);">
-        <label for="global-precision" class="text-xs font-semibold pl-2" style="color: var(--text-muted);">Decimals:</label>
+        <label for="global-precision" class="text-xs font-semibold pl-2" style="color: var(--text-muted);">{t('calc.main.decimals')}</label>
         <select
           id="global-precision"
           class="px-3 py-1.5 rounded-xl border text-xs font-bold outline-none cursor-pointer"
           style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
         >
-          <option value="auto" selected>Auto</option>
+          <option value="auto" selected>{t('calc.main.auto')}</option>
           <option value="2">2 (0.00)</option>
           <option value="4">4 (0.0000)</option>
-          <option value="0">0 (Integer)</option>
+          <option value="0">0 ({t('calc.main.integer')})</option>
         </select>
       </div>
     </div>
@@ -44,7 +53,7 @@ import RechenwegBox from '../RechenwegBox.astro';
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
           <!-- Question Inputs Container -->
           <div class="flex-1 flex flex-wrap items-center justify-center lg:justify-start gap-1.5 xs:gap-2 sm:gap-3 text-sm xs:text-base sm:text-lg font-medium text-center lg:text-left" style="color: var(--text-ink);">
-            <span class="font-bold whitespace-nowrap">What is</span>
+            <span class="font-bold whitespace-nowrap">{t('calc.q1')}</span>
             
             <!-- Percentage Input (P) -->
             <div class="relative inline-flex items-center">
@@ -55,12 +64,12 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="15"
                 class="calc-input w-20 xs:w-22 sm:w-28 px-2.5 sm:px-3 py-2 sm:py-2.5 pr-6 sm:pr-7 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="Percentage rate"
+                aria-label={t('a11y.percentageRate')}
               />
               <span class="absolute right-2 font-bold text-xs sm:text-sm pointer-events-none opacity-50">%</span>
             </div>
 
-            <span class="whitespace-nowrap">of</span>
+            <span class="whitespace-nowrap">{t('calc.q1.of')}</span>
 
             <!-- Base Value Input (V) -->
             <div class="relative inline-flex items-center">
@@ -71,7 +80,7 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="250"
                 class="calc-input w-24 xs:w-28 sm:w-36 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="Base value"
+                aria-label={t('a11y.baseValue')}
               />
             </div>
 
@@ -93,13 +102,13 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
               data-target="u1-result"
-              title="Copy result"
-              aria-label="Copy result"
+              title={t('a11y.copyResult')}
+              aria-label={t('a11y.copyResult')}
             >
               <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
               </svg>
-              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+              <span class="copy-label hidden xs:inline sm:inline">{t('calc.copy')}</span>
             </button>
 
             <button
@@ -107,8 +116,8 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
               data-unit="unit-pct-of"
-              title="Reset inputs"
-              aria-label="Reset inputs"
+              title={t('a11y.resetInputs')}
+              aria-label={t('a11y.resetInputs')}
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
@@ -119,8 +128,8 @@ import RechenwegBox from '../RechenwegBox.astro';
 
         <!-- Presets & Rechenweg -->
         <div class="mt-3 flex flex-col gap-2">
-          <PresetChips targetInputId="u1-p" />
-          <RechenwegBox id="u1" />
+          <PresetChips targetInputId="u1-p" lang={lang} />
+          <RechenwegBox id="u1" lang={lang} />
         </div>
       </div>
 
@@ -138,13 +147,13 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="45"
                 class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="Part value"
+                aria-label={t('a11y.partValue')}
               />
             </div>
 
-            <span class="whitespace-nowrap">is what</span>
+            <span class="whitespace-nowrap">{t('calc.q2')}</span>
             <span class="font-bold text-emerald-600 dark:text-emerald-400">%</span>
-            <span class="whitespace-nowrap">of</span>
+            <span class="whitespace-nowrap">{t('calc.q2.of')}</span>
 
             <!-- Base Value Input (V2) -->
             <div class="relative inline-flex items-center">
@@ -155,7 +164,7 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="180"
                 class="calc-input w-24 xs:w-28 sm:w-36 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="Total base value"
+                aria-label={t('a11y.totalBaseValue')}
               />
             </div>
 
@@ -177,13 +186,13 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
               data-target="u2-result"
-              title="Copy result"
-              aria-label="Copy result"
+              title={t('a11y.copyResult')}
+              aria-label={t('a11y.copyResult')}
             >
               <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
               </svg>
-              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+              <span class="copy-label hidden xs:inline sm:inline">{t('calc.copy')}</span>
             </button>
 
             <button
@@ -191,8 +200,8 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
               data-unit="unit-pct-rate"
-              title="Reset inputs"
-              aria-label="Reset inputs"
+              title={t('a11y.resetInputs')}
+              aria-label={t('a11y.resetInputs')}
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
@@ -203,7 +212,7 @@ import RechenwegBox from '../RechenwegBox.astro';
 
         <!-- Rechenweg -->
         <div class="mt-3">
-          <RechenwegBox id="u2" />
+          <RechenwegBox id="u2" lang={lang} />
         </div>
       </div>
 
@@ -221,11 +230,11 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="60"
                 class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="Part amount"
+                aria-label={t('a11y.partAmount')}
               />
             </div>
 
-            <span class="whitespace-nowrap">is</span>
+            <span class="whitespace-nowrap">{t('calc.q3')}</span>
 
             <!-- Percentage Input (P) -->
             <div class="relative inline-flex items-center">
@@ -236,12 +245,12 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="20"
                 class="calc-input w-20 xs:w-22 sm:w-28 px-2.5 sm:px-3 py-2 sm:py-2.5 pr-6 sm:pr-7 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="Percentage rate"
+                aria-label={t('a11y.percentageRate')}
               />
               <span class="absolute right-2 font-bold text-xs sm:text-sm pointer-events-none opacity-50">%</span>
             </div>
 
-            <span class="font-bold whitespace-nowrap">of what?</span>
+            <span class="font-bold whitespace-nowrap">{t('calc.q3.ofWhat')}</span>
           </div>
 
           <!-- Result & Action Box -->
@@ -259,13 +268,13 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
               data-target="u3-result"
-              title="Copy result"
-              aria-label="Copy result"
+              title={t('a11y.copyResult')}
+              aria-label={t('a11y.copyResult')}
             >
               <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
               </svg>
-              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+              <span class="copy-label hidden xs:inline sm:inline">{t('calc.copy')}</span>
             </button>
 
             <button
@@ -273,8 +282,8 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
               data-unit="unit-base-val"
-              title="Reset inputs"
-              aria-label="Reset inputs"
+              title={t('a11y.resetInputs')}
+              aria-label={t('a11y.resetInputs')}
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
@@ -285,8 +294,8 @@ import RechenwegBox from '../RechenwegBox.astro';
 
         <!-- Presets & Rechenweg -->
         <div class="mt-3 flex flex-col gap-2">
-          <PresetChips targetInputId="u3-p" />
-          <RechenwegBox id="u3" />
+          <PresetChips targetInputId="u3-p" lang={lang} />
+          <RechenwegBox id="u3" lang={lang} />
         </div>
       </div>
 
@@ -295,7 +304,7 @@ import RechenwegBox from '../RechenwegBox.astro';
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
           <!-- Question Inputs Container -->
           <div class="flex-1 flex flex-wrap items-center justify-center lg:justify-start gap-1.5 xs:gap-2 sm:gap-3 text-sm xs:text-base sm:text-lg font-medium text-center lg:text-left" style="color: var(--text-ink);">
-            <span class="font-bold whitespace-nowrap">From</span>
+            <span class="font-bold whitespace-nowrap">{t('calc.q4.from')}</span>
 
             <!-- Initial Value (V1) -->
             <div class="relative inline-flex items-center">
@@ -306,11 +315,11 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="100"
                 class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="Initial old value"
+                aria-label={t('a11y.initialValue')}
               />
             </div>
 
-            <span class="font-bold whitespace-nowrap">to</span>
+            <span class="font-bold whitespace-nowrap">{t('calc.q4.to')}</span>
 
             <!-- New Value (V2) -->
             <div class="relative inline-flex items-center">
@@ -321,11 +330,11 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="150"
                 class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="New value"
+                aria-label={t('a11y.newValue')}
               />
             </div>
 
-            <span class="whitespace-nowrap">: what % change?</span>
+            <span class="whitespace-nowrap">{t('calc.q4.change')}</span>
           </div>
 
           <!-- Result & Action Box -->
@@ -343,13 +352,13 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
               data-target="u4-result"
-              title="Copy result"
-              aria-label="Copy result"
+              title={t('a11y.copyResult')}
+              aria-label={t('a11y.copyResult')}
             >
               <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
               </svg>
-              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+              <span class="copy-label hidden xs:inline sm:inline">{t('calc.copy')}</span>
             </button>
 
             <button
@@ -357,8 +366,8 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
               data-unit="unit-change"
-              title="Reset inputs"
-              aria-label="Reset inputs"
+              title={t('a11y.resetInputs')}
+              aria-label={t('a11y.resetInputs')}
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
@@ -369,7 +378,7 @@ import RechenwegBox from '../RechenwegBox.astro';
 
         <!-- Rechenweg -->
         <div class="mt-3">
-          <RechenwegBox id="u4" />
+          <RechenwegBox id="u4" lang={lang} />
         </div>
       </div>
 
@@ -387,7 +396,7 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="200"
                 class="calc-input w-22 xs:w-26 sm:w-32 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="Base value"
+                aria-label={t('a11y.baseValue')}
               />
             </div>
 
@@ -420,12 +429,12 @@ import RechenwegBox from '../RechenwegBox.astro';
                 placeholder="19"
                 class="calc-input w-20 xs:w-22 sm:w-28 px-2.5 sm:px-3 py-2 sm:py-2.5 pr-6 sm:pr-7 rounded-xl border font-bold text-center outline-none text-base shadow-2xs"
                 style="background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-ink);"
-                aria-label="Percentage rate"
+                aria-label={t('a11y.percentageRate')}
               />
               <span class="absolute right-2 font-bold text-xs sm:text-sm pointer-events-none opacity-50">%</span>
             </div>
 
-            <span class="font-bold whitespace-nowrap">=</span>
+            <span class="font-bold whitespace-nowrap">{t('calc.q5.equals')}</span>
           </div>
 
           <!-- Result & Action Box -->
@@ -443,13 +452,13 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="copy-btn flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);"
               data-target="u5-result"
-              title="Copy result"
-              aria-label="Copy result"
+              title={t('a11y.copyResult')}
+              aria-label={t('a11y.copyResult')}
             >
               <svg class="copy-icon w-4 h-4 shrink-0 opacity-80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
               </svg>
-              <span class="copy-label hidden xs:inline sm:inline">Copy</span>
+              <span class="copy-label hidden xs:inline sm:inline">{t('calc.copy')}</span>
             </button>
 
             <button
@@ -457,8 +466,8 @@ import RechenwegBox from '../RechenwegBox.astro';
               class="reset-btn p-2 sm:p-2.5 rounded-xl border hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs text-xs font-bold touch-target flex items-center justify-center shrink-0"
               style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);"
               data-unit="unit-add-sub"
-              title="Reset inputs"
-              aria-label="Reset inputs"
+              title={t('a11y.resetInputs')}
+              aria-label={t('a11y.resetInputs')}
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
@@ -469,8 +478,8 @@ import RechenwegBox from '../RechenwegBox.astro';
 
         <!-- Presets & Rechenweg -->
         <div class="mt-3 flex flex-col gap-2">
-          <PresetChips targetInputId="u5-p" />
-          <RechenwegBox id="u5" />
+          <PresetChips targetInputId="u5-p" lang={lang} />
+          <RechenwegBox id="u5" lang={lang} />
         </div>
       </div>
 
@@ -489,8 +498,12 @@ import RechenwegBox from '../RechenwegBox.astro';
   } from '../../utils/math';
   import { saveHistoryItem } from '../../utils/history';
   import { syncUrlParams, getUrlParam } from '../../utils/urlState';
+  import { useTranslations } from '../../i18n';
 
   function initMainPercentageCalc() {
+    const lang = (document.documentElement.lang === 'en' ? 'en' : 'de') as 'de' | 'en';
+    const t = useTranslations(lang);
+
     const precisionSelect = document.getElementById('global-precision') as HTMLSelectElement | null;
     let currentPrecision: 'auto' | 0 | 2 | 4 = 'auto';
 
@@ -558,7 +571,7 @@ import RechenwegBox from '../RechenwegBox.astro';
         }
       } else {
         if (stepsList) {
-          stepsList.innerHTML = `<p class="opacity-60 italic font-sans text-xs">Enter numbers above to see the complete mathematical steps.</p>`;
+          stepsList.innerHTML = `<p class="opacity-60 italic font-sans text-xs">${t('calc.rechenwegEmpty')}</p>`;
         }
         if (propContainer) propContainer.classList.add('hidden');
       }
@@ -574,7 +587,7 @@ import RechenwegBox from '../RechenwegBox.astro';
     // Evaluate Unit 1
     function evalU1() {
       if (!u1p || !u1v || !u1res) return;
-      const res = calcPercentageOf(u1p.value, u1v.value);
+      const res = calcPercentageOf(u1p.value, u1v.value, lang);
       if (res.isValid && res.value !== null) {
         const formatted = formatNumber(res.value, currentPrecision);
         u1res.textContent = formatted;
@@ -598,7 +611,7 @@ import RechenwegBox from '../RechenwegBox.astro';
     // Evaluate Unit 2
     function evalU2() {
       if (!u2v1 || !u2v2 || !u2res) return;
-      const res = calcPercentageRate(u2v1.value, u2v2.value);
+      const res = calcPercentageRate(u2v1.value, u2v2.value, lang);
       if (res.isValid && res.value !== null) {
         const formatted = `${formatNumber(res.value, currentPrecision)}%`;
         u2res.textContent = formatted;
@@ -614,7 +627,7 @@ import RechenwegBox from '../RechenwegBox.astro';
           });
         });
       } else {
-        u2res.textContent = res.error ? 'Error' : '—';
+        u2res.textContent = res.error ? t('calc.error') : '—';
         updateRechenwegUI('u2', res.steps);
       }
     }
@@ -622,7 +635,7 @@ import RechenwegBox from '../RechenwegBox.astro';
     // Evaluate Unit 3
     function evalU3() {
       if (!u3v || !u3p || !u3res) return;
-      const res = calcBaseValue(u3v.value, u3p.value);
+      const res = calcBaseValue(u3v.value, u3p.value, lang);
       if (res.isValid && res.value !== null) {
         const formatted = formatNumber(res.value, currentPrecision);
         u3res.textContent = formatted;
@@ -646,7 +659,7 @@ import RechenwegBox from '../RechenwegBox.astro';
     // Evaluate Unit 4
     function evalU4() {
       if (!u4v1 || !u4v2 || !u4res) return;
-      const res = calcPercentageChange(u4v1.value, u4v2.value);
+      const res = calcPercentageChange(u4v1.value, u4v2.value, lang);
       if (res.isValid && res.value !== null) {
         const sign = res.value > 0 ? '+' : '';
         const formatted = `${sign}${formatNumber(res.value, currentPrecision)}%`;
@@ -671,7 +684,7 @@ import RechenwegBox from '../RechenwegBox.astro';
     // Evaluate Unit 5
     function evalU5() {
       if (!u5v || !u5p || !u5res) return;
-      const res = calcAddSubtractPercentage(u5v.value, u5p.value, u5op);
+      const res = calcAddSubtractPercentage(u5v.value, u5p.value, u5op, lang);
       if (res.isValid && res.value !== null) {
         const formatted = formatNumber(res.value, currentPrecision);
         u5res.textContent = formatted;
@@ -738,7 +751,7 @@ import RechenwegBox from '../RechenwegBox.astro';
         const target = document.getElementById(targetId);
         const text = target?.textContent?.trim() || '';
         if (text && text !== '—') {
-          const ok = await (window as any).copyAndToast?.(text, `Copied ${text} to clipboard!`);
+          const ok = await (window as any).copyAndToast?.(text, `${t('calc.copied')} ${text}`);
           if (ok) {
             // Visual state feedback on button
             const originalHtml = btn.innerHTML;
@@ -747,7 +760,7 @@ import RechenwegBox from '../RechenwegBox.astro';
               <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
-              <span class="copy-label hidden xs:inline sm:inline font-bold">Copied!</span>
+              <span class="copy-label hidden xs:inline sm:inline font-bold">${t('calc.copied')}</span>
             `;
             setTimeout(() => {
               btn.innerHTML = originalHtml;
@@ -763,7 +776,7 @@ import RechenwegBox from '../RechenwegBox.astro';
       btn.addEventListener('click', async () => {
         const steps = btn.getAttribute('data-steps') || '';
         if (steps) {
-          await (window as any).copyAndToast?.(steps, 'Calculation steps copied!');
+          await (window as any).copyAndToast?.(steps, t('calc.copySteps'));
         }
       });
     });

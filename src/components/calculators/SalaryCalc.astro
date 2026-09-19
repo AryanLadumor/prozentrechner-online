@@ -1,5 +1,14 @@
 ---
 import PresetChips from '../PresetChips.astro';
+import { useTranslations } from '../../i18n';
+
+interface Props {
+  lang?: 'de' | 'en';
+}
+
+const { lang = 'de' } = Astro.props;
+const t = useTranslations(lang);
+const currency = t('currency.symbol');
 ---
 
 <div class="rounded-2xl sm:rounded-3xl border p-3.5 sm:p-6 lg:p-8 shadow-sm transition-all" style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);" id="salary-calc-card">
@@ -13,10 +22,10 @@ import PresetChips from '../PresetChips.astro';
       </div>
       <div>
         <h3 class="font-display font-extrabold text-lg xs:text-xl sm:text-2xl" style="color: var(--text-ink);">
-          Salary & Pay Raise Calculator
+          {t('calc.salary.title')}
         </h3>
         <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
-          Calculate wage increases, new hourly/monthly/annual compensation, and extra earnings.
+          {t('calc.salary.subtitle')}
         </p>
       </div>
     </div>
@@ -26,13 +35,13 @@ import PresetChips from '../PresetChips.astro';
       id="salary-reset-btn"
       class="p-2 sm:px-3 sm:py-1.5 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-1.5 touch-target"
       style="border-color: var(--border-hairline); color: var(--text-muted);"
-      title="Reset salary inputs"
-      aria-label="Reset salary inputs"
+      title={t('a11y.resetSalaryInputs')}
+      aria-label={t('a11y.resetSalaryInputs')}
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
       </svg>
-      <span class="hidden sm:inline">Reset</span>
+      <span class="hidden sm:inline">{t('calc.reset')}</span>
     </button>
   </div>
 
@@ -45,7 +54,7 @@ import PresetChips from '../PresetChips.astro';
         class="salary-period-btn flex-1 sm:flex-none px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-orange-600 text-white shadow-xs touch-target text-center"
         data-period="annual"
       >
-        Annual Salary
+        {t('calc.salary.tabAnnual')}
       </button>
       <button
         type="button"
@@ -53,7 +62,7 @@ import PresetChips from '../PresetChips.astro';
         class="salary-period-btn flex-1 sm:flex-none px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target text-center"
         data-period="monthly"
       >
-        Monthly Pay
+        {t('calc.salary.tabMonthly')}
       </button>
       <button
         type="button"
@@ -61,7 +70,7 @@ import PresetChips from '../PresetChips.astro';
         class="salary-period-btn flex-1 sm:flex-none px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white touch-target text-center"
         data-period="hourly"
       >
-        Hourly Wage
+        {t('calc.salary.tabHourly')}
       </button>
     </div>
   </div>
@@ -72,7 +81,7 @@ import PresetChips from '../PresetChips.astro';
     <div class="space-y-4">
       <div>
         <label for="salary-base" class="block text-xs font-bold uppercase tracking-wider mb-1.5" id="salary-base-label" style="color: var(--text-ink);">
-          Current Annual Salary ($ / €)
+          {t('calc.salary.current')}
         </label>
         <input
           type="text"
@@ -86,7 +95,7 @@ import PresetChips from '../PresetChips.astro';
 
       <div>
         <label for="salary-raise-pct" class="block text-xs font-bold uppercase tracking-wider mb-1.5" style="color: var(--text-ink);">
-          Percentage Raise (%)
+          {t('calc.salary.change')}
         </label>
         <div class="relative">
           <input
@@ -102,11 +111,12 @@ import PresetChips from '../PresetChips.astro';
         <div class="mt-2.5">
           <PresetChips
             targetInputId="salary-raise-pct"
+            lang={lang}
             presets={[
-              { label: '3% (COLA)', value: 3 },
-              { label: '5% (Standard)', value: 5 },
+              { label: t('preset.cola'), value: 3 },
+              { label: t('preset.standard'), value: 5 },
               { label: '8%', value: 8 },
-              { label: '10% (Promotion)', value: 10 },
+              { label: t('preset.promotion'), value: 10 },
               { label: '15%', value: 15 },
               { label: '20%', value: 20 }
             ]}
@@ -119,44 +129,44 @@ import PresetChips from '../PresetChips.astro';
     <div class="flex flex-col justify-between p-4 sm:p-6 rounded-2xl border space-y-4" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
       <div class="space-y-3">
         <div class="flex items-center justify-between pb-2 border-b" style="border-color: var(--border-hairline);">
-          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">New Compensation</span>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">{t('calc.salary.newComp')}</span>
           <button
             type="button"
             id="salary-copy-btn"
             class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-2xs touch-target"
             style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);"
-            title="Copy new compensation"
-            aria-label="Copy new compensation"
+            title={t('a11y.copyCompensation')}
+            aria-label={t('a11y.copyCompensation')}
           >
             <svg class="w-3.5 h-3.5 opacity-75 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
             </svg>
-            <span class="copy-text">Copy</span>
+            <span class="copy-text">{t('calc.salary.copy')}</span>
           </button>
         </div>
 
         <!-- Metric 1: New Annual -->
         <div class="flex items-center justify-between text-xs sm:text-sm">
-          <span style="color: var(--text-muted);">New Annual Salary:</span>
-          <span class="font-display font-black text-2xl sm:text-3xl text-orange-600 dark:text-orange-400" id="salary-res-annual">$0</span>
+          <span style="color: var(--text-muted);">{t('calc.salary.newAnnual')}</span>
+          <span class="font-display font-black text-2xl sm:text-3xl text-orange-600 dark:text-orange-400" id="salary-res-annual">{currency}0</span>
         </div>
 
         <!-- Metric 2: New Monthly -->
         <div class="flex items-center justify-between text-xs sm:text-sm">
-          <span style="color: var(--text-muted);">New Monthly Pay:</span>
-          <span class="font-mono font-bold text-sm sm:text-base" id="salary-res-monthly" style="color: var(--text-ink);">$0</span>
+          <span style="color: var(--text-muted);">{t('calc.salary.newMonthly')}</span>
+          <span class="font-mono font-bold text-sm sm:text-base" id="salary-res-monthly" style="color: var(--text-ink);">{currency}0</span>
         </div>
 
         <!-- Metric 3: New Hourly -->
         <div class="flex items-center justify-between text-xs sm:text-sm">
-          <span style="color: var(--text-muted);">New Hourly Rate (40h/wk):</span>
-          <span class="font-mono font-bold text-sm sm:text-base" id="salary-res-hourly" style="color: var(--text-ink);">$0</span>
+          <span style="color: var(--text-muted);">{t('calc.salary.newHourly')}</span>
+          <span class="font-mono font-bold text-sm sm:text-base" id="salary-res-hourly" style="color: var(--text-ink);">{currency}0</span>
         </div>
 
         <!-- Extra earnings badge -->
         <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between text-xs font-bold">
-          <span class="text-emerald-700 dark:text-emerald-300">Extra Monthly Earnings:</span>
-          <span class="text-emerald-700 dark:text-emerald-300 font-mono text-sm" id="salary-res-diff">+$0 / mo</span>
+          <span class="text-emerald-700 dark:text-emerald-300">{t('calc.salary.extraMonthly')}</span>
+          <span class="text-emerald-700 dark:text-emerald-300 font-mono text-sm" id="salary-res-diff">+{currency}0 / mo</span>
         </div>
       </div>
     </div>
@@ -166,8 +176,13 @@ import PresetChips from '../PresetChips.astro';
 <script>
   import { calcSalaryRaise, formatNumber } from '../../utils/math';
   import { saveHistoryItem } from '../../utils/history';
+  import { useTranslations } from '../../i18n';
 
   function initSalaryCalc() {
+    const lang = (document.documentElement.lang === 'en' ? 'en' : 'de') as 'de' | 'en';
+    const t = useTranslations(lang);
+    const currency = t('currency.symbol');
+
     let period: 'hourly' | 'monthly' | 'annual' = 'annual';
     const baseInput = document.getElementById('salary-base') as HTMLInputElement | null;
     const raiseInput = document.getElementById('salary-raise-pct') as HTMLInputElement | null;
@@ -187,46 +202,46 @@ import PresetChips from '../PresetChips.astro';
     function evalSalary() {
       if (!baseInput || !raiseInput || !resAnnual || !resMonthly || !resHourly || !resDiff) return;
 
-      const res = calcSalaryRaise(baseInput.value, period, raiseInput.value);
+      const res = calcSalaryRaise(baseInput.value, period, raiseInput.value, undefined, undefined, undefined, undefined, lang);
       if (res) {
-        resAnnual.textContent = `$${formatNumber(res.newAnnual, 2)}`;
-        resMonthly.textContent = `$${formatNumber(res.newMonthly, 2)}`;
-        resHourly.textContent = `$${formatNumber(res.newHourly, 2)}`;
-        resDiff.textContent = `+$${formatNumber(res.differenceMonthly, 2)} / mo`;
+        resAnnual.textContent = `${currency}${formatNumber(res.newAnnual, 2)}`;
+        resMonthly.textContent = `${currency}${formatNumber(res.newMonthly, 2)}`;
+        resHourly.textContent = `${currency}${formatNumber(res.newHourly, 2)}`;
+        resDiff.textContent = `+${currency}${formatNumber(res.differenceMonthly, 2)} / mo`;
 
         saveHistoryItem({
           toolType: 'salary',
           toolName: 'Salary Raise Calculator',
           inputs: { base: baseInput.value, raise: raiseInput.value, period },
-          result: `New: $${formatNumber(res.newAnnual, 2)}/yr (+$${formatNumber(res.differenceMonthly, 2)}/mo)`,
-          summary: `$${baseInput.value} (${period}) + ${raiseInput.value}% raise`
+          result: `New: ${currency}${formatNumber(res.newAnnual, 2)}/yr (+${currency}${formatNumber(res.differenceMonthly, 2)}/mo)`,
+          summary: `${currency}${baseInput.value} (${period}) + ${raiseInput.value}% raise`
         });
       } else {
-        resAnnual.textContent = '$0.00';
-        resMonthly.textContent = '$0.00';
-        resHourly.textContent = '$0.00';
-        resDiff.textContent = '+$0.00 / mo';
+        resAnnual.textContent = `${currency}0.00`;
+        resMonthly.textContent = `${currency}0.00`;
+        resHourly.textContent = `${currency}0.00`;
+        resDiff.textContent = `+${currency}0.00 / mo`;
       }
     }
 
     btnAnnual?.addEventListener('click', () => {
       period = 'annual';
       updatePeriodButtons();
-      if (baseLabel) baseLabel.textContent = 'Current Annual Salary ($ / €)';
+      if (baseLabel) baseLabel.textContent = t('calc.salary.labelAnnual');
       evalSalary();
     });
 
     btnMonthly?.addEventListener('click', () => {
       period = 'monthly';
       updatePeriodButtons();
-      if (baseLabel) baseLabel.textContent = 'Current Monthly Pay ($ / €)';
+      if (baseLabel) baseLabel.textContent = t('calc.salary.labelMonthly');
       evalSalary();
     });
 
     btnHourly?.addEventListener('click', () => {
       period = 'hourly';
       updatePeriodButtons();
-      if (baseLabel) baseLabel.textContent = 'Current Hourly Wage ($ / hr)';
+      if (baseLabel) baseLabel.textContent = t('calc.salary.labelHourly');
       evalSalary();
     });
 
@@ -247,12 +262,12 @@ import PresetChips from '../PresetChips.astro';
 
     copyBtn?.addEventListener('click', async () => {
       const summary = `New Salary: ${resAnnual?.textContent}/yr (${resMonthly?.textContent}/mo, ${resHourly?.textContent}/hr)`;
-      const ok = await (window as any).copyAndToast?.(summary, 'Salary calculation copied!');
+      const ok = await (window as any).copyAndToast?.(summary, t('calc.salary.copyToast'));
       if (ok) {
         const label = copyBtn.querySelector('.copy-text');
         if (label) {
           const prev = label.textContent;
-          label.textContent = 'Copied!';
+          label.textContent = t('calc.copied');
           setTimeout(() => { label.textContent = prev; }, 1500);
         }
       }

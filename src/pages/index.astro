@@ -6,12 +6,21 @@ import VatCalc from '../components/calculators/VatCalc.astro';
 import RuleOfThreeCalc from '../components/calculators/RuleOfThreeCalc.astro';
 import PercentageDiffCalc from '../components/calculators/PercentageDiffCalc.astro';
 import SalaryCalc from '../components/calculators/SalaryCalc.astro';
+import { useTranslations } from '../i18n';
+
+const lang = 'de';
+const t = useTranslations(lang);
 ---
 
 <Layout
-  title="Percentage Calculator: Free Online % Math Tool with Rechenweg"
-  description="Instant percentage calculations with step-by-step Rechenweg, formulas, and visual proportion bars. Solve discounts, VAT (MwSt), Rule of Three (Dreisatz), and salary raises effortlessly."
+  lang="de"
+  title="Prozentrechner Online: Kostenlos Prozent Berechnen mit Rechenweg"
+  description="Kostenloser Online Prozentrechner mit Schritt-für-Schritt Rechenweg. Berechnen Sie Rabatte, MwSt (19%), Dreisatz, Gehaltserhöhungen und prozentuale Veränderungen sofort in Euro."
   canonicalUrl="https://prozentrechner-online.com/"
+  alternateUrls={{
+    de: "https://prozentrechner-online.com/",
+    en: "https://prozentrechner-online.com/en"
+  }}
 >
   <!-- Hero Section -->
   <section class="text-center max-w-3xl mx-auto mb-8 sm:mb-16 px-1">
@@ -24,40 +33,40 @@ import SalaryCalc from '../components/calculators/SalaryCalc.astro';
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
       </span>
-      <span>Live Calculations &bull; Step-by-Step Rechenweg &bull; No Ads</span>
+      <span>Live-Berechnungen • Schritt-für-Schritt Rechenweg • Werbefrei</span>
     </div>
 
     <!-- Main Headline -->
     <h1 class="font-display font-black text-2.5xl xs:text-3.5xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.12] mb-3 sm:mb-4" style="color: var(--text-ink);">
-      Calculate Percentages <br class="hidden sm:inline" />
-      <span style="color: var(--accent);">Instantly & Clearly</span>
+      Prozentrechner Online <br class="hidden sm:inline" />
+      <span style="color: var(--accent);">Sofort & Präzise</span>
     </h1>
 
     <p class="text-xs xs:text-sm sm:text-lg leading-relaxed max-w-2xl mx-auto px-2" style="color: var(--text-muted);">
-      Never struggle with percentage math again. Enter any numbers below for immediate answers, mathematical formulas, and step-by-step solutions.
+      Kämpfen Sie nie wieder mit Prozentrechnung. Geben Sie beliebige Zahlen unten ein für sofortige Antworten, mathematische Formeln und Schritt-für-Schritt-Lösungen mit Rechenweg.
     </p>
 
     <!-- Quick Tool Switcher Pills -->
     <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-4 sm:pt-6">
-      <a href="#main-calc" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#hauptrechner" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);">
         <span class="w-4 h-4 rounded flex items-center justify-center font-bold text-[11px] leading-none" style="background-color: var(--accent); color: white;">%</span>
-        <span>Main Calculator</span>
+        <span>Hauptrechner</span>
       </a>
-      <a href="#discount-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#rabattrechner" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
           <line x1="7" y1="7" x2="7.01" y2="7"></line>
         </svg>
-        <span>Discount & Sale</span>
+        <span>Rabatt & Sale</span>
       </a>
-      <a href="#vat-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#mwst-rechner" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <line x1="12" y1="1" x2="12" y2="23"></line>
           <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
         </svg>
-        <span>VAT / Tax (MwSt)</span>
+        <span>MwSt (19%)</span>
       </a>
-      <a href="#dreisatz-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#dreisatz-rechner" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
           <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
@@ -66,61 +75,61 @@ import SalaryCalc from '../components/calculators/SalaryCalc.astro';
         </svg>
         <span>Dreisatz</span>
       </a>
-      <a href="#diff-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#prozentuale-differenz" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <line x1="18" y1="20" x2="18" y2="10"></line>
           <line x1="12" y1="20" x2="12" y2="4"></line>
           <line x1="6" y1="20" x2="6" y2="14"></line>
         </svg>
-        <span>% Difference</span>
+        <span>% Differenz</span>
       </a>
-      <a href="#salary-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#gehaltsrechner" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
           <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
         </svg>
-        <span>Salary Raise</span>
+        <span>Gehaltserhöhung</span>
       </a>
     </div>
   </section>
 
   <!-- ================= 1. MAIN PERCENTAGE CALCULATOR ================= -->
-  <section class="mb-16">
-    <MainPercentageCalc />
+  <section id="hauptrechner" class="mb-16">
+    <MainPercentageCalc lang="de" />
   </section>
 
   <!-- Section Divider with Title -->
   <div class="relative flex py-6 items-center my-8">
     <div class="flex-grow border-t" style="border-color: var(--border-hairline);"></div>
     <span class="flex-shrink mx-4 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);">
-      Specialized Calculation Tools
+      Spezialisierte Rechentools
     </span>
     <div class="flex-grow border-t" style="border-color: var(--border-hairline);"></div>
   </div>
 
   <!-- ================= 2. DISCOUNT CALCULATOR ================= -->
-  <section id="discount-tool" class="mb-12 scroll-mt-20">
-    <DiscountCalc />
+  <section id="rabattrechner" class="mb-12 scroll-mt-20">
+    <DiscountCalc lang="de" />
   </section>
 
   <!-- ================= 3. VAT CALCULATOR ================= -->
-  <section id="vat-tool" class="mb-12 scroll-mt-20">
-    <VatCalc />
+  <section id="mwst-rechner" class="mb-12 scroll-mt-20">
+    <VatCalc lang="de" />
   </section>
 
   <!-- ================= 4. RULE OF THREE (DREISATZ) ================= -->
-  <section id="dreisatz-tool" class="mb-12 scroll-mt-20">
-    <RuleOfThreeCalc />
+  <section id="dreisatz-rechner" class="mb-12 scroll-mt-20">
+    <RuleOfThreeCalc lang="de" />
   </section>
 
   <!-- ================= 5. PERCENTAGE DIFFERENCE ================= -->
-  <section id="diff-tool" class="mb-12 scroll-mt-20">
-    <PercentageDiffCalc />
+  <section id="prozentuale-differenz" class="mb-12 scroll-mt-20">
+    <PercentageDiffCalc lang="de" />
   </section>
 
   <!-- ================= 6. SALARY RAISE CALCULATOR ================= -->
-  <section id="salary-tool" class="mb-16 scroll-mt-20">
-    <SalaryCalc />
+  <section id="gehaltsrechner" class="mb-16 scroll-mt-20">
+    <SalaryCalc lang="de" />
   </section>
 
   <!-- ================= 7. EDUCATIONAL GUIDE & SEO EXPLANATION ================= -->
@@ -128,60 +137,67 @@ import SalaryCalc from '../components/calculators/SalaryCalc.astro';
     <div class="max-w-3xl mx-auto space-y-8">
       <div>
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2" style="background-color: var(--bg-card); color: var(--text-ink);">
-          📐 Educational Guide & Formula Reference
+          📐 Lernhilfe & Formelreferenz
         </div>
         <h2 class="font-display font-black text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
-          How Percentage Calculations Work (Rechenweg)
+          Wie Prozentberechnungen funktionieren (Rechenweg)
         </h2>
         <p class="text-sm sm:text-base mt-2 leading-relaxed" style="color: var(--text-muted);">
-          The word <em>percentage</em> comes from the Latin <em>per centum</em>, meaning "by the hundred." Whether you are calculating retail sales discounts, calculating Mehrwertsteuer (VAT), solving Dreisatz (Rule of Three) math homework, or calculating a salary raise, percentages describe proportions relative to 100.
+          Das Wort <em>Prozent</em> kommt vom Lateinischen <em>per centum</em>, was „pro Hundert" bedeutet. Ob Sie Einzelhandelsrabatte berechnen, Mehrwertsteuer (MwSt) mit 19% kalkulieren, Dreisatz-Mathematikaufgaben lösen oder eine Gehaltserhöhung in Euro berechnen – Prozentsätze beschreiben Proportionen relativ zu 100.
         </p>
       </div>
 
       <!-- Formula Grid Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="p-4 rounded-2xl border space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-          <div class="font-bold text-xs" style="color: var(--text-ink);">1. Percentage Value (W)</div>
-          <div class="font-mono font-bold text-sm text-emerald-600 dark:text-emerald-400">W = (G &times; p) / 100</div>
-          <div class="text-[11px]" style="color: var(--text-muted);">Calculates the exact portion (e.g. 15% of $250 = $37.50).</div>
+          <div class="font-bold text-xs" style="color: var(--text-ink);">1. Prozentwert (W)</div>
+          <div class="font-mono font-bold text-sm text-emerald-600 dark:text-emerald-400">W = (G × p) / 100</div>
+          <div class="text-[11px]" style="color: var(--text-muted);">Berechnet den genauen Anteil (z.B. 15% von 250€ = 37,50€).</div>
         </div>
 
         <div class="p-4 rounded-2xl border space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-          <div class="font-bold text-xs" style="color: var(--text-ink);">2. Percentage Rate (p)</div>
-          <div class="font-mono font-bold text-sm text-purple-600 dark:text-purple-400">p = (W / G) &times; 100</div>
-          <div class="text-[11px]" style="color: var(--text-muted);">Finds what percent a number represents of the whole.</div>
+          <div class="font-bold text-xs" style="color: var(--text-ink);">2. Prozentsatz (p)</div>
+          <div class="font-mono font-bold text-sm text-purple-600 dark:text-purple-400">p = (W / G) × 100</div>
+          <div class="text-[11px]" style="color: var(--text-muted);">Findet heraus, wie viel Prozent eine Zahl vom Ganzen darstellt.</div>
         </div>
 
         <div class="p-4 rounded-2xl border space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-          <div class="font-bold text-xs" style="color: var(--text-ink);">3. Base Value (G)</div>
-          <div class="font-mono font-bold text-sm text-amber-600 dark:text-amber-400">G = (W &times; 100) / p</div>
-          <div class="text-[11px]" style="color: var(--text-muted);">Computes the original 100% total from a known percentage.</div>
+          <div class="font-bold text-xs" style="color: var(--text-ink);">3. Grundwert (G)</div>
+          <div class="font-mono font-bold text-sm text-amber-600 dark:text-amber-400">G = (W × 100) / p</div>
+          <div class="text-[11px]" style="color: var(--text-muted);">Berechnet die ursprünglichen 100% Gesamtsumme aus einem bekannten Prozentsatz.</div>
         </div>
       </div>
 
       <!-- FAQ Accordion / Q&A -->
       <div class="space-y-4 pt-4 border-t" style="border-color: var(--border-hairline);">
-        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">Frequently Asked Questions</h3>
-        
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">Häufig gestellte Fragen zum Prozentrechner</h3>
+
         <div class="space-y-3 text-xs sm:text-sm">
           <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">What is the difference between percentage change and percentage difference?</div>
+            <div class="font-bold mb-1" style="color: var(--text-ink);">Was ist der Unterschied zwischen prozentualer Veränderung und prozentualem Unterschied?</div>
             <div style="color: var(--text-muted);">
-              <strong>Percentage change</strong> assumes a chronological direction (from old value to new value). <strong>Percentage difference</strong> compares two numbers symmetrically relative to their average midpoint, which is useful when neither number serves as the baseline.
+              <strong>Prozentuale Veränderung</strong> geht von einer chronologischen Richtung aus (vom alten Wert zum neuen Wert). <strong>Prozentualer Unterschied</strong> vergleicht zwei Zahlen symmetrisch relativ zu ihrem durchschnittlichen Mittelpunkt, was nützlich ist, wenn keine Zahl als Basis dient.
             </div>
           </div>
 
           <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">Why does +19% VAT followed by -19% not equal the starting price? (The VAT Trap)</div>
+            <div class="font-bold mb-1" style="color: var(--text-ink);">Warum ergibt +19% MwSt gefolgt von -19% nicht den Anfangspreis? (Die MwSt-Falle)</div>
             <div style="color: var(--text-muted);">
-              Because the percentage is calculated on two different base amounts! When adding 19% to $100, the gross is $119. If you then subtract 19% of $119 ($22.61), you get $96.39 instead of $100. To extract VAT correctly, divide by <strong>1.19</strong> ($119 / 1.19 = $100).
+              Weil der Prozentsatz auf zwei verschiedenen Basisbeträgen berechnet wird! Wenn Sie 19% zu 100€ addieren, beträgt der Bruttobetrag 119€. Wenn Sie dann 19% von 119€ abziehen (22,61€), erhalten Sie 96,39€ statt 100€. Um die MwSt korrekt zu extrahieren, teilen Sie durch <strong>1,19</strong> (119€ / 1,19 = 100€).
             </div>
           </div>
 
           <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">How does the Rule of Three (Dreisatz) calculator work?</div>
+            <div class="font-bold mb-1" style="color: var(--text-ink);">Wie funktioniert der Dreisatz-Rechner?</div>
             <div style="color: var(--text-muted);">
-              Dreisatz solves proportional math problems in 3 clean steps: (1) state the known relation, (2) compute the single-unit rate (divide by A), and (3) scale up to the target quantity (multiply by C).
+              Der Dreisatz löst proportionale Mathematikprobleme in 3 klaren Schritten: (1) bekanntes Verhältnis angeben, (2) Einzelsatz berechnen (durch A teilen), und (3) auf Zielmenge hochskalieren (mit C multiplizieren). Perfekt für Umrechnungen und Verhältnisberechnungen.
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold mb-1" style="color: var(--text-ink);">Wie berechne ich Rabatte und Sale-Preise?</div>
+            <div style="color: var(--text-muted);">
+              Für einen Rabatt von X% auf einen Preis: Berechnen Sie X% des Originalpreises und subtrahieren Sie diesen vom Preis. Oder nutzen Sie die Formel: <strong>Endpreis = Originalpreis × (1 - Rabatt/100)</strong>. Beispiel: 20% Rabatt auf 50€ = 50€ × 0,80 = 40€.
             </div>
           </div>
         </div>
