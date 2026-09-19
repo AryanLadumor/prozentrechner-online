@@ -6,6 +6,7 @@ import VatCalc from '../components/calculators/VatCalc.astro';
 import RuleOfThreeCalc from '../components/calculators/RuleOfThreeCalc.astro';
 import PercentageDiffCalc from '../components/calculators/PercentageDiffCalc.astro';
 import SalaryCalc from '../components/calculators/SalaryCalc.astro';
+import FaqSection from '../components/FaqSection.astro';
 import { useTranslations } from '../i18n';
 
 const lang = 'de';
@@ -15,7 +16,7 @@ const t = useTranslations(lang);
 <Layout
   lang="de"
   title="Prozentrechner Online: Kostenlos Prozent Berechnen mit Rechenweg"
-  description="Kostenloser Online Prozentrechner mit Schritt-für-Schritt Rechenweg. Berechnen Sie Rabatte, MwSt (19%), Dreisatz, Gehaltserhöhungen und prozentuale Veränderungen sofort in Euro."
+  description="Prozentrechner online: Prozentwert, Prozentsatz und Grundwert sofort berechnen – mit Rechenweg, Rabatt, MwSt und Dreisatz. Kostenlos in Euro."
   canonicalUrl="https://prozentrechner-online.com/"
   alternateUrls={{
     de: "https://prozentrechner-online.com/",
@@ -140,14 +141,49 @@ const t = useTranslations(lang);
           📐 Lernhilfe & Formelreferenz
         </div>
         <h2 class="font-display font-black text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
-          Wie Prozentberechnungen funktionieren (Rechenweg)
+          Prozentrechner Online: Kostenlos Prozent Berechnen mit Rechenweg
         </h2>
         <p class="text-sm sm:text-base mt-2 leading-relaxed" style="color: var(--text-muted);">
-          Das Wort <em>Prozent</em> kommt vom Lateinischen <em>per centum</em>, was „pro Hundert" bedeutet. Ob Sie Einzelhandelsrabatte berechnen, Mehrwertsteuer (MwSt) mit 19% kalkulieren, Dreisatz-Mathematikaufgaben lösen oder eine Gehaltserhöhung in Euro berechnen – Prozentsätze beschreiben Proportionen relativ zu 100.
+          Ein Prozentrechner verwandelt eine unübersichtliche Prozentaufgabe in Sekunden in ein klares Ergebnis. Unser kostenloser Prozentrechner Online berechnet Prozentwert, Prozentsatz und Grundwert in Echtzeit und zeigt zusätzlich den vollständigen Rechenweg – also jeden einzelnen Zwischenschritt. Sie geben zwei beliebige Werte ein, der dritte wird automatisch ermittelt. Ohne Anmeldung, ohne Installation und werbefrei.
+        </p>
+      </div>
+
+      <!-- Was ist ein Prozentrechner -->
+      <div class="space-y-3">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Was ist ein Prozentrechner und wann brauchen Sie ihn?
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Das Wort <em>Prozent</em> stammt vom lateinischen <em>per centum</em>, was „pro Hundert" bedeutet. Ein Prozent ist damit nichts anderes als der Bruch 1/100 beziehungsweise die Dezimalzahl 0,01. Ein Prozentrechner übersetzt die Beziehung zwischen einem Anteil und einem Ganzen in einen Wert, den Sie unmittelbar weiterverwenden können.
+        </p>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Sie brauchen einen Prozentrechner überall dort, wo ein Verhältnis ins Spiel kommt: beim Einkauf, wenn 30% Rabatt auf eine 80-Euro-Jacke winken. Bei der Rechnungsstellung, wenn aus einem Nettobetrag die 19% Mehrwertsteuer herausgerechnet werden müssen. In der Gehaltsverhandlung, wenn eine Erhöhung von 4,5% in Euro beziffert werden soll. Oder in der Schule, wenn eine Klassenarbeit benotet wird. Statt Formelsammlung und Taschenrechner zu zücken, tippen Sie die bekannten Zahlen ein und lesen das Ergebnis ab.
+        </p>
+      </div>
+
+      <!-- Rechenweg -->
+      <div class="space-y-3">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Prozentrechner mit Rechenweg: Schritt für Schritt zum Ergebnis
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Viele Online-Rechner geben lediglich eine Zahl aus. Unser Prozentrechner mit Rechenweg geht einen Schritt weiter und zeigt, wie das Ergebnis zustande kommt. Das hat zwei Vorteile: Sie können das Resultat jederzeit prüfen, und Sie verstehen die Methode – was besonders beim Lernen für Klassenarbeiten und Prüfungen hilft.
+        </p>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Der Rechenweg folgt immer demselben Muster: Zuerst werden Grundwert, Prozentwert und Prozentsatz identifiziert. Danach setzen Sie die bekannten Werte in die passende Formel ein und berechnen das Ergebnis, das Sie auf zwei Nachkommastellen runden. Ein Beispiel: Wie viel sind 15% von 250 Euro? Der Grundwert G ist 250, der Prozentsatz p ist 15. Eingesetzt in die Formel ergibt das (250 × 15) / 100 = 3.750 / 100 = 37,50 Euro.
         </p>
       </div>
 
       <!-- Formula Grid Cards -->
+      <div class="space-y-3">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Prozentrechner Formel: Die drei Grundformeln der Prozentrechnung
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Die gesamte Prozentrechnung lässt sich auf drei Formeln reduzieren. Wer sie beherrscht, benötigt für die meisten Aufgaben nicht einmal mehr einen Taschenrechner – der Prozentrechner Online ist dann nur noch die Abkürzung.
+        </p>
+      </div>
+
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="p-4 rounded-2xl border space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
           <div class="font-bold text-xs" style="color: var(--text-ink);">1. Prozentwert (W)</div>
@@ -168,41 +204,127 @@ const t = useTranslations(lang);
         </div>
       </div>
 
-      <!-- FAQ Accordion / Q&A -->
-      <div class="space-y-4 pt-4 border-t" style="border-color: var(--border-hairline);">
-        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">Häufig gestellte Fragen zum Prozentrechner</h3>
+      <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+        Alle drei Formeln folgen derselben Logik: Der Prozentwert ist der Teil, der Grundwert das Ganze und der Prozentsatz das Verhältnis der beiden zueinander. Sobald zwei dieser drei Größen bekannt sind, lässt sich die dritte eindeutig bestimmen. Eine ausführliche Übersicht mit Merkhilfen, Prozentdreieck und Übungsaufgaben finden Sie auf unserer Seite
+        <a href="/prozentrechner-formel" class="font-semibold underline" style="color: var(--text-ink);">Prozentrechner Formel</a>.
+      </p>
 
-        <div class="space-y-3 text-xs sm:text-sm">
-          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">Was ist der Unterschied zwischen prozentualer Veränderung und prozentualem Unterschied?</div>
-            <div style="color: var(--text-muted);">
-              <strong>Prozentuale Veränderung</strong> geht von einer chronologischen Richtung aus (vom alten Wert zum neuen Wert). <strong>Prozentualer Unterschied</strong> vergleicht zwei Zahlen symmetrisch relativ zu ihrem durchschnittlichen Mittelpunkt, was nützlich ist, wenn keine Zahl als Basis dient.
-            </div>
-          </div>
+      <!-- Prozentrechner Tabelle -->
+      <div class="space-y-4">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Prozentrechner Tabelle: Häufige Prozentwerte auf einen Blick
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Eine Tabelle ersetzt keine Berechnung, beschleunigt aber den Alltag erheblich. Die folgende Übersicht zeigt, welche Beträge typische Prozentsätze von gängigen Grundwerten ergeben. Die 19%-Zeile ist für Deutschland besonders relevant, da sie dem regulären Mehrwertsteuersatz entspricht und bei nahezu jeder Rechnung auftaucht.
+        </p>
 
-          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">Warum ergibt +19% MwSt gefolgt von -19% nicht den Anfangspreis? (Die MwSt-Falle)</div>
-            <div style="color: var(--text-muted);">
-              Weil der Prozentsatz auf zwei verschiedenen Basisbeträgen berechnet wird! Wenn Sie 19% zu 100€ addieren, beträgt der Bruttobetrag 119€. Wenn Sie dann 19% von 119€ abziehen (22,61€), erhalten Sie 96,39€ statt 100€. Um die MwSt korrekt zu extrahieren, teilen Sie durch <strong>1,19</strong> (119€ / 1,19 = 100€).
-            </div>
-          </div>
-
-          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">Wie funktioniert der Dreisatz-Rechner?</div>
-            <div style="color: var(--text-muted);">
-              Der Dreisatz löst proportionale Mathematikprobleme in 3 klaren Schritten: (1) bekanntes Verhältnis angeben, (2) Einzelsatz berechnen (durch A teilen), und (3) auf Zielmenge hochskalieren (mit C multiplizieren). Perfekt für Umrechnungen und Verhältnisberechnungen.
-            </div>
-          </div>
-
-          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">Wie berechne ich Rabatte und Sale-Preise?</div>
-            <div style="color: var(--text-muted);">
-              Für einen Rabatt von X% auf einen Preis: Berechnen Sie X% des Originalpreises und subtrahieren Sie diesen vom Preis. Oder nutzen Sie die Formel: <strong>Endpreis = Originalpreis × (1 - Rabatt/100)</strong>. Beispiel: 20% Rabatt auf 50€ = 50€ × 0,80 = 40€.
-            </div>
-          </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs sm:text-sm border-collapse">
+            <caption class="sr-only">Prozentrechner Tabelle mit häufigen Prozentwerten für 50 Euro, 100 Euro und 250 Euro</caption>
+            <thead>
+              <tr style="background-color: var(--bg-card);">
+                <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Prozentsatz</th>
+                <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">von 50€</th>
+                <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">von 100€</th>
+                <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">von 250€</th>
+              </tr>
+            </thead>
+            <tbody style="color: var(--text-body);">
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">5%</th>
+                <td class="p-3 font-mono">2,50€</td>
+                <td class="p-3 font-mono">5,00€</td>
+                <td class="p-3 font-mono">12,50€</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">10%</th>
+                <td class="p-3 font-mono">5,00€</td>
+                <td class="p-3 font-mono">10,00€</td>
+                <td class="p-3 font-mono">25,00€</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">19% (MwSt)</th>
+                <td class="p-3 font-mono">9,50€</td>
+                <td class="p-3 font-mono">19,00€</td>
+                <td class="p-3 font-mono">47,50€</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">20%</th>
+                <td class="p-3 font-mono">10,00€</td>
+                <td class="p-3 font-mono">20,00€</td>
+                <td class="p-3 font-mono">50,00€</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">25%</th>
+                <td class="p-3 font-mono">12,50€</td>
+                <td class="p-3 font-mono">25,00€</td>
+                <td class="p-3 font-mono">62,50€</td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">50%</th>
+                <td class="p-3 font-mono">25,00€</td>
+                <td class="p-3 font-mono">50,00€</td>
+                <td class="p-3 font-mono">125,00€</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
+
+      <!-- Anwendungsfaelle -->
+      <div class="space-y-4">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Prozentrechner für Alltag, Beruf und Schule
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Prozentsätze begegnen Ihnen in nahezu jedem Lebensbereich. Damit Sie für jede Aufgabe den passenden Rechner zur Hand haben, haben wir spezialisierte Werkzeuge gebündelt – alle kostenlos, alle mit Rechenweg:
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a href="/rabattrechner" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">🏷️ Prozentrechner Rabatt</div>
+            <div class="text-xs" style="color: var(--text-muted);">Sale-Preise, gestapelte Gutscheine und Gesamtersparnis in Euro berechnen.</div>
+          </a>
+          <a href="/mehrwertsteuerrechner" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">🏛️ Prozentrechner Mehrwertsteuer</div>
+            <div class="text-xs" style="color: var(--text-muted);">19% und 7% MwSt, brutto zu netto und netto zu brutto umrechnen.</div>
+          </a>
+          <a href="/dreisatz-rechner" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">⚖️ Prozentrechner Dreisatz</div>
+            <div class="text-xs" style="color: var(--text-muted);">Proportionale Zuordnungen in drei Schritten lösen – für Umrechnungen und Verhältnisse.</div>
+          </a>
+          <a href="/prozentuale-differenz" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">📊 Prozentrechner Differenz</div>
+            <div class="text-xs" style="color: var(--text-muted);">Prozentuale Veränderung und prozentualen Unterschied zwischen zwei Werten ermitteln.</div>
+          </a>
+          <a href="/gehaltsrechner" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">💼 Prozentrechner Gehalt</div>
+            <div class="text-xs" style="color: var(--text-muted);">Gehaltserhöhung in Prozent und Euro berechnen – brutto und netto.</div>
+          </a>
+          <a href="/prozentrechner-formel" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">📐 Prozentrechner Formeln</div>
+            <div class="text-xs" style="color: var(--text-muted);">Alle Formeln, das Prozentdreieck und Übungsaufgaben mit Lösungen.</div>
+          </a>
+        </div>
+
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Darüber hinaus deckt der Rechner typische Aufgaben aus dem Alltag ab: Prozentrechnen für Noten und Punkte in der Schule, die prozentuale Arbeitszeit eines Projekts, Preiserhöhungen und Preissenkungen im Handel, die Rendite von Aktien oder die Zinsbelastung eines Kredits. Auch die Umrechnung von Brutto- und Nettobeträgen sowie die Frage „wie viel Prozent von einer Summe sind bereits verbraucht?" lassen sich mit wenigen Eingaben beantworten.
+        </p>
+      </div>
+
+      <!-- Warum dieser Rechner -->
+      <div class="space-y-3">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Warum prozentrechner-online.com?
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Unser Prozentrechner ist auf Geschwindigkeit und Verständlichkeit ausgelegt. Die Berechnung erfolgt direkt im Browser, ohne dass die Seite neu geladen wird – das Ergebnis steht, während Sie tippen. Jede Rechnung lässt sich über einen Link teilen, und der Verlauf Ihrer letzten Berechnungen bleibt lokal auf Ihrem Gerät gespeichert. Es gibt keine Kosten, keine Registrierung und keine Werbung. Alle Beispiele sind auf Euro ausgelegt und berücksichtigen deutsche Gegebenheiten wie den Mehrwertsteuersatz von 19% beziehungsweise 7%.
+        </p>
       </div>
 
     </div>
   </section>
+
+  <!-- ================= 8. SEO FAQ SECTION (with FAQPage JSON-LD) ================= -->
+  <FaqSection lang="de" />
 </Layout>

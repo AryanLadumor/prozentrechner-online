@@ -1,0 +1,225 @@
+---
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { site } from '../../data/site';
+
+/*
+ * TODO (operator): before going live, add:
+ *  - full name / company of the operator
+ *  - postal address
+ *  - authorised representatives and register entry, if applicable
+ *  - name of the hosting provider (section "Hosting & server log files")
+ * These details are required under Art. 13 GDPR.
+ */
+
+const toc = [
+  { id: 'controller', label: 'Controller' },
+  { id: 'principles', label: 'Overview & principles' },
+  { id: 'hosting', label: 'Hosting & server logs' },
+  { id: 'fonts', label: 'Google Fonts' },
+  { id: 'local-storage', label: 'Browser storage' },
+  { id: 'no-cookies', label: 'No cookies, no tracking' },
+  { id: 'recipients', label: 'Recipients & disclosure' },
+  { id: 'rights', label: 'Your rights' },
+  { id: 'security', label: 'Data security' },
+  { id: 'children', label: 'Children' },
+  { id: 'changes', label: 'Changes' },
+];
+---
+
+<LegalLayout
+  lang="en"
+  title="Privacy Policy"
+  description="What data is processed when you visit prozentrechner-online.com – and what is explicitly not. No cookies, no tracking, no user accounts."
+  canonicalUrl="https://prozentrechner-online.com/en/privacy-policy"
+  alternateUrls={{
+    de: 'https://prozentrechner-online.com/datenschutz',
+    en: 'https://prozentrechner-online.com/en/privacy-policy',
+  }}
+  breadcrumb="Privacy"
+  toc={toc}
+>
+  <p>
+    Protecting your personal data matters to us. This privacy policy explains transparently what
+    data is processed when you visit this website – and what data is <strong>not</strong>
+    processed. It applies to the entire {site.name} website.
+  </p>
+
+  <h2 id="controller">1. Controller</h2>
+  <p>
+    The controller responsible for data processing on this website within the meaning of the
+    General Data Protection Regulation (GDPR) is:
+  </p>
+  <p>
+    <strong>{site.name}</strong><br />
+    Email: <a href={`mailto:${site.email}`}>{site.email}</a>
+  </p>
+
+  <h2 id="principles">2. Overview &amp; principles</h2>
+  <p>
+    This website is a pure online calculation tool. There is <strong>no registration</strong>,
+    <strong>no user accounts</strong>, <strong>no advertising</strong> and
+    <strong>no analytics or marketing services</strong>.
+  </p>
+  <p>
+    All calculations run entirely in your browser. The numbers you enter are
+    <strong>not transmitted to our servers</strong>, not stored there and not evaluated. You can
+    therefore use every calculator offline or with network traffic disabled once the page has
+    loaded.
+  </p>
+  <div class="legal-note">
+    In short: we do not profile you, we do not sell data, and we do not use tracking cookies.
+    Only the technically necessary data that any website request produces is processed.
+  </div>
+
+  <h2 id="hosting">3. Hosting &amp; server log files</h2>
+  <p>
+    This website is hosted by an external hosting provider. When you access the website, the
+    hosting provider automatically collects information transmitted by your browser and stores it
+    in server log files. This includes in particular:
+  </p>
+  <ul>
+    <li>IP address of the requesting device</li>
+    <li>date and time of access</li>
+    <li>name and URL of the file or page accessed</li>
+    <li>amount of data transferred and the access status (e.g. HTTP status code)</li>
+    <li>browser type and version as well as operating system</li>
+    <li>referrer URL (the previously visited page)</li>
+  </ul>
+  <p>
+    <strong>Purpose:</strong> providing, securing and stabilising the website, and defending
+    against and investigating attacks.<br />
+    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in secure and functional
+    provision).<br />
+    <strong>Retention:</strong> log files are deleted automatically after a short period. The exact
+    duration depends on the settings and deletion routine of our hosting provider.
+  </p>
+
+  <h2 id="fonts">4. Google Fonts</h2>
+  <p>
+    To display fonts consistently, this website uses web fonts (“Google Fonts”) that are loaded
+    from Google servers when the page is opened. Your IP address, among other data, is
+    transmitted to Google in the process.
+  </p>
+  <p>
+    <strong>Provider:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland.<br />
+    <strong>Purpose:</strong> consistent and appealing typography.<br />
+    <strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in consistent
+    presentation).<br />
+    <strong>Note:</strong> the percentage calculations work entirely in your browser regardless.
+    If you want to avoid the transfer to Google, you can block external fonts in your browser;
+    the website remains usable.
+  </p>
+
+  <h2 id="local-storage">5. Browser storage (localStorage)</h2>
+  <p>
+    This website stores some information locally on your device in your browser’s
+    <code>localStorage</code>. This data stays exclusively on your device and is
+    <strong>not transmitted to us or to third parties</strong>. The following is stored:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Content</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>pct_theme</code></td>
+        <td>Your selected colour theme</td>
+        <td>Remembering your theme choice on your next visit</td>
+      </tr>
+      <tr>
+        <td><code>pct_calc_history_v1</code></td>
+        <td>Your most recent calculations</td>
+        <td>History for quick reference and reuse</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <strong>Legal basis:</strong> § 25(2)(2) TDDDG (German Telecommunications Digital Services
+    Data Protection Act) and Art. 6(1)(f) GDPR. Storage is strictly necessary for the function you
+    explicitly requested (theme selection, history feature) and therefore permitted without
+    consent.
+  </p>
+  <p>
+    <strong>Deletion:</strong> you can clear the history at any time using the “Clear all” button
+    in the history panel. All locally stored data also disappears when you clear the site data or
+    cache in your browser settings.
+  </p>
+
+  <h2 id="no-cookies">6. No cookies, no tracking</h2>
+  <p>
+    This website uses <strong>no cookies</strong> at all – neither for analytics nor for
+    marketing or advertising. We also do not use:
+  </p>
+  <ul>
+    <li>web analytics services (e.g. Google Analytics or Matomo)</li>
+    <li>advertising or retargeting networks</li>
+    <li>social media plugins or tracking pixels</li>
+    <li>fingerprinting or any other form of user profiling</li>
+  </ul>
+  <p>
+    Because no consent-based cookies or comparable technologies are used, no cookie banner is
+    required either.
+  </p>
+
+  <h2 id="recipients">7. Recipients &amp; disclosure of data</h2>
+  <p>
+    Your data is not disclosed to third parties except to the service providers that are
+    technically necessary:
+  </p>
+  <ul>
+    <li>our <strong>hosting provider</strong> (operation and provision of the website),</li>
+    <li><strong>Google</strong> as part of the font loading described in section 4.</li>
+  </ul>
+  <p>
+    Where service providers act on our behalf, this is based on data processing agreements
+    pursuant to Art. 28 GDPR. Your data is <strong>not sold</strong>.
+  </p>
+
+  <h2 id="rights">8. Your rights</h2>
+  <p>You have the following rights regarding your personal data:</p>
+  <ul>
+    <li><strong>Access</strong> to the data processed (Art. 15 GDPR)</li>
+    <li><strong>Rectification</strong> of inaccurate or incomplete data (Art. 16 GDPR)</li>
+    <li><strong>Erasure</strong> of your data (Art. 17 GDPR)</li>
+    <li><strong>Restriction</strong> of processing (Art. 18 GDPR)</li>
+    <li><strong>Data portability</strong> (Art. 20 GDPR)</li>
+    <li><strong>Objection</strong> to processing based on legitimate interests (Art. 21 GDPR)</li>
+    <li><strong>Withdrawal</strong> of any consent given, with effect for the future (Art. 7(3) GDPR)</li>
+  </ul>
+  <p>
+    To exercise your rights, an email to <a href={`mailto:${site.email}`}>{site.email}</a> is
+    sufficient. You also have the right to lodge a complaint with a data protection supervisory
+    authority (Art. 77 GDPR) – the authority of your habitual residence or of our place of
+    establishment.
+  </p>
+  <div class="legal-note">
+    Since we do not collect personal data beyond the technically unavoidable server log files,
+    access or erasure requests in practice usually relate to those logs and to the data stored
+    purely locally in your own browser, which you can delete yourself at any time.
+  </div>
+
+  <h2 id="security">9. Data security</h2>
+  <p>
+    This website is served exclusively over an encrypted HTTPS connection (TLS/SSL), so data
+    transmitted cannot normally be read by third parties. We also apply appropriate technical and
+    organisational measures to protect the website against loss, manipulation and unauthorised
+    access.
+  </p>
+
+  <h2 id="children">10. Children</h2>
+  <p>
+    Our website is not specifically directed at children and we do not knowingly collect personal
+    data from children. Because no registration is possible and no personal data is actively
+    requested, use by minors is unproblematic.
+  </p>
+
+  <h2 id="changes">11. Changes to this privacy policy</h2>
+  <p>
+    We will update this privacy policy when the legal situation, our services or the technology
+    used change. The current version published on this page applies in each case.
+  </p>
+</LegalLayout>

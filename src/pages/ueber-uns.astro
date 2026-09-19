@@ -1,0 +1,85 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site } from '../data/site';
+import { getLocalizedPath } from '../i18n/routes';
+
+const mainRoute = getLocalizedPath('/', 'de');
+const formulaRoute = getLocalizedPath('/percentage-formula', 'de');
+const discountRoute = getLocalizedPath('/discount-calculator', 'de');
+const vatRoute = getLocalizedPath('/vat-calculator', 'de');
+const dreisatzRoute = getLocalizedPath('/rule-of-three-calculator', 'de');
+const diffRoute = getLocalizedPath('/percentage-difference', 'de');
+const salaryRoute = getLocalizedPath('/salary-raise-calculator', 'de');
+---
+
+<LegalLayout
+  lang="de"
+  title="Über uns"
+  description="Wer hinter prozentrechner-online.com steht: ein kostenloses, werbefreies und datenschutzfreundliches Rechenwerkzeug für Prozentrechnung – mit Rechenweg statt nur Ergebnis."
+  canonicalUrl="https://prozentrechner-online.com/ueber-uns"
+  alternateUrls={{
+    de: 'https://prozentrechner-online.com/ueber-uns',
+    en: 'https://prozentrechner-online.com/en/about',
+  }}
+  breadcrumb="Über uns"
+>
+  <h2>Worum es hier geht</h2>
+  <p>
+    {site.name} ist ein kostenloses Online-Werkzeug rund um die Prozentrechnung. Statt nur ein
+    Ergebnis auszugeben, zeigen unsere Rechner den vollständigen <strong>Rechenweg</strong> –
+    also die Formel, die eingesetzten Werte und die einzelnen Rechenschritte. So lässt sich das
+    Ergebnis nicht nur verwenden, sondern auch nachvollziehen und für Hausaufgaben, Ausbildung,
+    Studium oder Beruf nachvollziehen.
+  </p>
+
+  <h2>Was die Seite bietet</h2>
+  <p>Der Aufbau ist bewusst übersichtlich gehalten. Im Mittelpunkt stehen fünf Rechner und eine
+    Formelreferenz:</p>
+  <ul>
+    <li><a href={mainRoute}>Haupt-Prozentrechner</a> – die fünf Standardfragen der Prozentrechnung, inklusive prozentualer Veränderung</li>
+    <li><a href={discountRoute}>Rabattrechner</a> – Sale-Preise, gestapelte Gutscheine und Gesamtersparnis</li>
+    <li><a href={vatRoute}>MwSt-Rechner</a> – Netto zu Brutto und Brutto zu Netto, inklusive der „MwSt-Falle“</li>
+    <li><a href={dreisatzRoute}>Dreisatz-Rechner</a> – direkte und indirekte Proportionalität</li>
+    <li><a href={diffRoute}>Prozentuale Differenz</a> – symmetrischer Vergleich zweier Werte</li>
+    <li><a href={salaryRoute}>Gehaltserhöhungsrechner</a> – neues Gehalt in Stunden-, Monats- und Jahreswerten</li>
+    <li><a href={formulaRoute}>Formeln &amp; Lernhilfe</a> – alle Formeln mit Beispielen und Merkhilfen</li>
+  </ul>
+
+  <h2>Unsere Grundsätze</h2>
+  <p>Wir haben die Seite nach einigen einfachen Prinzipien gebaut:</p>
+  <ul>
+    <li><strong>Kostenlos und ohne Anmeldung.</strong> Keine Registrierung, keine Nutzerkonten, keine Bezahlschranke.</li>
+    <li><strong>Werbefrei.</strong> Keine Werbenetzwerke, keine Pop-ups, keine Ablenkung.</li>
+    <li><strong>Datenschutzfreundlich.</strong> Keine Cookies, kein Tracking und keine Analyse-Dienste. Ihre Eingaben verlassen Ihren Browser nicht.</li>
+    <li><strong>Nachvollziehbar.</strong> Ergebnisse werden grundsätzlich mit Rechenweg und Formel erklärt.</li>
+    <li><strong>Zweisprachig.</strong> Alle Rechner sind auf Deutsch und Englisch verfügbar.</li>
+  </ul>
+  <div class="legal-note">
+    Alle Berechnungen laufen ausschließlich lokal in Ihrem Browser. Es werden keine eingegebenen
+    Zahlen an unsere Server übertragen. Details dazu finden Sie in unserer
+    <a href={getLocalizedPath('/privacy-policy', 'de')}>Datenschutzerklärung</a>.
+  </div>
+
+  <h2>Für wen die Seite gedacht ist</h2>
+  <p>
+    Die Rechner richten sich an alle, die im Alltag schnell und zuverlässig mit Prozenten
+    rechnen müssen: Schülerinnen und Schüler, Auszubildende, Studierende, Lehrkräfte sowie
+    Beschäftigte in Handel, Buchhaltung und Verwaltung. Auch im privaten Bereich – etwa beim
+    Einkauf, bei der Mietsteigerung oder beim Vergleich von Angeboten – helfen die Werkzeuge.
+  </p>
+
+  <h2>Transparenz und Grenzen</h2>
+  <p>
+    Wir bemühen uns um korrekte Formeln und geprüfte Inhalte. Ein Rechner bleibt jedoch ein
+    Rechenwerkzeug: Er ersetzt keine Rechts-, Steuer- oder Finanzberatung, und Ergebnisse sollten
+    vor einer wichtigen Entscheidung eigenständig überprüft werden. Mehr dazu in unseren
+    <a href={getLocalizedPath('/terms-and-conditions', 'de')}>Nutzungsbedingungen</a>.
+  </p>
+
+  <h2>Kontakt</h2>
+  <p>
+    Fragen, Fehlerhinweise oder Verbesserungsvorschläge sind willkommen – am schnellsten per
+    E-Mail an <a href={`mailto:${site.email}`}>{site.email}</a>. Weitere Möglichkeiten finden Sie
+    auf unserer <a href={getLocalizedPath('/contact', 'de')}>Kontaktseite</a>.
+  </p>
+</LegalLayout>

@@ -1,0 +1,151 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site } from '../data/site';
+
+const toc = [
+  { id: 'geltungsbereich', label: 'Geltungsbereich' },
+  { id: 'leistungen', label: 'Leistungen der Website' },
+  { id: 'keine-beratung', label: 'Keine Rechts- oder Steuerberatung' },
+  { id: 'nutzung', label: 'Zulässige Nutzung' },
+  { id: 'ergebnisse', label: 'Ergebnisse & Gewährleistung' },
+  { id: 'haftung', label: 'Haftungsbeschränkung' },
+  { id: 'urheberrecht', label: 'Urheberrecht' },
+  { id: 'externe-links', label: 'Externe Links' },
+  { id: 'aenderungen', label: 'Änderungen der Bedingungen' },
+  { id: 'recht', label: 'Anwendbares Recht' },
+];
+---
+
+<LegalLayout
+  lang="de"
+  title="Allgemeine Nutzungsbedingungen"
+  description="Die Bedingungen für die Nutzung der kostenlosen Rechner und Inhalte von prozentrechner-online.com – Nutzungsumfang, Gewährleistung, Haftung und Urheberrecht."
+  canonicalUrl="https://prozentrechner-online.com/agb"
+  alternateUrls={{
+    de: 'https://prozentrechner-online.com/agb',
+    en: 'https://prozentrechner-online.com/en/terms-and-conditions',
+  }}
+  breadcrumb="AGB"
+  toc={toc}
+>
+  <p>
+    Diese Allgemeinen Nutzungsbedingungen (nachfolgend „Bedingungen“) regeln die Nutzung der
+    Website {site.name} sowie aller darauf bereitgestellten Rechner, Inhalte und Funktionen
+    (nachfolgend gemeinsam „Angebot“). Mit dem Aufruf und der Nutzung des Angebots erkennen Sie
+    diese Bedingungen an.
+  </p>
+
+  <h2 id="geltungsbereich">1. Geltungsbereich</h2>
+  <p>
+    Diese Bedingungen gelten für alle Besucherinnen und Besucher des Angebots. Sie gelten nicht,
+    soweit zwingendes Recht entgegensteht. Abweichende Bedingungen werden nicht Vertragsbestandteil,
+    es sei denn, wir stimmen ihnen ausdrücklich schriftlich zu.
+  </p>
+
+  <h2 id="leistungen">2. Leistungen der Website</h2>
+  <p>
+    Das Angebot stellt kostenlose Online-Rechner und Lerninhalte rund um die Prozentrechnung und
+    verwandte Themen bereit, darunter Rabatt-, Mehrwertsteuer-, Dreisatz-, Gehalts- und
+    Differenzberechnungen sowie erklärende Formelseiten. Alle Berechnungen erfolgen lokal in Ihrem
+    Browser.
+  </p>
+  <p>
+    Es besteht <strong>kein Anspruch</strong> auf einen bestimmten Funktionsumfang, auf
+    ununterbrochene Verfügbarkeit oder auf dauerhafte Bereitstellung des Angebots. Wir dürfen
+    Funktionen jederzeit ändern, erweitern, einschränken oder einstellen.
+  </p>
+
+  <h2 id="keine-beratung">3. Keine Rechts-, Steuer- oder Finanzberatung</h2>
+  <p>
+    Die bereitgestellten Rechner und Inhalte dienen ausschließlich allgemeinen Informations- und
+    Bildungszwecken. Sie stellen <strong>keine Rechts-, Steuer-, Finanz- oder sonstige
+    professionelle Beratung</strong> dar und können eine solche nicht ersetzen.
+  </p>
+  <p>
+    Insbesondere Ergebnisse zu Mehrwertsteuer, Rabatten, Gehältern oder prozentualen
+    Veränderungen sind unverbindliche Rechenergebnisse. Für verbindliche Auskünfte – etwa zu
+    Steuerpflichten, Vertrags- oder Arbeitsverhältnissen – wenden Sie sich bitte an eine
+    fachkundige Person (z.&nbsp;B. Steuerberatung, Rechtsanwaltschaft).
+  </p>
+
+  <h2 id="nutzung">4. Zulässige Nutzung</h2>
+  <p>Die Nutzung des Angebots ist kostenlos und ohne Registrierung möglich. Unzulässig ist
+    insbesondere:</p>
+  <ul>
+    <li>die automatisierte massenhafte Abfrage des Angebots (z.&nbsp;B. Scraping) in einem Umfang,
+      der den Betrieb beeinträchtigt oder über eine übliche Nutzung hinausgeht,</li>
+    <li>Handlungen, die die Sicherheit, Verfügbarkeit oder Integrität des Angebots gefährden,
+      etwa Angriffe, das Einschleusen von Schadcode oder Umgehung von Schutzmaßnahmen,</li>
+    <li>die missbräuchliche, rechtswidrige oder täuschende Verwendung des Angebots oder seiner
+      Inhalte,</li>
+    <li>die Nutzung von Marke, Name oder Erscheinungsbild des Angebots ohne unsere Zustimmung.</li>
+  </ul>
+
+  <h2 id="ergebnisse">5. Ergebnisse &amp; Gewährleistung</h2>
+  <p>
+    Die Rechner arbeiten mit mathematischen Standardformeln und runden Ergebnisse abhängig von
+    Ihren Eingaben. Wir bemühen uns um größtmögliche Richtigkeit und sorgfältige Inhalte, können
+    jedoch <strong>keine Gewähr</strong> für die Richtigkeit, Vollständigkeit, Aktualität oder
+    Fehlerfreiheit der Ergebnisse und Inhalte übernehmen.
+  </p>
+  <p>
+    Bitte prüfen Sie Rechenergebnisse vor einer Verwendung in geschäftlichen, steuerlichen oder
+    vertraglichen Zusammenhängen stets eigenständig. Die Verantwortung für Entscheidungen, die Sie
+    auf Grundlage der Ergebnisse treffen, liegt allein bei Ihnen.
+  </p>
+
+  <h2 id="haftung">6. Haftungsbeschränkung</h2>
+  <p>
+    Wir haften unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie bei der Verletzung von
+    Leben, Körper oder Gesundheit. Bei einfacher Fahrlässigkeit haften wir nur bei Verletzung einer
+    wesentlichen Vertragspflicht (Kardinalpflicht) und begrenzt auf den vorhersehbaren,
+    vertragstypischen Schaden. Im Übrigen ist die Haftung ausgeschlossen.
+  </p>
+  <p>
+    Soweit die Haftung nach den vorstehenden Absätzen ausgeschlossen oder beschränkt ist, gilt dies
+    auch für die persönliche Haftung von gesetzlichen Vertretern, Mitarbeitenden und Erfüllungsgehilfen.
+  </p>
+
+  <h2 id="urheberrecht">7. Urheberrecht &amp; Nutzungsrechte</h2>
+  <p>
+    Alle Inhalte des Angebots – insbesondere Texte, Formelserläuterungen, Grafiken, das Design und
+    der Quellcode – sind urheber- und leistungsschutzrechtlich geschützt. Sie dürfen die Inhalte
+    für private, nicht kommerzielle Zwecke nutzen, etwa einzelne Berechnungen durchführen oder
+    Seiten verlinken.
+  </p>
+  <p>
+    Eine vollständige oder über einzelne Zitate hinausgehende Vervielfältigung, Verbreitung, das
+    öffentliche Zugänglichmachen oder die kommerzielle Verwertung von Inhalten ist ohne unsere
+    vorherige Zustimmung nicht gestattet.
+  </p>
+
+  <h2 id="externe-links">8. Externe Links</h2>
+  <p>
+    Das Angebot kann Verweise auf Websites Dritter enthalten. Auf deren Inhalte haben wir keinen
+    Einfluss und übernehmen dafür keine Verantwortung. Für die Inhalte der verlinkten Seiten ist
+    stets deren jeweiliger Anbieter verantwortlich. Zum Zeitpunkt der Verlinkung waren keine
+    rechtswidrigen Inhalte erkennbar.
+  </p>
+
+  <h2 id="aenderungen">9. Änderungen der Bedingungen</h2>
+  <p>
+    Wir behalten uns vor, diese Bedingungen mit Wirkung für die Zukunft anzupassen, wenn sich das
+    Angebot ändert oder rechtliche bzw. technische Rahmenbedingungen dies erfordern. Es gilt die
+    jeweils auf dieser Seite veröffentlichte Fassung.
+  </p>
+
+  <h2 id="recht">10. Anwendbares Recht &amp; Schlussbestimmungen</h2>
+  <p>
+    Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts. Zwingende
+    Verbraucherschutzvorschriften des Staates Ihres gewöhnlichen Aufenthalts bleiben unberührt.
+  </p>
+  <p>
+    Sollte eine Bestimmung dieser Bedingungen unwirksam sein oder werden, bleibt die Wirksamkeit
+    der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt die
+    gesetzliche Regelung.
+  </p>
+  <p>
+    Bei Fragen zu diesen Bedingungen erreichen Sie uns unter
+    <a href={`mailto:${site.email}`}>{site.email}</a>.
+  </p>
+</LegalLayout>

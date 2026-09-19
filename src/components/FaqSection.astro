@@ -1,0 +1,134 @@
+---
+import { faqGroups } from '../data/faq';
+
+interface Props {
+  lang: 'de' | 'en';
+  id?: string;
+}
+
+const { lang, id = 'faq' } = Astro.props;
+
+const groups = faqGroups[lang];
+const total = groups.reduce((sum, group) => sum + group.items.length, 0);
+
+const copy = {
+  de: {
+    badge: '❓ Häufig gefragt',
+    title: 'Häufig gestellte Fragen zur Prozentrechnung',
+    intro: `Die ${total} häufigsten Fragen zur Prozentrechnung – kurz beantwortet, jeweils mit Rechenweg und konkreten Zahlen. Alle Beispiele lassen sich direkt mit dem Rechner oben nachvollziehen.`,
+    hint: 'Antwort antippen, um sie aufzuklappen.',
+  },
+  en: {
+    badge: '❓ Frequently asked',
+    title: 'Frequently Asked Questions About Percentages',
+    intro: `The ${total} most common percentage questions – answered briefly, each with worked steps and concrete numbers. Every example can be reproduced with the calculator above.`,
+    hint: 'Tap a question to expand the answer.',
+  },
+}[lang];
+
+const pageUrl = lang === 'de'
+  ? 'https://prozentrechner-online.com/'
+  : 'https://prozentrechner-online.com/en';
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${pageUrl}#faq`,
+  url: `${pageUrl}#faq`,
+  inLanguage: lang === 'de' ? 'de-DE' : 'en',
+  name: copy.title,
+  mainEntity: groups.flatMap((group) =>
+    group.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    }))
+  ),
+};
+---
+
+<section
+  id={id}
+  class="rounded-3xl border p-6 sm:p-12 shadow-sm transition-all scroll-mt-20 mt-12"
+  style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);"
+  aria-labelledby={`${id}-heading`}
+>
+  <div class="max-w-3xl mx-auto space-y-8">
+    <header class="space-y-3">
+      <div
+        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+        style="background-color: var(--bg-card); color: var(--text-ink);"
+      >
+        {copy.badge}
+      </div>
+      <h2
+        id={`${id}-heading`}
+        class="font-display font-black text-2xl sm:text-3xl tracking-tight"
+        style="color: var(--text-ink);"
+      >
+        {copy.title}
+      </h2>
+      <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+        {copy.intro}
+      </p>
+    </header>
+
+    {
+      groups.map((group) => (
+        <div class="space-y-3">
+          <h3
+            class="font-display font-extrabold text-base sm:text-lg"
+            style="color: var(--text-ink);"
+          >
+            {group.title}
+          </h3>
+
+          <div class="space-y-2.5 text-xs sm:text-sm">
+            {group.items.map((item) => (
+              <details
+                class="p-4 rounded-2xl border cursor-pointer group transition-all"
+                style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);"
+              >
+                <summary
+                  class="font-bold list-none flex items-start justify-between gap-3"
+                  style="color: var(--text-ink);"
+                >
+                  <span>{item.q}</span>
+                  <svg
+                    class="w-4 h-4 shrink-0 mt-0.5 transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </summary>
+                <div
+                  class="mt-3 pt-3 border-t leading-relaxed font-normal"
+                  style="border-color: var(--border-hairline); color: var(--text-body);"
+                >
+                  {item.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+
+    <p class="text-[11px] text-center" style="color: var(--text-muted);">
+      {copy.hint}
+    </p>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqJsonLd)} />

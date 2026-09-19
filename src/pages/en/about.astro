@@ -1,0 +1,83 @@
+---
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { site } from '../../data/site';
+import { getLocalizedPath } from '../../i18n/routes';
+
+const mainRoute = getLocalizedPath('/', 'en');
+const formulaRoute = getLocalizedPath('/percentage-formula', 'en');
+const discountRoute = getLocalizedPath('/discount-calculator', 'en');
+const vatRoute = getLocalizedPath('/vat-calculator', 'en');
+const dreisatzRoute = getLocalizedPath('/rule-of-three-calculator', 'en');
+const diffRoute = getLocalizedPath('/percentage-difference', 'en');
+const salaryRoute = getLocalizedPath('/salary-raise-calculator', 'en');
+---
+
+<LegalLayout
+  lang="en"
+  title="About Us"
+  description="Who is behind prozentrechner-online.com: a free, ad-free and privacy-friendly percentage calculator – showing the working, not just the answer."
+  canonicalUrl="https://prozentrechner-online.com/en/about"
+  alternateUrls={{
+    de: 'https://prozentrechner-online.com/ueber-uns',
+    en: 'https://prozentrechner-online.com/en/about',
+  }}
+  breadcrumb="About"
+>
+  <h2>What this site is about</h2>
+  <p>
+    {site.name} is a free online tool for percentage calculations. Rather than just returning a
+    number, our calculators show the full <strong>step-by-step working</strong> – the formula, the
+    values used and each individual step. That way a result can be not only used, but also
+    understood and followed for homework, training, study or work.
+  </p>
+
+  <h2>What the site offers</h2>
+  <p>The structure is deliberately simple. It centres on five calculators and a formula reference:</p>
+  <ul>
+    <li><a href={mainRoute}>Main percentage calculator</a> – the five standard percentage questions, including percentage change</li>
+    <li><a href={discountRoute}>Discount calculator</a> – sale prices, stacked coupons and total savings</li>
+    <li><a href={vatRoute}>VAT calculator</a> – net to gross and gross to net, including the “VAT trap”</li>
+    <li><a href={dreisatzRoute}>Rule of three calculator</a> – direct and inverse proportion</li>
+    <li><a href={diffRoute}>Percentage difference</a> – symmetric comparison of two values</li>
+    <li><a href={salaryRoute}>Salary raise calculator</a> – new pay as hourly, monthly and annual figures</li>
+    <li><a href={formulaRoute}>Formulas &amp; learning guide</a> – every formula with examples and memory aids</li>
+  </ul>
+
+  <h2>Our principles</h2>
+  <p>We built the site around a few simple principles:</p>
+  <ul>
+    <li><strong>Free and without registration.</strong> No sign-up, no user accounts, no paywall.</li>
+    <li><strong>Ad-free.</strong> No advertising networks, no pop-ups, no distractions.</li>
+    <li><strong>Privacy-friendly.</strong> No cookies, no tracking and no analytics services. Your input never leaves your browser.</li>
+    <li><strong>Explainable.</strong> Results are always explained with the working and the formula.</li>
+    <li><strong>Bilingual.</strong> Every calculator is available in German and English.</li>
+  </ul>
+  <div class="legal-note">
+    All calculations run entirely locally in your browser. No numbers you enter are transmitted to
+    our servers. You can read the details in our
+    <a href={getLocalizedPath('/privacy-policy', 'en')}>privacy policy</a>.
+  </div>
+
+  <h2>Who the site is for</h2>
+  <p>
+    The calculators are for anyone who needs to work with percentages quickly and reliably day to
+    day: school students, apprentices, university students, teachers, and people working in retail,
+    accounting and administration. The tools also help in everyday private situations – shopping,
+    rent increases or comparing quotes.
+  </p>
+
+  <h2>Transparency and limits</h2>
+  <p>
+    We aim for correct formulas and reviewed content. A calculator is still a calculation tool
+    however: it does not replace legal, tax or financial advice, and results should be verified
+    independently before an important decision. See our
+    <a href={getLocalizedPath('/terms-and-conditions', 'en')}>terms &amp; conditions</a> for details.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions, bug reports and suggestions are welcome – the quickest route is email to
+    <a href={`mailto:${site.email}`}>{site.email}</a>. More options are on our
+    <a href={getLocalizedPath('/contact', 'en')}>contact page</a>.
+  </p>
+</LegalLayout>

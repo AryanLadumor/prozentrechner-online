@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import MainPercentageCalc from '../../components/calculators/MainPercentageCalc.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { useTranslations } from '../../i18n';
 
 const lang = 'en';
@@ -9,8 +10,8 @@ const t = useTranslations(lang);
 
 <Layout
   lang="en"
-  title="Percentage Calculator: Free Online % Math Tool with Rechenweg"
-  description="Instant percentage calculations with step-by-step Rechenweg, formulas, and visual proportion bars. Solve discounts, VAT (MwSt), Rule of Three (Dreisatz), and salary raises effortlessly."
+  title="Percentage Calculator Online: Free Step-by-Step Solutions"
+  description="Percentage calculator online: instant percentage calculations with step-by-step solutions, formulas, discounts, VAT and salary raises. Free, no sign-up."
   canonicalUrl="https://prozentrechner-online.com/en"
   alternateUrls={{
     de: "https://prozentrechner-online.com/",
@@ -135,28 +136,9 @@ const t = useTranslations(lang);
           <div class="text-[11px]" style="color: var(--text-muted);">{t('formula.baseValueDesc')}</div>
         </div>
       </div>
-
-      <!-- FAQ Section -->
-      <div class="space-y-4 pt-4 border-t" style="border-color: var(--border-hairline);">
-        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">{t('faq.title')}</h3>
-
-        <div class="space-y-3 text-xs sm:text-sm">
-          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">{t('faq.changeVsDiff.q')}</div>
-            <div style="color: var(--text-muted);" set:html={t('faq.changeVsDiff.a')} />
-          </div>
-
-          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">{t('faq.vatTrap.q')}</div>
-            <div style="color: var(--text-muted);" set:html={t('faq.vatTrap.a')} />
-          </div>
-
-          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-            <div class="font-bold mb-1" style="color: var(--text-ink);">{t('faq.dreisatz.q')}</div>
-            <div style="color: var(--text-muted);" set:html={t('faq.dreisatz.a')} />
-          </div>
-        </div>
-      </div>
     </div>
   </section>
+
+  <!-- ================= SEO FAQ SECTION (with FAQPage JSON-LD) ================= -->
+  <FaqSection lang="en" />
 </Layout>

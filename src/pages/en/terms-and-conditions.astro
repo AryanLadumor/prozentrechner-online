@@ -1,0 +1,148 @@
+---
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { site } from '../../data/site';
+
+const toc = [
+  { id: 'scope', label: 'Scope' },
+  { id: 'services', label: 'Services' },
+  { id: 'no-advice', label: 'No legal or tax advice' },
+  { id: 'acceptable-use', label: 'Acceptable use' },
+  { id: 'results', label: 'Results & warranty' },
+  { id: 'liability', label: 'Limitation of liability' },
+  { id: 'copyright', label: 'Copyright' },
+  { id: 'external-links', label: 'External links' },
+  { id: 'changes', label: 'Changes to these terms' },
+  { id: 'law', label: 'Governing law' },
+];
+---
+
+<LegalLayout
+  lang="en"
+  title="Terms & Conditions"
+  description="The terms governing use of the free calculators and content on prozentrechner-online.com – scope, warranty, liability and copyright."
+  canonicalUrl="https://prozentrechner-online.com/en/terms-and-conditions"
+  alternateUrls={{
+    de: 'https://prozentrechner-online.com/agb',
+    en: 'https://prozentrechner-online.com/en/terms-and-conditions',
+  }}
+  breadcrumb="Terms & Conditions"
+  toc={toc}
+>
+  <p>
+    These Terms &amp; Conditions (the “Terms”) govern the use of the {site.name} website and all
+    calculators, content and features made available on it (together, the “Service”). By accessing
+    and using the Service you accept these Terms.
+  </p>
+
+  <h2 id="scope">1. Scope</h2>
+  <p>
+    These Terms apply to all visitors of the Service. They do not apply to the extent that
+    mandatory law provides otherwise. Deviating terms do not become part of the agreement unless
+    we expressly agree to them in writing.
+  </p>
+
+  <h2 id="services">2. Services</h2>
+  <p>
+    The Service provides free online calculators and educational content relating to percentages
+    and related topics, including discount, VAT, rule of three, salary and percentage-difference
+    calculations, as well as explanatory formula pages. All calculations run locally in your
+    browser.
+  </p>
+  <p>
+    There is <strong>no entitlement</strong> to any particular scope of features, to uninterrupted
+    availability, or to permanent provision of the Service. We may change, extend, restrict or
+    discontinue features at any time.
+  </p>
+
+  <h2 id="no-advice">3. No legal, tax or financial advice</h2>
+  <p>
+    The calculators and content provided serve general information and educational purposes only.
+    They do <strong>not constitute legal, tax, financial or other professional advice</strong> and
+    cannot replace it.
+  </p>
+  <p>
+    In particular, results relating to VAT, discounts, salaries or percentage changes are
+    non-binding calculations. For binding information – for example on tax obligations,
+    contractual or employment matters – please consult a qualified professional (such as a tax
+    adviser or lawyer).
+  </p>
+
+  <h2 id="acceptable-use">4. Acceptable use</h2>
+  <p>The Service is free to use and requires no registration. The following is not permitted:</p>
+  <ul>
+    <li>automated bulk requests to the Service (e.g. scraping) on a scale that impairs operation
+      or exceeds ordinary use,</li>
+    <li>any action that compromises the security, availability or integrity of the Service, such
+      as attacks, injecting malicious code, or circumventing protective measures,</li>
+    <li>misuse, unlawful use, or deceptive use of the Service or its content,</li>
+    <li>use of the Service’s brand, name or appearance without our consent.</li>
+  </ul>
+
+  <h2 id="results">5. Results &amp; warranty</h2>
+  <p>
+    The calculators use standard mathematical formulas and round results depending on your input.
+    We strive for the greatest possible accuracy and carefully prepared content, but we
+    <strong>cannot warrant</strong> the accuracy, completeness, currency or freedom from errors of
+    the results and content.
+  </p>
+  <p>
+    Always verify calculation results independently before using them in a business, tax or
+    contractual context. Responsibility for decisions you make on the basis of the results lies
+    solely with you.
+  </p>
+
+  <h2 id="liability">6. Limitation of liability</h2>
+  <p>
+    We are liable without limitation for intent and gross negligence, and for injury to life, body
+    or health. For simple negligence we are liable only for breach of a material contractual
+    obligation (cardinal duty), limited to the foreseeable damage typical for this type of
+    contract. Otherwise liability is excluded.
+  </p>
+  <p>
+    Where liability is excluded or limited under the preceding paragraphs, this also applies to the
+    personal liability of our legal representatives, employees and vicarious agents.
+  </p>
+
+  <h2 id="copyright">7. Copyright &amp; rights of use</h2>
+  <p>
+    All content of the Service – in particular texts, formula explanations, graphics, the design and
+    the source code – is protected by copyright and related rights. You may use the content for
+    private, non-commercial purposes, for example by performing individual calculations or linking
+    to pages.
+  </p>
+  <p>
+    Complete or extensive reproduction beyond individual quotations, distribution, making content
+    publicly available, or commercial exploitation of the content is not permitted without our prior
+    consent.
+  </p>
+
+  <h2 id="external-links">8. External links</h2>
+  <p>
+    The Service may contain links to third-party websites. We have no influence over their content
+    and accept no responsibility for it. The respective provider is always responsible for the
+    content of linked pages. At the time of linking, no unlawful content was apparent.
+  </p>
+
+  <h2 id="changes">9. Changes to these Terms</h2>
+  <p>
+    We reserve the right to amend these Terms with effect for the future where the Service changes
+    or where legal or technical circumstances require it. The version published on this page
+    applies in each case.
+  </p>
+
+  <h2 id="law">10. Governing law &amp; final provisions</h2>
+  <p>
+    The law of the Federal Republic of Germany applies, excluding the UN Convention on Contracts
+    for the International Sale of Goods. Mandatory consumer protection provisions of the country of
+    your habitual residence remain unaffected.
+  </p>
+  <p>
+    Should any provision of these Terms be or become invalid, the validity of the remaining
+    provisions remains unaffected. The invalid provision is replaced by the applicable statutory
+    rule.
+  </p>
+  <p>
+    If you have questions about these Terms, you can reach us at
+    <a href={`mailto:${site.email}`}>{site.email}</a>.
+  </p>
+</LegalLayout>

@@ -1,0 +1,68 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site } from '../data/site';
+import { getLocalizedPath } from '../i18n/routes';
+
+const formulaRoute = getLocalizedPath('/percentage-formula', 'de');
+const mainRoute = getLocalizedPath('/', 'de');
+---
+
+<LegalLayout
+  lang="de"
+  title="Kontakt"
+  description="So erreichen Sie das Team von prozentrechner-online.com: Fragen, Fehlerhinweise und Verbesserungsvorschläge per E-Mail."
+  canonicalUrl="https://prozentrechner-online.com/kontakt"
+  alternateUrls={{
+    de: 'https://prozentrechner-online.com/kontakt',
+    en: 'https://prozentrechner-online.com/en/contact',
+  }}
+  breadcrumb="Kontakt"
+>
+  <p>
+    Sie haben eine Frage, einen Fehler entdeckt oder eine Idee für einen weiteren Rechner? Wir
+    freuen uns über Ihre Nachricht. Der schnellste Weg zu uns ist eine E-Mail.
+  </p>
+
+  <h2>E-Mail</h2>
+  <p>
+    <a href={`mailto:${site.email}`} class="font-semibold">{site.email}</a>
+  </p>
+  <p>
+    Bitte nennen Sie uns bei Fehlerberichten nach Möglichkeit die betroffene Seite, die von Ihnen
+    eingegebenen Werte und das Ergebnis, das Sie erwartet hätten. So können wir das Problem
+    schneller nachvollziehen und beheben.
+  </p>
+
+  <h2>Antwortzeit</h2>
+  <p>
+    Wir lesen alle Nachrichten und antworten in der Regel innerhalb weniger Werktage. Da die Seite
+    als privates Projekt betrieben wird, kann es in Einzelfällen etwas länger dauern.
+  </p>
+
+  <h2>Womit wir helfen können – und womit nicht</h2>
+  <ul>
+    <li><strong>Gerne:</strong> Fragen zu den Rechnern, Hinweise auf Rechen- oder Darstellungsfehler,
+      Anregungen für neue Funktionen, Rückmeldungen zur Barrierefreiheit.</li>
+    <li><strong>Nicht möglich:</strong> individuelle Rechts-, Steuer- oder Finanzberatung sowie die
+      verbindliche Prüfung konkreter Verträge, Steuerfälle oder Gehaltsverhandlungen. Bitte wenden
+      Sie sich dafür an eine fachkundige Person.</li>
+  </ul>
+
+  <h2>Vielleicht ist die Antwort schon da</h2>
+  <p>
+    Viele Fragen zur Prozentrechnung – etwa zur MwSt-Falle, zum Dreisatz oder zum Unterschied
+    zwischen prozentualer Veränderung und prozentualem Unterschied – sind bereits ausführlich
+    erklärt. Ein Blick lohnt sich:
+  </p>
+  <ul>
+    <li><a href={`${mainRoute}#faq`}>Häufig gestellte Fragen zur Prozentrechnung</a></li>
+    <li><a href={formulaRoute}>Alle Formeln mit Rechenweg und Beispielen</a></li>
+  </ul>
+
+  <h2>Datenschutz</h2>
+  <p>
+    Wenn Sie uns eine E-Mail schreiben, verarbeiten wir Ihre Angaben ausschließlich zur Bearbeitung
+    Ihrer Anfrage. Weitere Informationen finden Sie in unserer
+    <a href={getLocalizedPath('/privacy-policy', 'de')}>Datenschutzerklärung</a>.
+  </p>
+</LegalLayout>

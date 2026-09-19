@@ -12,6 +12,8 @@ interface Props {
   description?: string;
   canonicalUrl?: string;
   lang?: 'de' | 'en';
+  /** Robots directive for the page. Error pages pass "noindex, follow". */
+  robots?: string;
   alternateUrls?: {
     de?: string;
     en?: string;
@@ -28,6 +30,7 @@ const {
     ? "Kostenloser Online Prozentrechner mit Schritt-für-Schritt Rechenweg. Berechnen Sie Rabatte, MwSt, Dreisatz, Gehaltserhöhungen und prozentuale Veränderungen sofort."
     : "Free online percentage calculator with instant step-by-step Rechenweg. Calculate discounts, VAT (MwSt), Rule of Three (Dreisatz), salary raises, and percentage change.",
   canonicalUrl = "https://prozentrechner-online.com",
+  robots = "index, follow",
   alternateUrls = {}
 } = Astro.props;
 ---
@@ -40,12 +43,13 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
 
     <!-- Hreflang Tags for International SEO -->
     {alternateUrls.de && <link rel="alternate" hreflang="de" href={alternateUrls.de} />}
     {alternateUrls.en && <link rel="alternate" hreflang="en" href={alternateUrls.en} />}
-    <link rel="alternate" hreflang="x-default" href="https://prozentrechner-online.com/" />
+    {/* x-default is this page's default-locale (de) URL, not the site root */}
+    <link rel="alternate" hreflang="x-default" href={alternateUrls.de ?? canonicalUrl} />
 
     <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,8 +59,30 @@ const {
       rel="stylesheet"
     />
 
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="prozentrechner, prozentrechner online, prozentrechner formel, prozentrechner dreisatz, prozentrechner mit rechenweg, prozentrechner rabatt, prozentrechner euro, prozentrechner kostenlos, Prozentrechner, Prozentrechnen, Prozent berechnen, Rabattrechner, MwSt Rechner, Dreisatz Rechner, Gehaltserhöhung Rechner, Prozentuale Differenz, Prozentwert berechnen, Prozentsatz berechnen, Grundwert berechnen" />
+
+    <!-- Enhanced OG Tags -->
+    <meta property="og:site_name" content="prozentrechner-online.com" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:image" content="https://prozentrechner-online.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://prozentrechner-online.com/og-image.png" />
+
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%</text></svg>" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="prozentrechner-online" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph / Facebook / Twitter -->
     <meta property="og:type" content="website" />
@@ -95,6 +121,28 @@ const {
               "Base Value = (Part Value * 100) / Percentage Rate",
               "Percentage Change = ((New Value - Old Value) / Old Value) * 100"
             ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://prozentrechner-online.com/#website",
+            "url": "https://prozentrechner-online.com/",
+            "name": "Prozentrechner Online",
+            "alternateName": "prozentrechner-online.com",
+            "inLanguage": "de-DE",
+            "description": "Kostenloser Online-Prozentrechner mit Rechenweg für Rabatt, MwSt, Dreisatz, Gehaltserhöhung und prozentuale Veränderung.",
+            "publisher": { "@id": "https://prozentrechner-online.com/#webapp" }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://prozentrechner-online.com/#organization",
+            "name": "prozentrechner-online.com",
+            "url": "https://prozentrechner-online.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://prozentrechner-online.com/web-app-manifest-512x512.png",
+              "width": 512,
+              "height": 512
+            }
           }
         ]
       }

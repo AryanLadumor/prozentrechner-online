@@ -28,6 +28,22 @@ export const routes = {
     de: '/prozentrechner-formel',
     en: '/en/percentage-formula',
   },
+  '/about': {
+    de: '/ueber-uns',
+    en: '/en/about',
+  },
+  '/contact': {
+    de: '/kontakt',
+    en: '/en/contact',
+  },
+  '/privacy-policy': {
+    de: '/datenschutz',
+    en: '/en/privacy-policy',
+  },
+  '/terms-and-conditions': {
+    de: '/agb',
+    en: '/en/terms-and-conditions',
+  },
 } as const;
 
 export function getLocalizedPath(path: string, locale: 'de' | 'en'): string {

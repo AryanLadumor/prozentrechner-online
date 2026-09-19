@@ -1,0 +1,228 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site } from '../data/site';
+
+/*
+ * TODO (Betreiber): Bitte vor dem Livegang ergänzen:
+ *  - vollständiger Name bzw. Firma des Betreibers
+ *  - ladungsfähige Anschrift
+ *  - ggf. Vertretungsberechtigte und Registereintrag
+ *  - Name des Hosting-Anbieters (Abschnitt "Hosting & Server-Logfiles")
+ * Diese Angaben sind nach Art. 13 DSGVO erforderlich.
+ */
+
+const toc = [
+  { id: 'verantwortlicher', label: 'Verantwortlicher' },
+  { id: 'grundsaetze', label: 'Überblick & Grundsätze' },
+  { id: 'hosting', label: 'Hosting & Server-Logfiles' },
+  { id: 'schriftarten', label: 'Google Fonts' },
+  { id: 'lokale-speicherung', label: 'Speicherung im Browser' },
+  { id: 'keine-cookies', label: 'Keine Cookies, kein Tracking' },
+  { id: 'empfaenger', label: 'Empfänger & Weitergabe' },
+  { id: 'rechte', label: 'Ihre Rechte' },
+  { id: 'sicherheit', label: 'Datensicherheit' },
+  { id: 'kinder', label: 'Kinder & Minderjährige' },
+  { id: 'aenderungen', label: 'Änderungen' },
+];
+---
+
+<LegalLayout
+  lang="de"
+  title="Datenschutzerklärung"
+  description="Welche Daten beim Besuch von prozentrechner-online.com verarbeitet werden – und welche ausdrücklich nicht. Keine Cookies, kein Tracking, keine Nutzerkonten."
+  canonicalUrl="https://prozentrechner-online.com/datenschutz"
+  alternateUrls={{
+    de: 'https://prozentrechner-online.com/datenschutz',
+    en: 'https://prozentrechner-online.com/en/privacy-policy',
+  }}
+  breadcrumb="Datenschutz"
+  toc={toc}
+>
+  <p>
+    Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Diese Datenschutzerklärung
+    erläutert transparent, welche Daten beim Besuch dieser Website verarbeitet werden und
+    welche Daten <strong>nicht</strong> verarbeitet werden. Sie gilt für die gesamte Website
+    {site.name}.
+  </p>
+
+  <h2 id="verantwortlicher">1. Verantwortlicher</h2>
+  <p>
+    Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) für die Datenverarbeitung
+    auf dieser Website ist:
+  </p>
+  <p>
+    <strong>{site.name}</strong><br />
+    E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+  </p>
+
+  <h2 id="grundsaetze">2. Überblick &amp; Grundsätze</h2>
+  <p>
+    Diese Website ist ein reines Online-Rechenwerkzeug. Es gibt <strong>keine Registrierung</strong>,
+    <strong>keine Nutzerkonten</strong>, <strong>keine Werbung</strong> und
+    <strong>keine Analyse- oder Marketing-Dienste</strong>.
+  </p>
+  <p>Alle Berechnungen finden ausschließlich lokal in Ihrem Browser statt. Die Zahlen, die Sie
+    eingeben, werden <strong>nicht an unsere Server übertragen</strong>, dort nicht gespeichert
+    und nicht ausgewertet. Sie können alle Rechner daher auch offline oder mit deaktiviertem
+    JavaScript-Netzwerkverkehr nutzen, sobald die Seite geladen ist.</p>
+  <div class="legal-note">
+    Kurz gesagt: Wir betreiben kein Profiling, verkaufen keine Daten und setzen keine
+    Tracking-Cookies. Verarbeitet werden nur die technisch notwendigen Daten, die beim Abruf
+    einer Website ohnehin anfallen.
+  </div>
+
+  <h2 id="hosting">3. Hosting &amp; Server-Logfiles</h2>
+  <p>
+    Diese Website wird bei einem externen Hosting-Dienstleister gehostet. Beim Aufruf der Website
+    erhebt der Hosting-Anbieter automatisch Informationen, die Ihr Browser übermittelt, und
+    speichert sie in Server-Logfiles. Dies sind insbesondere:
+  </p>
+  <ul>
+    <li>IP-Adresse des anfragenden Endgeräts</li>
+    <li>Datum und Uhrzeit des Zugriffs</li>
+    <li>Name und URL der aufgerufenen Datei bzw. Seite</li>
+    <li>übermittelte Datenmenge und Meldung über den Abrufstatus (z.&nbsp;B. HTTP-Statuscode)</li>
+    <li>Browsertyp und -version sowie verwendetes Betriebssystem</li>
+    <li>Referrer-URL (die zuvor besuchte Seite)</li>
+  </ul>
+  <p>
+    <strong>Zweck:</strong> Bereitstellung, Betriebssicherheit und Stabilität der Website sowie
+    Abwehr und Aufklärung von Angriffen.<br />
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer
+    sicheren und funktionsfähigen Bereitstellung).<br />
+    <strong>Speicherdauer:</strong> Die Logfiles werden nach kurzer Zeit automatisch gelöscht.
+    Die konkrete Dauer richtet sich nach den Einstellungen und der Löschroutine unseres
+    Hosting-Anbieters.
+  </p>
+
+  <h2 id="schriftarten">4. Google Fonts</h2>
+  <p>
+    Zur einheitlichen Darstellung von Schriften nutzt diese Website Schriftarten („Google Fonts“),
+    die beim Seitenaufruf von Servern von Google geladen werden. Dabei wird unter anderem Ihre
+    IP-Adresse an Google übermittelt.
+  </p>
+  <p>
+    <strong>Anbieter:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.<br />
+    <strong>Zweck:</strong> einheitliche und ansprechende Darstellung der Typografie.<br />
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer
+    konsistenten Darstellung).<br />
+    <strong>Hinweis:</strong> Die Berechnung der Prozentsätze funktioniert unabhängig davon
+    vollständig in Ihrem Browser. Wenn Sie die Übermittlung an Google vermeiden möchten, können
+    Sie das Laden externer Schriftarten in Ihrem Browser blockieren; die Website bleibt nutzbar.
+  </p>
+
+  <h2 id="lokale-speicherung">5. Speicherung im Browser (localStorage)</h2>
+  <p>
+    Diese Website speichert einige Angaben lokal auf Ihrem Gerät im sogenannten
+    <code>localStorage</code> Ihres Browsers. Diese Daten verbleiben ausschließlich auf Ihrem
+    Gerät und werden <strong>nicht an uns oder Dritte übertragen</strong>. Gespeichert werden:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Schlüssel</th>
+        <th>Inhalt</th>
+        <th>Zweck</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>pct_theme</code></td>
+        <td>Ihr gewähltes Farbschema</td>
+        <td>Beibehaltung der Designauswahl beim nächsten Besuch</td>
+      </tr>
+      <tr>
+        <td><code>pct_calc_history_v1</code></td>
+        <td>Ihre zuletzt durchgeführten Berechnungen</td>
+        <td>Verlauf zum schnellen Nachschlagen und Wiederverwenden</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <strong>Rechtsgrundlage:</strong> § 25 Abs. 2 Nr. 2 TDDDG sowie Art. 6 Abs. 1 lit. f DSGVO.
+    Die Speicherung ist für die von Ihnen ausdrücklich gewünschte Funktion (Designwahl,
+    Verlaufsfunktion) unbedingt erforderlich und daher ohne Einwilligung zulässig.
+  </p>
+  <p>
+    <strong>Löschung:</strong> Sie können den Verlauf jederzeit über die Schaltfläche
+    „Alle löschen“ im Verlaufsbereich der Website entfernen. Sämtliche lokal gespeicherten Daten
+    verschwinden zudem, wenn Sie die Websitedaten bzw. den Cache in Ihren Browsereinstellungen
+    löschen.
+  </p>
+
+  <h2 id="keine-cookies">6. Keine Cookies, kein Tracking</h2>
+  <p>Diese Website setzt <strong>keine Cookies</strong> ein – weder zu Analyse- noch zu
+    Marketing- oder Werbezwecken. Ebenso verzichten wir auf:</p>
+  <ul>
+    <li>Webanalyse-Dienste (z.&nbsp;B. Google Analytics oder Matomo)</li>
+    <li>Werbe- und Retargeting-Netzwerke</li>
+    <li>Social-Media-Plugins und Zählpixel</li>
+    <li>Fingerprinting oder sonstige Bildung von Nutzerprofilen</li>
+  </ul>
+  <p>
+    Da keine einwilligungspflichtigen Cookies oder vergleichbaren Technologien eingesetzt werden,
+    wird auch kein Cookie-Banner benötigt.
+  </p>
+
+  <h2 id="empfaenger">7. Empfänger &amp; Weitergabe von Daten</h2>
+  <p>
+    Eine Weitergabe Ihrer Daten an Dritte erfolgt nicht, außer an die technisch notwendigen
+    Dienstleister:
+  </p>
+  <ul>
+    <li>unseren <strong>Hosting-Anbieter</strong> (Betrieb und Bereitstellung der Website),</li>
+    <li><strong>Google</strong> im Rahmen des unter Abschnitt 4 beschriebenen Ladens von Schriftarten.</li>
+  </ul>
+  <p>
+    Soweit Dienstleister in unserem Auftrag tätig werden, geschieht dies auf Grundlage von
+    Verträgen zur Auftragsverarbeitung nach Art. 28 DSGVO. Ihre Daten werden <strong>nicht
+    verkauft</strong>.
+  </p>
+
+  <h2 id="rechte">8. Ihre Rechte</h2>
+  <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
+  <ul>
+    <li><strong>Auskunft</strong> über die verarbeiteten Daten (Art. 15 DSGVO)</li>
+    <li><strong>Berichtigung</strong> unrichtiger oder unvollständiger Daten (Art. 16 DSGVO)</li>
+    <li><strong>Löschung</strong> Ihrer Daten (Art. 17 DSGVO)</li>
+    <li><strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
+    <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+    <li><strong>Widerspruch</strong> gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21 DSGVO)</li>
+    <li><strong>Widerruf</strong> einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
+  </ul>
+  <p>
+    Zur Ausübung Ihrer Rechte genügt eine E-Mail an
+    <a href={`mailto:${site.email}`}>{site.email}</a>. Außerdem haben Sie das Recht, sich bei einer
+    Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO). Die für uns zuständige Behörde ist
+    die Aufsichtsbehörde Ihres gewöhnlichen Aufenthaltsorts oder unseres Sitzes.
+  </p>
+  <div class="legal-note">
+    Da wir außer den technisch anfallenden Server-Logfiles keine personenbezogenen Daten
+    erheben, beziehen sich Auskunfts- oder Löschersuchen in der Praxis meist auf diese
+    Logfiles sowie auf die rein lokal in Ihrem Browser gespeicherten Daten, die Sie selbst
+    jederzeit löschen können.
+  </div>
+
+  <h2 id="sicherheit">9. Datensicherheit</h2>
+  <p>
+    Diese Website wird ausschließlich über eine verschlüsselte HTTPS-Verbindung (TLS/SSL)
+    ausgeliefert. Die dabei übertragenen Daten können von Dritten in der Regel nicht mitgelesen
+    werden. Wir treffen zudem angemessene technische und organisatorische Maßnahmen, um die
+    Website gegen Verlust, Manipulation und unbefugten Zugriff zu schützen.
+  </p>
+
+  <h2 id="kinder">10. Kinder &amp; Minderjährige</h2>
+  <p>
+    Unsere Website richtet sich nicht gezielt an Kinder und wir erheben wissentlich keine
+    personenbezogenen Daten von Kindern. Da keine Registrierung möglich ist und keine
+    personenbezogenen Daten aktiv abgefragt werden, ist eine Nutzung durch Minderjährige
+    unbedenklich.
+  </p>
+
+  <h2 id="aenderungen">11. Änderungen dieser Datenschutzerklärung</h2>
+  <p>
+    Wir passen diese Datenschutzerklärung an, wenn sich die Rechtslage, unsere Dienste oder die
+    eingesetzte Technik ändern. Es gilt jeweils die auf dieser Seite veröffentlichte, aktuelle
+    Fassung.
+  </p>
+</LegalLayout>

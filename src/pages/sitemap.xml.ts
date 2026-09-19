@@ -1,38 +1,45 @@
-export async function GET() {
-  const pages = [
-    { url: '/', de: '/', en: '/en' },
-    { url: '/rabattrechner', de: '/rabattrechner', en: '/en/discount-calculator' },
-    { url: '/mehrwertsteuerrechner', de: '/mehrwertsteuerrechner', en: '/en/vat-calculator' },
-    { url: '/dreisatz-rechner', de: '/dreisatz-rechner', en: '/en/rule-of-three-calculator' },
-    { url: '/prozentuale-differenz', de: '/prozentuale-differenz', en: '/en/percentage-difference' },
-    { url: '/gehaltsrechner', de: '/gehaltsrechner', en: '/en/salary-raise-calculator' },
-    { url: '/prozentrechner-formel', de: '/prozentrechner-formel', en: '/en/percentage-formula' },
-    { url: '/en', de: '/', en: '/en' },
-    { url: '/en/discount-calculator', de: '/rabattrechner', en: '/en/discount-calculator' },
-    { url: '/en/vat-calculator', de: '/mehrwertsteuerrechner', en: '/en/vat-calculator' },
-    { url: '/en/rule-of-three-calculator', de: '/dreisatz-rechner', en: '/en/rule-of-three-calculator' },
-    { url: '/en/percentage-difference', de: '/prozentuale-differenz', en: '/en/percentage-difference' },
-    { url: '/en/salary-raise-calculator', de: '/gehaltsrechner', en: '/en/salary-raise-calculator' },
-    { url: '/en/percentage-formula', de: '/prozentrechner-formel', en: '/en/percentage-formula' },
-  ];
+import type { APIRoute } from 'astro';
+import { routes } from '../i18n/routes';
+import { site } from '../data/site';
+
+// `routes` lists only the indexable content pages, so the error pages (404, 500)
+// — which carry `noindex` — are excluded from the sitemap by construction.
+const ORIGIN = new URL(site.url).origin;
+const LOCALES = ['de', 'en'] as const;
+
+export const GET: APIRoute = () => {
+  const { iso: lastmod } = site.updated;
+
+  const urls = Object.values(routes).flatMap((paths) =>
+    LOCALES.map((locale) => {
+      // Each page points at its own translation pair; x-default is this page's
+      // default-locale URL, not the site root.
+      const alternates = [
+        ...LOCALES.map(
+          (alt) =>
+            `    <xhtml:link rel="alternate" hreflang="${alt}" href="${ORIGIN}${paths[alt]}" />`
+        ),
+        `    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}${paths.de}" />`,
+      ].join('\n');
+
+      return `  <url>
+    <loc>${ORIGIN}${paths[locale]}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${paths.de === '/' ? '1.0' : '0.8'}</priority>
+${alternates}
+  </url>`;
+    })
+  );
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${pages.map(page => `  <url>
-    <loc>https://prozentrechner-online.com${page.url}</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${page.url === '/' || page.url === '/en' ? '1.0' : '0.8'}</priority>
-    <xhtml:link rel="alternate" hreflang="de" href="https://prozentrechner-online.com${page.de}" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://prozentrechner-online.com${page.en}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://prozentrechner-online.com/" />
-  </url>`).join('\n')}
-</urlset>`;
+${urls.join('\n')}
+</urlset>
+`;
 
   return new Response(sitemap, {
-    headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-    },
+    headers: { 'Content-Type': 'application/xml; charset=utf-8' },
   });
-}
+};

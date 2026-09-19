@@ -1,0 +1,204 @@
+---
+import Layout from './Layout.astro';
+import { getLocalizedPath } from '../i18n/routes';
+import { site } from '../data/site';
+
+interface TocItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  lang: 'de' | 'en';
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  alternateUrls: { de: string; en: string };
+  /** Breadcrumb label shown after "Home". */
+  breadcrumb: string;
+  /** Human readable "last updated" date, localized. Defaults to the shared site date. */
+  lastUpdated?: string;
+  /** Optional in-page table of contents. Section ids must match the <h2 id="..."> in the slot. */
+  toc?: TocItem[];
+}
+
+const {
+  lang,
+  title,
+  description,
+  canonicalUrl,
+  alternateUrls,
+  breadcrumb,
+  lastUpdated = site.updated[lang],
+  toc,
+} = Astro.props;
+
+const copy = {
+  de: {
+    home: 'Startseite',
+    updated: 'Zuletzt aktualisiert',
+    onThisPage: 'Auf dieser Seite',
+    legalNav: 'Rechtliches & Service',
+    backTitle: 'Zurück zum Prozentrechner',
+    backText: 'Alle Rechner kostenlos nutzen – mit Rechenweg, ohne Anmeldung und ohne Werbung.',
+    backCta: 'Zum Rechner',
+    links: {
+      about: 'Über uns',
+      contact: 'Kontakt',
+      privacy: 'Datenschutz',
+      terms: 'AGB',
+    },
+  },
+  en: {
+    home: 'Home',
+    updated: 'Last updated',
+    onThisPage: 'On this page',
+    legalNav: 'Legal & Service',
+    backTitle: 'Back to the percentage calculator',
+    backText: 'Use every calculator for free – with step-by-step working, no sign-up and no ads.',
+    backCta: 'Go to calculator',
+    links: {
+      about: 'About us',
+      contact: 'Contact',
+      privacy: 'Privacy policy',
+      terms: 'Terms & conditions',
+    },
+  },
+}[lang];
+
+const legalLinks = [
+  { path: getLocalizedPath('/about', lang), label: copy.links.about },
+  { path: getLocalizedPath('/contact', lang), label: copy.links.contact },
+  { path: getLocalizedPath('/privacy-policy', lang), label: copy.links.privacy },
+  { path: getLocalizedPath('/terms-and-conditions', lang), label: copy.links.terms },
+];
+
+const normalize = (p: string) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
+const currentPath = normalize(Astro.url.pathname);
+const homeRoute = getLocalizedPath('/', lang);
+---
+
+<Layout
+  lang={lang}
+  title={title}
+  description={description}
+  canonicalUrl={canonicalUrl}
+  alternateUrls={alternateUrls}
+>
+  <div class="max-w-3xl mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
+      <a href={homeRoute} class="hover:underline">{copy.home}</a>
+      <span>&rsaquo;</span>
+      <span style="color: var(--text-ink);">{breadcrumb}</span>
+    </nav>
+
+    <!-- Page header -->
+    <header class="mb-8">
+      <h1
+        class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-3"
+        style="color: var(--text-ink);"
+      >
+        {title}
+      </h1>
+      <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+        {description}
+      </p>
+      <p class="mt-3 text-[11px] font-semibold uppercase tracking-wider" style="color: var(--text-muted);">
+        {copy.updated}: {lastUpdated}
+      </p>
+    </header>
+
+    <!-- Cross-navigation between legal & service pages -->
+    <nav
+      class="mb-8 p-3 rounded-2xl border flex flex-wrap items-center gap-2"
+      style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);"
+      aria-label={copy.legalNav}
+    >
+      <span class="px-1 text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-muted);">
+        {copy.legalNav}
+      </span>
+      {
+        legalLinks.map((link) => {
+          const isActive = normalize(link.path) === currentPath;
+          return (
+            <a
+              href={link.path}
+              aria-current={isActive ? 'page' : undefined}
+              class="px-3 py-1.5 rounded-xl border text-xs font-semibold transition-colors"
+              style={
+                isActive
+                  ? 'background-color: var(--brand-primary); border-color: var(--brand-primary); color: var(--brand-primary-text);'
+                  : 'background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-body);'
+              }
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Table of contents -->
+    {
+      toc && toc.length > 0 && (
+        <nav
+          class="mb-8 p-5 rounded-2xl border"
+          style="background-color: var(--bg-surface); border-color: var(--border-hairline);"
+          aria-label={copy.onThisPage}
+        >
+          <h2
+            class="font-display font-bold text-xs uppercase tracking-wider mb-3"
+            style="color: var(--text-ink);"
+          >
+            {copy.onThisPage}
+          </h2>
+          <ol class="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-xs">
+            {toc.map((item) => (
+              <li>
+                <a
+                  href={`#${item.id}`}
+                  class="hover:underline"
+                  style="color: var(--text-body); text-underline-offset: 2px;"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
+    <!-- Content -->
+    <article
+      class="legal-prose p-6 sm:p-10 rounded-3xl border shadow-sm"
+      style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);"
+    >
+      <slot />
+    </article>
+
+    <!-- Back to calculator CTA -->
+    <div
+      class="mt-8 p-8 rounded-3xl border text-center"
+      style="background-color: var(--bg-surface); border-color: var(--border-hairline);"
+    >
+      <h2 class="font-display font-bold text-xl mb-3" style="color: var(--text-ink);">
+        {copy.backTitle}
+      </h2>
+      <p class="text-sm mb-6" style="color: var(--text-muted);">
+        {copy.backText}
+      </p>
+      <a
+        href={homeRoute}
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95 shadow-md"
+        style="background-color: var(--accent); color: white;"
+      >
+        <span>{copy.backCta}</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</Layout>

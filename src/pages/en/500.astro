@@ -1,0 +1,19 @@
+---
+import ErrorLayout from '../../layouts/ErrorLayout.astro';
+
+interface Props {
+  error?: unknown;
+}
+const { error } = Astro.props;
+if (error) console.error('[500]', error);
+---
+
+<ErrorLayout
+  lang="en"
+  variant="500"
+  canonicalUrl="https://prozentrechner-online.com/en/500"
+  alternateUrls={{
+    de: 'https://prozentrechner-online.com/500',
+    en: 'https://prozentrechner-online.com/en/500',
+  }}
+/>

@@ -1,0 +1,66 @@
+---
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { site } from '../../data/site';
+import { getLocalizedPath } from '../../i18n/routes';
+
+const formulaRoute = getLocalizedPath('/percentage-formula', 'en');
+const mainRoute = getLocalizedPath('/', 'en');
+---
+
+<LegalLayout
+  lang="en"
+  title="Contact"
+  description="How to reach the team behind prozentrechner-online.com: questions, bug reports and suggestions by email."
+  canonicalUrl="https://prozentrechner-online.com/en/contact"
+  alternateUrls={{
+    de: 'https://prozentrechner-online.com/kontakt',
+    en: 'https://prozentrechner-online.com/en/contact',
+  }}
+  breadcrumb="Contact"
+>
+  <p>
+    Found a bug, have a question, or an idea for another calculator? We are glad to hear from you.
+    Email is the quickest way to reach us.
+  </p>
+
+  <h2>Email</h2>
+  <p>
+    <a href={`mailto:${site.email}`} class="font-semibold">{site.email}</a>
+  </p>
+  <p>
+    For bug reports, please include the page concerned, the values you entered and the result you
+    expected where possible. That helps us reproduce and fix the problem faster.
+  </p>
+
+  <h2>Response time</h2>
+  <p>
+    We read every message and usually reply within a few working days. As the site is run as a
+    private project, it may occasionally take a little longer.
+  </p>
+
+  <h2>What we can help with – and what we can’t</h2>
+  <ul>
+    <li><strong>Happy to help with:</strong> questions about the calculators, reports of calculation
+      or display errors, suggestions for new features, accessibility feedback.</li>
+    <li><strong>Not possible:</strong> individual legal, tax or financial advice, or binding review
+      of specific contracts, tax cases or salary negotiations. Please consult a qualified
+      professional for those.</li>
+  </ul>
+
+  <h2>The answer may already be here</h2>
+  <p>
+    Many percentage questions – such as the VAT trap, the rule of three, or the difference between
+    percentage change and percentage difference – are already explained in detail. It is worth a
+    look:
+  </p>
+  <ul>
+    <li><a href={`${mainRoute}#faq`}>Frequently asked questions about percentages</a></li>
+    <li><a href={formulaRoute}>All formulas with worked steps and examples</a></li>
+  </ul>
+
+  <h2>Privacy</h2>
+  <p>
+    If you email us, we process your details solely to handle your request. For more information,
+    see our <a href={getLocalizedPath('/privacy-policy', 'en')}>privacy policy</a>.
+  </p>
+</LegalLayout>
