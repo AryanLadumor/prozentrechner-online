@@ -27,9 +27,9 @@ const formulaRoute = getLocalizedPath('/percentage-formula', currentLang);
 >
   <div class="max-w-6xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-1.5 sm:gap-4">
     <!-- Logo & Brand -->
-    <a href={mainRoute} class="flex items-center gap-2 sm:gap-2.5 group text-decoration-none shrink-0 min-w-0">
+    <a href={mainRoute} class="flex items-center gap-1.5 sm:gap-2.5 group text-decoration-none shrink min-w-0">
       <svg
-        class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-base sm:text-lg transition-transform group-hover:scale-105 shadow-xs shrink-0"
+        class="w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-base sm:text-lg transition-transform group-hover:scale-105 shadow-xs shrink-0"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
       >
@@ -48,7 +48,7 @@ const formulaRoute = getLocalizedPath('/percentage-formula', currentLang);
         </text>
       </svg>
       <div class="min-w-0">
-        <div class="font-display font-extrabold text-sm xs:text-base sm:text-lg tracking-tight leading-none truncate" style="color: var(--text-ink);">
+        <div class="font-display font-extrabold text-[11px] xs:text-sm sm:text-lg tracking-tight leading-none truncate" style="color: var(--text-ink);">
           {currentLang === 'de' ? 'Prozent' : 'Percentage'}<span class="opacity-60 font-medium">{currentLang === 'de' ? 'rechner' : 'Calculator'}</span>
         </div>
         <div class="text-[10px] font-semibold tracking-wider uppercase opacity-50 hidden md:block" style="color: var(--text-muted);">

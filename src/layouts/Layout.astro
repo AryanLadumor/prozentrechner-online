@@ -92,61 +92,64 @@ const {
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Schema.org JSON-LD Structured Data: MathSolver & WebApplication -->
-    <script type="application/ld+json" is:inline>
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebApplication",
-            "@id": "https://prozentrechner-online.com/#webapp",
-            "name": "Percentage Calculator",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "All",
-            "browserRequirements": "Requires JavaScript",
-            "url": "https://prozentrechner-online.com",
-            "description": "Fast online percentage calculation tool with step-by-step Rechenweg, discount, VAT, Rule of Three, and salary raise solvers.",
-            "isAccessibleForFree": true
-          },
-          {
-            "@type": ["MathSolver", "LearningResource"],
-            "@id": "https://prozentrechner-online.com/#mathsolver",
-            "name": "Percentage Math Solver & Rechenweg",
-            "url": "https://prozentrechner-online.com",
-            "learningResourceType": "Math solver / calculator",
-            "educationalLevel": "Primary, Secondary, Higher Education, Professional",
-            "isAccessibleForFree": true,
-            "mathExpression": [
-              "Percentage Value = (Base Value * Percentage Rate) / 100",
-              "Percentage Rate = (Part Value / Base Value) * 100",
-              "Base Value = (Part Value * 100) / Percentage Rate",
-              "Percentage Change = ((New Value - Old Value) / Old Value) * 100"
-            ]
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://prozentrechner-online.com/#website",
-            "url": "https://prozentrechner-online.com/",
-            "name": "Prozentrechner Online",
-            "alternateName": "prozentrechner-online.com",
-            "inLanguage": "de-DE",
-            "description": "Kostenloser Online-Prozentrechner mit Rechenweg für Rabatt, MwSt, Dreisatz, Gehaltserhöhung und prozentuale Veränderung.",
-            "publisher": { "@id": "https://prozentrechner-online.com/#webapp" }
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://prozentrechner-online.com/#organization",
-            "name": "prozentrechner-online.com",
-            "url": "https://prozentrechner-online.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://prozentrechner-online.com/web-app-manifest-512x512.png",
-              "width": 512,
-              "height": 512
-            }
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://prozentrechner-online.com/#webapp",
+          "name": "Percentage Calculator",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "url": "https://prozentrechner-online.com",
+          "description": "Fast online percentage calculation tool with step-by-step Rechenweg, discount, VAT, Rule of Three, and salary raise solvers.",
+          "isAccessibleForFree": true,
+          "inLanguage": currentLang === 'de' ? "de-DE" : "en-US"
+        },
+        {
+          "@type": ["MathSolver", "LearningResource"],
+          "@id": "https://prozentrechner-online.com/#mathsolver",
+          "name": "Percentage Math Solver & Rechenweg",
+          "url": "https://prozentrechner-online.com",
+          "learningResourceType": "Math solver / calculator",
+          "educationalLevel": "Primary, Secondary, Higher Education, Professional",
+          "isAccessibleForFree": true,
+          "inLanguage": currentLang === 'de' ? "de-DE" : "en-US",
+          "usageInfo": currentLang === 'de' ? "https://prozentrechner-online.com/agb" : "https://prozentrechner-online.com/en/terms-and-conditions",
+          "mathExpression": [
+            "Percentage Value = (Base Value * Percentage Rate) / 100",
+            "Percentage Rate = (Part Value / Base Value) * 100",
+            "Base Value = (Part Value * 100) / Percentage Rate",
+            "Percentage Change = ((New Value - Old Value) / Old Value) * 100"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://prozentrechner-online.com/#website",
+          "url": "https://prozentrechner-online.com/",
+          "name": "Prozentrechner Online",
+          "alternateName": "prozentrechner-online.com",
+          "inLanguage": currentLang === 'de' ? "de-DE" : "en-US",
+          "description": currentLang === 'de'
+            ? "Kostenloser Online-Prozentrechner mit Rechenweg für Rabatt, MwSt, Dreisatz, Gehaltserhöhung und prozentuale Veränderung."
+            : "Free online percentage calculator with step-by-step solutions for discounts, VAT, rule of three, salary raises, and percentage changes.",
+          "publisher": { "@id": "https://prozentrechner-online.com/#webapp" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://prozentrechner-online.com/#organization",
+          "name": "prozentrechner-online.com",
+          "url": "https://prozentrechner-online.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://prozentrechner-online.com/web-app-manifest-512x512.png",
+            "width": 512,
+            "height": 512
           }
-        ]
-      }
-    </script>
+        }
+      ]
+    })} />
 
     <!-- Synchronous Theme Setup (Prevents FOUC) -->
     <script is:inline>
