@@ -102,7 +102,7 @@ import RuleOfThreeCalc from '../components/calculators/RuleOfThreeCalc.astro';
       </div>
 
       <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">🚗 Benzinverbrauch</div>
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">🚗 Benzinverbrauch & Fahrtkosten</div>
         <p class="text-xs" style="color: var(--text-muted);">
           Ein Auto verbraucht 7 Liter auf 100km. Wie viel auf 350km? → 100km : 7L = 350km : x → x = 24,5L
         </p>
@@ -116,31 +116,62 @@ import RuleOfThreeCalc from '../components/calculators/RuleOfThreeCalc.astro';
       </div>
 
       <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">⏱️ Arbeitszeit & Produktivität</div>
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">⏱️ Arbeitszeit & Produktivität (Antiproportional)</div>
         <p class="text-xs" style="color: var(--text-muted);">
-          5 Arbeiter bauen eine Mauer in 12 Tagen. Wie lange brauchen 8 Arbeiter? (Antiproportional!) → 5 × 12 = 8 × x → x = 7,5 Tage
+          5 Arbeiter bauen eine Mauer in 12 Tagen. Wie lange brauchen 8 Arbeiter? → 5 × 12 = 8 × x → x = 7,5 Tage
         </p>
       </div>
 
       <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">🎨 Mischungsverhältnisse</div>
+        <div class="font-bold mb-1.5 text-sm" style="color: var(--text-ink);">🎨 Mischungsverhältnisse & Handwerk</div>
         <p class="text-xs" style="color: var(--text-muted);">
           Farbe im Verhältnis 3:1 (3 Teile Farbe, 1 Teil Verdünner). Für 200ml Farbe brauche ich wie viel Verdünner? → 3:1 = 200:x → x = 66,7ml
         </p>
       </div>
     </div>
 
-    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
-      Dreisatz in der Schule: Textaufgaben lösen
-    </h3>
-    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
-      Der Dreisatz ist eine Standardmethode in der Schulmathematik (Klasse 6-8). Tipps zum Lösen von Textaufgaben:
-    </p>
-    <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm" style="color: var(--text-body);">
-      <li>Aufgabe genau lesen und bekannte Werte herausschreiben</li>
-      <li>Prüfen: Proportional oder antiproportional?</li>
-      <li>Verhältnis aufstellen und schrittweise berechnen</li>
-      <li>Ergebnis auf Plausibilität prüfen (macht das Sinn?)</li>
-    </ol>
+    <!-- Zusammengesetzter Dreisatz -->
+    <div class="space-y-4 pt-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Zusammengesetzter Dreisatz (Mehrfach-Dreisatz)
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Im beruflichen Alltag hängen Ergebnisse oft von mehr als zwei Größen ab. Ein klassisches Beispiel aus der Bau- oder Handwerksbranche:
+      </p>
+      <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-sm" style="color: var(--text-ink);">Aufgabe: 3 Fliesenleger verlegen an 4 Tagen insgesamt 180 m² Fliesen. Wie viele m² schaffen 5 Fliesenleger in 6 Tagen?</div>
+        <div class="text-xs space-y-1 font-mono text-neutral-600 dark:text-neutral-400">
+          <div>1. Leistung pro Fliesenleger pro Tag ermitteln: 180 m² ÷ (3 Fliesenleger × 4 Tage) = 15 m² pro Personentag</div>
+          <div>2. Neue Bedingungen multiplizieren: 5 Fliesenleger × 6 Tage × 15 m² = <strong>450 m² Fliesen</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Häufige Fragen FAQ -->
+    <div class="space-y-4 pt-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Häufig gestellte Fragen zum Dreisatz
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Wie erkenne ich, ob ein Dreisatz proportional oder antiproportional ist?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Stellen Sie sich die Frage: „Wenn Größe A verdoppelt wird, verdoppelt sich dann auch Größe B?" Wenn ja, ist es <strong>proportional</strong> (z.B. Mehr Äpfel = Mehr Euro). Wenn sich Größe B bei einer Verdopplung von A halbiert, ist es <strong>antiproportional</strong> (z.B. Doppelt so viele Handwerker = Halbe Arbeitszeit).
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Warum heißt die Rechenmethode eigentlich „Dreisatz"?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Der Name leitet sich von den <em>drei Sätzen</em> (Schritten) der Berechnung her: 1. Satz: Formulierung der bekannten Ausgangsbeziehung; 2. Satz: Ermittlung des Einheitswerts (Division); 3. Satz: Hochrechnung auf die gesuchte Zielgröße (Multiplikation).
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Wie hängen Dreisatz und Prozentrechnung zusammen?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Jede Prozentaufgabe ist ein proportionaler Dreisatz mit dem festen Bezugswert 100. Setzen Sie den Grundwert = 100%, berechnen Sie durch Division durch 100 den Wert für 1%, und multiplizieren Sie anschließend mit dem gesuchten Prozentsatz.
+          </p>
+        </details>
+      </div>
+    </div>
   </div>
 </Layout>

@@ -5,14 +5,15 @@ import SalaryCalc from '../../components/calculators/SalaryCalc.astro';
 
 <Layout
   lang="en"
-  title="Salary Raise Calculator Online: Pay Increase in Percent"
-  description="Salary raise calculator online: work out your pay increase in percentage and dollars. See how much more you earn after a raise. Free and instant."
+  title="Salary Raise Calculator Online: Pay Increase in % and $"
+  description="Salary raise calculator online: calculate your pay raise in percentage, dollars, and hourly wage. See how much extra take-home pay you earn after a raise."
   canonicalUrl="https://prozentrechner-online.com/en/salary-raise-calculator"
   alternateUrls={{
     de: "https://prozentrechner-online.com/gehaltsrechner",
     en: "https://prozentrechner-online.com/en/salary-raise-calculator"
   }}
 >
+  <!-- Breadcrumb & Header -->
   <div class="mb-8">
     <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
       <a href="/en" class="hover:underline">Home</a>
@@ -21,41 +22,192 @@ import SalaryCalc from '../../components/calculators/SalaryCalc.astro';
     </nav>
 
     <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
-      Salary Raise Calculator: Pay Increase in $ & %
+      Salary Raise Calculator: Pay Increase in % & $
     </h1>
     <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
-      Calculate how a percentage salary raise affects your gross and net income. Ideal for salary negotiations and financial planning.
+      Calculate how a percentage salary increase impacts your gross earnings and take-home pay across hourly, monthly, and annual pay periods.
     </p>
   </div>
 
+  <!-- Interactive Tool -->
   <div class="mb-16">
     <SalaryCalc lang="en" />
   </div>
 
-  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
-      How to Calculate Salary Raises
-    </h2>
+  <!-- Deep Guide & SEO Explanations -->
+  <div class="rounded-3xl border p-8 sm:p-12 shadow-sm space-y-8" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" style="background-color: var(--bg-card); color: var(--text-ink);">
+        💼 Career & Compensation Guide
+      </div>
+      <h2 class="font-display font-black text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
+        How to Calculate and Negotiate a Salary Raise
+      </h2>
+      <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+        A salary increase can be negotiated either as an <strong>absolute dollar figure</strong> (e.g., "+$5,000 per year" or "+$2.50 per hour") or as a <strong>percentage increase</strong> (e.g., "+6% raise"). Understanding the math behind both formats ensures you make informed financial decisions during annual performance reviews and job offer negotiations.
+      </p>
+    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <h3 class="font-bold text-sm" style="color: var(--text-ink);">Percentage → Dollar Amount</h3>
-        <div class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">
-          Raise = Old Salary × (Percent ÷ 100)
+    <!-- The 2 Conversion Formulas -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        The Core Formulas: Percentage to Dollar & Dollar to Percentage
+      </h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h4 class="font-bold text-sm text-emerald-600 dark:text-emerald-400">1. Percentage → Dollar Amount</h4>
+          <div class="font-mono text-xs font-bold">
+            Dollar Raise = Old Salary × (Percentage ÷ 100)
+            <br />New Salary = Old Salary + Dollar Raise
+          </div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Example: $60,000 annual salary + 5% raise:
+            <br />$60,000 × 0.05 = <strong>+$3,000/year ($250/month)</strong> → New Salary: $63,000.
+          </p>
         </div>
-        <p class="text-[11px]" style="color: var(--text-muted);">
-          Example: $50,000 + 5% = $50,000 × 0.05 = <strong>$2,500</strong> more
+
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h4 class="font-bold text-sm text-purple-600 dark:text-purple-400">2. Dollar Amount → Percentage</h4>
+          <div class="font-mono text-xs font-bold">
+            Percentage = (Dollar Raise ÷ Old Salary) × 100
+          </div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Example: $60,000 salary with a $4,500 raise:
+            <br />($4,500 ÷ $60,000) × 100 = <strong>7.5% pay increase</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gross vs Net -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Gross Salary vs. Take-Home Pay: The Marginal Tax Reality
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        A raise is always quoted on your <strong>gross salary</strong>. Because most developed nations (including the US, UK, Canada, and Germany) use progressive tax brackets, your raise will be taxed at your <strong>marginal tax rate</strong> (your highest bracket) rather than your lower effective tax rate.
+      </p>
+
+      <div class="p-5 rounded-2xl border bg-amber-50 dark:bg-amber-950/20 space-y-2" style="border-color: var(--border-hairline);">
+        <div class="font-bold text-sm text-amber-800 dark:text-amber-300">
+          💡 How Much Extra Money Actually Hits Your Bank Account?
+        </div>
+        <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-body);">
+          After federal income tax, state or provincial taxes, Social Security/FICA (6.2%), Medicare (1.45%), and retirement contributions (such as 401k or pension), employees typically take home between <strong>60% and 72%</strong> of their gross raise amount.
+        </p>
+        <p class="text-xs font-mono text-neutral-600 dark:text-neutral-400 pt-1">
+          Rule of Thumb: A $500 monthly gross raise usually yields roughly $300 to $360 in net monthly spendable cash.
         </p>
       </div>
+    </div>
 
-      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <h3 class="font-bold text-sm" style="color: var(--text-ink);">Dollar Amount → Percentage</h3>
-        <div class="font-mono text-xs font-bold text-purple-600 dark:text-purple-400">
-          Percent = (Raise ÷ Old Salary) × 100
+    <!-- Benchmark Rates Table -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Salary Raise Projections Across Common Income Tiers
+      </h3>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr style="background-color: var(--bg-card);">
+              <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Current Salary</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">3% Raise (COLA)</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">5% Raise (Merit)</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">10% (Promotion)</th>
+              <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">15% (Job Change)</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-body);">
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">$45,000</th>
+              <td class="p-3 font-mono">+$1,350 ($46,350)</td>
+              <td class="p-3 font-mono">+$2,250 ($47,250)</td>
+              <td class="p-3 font-mono">+$4,500 ($49,500)</td>
+              <td class="p-3 font-mono">+$6,750 ($51,750)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">$65,000</th>
+              <td class="p-3 font-mono">+$1,950 ($66,950)</td>
+              <td class="p-3 font-mono">+$3,250 ($68,250)</td>
+              <td class="p-3 font-mono">+$6,500 ($71,500)</td>
+              <td class="p-3 font-mono">+$9,750 ($74,750)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">$85,000</th>
+              <td class="p-3 font-mono">+$2,550 ($87,550)</td>
+              <td class="p-3 font-mono">+$4,250 ($89,250)</td>
+              <td class="p-3 font-mono">+$8,500 ($93,500)</td>
+              <td class="p-3 font-mono">+$12,750 ($97,750)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">$110,000</th>
+              <td class="p-3 font-mono">+$3,300 ($113,300)</td>
+              <td class="p-3 font-mono">+$5,500 ($115,500)</td>
+              <td class="p-3 font-mono">+$11,000 ($121,000)</td>
+              <td class="p-3 font-mono">+$16,500 ($126,500)</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">$140,000</th>
+              <td class="p-3 font-mono">+$4,200 ($144,200)</td>
+              <td class="p-3 font-mono">+$7,000 ($147,000)</td>
+              <td class="p-3 font-mono">+$14,000 ($154,000)</td>
+              <td class="p-3 font-mono">+$21,000 ($161,000)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Negotiation Strategies -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        5 Proven Strategies for Your Next Salary Review
+      </h3>
+
+      <div class="space-y-2 text-xs sm:text-sm">
+        <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <strong style="color: var(--text-ink);">1. Quantify Value Created:</strong>
+          <span style="color: var(--text-muted);"> Frame your request around revenue added, costs saved, or efficiencies implemented over the past 12 months.</span>
         </div>
-        <p class="text-[11px]" style="color: var(--text-muted);">
-          Example: $50,000 + $2,500 = (2,500 ÷ 50,000) × 100 = <strong>5%</strong>
-        </p>
+        <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <strong style="color: var(--text-ink);">2. Benchmark Industry Market Data:</strong>
+          <span style="color: var(--text-muted);"> Review verified compensation reports (Glassdoor, Levels.fyi, Payscale) for your title and geographic cost-of-living index.</span>
+        </div>
+        <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <strong style="color: var(--text-ink);">3. Ask 2–3 Months Before Budgeting:</strong>
+          <span style="color: var(--text-muted);"> Most companies lock their financial budgets months before fiscal year-end. Initiate conversation well ahead of compensation freezes.</span>
+        </div>
+        <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <strong style="color: var(--text-ink);">4. Propose a Specific Number:</strong>
+          <span style="color: var(--text-muted);"> Studies show that requesting an exact, researched figure (e.g., "$73,500" or "8%") anchors negotiations more effectively than open-ended inquiries.</span>
+        </div>
+        <div class="p-3 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <strong style="color: var(--text-ink);">5. Negotiate Alternative Perks:</strong>
+          <span style="color: var(--text-muted);"> If cash budgets are constrained, negotiate performance bonuses, extra vacation days, flexible remote days, or professional development stipends.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Frequently Asked Questions About Pay Raises
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">What is a typical annual raise?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            In corporate employment, standard cost-of-living adjustments typically range from 2.5% to 4.0%. High performers receiving merit increases often receive 4.5% to 7.0%, while structural promotions usually command 8% to 15%.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Can a raise put you in a higher tax bracket and make you take home less?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            No, this is a mathematical myth. Tax brackets are marginal. If your income crosses into a higher tax bracket, only the dollars earned above that threshold are taxed at the higher rate. Every extra dollar earned still increases your overall take-home pay.
+          </p>
+        </details>
       </div>
     </div>
   </div>

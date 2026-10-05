@@ -35,63 +35,220 @@ import DiscountCalc from '../components/calculators/DiscountCalc.astro';
   </div>
 
   <!-- Deep Guide & SEO Explanations -->
-  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
-      Wie man Rabatte berechnet: Formel & Methoden
-    </h2>
-
-    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
-      Ein Rabatt stellt eine prozentuale Reduktion vom ursprünglichen Listenpreis eines Produkts oder einer Dienstleistung dar. So berechnen Sie einen Rabatt von Hand:
-    </p>
-
-    <div class="p-4 rounded-2xl border font-mono text-xs sm:text-sm space-y-1" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-      <div class="font-bold text-pink-600 dark:text-pink-400">Rabattbetrag = Originalpreis × (Rabatt% ÷ 100)</div>
-      <div class="font-bold text-emerald-600 dark:text-emerald-400">Endpreis = Originalpreis − Rabattbetrag</div>
+  <div class="rounded-3xl border p-8 sm:p-12 shadow-sm space-y-8" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" style="background-color: var(--bg-card); color: var(--text-ink);">
+        🏷️ Ratgeber & Formelübersicht
+      </div>
+      <h2 class="font-display font-black text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
+        Rabattrechner Online: Rabatt, Sale-Preise & Ersparnis in Euro berechnen
+      </h2>
+      <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+        Ein <strong>Rabattrechner</strong> hilft Ihnen, bei Schnäppchen, Schlussverkäufen oder Sonderangeboten kühlen Kopf zu bewahren. Unser kostenloser <strong>Online Prozentrechner</strong> für Rabatte ermittelt in Sekundenbruchteilen den tatsächlichen Endpreis in Euro (€), beziffert Ihre reale Ersparnis und schlüsselt auch kombinierte Sonderkonditionen wie Gutscheincodes, Skonto oder Mehrwertsteuer transparent auf.
+      </p>
     </div>
 
-    <h3 class="font-display font-bold text-lg pt-2" style="color: var(--text-ink);">
-      Beispiel: 30% Rabatt auf eine 80€ Jacke
-    </h3>
-    <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm" style="color: var(--text-body);">
-      <li>Multiplizieren Sie den Originalpreis mit 0,30: <code>80€ × 0,30 = 24€</code> (Ersparnis).</li>
-      <li>Subtrahieren Sie die Ersparnis vom Originalpreis: <code>80€ − 24€ = 56€</code> (Endpreis im Sale).</li>
-    </ol>
+    <!-- 1. Formel und Methoden -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Wie man Rabatte berechnet: Formel & Rechenweg
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Ein Rabatt ist ein prozentualer Preisnachlass auf den ursprünglichen Verkaufspreis (Grundwert). Für die manuelle Berechnung stehen Ihnen zwei mathematische Wege zur Verfügung:
+      </p>
 
-    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
-      Mehrfachrabatte berechnen (gestaffelte Gutscheine)
-    </h3>
-    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
-      Wenn Sie mehrere Rabatte kombinieren (z.B. 20% Sale + 10% Gutschein), werden diese nacheinander angewendet, nicht addiert:
-    </p>
-    <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm" style="color: var(--text-body);">
-      <li>Ersten Rabatt anwenden: <code>100€ − 20% = 80€</code></li>
-      <li>Zweiten Rabatt auf den reduzierten Preis anwenden: <code>80€ − 10% = 72€</code></li>
-      <li>Gesamtersparnis: <code>28€ (28% effektiver Rabatt, nicht 30%)</code></li>
-    </ol>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm text-pink-600 dark:text-pink-400">Methode 1: Über den Rabattbetrag (2 Schritte)</div>
+          <div class="font-mono text-xs space-y-1">
+            <div>1. Ersparnis = Originalpreis × (Rabatt% ÷ 100)</div>
+            <div>2. Endpreis = Originalpreis − Ersparnis</div>
+          </div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Vorteil: Sie sehen sofort, wie viele Euro Sie konkret im Portemonnaie sparen.
+          </p>
+        </div>
 
-    <h3 class="font-display font-bold text-lg pt-6" style="color: var(--text-ink);">
-      Häufige Rabatt-Szenarien in Deutschland
-    </h3>
-    <div class="space-y-3">
-      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <div class="font-bold mb-1 text-sm" style="color: var(--text-ink);">Black Friday & Cyber Monday</div>
-        <div class="text-xs" style="color: var(--text-muted);">
-          Typische Rabatte: 20-50% auf Elektronik, Mode und Haushaltswaren. Nutzen Sie unseren Rechner, um den echten Endpreis mit MwSt zu sehen.
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm text-emerald-600 dark:text-emerald-400">Methode 2: Über den Direktfaktor (1 Schritt)</div>
+          <div class="font-mono text-xs space-y-1">
+            <div>Endpreis = Originalpreis × (1 − (Rabatt% ÷ 100))</div>
+            <div>Beispiel bei 20%: Endpreis = Originalpreis × 0,80</div>
+          </div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Vorteil: Schnellster Weg im Kopf und für Tabellenkalkulationen wie Excel.
+          </p>
         </div>
       </div>
 
-      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <div class="font-bold mb-1 text-sm" style="color: var(--text-ink);">Winterschlussverkauf (WSV)</div>
-        <div class="text-xs" style="color: var(--text-muted);">
-          Modehändler bieten oft 30-70% Rabatt auf Winterware. Berechnen Sie schnell, ob sich der Sale lohnt.
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-sm" style="color: var(--text-ink);">📝 Praxisbeispiel mit Rechenweg: 30% Rabatt auf eine 80 € Jacke</div>
+        <p class="text-xs sm:text-sm" style="color: var(--text-body);">
+          Sie finden im Geschäft eine Winterjacke mit einem Original-Preisschild von <strong>80,00 €</strong>. Ein roter Aufkleber kündigt <strong>30% Nachlass</strong> an:
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-xs font-mono" style="color: var(--text-muted);">
+          <li>Schritt 1 (Ersparnis): 80 € × 0,30 = <strong>24,00 € Ersparnis</strong></li>
+          <li>Schritt 2 (Kassenpreis): 80 € − 24 € = <strong>56,00 € Endpreis</strong></li>
+          <li>Oder direkt mit dem Abzugsfaktor: 80 € × (1 − 0,30) = 80 € × 0,70 = <strong>56,00 €</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2. Gestapelte Rabatte -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Mehrfachrabatte & gestapelte Gutscheine berechnen
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Ein weit verbreiteter Irrglaube: Wer einen Artikel mit <strong>20% Sale-Rabatt</strong> kauft und an der Kasse einen weiteren <strong>10% Newsletter-Gutschein</strong> einlöst, spart <strong>nicht 30%</strong>!
+      </p>
+      <div class="p-4 rounded-2xl border bg-amber-50 dark:bg-amber-950/20" style="border-color: var(--border-hairline);">
+        <div class="font-bold text-sm mb-1 text-amber-700 dark:text-amber-400">⚠️ Warum Rabatte nacheinander angewendet werden:</div>
+        <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-body);">
+          Rabatte werden in der Praxis kaskadierend berechnet. Der zweite Prozentsatz greift nicht mehr auf den vollen Grundwert zu, sondern nur auf den bereits reduzierten Zwischenpreis:
+        </p>
+        <ol class="list-decimal list-inside space-y-1 text-xs font-mono mt-2" style="color: var(--text-body);">
+          <li>Ausgangspreis: 100,00 €</li>
+          <li>Nach 20% Sale: 100 € − 20 € = 80,00 €</li>
+          <li>Nach weiterem 10% Coupon auf 80 €: 80 € − (80 € × 0,10) = 80 € − 8 € = <strong>72,00 €</strong></li>
+          <li>Effektiver Gesamtrabatt: 100 € − 72 € = 28 € (also <strong>28% Gesamtrabatt</strong>, nicht 30%!)</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 3. Rabatt-Tabelle -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Rabatt-Tabelle: Beliebte Preisnachlässe auf einen Blick
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Die folgende Übersicht zeigt den reduzierten Endpreis und die Ersparnis in Euro für typische Rabattsätze im Handel:
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr style="background-color: var(--bg-card);">
+              <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Rabatt</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">bei 20 €</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">bei 50 €</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">bei 100 €</th>
+              <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">bei 200 €</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-body);">
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">10% Rabatt</th>
+              <td class="p-3 font-mono">18,00 € (-2€)</td>
+              <td class="p-3 font-mono">45,00 € (-5€)</td>
+              <td class="p-3 font-mono">90,00 € (-10€)</td>
+              <td class="p-3 font-mono">180,00 € (-20€)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">20% Rabatt</th>
+              <td class="p-3 font-mono">16,00 € (-4€)</td>
+              <td class="p-3 font-mono">40,00 € (-10€)</td>
+              <td class="p-3 font-mono">80,00 € (-20€)</td>
+              <td class="p-3 font-mono">160,00 € (-40€)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">30% Rabatt</th>
+              <td class="p-3 font-mono">14,00 € (-6€)</td>
+              <td class="p-3 font-mono">35,00 € (-15€)</td>
+              <td class="p-3 font-mono">70,00 € (-30€)</td>
+              <td class="p-3 font-mono">140,00 € (-60€)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">50% (Halber Preis)</th>
+              <td class="p-3 font-mono">10,00 € (-10€)</td>
+              <td class="p-3 font-mono">25,00 € (-25€)</td>
+              <td class="p-3 font-mono">50,00 € (-50€)</td>
+              <td class="p-3 font-mono">100,00 € (-100€)</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">70% (Räumungsverkauf)</th>
+              <td class="p-3 font-mono">6,00 € (-14€)</td>
+              <td class="p-3 font-mono">15,00 € (-35€)</td>
+              <td class="p-3 font-mono">30,00 € (-70€)</td>
+              <td class="p-3 font-mono">60,00 € (-140€)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. Rueckwaerts rechnen: Ursprungspreis finden -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Rückwärts rechnen: Den Originalpreis vor dem Rabatt ermitteln
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Oft steht auf einem Angebot nur: „Jetzt nur 42,00 € – Sie sparen 30%!". Wie viel hat der Artikel vor der Preissenkung ursprünglich gekostet?
+      </p>
+      <div class="p-4 rounded-2xl border font-mono text-xs sm:text-sm space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-purple-600 dark:text-purple-400">Formel: Originalpreis = Reduzierter Preis ÷ (1 − (Rabatt% ÷ 100))</div>
+        <p class="text-xs font-sans text-neutral-600 dark:text-neutral-400">
+          Beispiel: 42 € nach 30% Rabatt entsprechen noch 70% (0,70) des Originalpreises.
+          <br />Rechnung: 42 € ÷ 0,70 = <strong>60,00 € ursprünglicher Verkaufspreis</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- 5. Skonto vs. Rabatt -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Skonto vs. Rabatt: Was ist der Unterschied?
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm" style="color: var(--text-ink);">Der Rabatt (kaufmännisch)</div>
+          <p class="leading-relaxed" style="color: var(--text-muted);">
+            Wird bedingungslos oder wegen Mengenabnahme, Treue oder Aktionen direkt beim Kauf vom Rechnungsbetrag abgezogen. Er mindert den Rechnungsbetrag unmittelbar bei Vertragsschluss.
+          </p>
+        </div>
+        <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm" style="color: var(--text-ink);">Das Skonto (Zahlungsanreiz)</div>
+          <p class="leading-relaxed" style="color: var(--text-muted);">
+            Ein Zinsnachlass für vorzeitige Bezahlung (z.B. „2% Skonto innerhalb von 10 Tagen, 30 Tage netto"). Wer zügig überweist, darf eigenständig 2% vom Überweisungsbetrag abziehen.
+          </p>
         </div>
       </div>
+    </div>
 
-      <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <div class="font-bold mb-1 text-sm" style="color: var(--text-ink);">Gutscheincode + Sale kombinieren</div>
-        <div class="text-xs" style="color: var(--text-muted);">
-          Viele Online-Shops erlauben das Stapeln von Sale-Rabatten mit Gutscheincodes. Unser Rechner zeigt den finalen Preis nach allen Rabatten.
-        </div>
+    <!-- 6. Rechtliches & PAngV -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Rechtlicher Hintergrund: Die Preisangabenverordnung (PAngV) in Deutschland
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Um Verbraucher vor irreführenden Mondpreisen zu schützen, schreibt § 11 der deutschen Preisangabenverordnung (PAngV) vor, dass bei jeder Preisermäßigung der niedrigste Gesamtpreis angegeben werden muss, der innerhalb der letzten 30 Tage vor der Ermäßigung angewendet wurde. Händler dürfen Preise also nicht kurz vor einem Rabatt künstlich anheben, um größere Prozentsätze vorzutäuschen.
+      </p>
+    </div>
+
+    <!-- 7. Häufige Fragen (FAQ) -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Häufig gestellte Fragen zum Rabattrechner
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Wie ziehe ich 20% von einem Geldbetrag ab?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Multiplizieren Sie den Betrag entweder mit 0,20 (Ersparnis) und subtrahieren Sie das Ergebnis, oder multiplizieren Sie den Betrag direkt mit 0,80. Beispiel: 50 € × 0,80 = 40,00 €.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Gilt der Rabatt vor oder nach der Mehrwertsteuer?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Für Endverbraucher im Einzelhandel wird der Rabatt auf den Bruttopreis (inklusive 19% oder 7% MwSt) angewendet. Im B2B-Großhandel wird der Rabatt in der Regel auf die Nettopreise gewährt, woraufhin die Umsatzsteuer auf den rabattierten Nettopreis aufgeschlagen wird.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Was bedeutet 3 für 2 oder nimm 4 zahl 3?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Bei „3 für 2" erhalten Sie 3 Artikel zum Preis von 2. Sofern alle Artikel gleich viel kosten, entspricht dies einem rechnerischen Preisnachlass von genau 33,33% (1 von 3 Artikeln geschenkt).
+          </p>
+        </details>
       </div>
     </div>
   </div>

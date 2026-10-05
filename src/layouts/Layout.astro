@@ -5,6 +5,8 @@ import Footer from '../components/Footer.astro';
 import HistoryDrawer from '../components/HistoryDrawer.astro';
 import CommandPalette from '../components/CommandPalette.astro';
 import Toast from '../components/Toast.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
+import SideQuickCalc from '../components/SideQuickCalc.astro';
 import { getLangFromUrl } from '../i18n';
 
 interface Props {
@@ -190,5 +192,11 @@ const {
 
     <!-- Warm Footer -->
     <Footer lang={currentLang} />
+
+    <!-- Docked Side Quick Calculator -->
+    <SideQuickCalc lang={currentLang} />
+
+    <!-- Scroll to Top Navigation Button -->
+    <ScrollToTop lang={currentLang} />
   </body>
 </html>

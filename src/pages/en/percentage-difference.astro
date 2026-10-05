@@ -6,13 +6,14 @@ import PercentageDiffCalc from '../../components/calculators/PercentageDiffCalc.
 <Layout
   lang="en"
   title="Percentage Difference Calculator Online: Change & Growth"
-  description="Percentage difference calculator online: find the percentage difference or percentage change between two numbers. Free, with a step-by-step solution."
+  description="Percentage difference calculator online: calculate percentage change, percentage difference and percentage points between two numbers. Free with worked steps."
   canonicalUrl="https://prozentrechner-online.com/en/percentage-difference"
   alternateUrls={{
     de: "https://prozentrechner-online.com/prozentuale-differenz",
     en: "https://prozentrechner-online.com/en/percentage-difference"
   }}
 >
+  <!-- Breadcrumb & Header -->
   <div class="mb-8">
     <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
       <a href="/en" class="hover:underline">Home</a>
@@ -21,41 +22,179 @@ import PercentageDiffCalc from '../../components/calculators/PercentageDiffCalc.
     </nav>
 
     <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
-      Percentage Difference & Change Calculator
+      Percentage Difference & Percentage Change Calculator
     </h1>
     <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
-      Calculate the percentage difference between two values or the percentage change (growth or decrease) from a start value to an end value.
+      Calculate the percentage difference between two values or the directional percentage change (growth or decrease) from a starting figure to a final figure.
     </p>
   </div>
 
+  <!-- Interactive Tool -->
   <div class="mb-16">
     <PercentageDiffCalc lang="en" />
   </div>
 
-  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
-      Percentage Difference vs. Percentage Change
-    </h2>
+  <!-- Deep Guide & SEO Explanations -->
+  <div class="rounded-3xl border p-8 sm:p-12 shadow-sm space-y-8" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" style="background-color: var(--bg-card); color: var(--text-ink);">
+        📊 Mathematical Analysis & Formulas
+      </div>
+      <h2 class="font-display font-black text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
+        Percentage Difference vs. Percentage Change: What is the Difference?
+      </h2>
+      <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+        While people frequently use the terms interchangeably in conversation, <strong>Percentage Change</strong> and <strong>Percentage Difference</strong> solve two completely different mathematical questions. Choosing the wrong formula can result in substantial errors in business reports, scientific papers, and investment appraisals.
+      </p>
+    </div>
 
+    <!-- The 2 Core Formulas -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <h3 class="font-bold text-sm text-purple-600 dark:text-purple-400">Percentage Change</h3>
+      <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm text-purple-600 dark:text-purple-400">1. Percentage Change (Directional)</h3>
         <div class="font-mono text-xs font-bold">
-          ((New − Old) ÷ Old) × 100
+          Percentage Change = ((New − Old) ÷ Old) × 100
         </div>
         <p class="text-[11px]" style="color: var(--text-muted);">
-          <strong>Directional:</strong> From old to new value. Shows growth (+) or decrease (−). Base is the starting value.
+          <strong>Directional:</strong> Measures transition over time from a chronological baseline (old value) to a new value. Can be positive (+) for growth or negative (−) for a decrease.
         </p>
+        <div class="text-[11px] font-mono space-y-0.5 pt-1 text-neutral-600 dark:text-neutral-400">
+          <div>Example: Stock rises from $50 to $75</div>
+          <div class="text-emerald-600 dark:text-emerald-400 font-bold">= +50% increase</div>
+        </div>
       </div>
 
-      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <h3 class="font-bold text-sm text-amber-600 dark:text-amber-400">Percentage Difference</h3>
+      <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <h3 class="font-bold text-sm text-amber-600 dark:text-amber-400">2. Percentage Difference (Symmetric)</h3>
         <div class="font-mono text-xs font-bold">
-          (|A − B| ÷ ((A + B) ÷ 2)) × 100
+          Percentage Difference = (|A − B| ÷ ((A + B) ÷ 2)) × 100
         </div>
         <p class="text-[11px]" style="color: var(--text-muted);">
-          <strong>Symmetric:</strong> Compares two values without direction. Base is the average of both values. Always positive.
+          <strong>Symmetric:</strong> Compares two peer values where neither is a chronological starting point. The baseline is the average (mean) of both values. Always positive.
         </p>
+        <div class="text-[11px] font-mono space-y-0.5 pt-1 text-neutral-600 dark:text-neutral-400">
+          <div>Example: Compare two prices: $50 & $75</div>
+          <div class="text-amber-600 dark:text-amber-400 font-bold">= 40% difference</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Percent vs Percentage Points -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Percent (%) vs. Percentage Points (pp): Avoid the Common Mistake
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Confusing percent with percentage points is one of the most widespread statistical errors in news media, political polling, and central bank coverage:
+      </p>
+
+      <div class="p-5 rounded-2xl border space-y-3" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-sm" style="color: var(--text-ink);">Example: An Interest Rate Increases from 2.0% to 3.0%</div>
+        <ul class="list-disc list-inside space-y-1 text-xs" style="color: var(--text-body);">
+          <li><strong>In Percentage Points:</strong> 3.0% − 2.0% = <strong>+1.0 percentage point</strong> (the simple arithmetic difference).</li>
+          <li><strong>In Relative Percent Change:</strong> ((3.0 − 2.0) ÷ 2.0) × 100 = <strong>+50% relative increase</strong>!</li>
+        </ul>
+        <p class="text-[11px] leading-relaxed" style="color: var(--text-muted);">
+          Saying an interest rate "increased by 1%" is misleading—the borrowing cost actually surged by 50% relative to the previous rate!
+        </p>
+      </div>
+    </div>
+
+    <!-- Asymmetry of Gains and Losses -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        The Investor's Paradox: Asymmetry of Losses and Gains
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        In financial markets and portfolio management, losses hurt far more than equal percentage gains help. When you experience a percentage drawdown, you need a larger percentage gain just to return to your starting capital:
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr style="background-color: var(--bg-card);">
+              <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Investment Loss</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Remaining Portfolio from $10,000</th>
+              <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">Gain Required to Break Even</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-body);">
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono text-red-600 dark:text-red-400 font-bold">− 10%</td>
+              <td class="p-3 font-mono">$9,000</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">+ 11.1%</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono text-red-600 dark:text-red-400 font-bold">− 25%</td>
+              <td class="p-3 font-mono">$7,500</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">+ 33.3%</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono text-red-600 dark:text-red-400 font-bold">− 50%</td>
+              <td class="p-3 font-mono">$5,000</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">+ 100.0% (Must double!)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-red-600 dark:text-red-400 font-bold">− 80%</td>
+              <td class="p-3 font-mono">$2,000</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">+ 400.0% (5x increase!)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Practical Worked Examples -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Step-by-Step Worked Problems
+      </h3>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">Example 1: Year-over-Year Revenue Growth (Percentage Change)</div>
+          <p class="text-xs" style="color: var(--text-muted);">
+            A company generated $120,000 in revenue in Year 1 and $150,000 in Year 2.
+          </p>
+          <div class="mt-2 font-mono text-xs space-y-1">
+            <div>1. Absolute change: $150,000 − $120,000 = $30,000</div>
+            <div>2. Divide by baseline: $30,000 ÷ $120,000 = 0.25</div>
+            <div>3. Convert to percent: 0.25 × 100 = <strong class="text-emerald-600 dark:text-emerald-400">+25.0% revenue growth</strong></div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">Example 2: Lab Measurement Discrepancy (Percentage Difference)</div>
+          <p class="text-xs" style="color: var(--text-muted);">
+            Two independent lab tests measure the boiling point of an experimental compound at 104°C and 108°C.
+          </p>
+          <div class="mt-2 font-mono text-xs space-y-1">
+            <div>1. Absolute difference: |104 − 108| = 4</div>
+            <div>2. Average of values: (104 + 108) ÷ 2 = 106</div>
+            <div>3. Ratio: (4 ÷ 106) × 100 = <strong class="text-amber-600 dark:text-amber-400">3.77% percentage difference</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Frequently Asked Questions
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">How do I calculate percentage change in Excel?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            With the old value in cell A1 and the new value in B1, write: <code>=(B1-A1)/A1</code>. Format the cell as a percentage to automatically display the correct positive/negative sign and % symbol.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Can percentage change be negative?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Yes, if the new value is smaller than the old value, the resulting percentage change will be negative, indicating a percentage decrease. Percentage difference, on the other hand, uses absolute values and is always positive.
+          </p>
+        </details>
       </div>
     </div>
   </div>

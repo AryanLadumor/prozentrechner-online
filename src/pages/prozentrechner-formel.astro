@@ -237,6 +237,117 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
+    <!-- Neu: Bruch, Dezimalzahl & Prozent Umrechnungstabelle -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+        Bruch, Dezimalzahl & Prozent: Die große Umrechnungstabelle
+      </h2>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Jede Prozentangabe ist im Kern ein Bruch mit dem Nenner 100 oder eine zweistellige Dezimalzahl. Die wichtigsten Standardwerte auswendig zu kennen, spart im Alltag enorm viel Zeit:
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr style="background-color: var(--bg-card);">
+              <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Bruch</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Dezimalzahl</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Prozentsatz</th>
+              <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">Bedeutung im Alltag</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-body);">
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/2</td>
+              <td class="p-3 font-mono">0,50</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">50%</td>
+              <td class="p-3">Die Hälfte (z.B. 50% Rabatt)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/4</td>
+              <td class="p-3 font-mono">0,25</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">25%</td>
+              <td class="p-3">Ein Viertel</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">3/4</td>
+              <td class="p-3 font-mono">0,75</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">75%</td>
+              <td class="p-3">Drei Viertel</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/5</td>
+              <td class="p-3 font-mono">0,20</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">20%</td>
+              <td class="p-3">Ein Fünftel</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/8</td>
+              <td class="p-3 font-mono">0,125</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">12,5%</td>
+              <td class="p-3">Ein Achtel (z.B. 25€ von 200€)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/10</td>
+              <td class="p-3 font-mono">0,10</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">10%</td>
+              <td class="p-3">Ein Zehntel (Komma um 1 Stelle verschieben)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono font-bold">1/100</td>
+              <td class="p-3 font-mono">0,01</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">1%</td>
+              <td class="p-3">Ein Hundertstel (Komma um 2 Stellen verschieben)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Neu: Prozentrechner Formel Excel -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+        Prozentrechner Formel Excel: Syntax für Tabellenkalkulationen
+      </h2>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        In Microsoft Excel, Google Sheets und Apple Numbers können Sie Prozentrechnungen mit simplen Formeln berechnen:
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr style="background-color: var(--bg-card);">
+              <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Zielrechnung</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Excel-Syntax</th>
+              <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">Hinweis</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-body);">
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-semibold">Prozentwert berechnen</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">=A1*B1</td>
+              <td class="p-3">A1 = Grundwert (z.B. 250 €), B1 = 15% (als % formatiert)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-semibold">Prozentsatz ermitteln</td>
+              <td class="p-3 font-mono font-bold text-purple-600 dark:text-purple-400">=A1/B1</td>
+              <td class="p-3">A1 = Teilwert (30 €), B1 = Grundwert (250 €) → Zelle als % formatieren</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-semibold">Rabatt abziehen</td>
+              <td class="p-3 font-mono font-bold text-pink-600 dark:text-pink-400">=A1*(1-B1)</td>
+              <td class="p-3">A1 = Preis, B1 = Rabattsatz (z.B. 20%)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">Prozentuale Steigerung</td>
+              <td class="p-3 font-mono font-bold text-amber-600 dark:text-amber-400">=(B1-A1)/A1</td>
+              <td class="p-3">A1 = alter Wert, B1 = neuer Wert</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <!-- Section 4: Übungsaufgaben -->
     <section class="rounded-3xl border p-8 sm:p-10 shadow-sm" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
       <h2 class="font-display font-black text-2xl tracking-tight mb-6" style="color: var(--text-ink);">

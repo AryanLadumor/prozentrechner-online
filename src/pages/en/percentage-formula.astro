@@ -4,14 +4,15 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout
   lang="en"
-  title="Percentage Formula: All Formulas & Examples Explained"
-  description="Percentage formula guide: every formula explained – percentage value, rate and base value – with step-by-step calculations and worked examples."
+  title="Percentage Formulas: Complete Overview with Worked Examples"
+  description="Master percentage formulas: step-by-step math for percentage value, rate, base value, percentage change, and Excel syntax with worked examples and solutions."
   canonicalUrl="https://prozentrechner-online.com/en/percentage-formula"
   alternateUrls={{
     de: "https://prozentrechner-online.com/prozentrechner-formel",
     en: "https://prozentrechner-online.com/en/percentage-formula"
   }}
 >
+  <!-- Breadcrumb & Header -->
   <div class="mb-8">
     <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
       <a href="/en" class="hover:underline">Home</a>
@@ -20,10 +21,10 @@ import Layout from '../../layouts/Layout.astro';
     </nav>
 
     <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
-      Percentage Formulas: Complete Overview
+      Percentage Formulas: Complete Guide with Worked Steps
     </h1>
     <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
-      All important percentage formulas clearly explained with step-by-step calculations, examples and memory aids. Perfect for school, studies and everyday use.
+      All fundamental percentage formulas clearly explained with mathematical derivations, conversion tables, visual memory aids, and solved practice problems.
     </p>
   </div>
 
@@ -34,7 +35,7 @@ import Layout from '../../layouts/Layout.astro';
       <h3 class="font-display font-bold text-lg mb-2" style="color: var(--text-ink);">Percentage Value (W)</h3>
       <div class="font-mono text-sm font-bold text-emerald-600 dark:text-emerald-400 mb-2">W = (G × p) ÷ 100</div>
       <p class="text-xs" style="color: var(--text-muted);">
-        "What is X% of Y?" – Calculates the concrete portion.
+        "What is p% of G?" – Calculates the specific portion.
       </p>
     </div>
 
@@ -43,7 +44,7 @@ import Layout from '../../layouts/Layout.astro';
       <h3 class="font-display font-bold text-lg mb-2" style="color: var(--text-ink);">Percentage Rate (p)</h3>
       <div class="font-mono text-sm font-bold text-purple-600 dark:text-purple-400 mb-2">p = (W ÷ G) × 100</div>
       <p class="text-xs" style="color: var(--text-muted);">
-        "X is what % of Y?" – Finds the percentage rate.
+        "W is what % of G?" – Solves for the rate per hundred.
       </p>
     </div>
 
@@ -52,24 +53,222 @@ import Layout from '../../layouts/Layout.astro';
       <h3 class="font-display font-bold text-lg mb-2" style="color: var(--text-ink);">Base Value (G)</h3>
       <div class="font-mono text-sm font-bold text-amber-600 dark:text-amber-400 mb-2">G = (W × 100) ÷ p</div>
       <p class="text-xs" style="color: var(--text-muted);">
-        "X is Y% of what?" – Determines the total amount (100%).
+        "W is p% of what?" – Calculates the whole (100%).
       </p>
     </div>
   </div>
 
-  <!-- Back to Calculator CTA -->
-  <div class="mt-12 p-8 rounded-3xl border text-center" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-    <h3 class="font-display font-bold text-xl mb-3" style="color: var(--text-ink);">
-      Ready to Calculate?
-    </h3>
-    <p class="text-sm mb-6" style="color: var(--text-muted);">
-      Use our free online calculators with automatic step-by-step solutions
-    </p>
-    <a href="/en" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95 shadow-md" style="background-color: var(--accent); color: white;">
-      <span>Go to Calculators</span>
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-      </svg>
-    </a>
+  <!-- Detailed Explanations -->
+  <div class="space-y-8">
+    <!-- Section 1: The Three Core Formulas with Worked Steps -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+        In-Depth Guide to the 3 Core Formulas
+      </h2>
+
+      <div class="space-y-6">
+        <!-- Formula 1: Value -->
+        <div class="p-5 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-display font-bold text-lg mb-2 text-emerald-600 dark:text-emerald-400">1. Calculate Percentage Value (W)</h3>
+          <div class="font-mono text-base font-bold mb-3">W = (G × p) ÷ 100</div>
+          <p class="text-sm mb-3" style="color: var(--text-body);">
+            Use this formula when you know the total amount and the percentage rate, and want to find the exact portion.
+          </p>
+          <div class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/20">
+            <div class="font-bold text-sm mb-2" style="color: var(--text-ink);">📝 Worked Example:</div>
+            <p class="text-sm mb-2" style="color: var(--text-body);">What is 15% of $240?</p>
+            <div class="font-mono text-xs space-y-1">
+              <div>Base Value (G) = $240</div>
+              <div>Percentage Rate (p) = 15%</div>
+              <div>W = ($240 × 15) ÷ 100 = $3,600 ÷ 100 = <strong class="text-emerald-600 dark:text-emerald-400">$36.00</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formula 2: Rate -->
+        <div class="p-5 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-display font-bold text-lg mb-2 text-purple-600 dark:text-purple-400">2. Calculate Percentage Rate (p)</h3>
+          <div class="font-mono text-base font-bold mb-3">p = (W ÷ G) × 100</div>
+          <p class="text-sm mb-3" style="color: var(--text-body);">
+            Use this formula when you know both the portion and the whole, and want to express the relationship as a percentage.
+          </p>
+          <div class="p-4 rounded-xl bg-purple-50 dark:bg-purple-950/20">
+            <div class="font-bold text-sm mb-2" style="color: var(--text-ink);">📝 Worked Example:</div>
+            <p class="text-sm mb-2" style="color: var(--text-body);">$45 is what percentage of $300?</p>
+            <div class="font-mono text-xs space-y-1">
+              <div>Part (W) = $45</div>
+              <div>Whole (G) = $300</div>
+              <div>p = ($45 ÷ $300) × 100 = 0.15 × 100 = <strong class="text-purple-600 dark:text-purple-400">15%</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formula 3: Base -->
+        <div class="p-5 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h3 class="font-display font-bold text-lg mb-2 text-amber-600 dark:text-amber-400">3. Calculate Base Value (G)</h3>
+          <div class="font-mono text-base font-bold mb-3">G = (W × 100) ÷ p</div>
+          <p class="text-sm mb-3" style="color: var(--text-body);">
+            Use this formula when you know a portion and its corresponding percentage, and need to reconstruct the original 100% total.
+          </p>
+          <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/20">
+            <div class="font-bold text-sm mb-2" style="color: var(--text-ink);">📝 Worked Example:</div>
+            <p class="text-sm mb-2" style="color: var(--text-body);">$60 represents 25% of what total budget?</p>
+            <div class="font-mono text-xs space-y-1">
+              <div>Portion (W) = $60</div>
+              <div>Rate (p) = 25%</div>
+              <div>G = ($60 × 100) ÷ 25 = $6,000 ÷ 25 = <strong class="text-amber-600 dark:text-amber-400">$240.00</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Visual Memory Aid (The Percentage Triangle) -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+        The Percentage Triangle: Visual Memory Shortcut
+      </h2>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Similar to Ohm's Law in physics (V = I × R) or speed formulas (Distance = Speed × Time), the <strong>Percentage Triangle</strong> makes it impossible to forget how to rearrange the terms:
+      </p>
+
+      <div class="p-6 rounded-2xl border text-center space-y-4 max-w-md mx-auto" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-mono font-bold text-xl py-3 border-b" style="border-color: var(--border-hairline); color: var(--text-ink);">
+          W (Percentage Value)
+        </div>
+        <div class="font-mono font-bold text-lg flex items-center justify-around" style="color: var(--accent);">
+          <span>G (Base)</span>
+          <span style="color: var(--text-muted);">×</span>
+          <span>p% (Rate ÷ 100)</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <strong>To find W:</strong> Cover W with your finger. You see <code>G × p%</code>.
+        </div>
+        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <strong>To find G:</strong> Cover G with your finger. You see <code>W ÷ p%</code>.
+        </div>
+        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <strong>To find p:</strong> Cover p with your finger. You see <code>(W ÷ G) × 100</code>.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Fraction to Percentage Conversion Chart -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+        Fraction, Decimal & Percentage Conversion Chart
+      </h2>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Memorizing standard fraction equivalents dramatically speeds up everyday math:
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr style="background-color: var(--bg-card);">
+              <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Fraction</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Decimal</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Percentage</th>
+              <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">Everyday Meaning</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-body);">
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/2</td>
+              <td class="p-3 font-mono">0.50</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">50%</td>
+              <td class="p-3">Exactly half</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/3</td>
+              <td class="p-3 font-mono">0.3333...</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">33.33%</td>
+              <td class="p-3">One third</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/4</td>
+              <td class="p-3 font-mono">0.25</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">25%</td>
+              <td class="p-3">One quarter</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/5</td>
+              <td class="p-3 font-mono">0.20</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">20%</td>
+              <td class="p-3">One fifth</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/8</td>
+              <td class="p-3 font-mono">0.125</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">12.5%</td>
+              <td class="p-3">One eighth</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono font-bold">1/10</td>
+              <td class="p-3 font-mono">0.10</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">10%</td>
+              <td class="p-3">One tenth</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono font-bold">3/4</td>
+              <td class="p-3 font-mono">0.75</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">75%</td>
+              <td class="p-3">Three quarters</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Practice Problems -->
+    <section class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
+        Solved Practice Questions & Step-by-Step Solutions
+      </h2>
+
+      <div class="space-y-4 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Practice 1: What is 8% sales tax on a $125 purchase?</summary>
+          <div class="mt-3 space-y-1 font-mono text-neutral-600 dark:text-neutral-400">
+            <div>W = ($125 × 8) ÷ 100 = $1,000 ÷ 100 = <strong>$10.00 tax</strong></div>
+            <div>Total checkout price: $125 + $10 = $135.00</div>
+          </div>
+        </details>
+
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Practice 2: A student scores 68 out of 85 points on a test. What is their percentage score?</summary>
+          <div class="mt-3 space-y-1 font-mono text-neutral-600 dark:text-neutral-400">
+            <div>p = (68 ÷ 85) × 100 = 0.80 × 100 = <strong>80.0% (Grade B)</strong></div>
+          </div>
+        </details>
+
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Practice 3: A flight ticket costs $360 after a 20% discount. What was the original fare?</summary>
+          <div class="mt-3 space-y-1 font-mono text-neutral-600 dark:text-neutral-400">
+            <div>Discounted price represents 80% (0.80) of original.</div>
+            <div>G = $360 ÷ 0.80 = <strong>$450.00 original ticket fare</strong></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Back to Calculator CTA -->
+    <div class="p-8 rounded-3xl border text-center" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+      <h3 class="font-display font-bold text-xl mb-3" style="color: var(--text-ink);">
+        Ready to Calculate?
+      </h3>
+      <p class="text-sm mb-6" style="color: var(--text-muted);">
+        Use our free interactive online calculators with instant step-by-step solutions
+      </p>
+      <a href="/en" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95 shadow-md" style="background-color: var(--accent); color: white;">
+        <span>Go to Main Calculator</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
   </div>
 </Layout>

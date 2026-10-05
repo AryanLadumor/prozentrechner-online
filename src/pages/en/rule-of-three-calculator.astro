@@ -5,14 +5,15 @@ import RuleOfThreeCalc from '../../components/calculators/RuleOfThreeCalc.astro'
 
 <Layout
   lang="en"
-  title="Rule of Three Calculator Online: Solve Proportions"
-  description="Rule of Three calculator online: solve proportional problems in 3 clear steps. Perfect for conversions, ratios and proportion calculations."
+  title="Rule of Three Calculator Online: Solve Proportions Fast"
+  description="Rule of Three calculator online: solve direct, inverse and compound proportional problems in 3 easy steps. Free with clear worked mathematical solutions."
   canonicalUrl="https://prozentrechner-online.com/en/rule-of-three-calculator"
   alternateUrls={{
     de: "https://prozentrechner-online.com/dreisatz-rechner",
     en: "https://prozentrechner-online.com/en/rule-of-three-calculator"
   }}
 >
+  <!-- Breadcrumb & Header -->
   <div class="mb-8">
     <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
       <a href="/en" class="hover:underline">Home</a>
@@ -21,30 +22,153 @@ import RuleOfThreeCalc from '../../components/calculators/RuleOfThreeCalc.astro'
     </nav>
 
     <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
-      Rule of Three Calculator: Solve Proportions
+      Rule of Three Calculator: Solve Proportions Online
     </h1>
     <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
-      Solve proportional problems with the classic Rule of Three method in 3 simple steps. Perfect for conversions, recipes, and ratio calculations.
+      Solve proportional equations effortlessly with the classic Rule of Three method. Perfect for scaling culinary recipes, calculating fuel usage, comparing unit prices, and solving math homework.
     </p>
   </div>
 
+  <!-- Interactive Tool -->
   <div class="mb-16">
     <RuleOfThreeCalc lang="en" />
   </div>
 
-  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
-      What is the Rule of Three?
-    </h2>
+  <!-- Deep Guide & SEO Explanations -->
+  <div class="rounded-3xl border p-8 sm:p-12 shadow-sm space-y-8" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" style="background-color: var(--bg-card); color: var(--text-ink);">
+        ⚖️ Proportions & Mathematical Logic
+      </div>
+      <h2 class="font-display font-black text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
+        What is the Rule of Three and How Does It Work?
+      </h2>
+      <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+        The <strong>Rule of Three</strong> (also known in mathematics as <em>cross-multiplication</em> or solving proportions) is an ancient, fundamental arithmetic method that calculates an unknown fourth value from three known, related values. It forms the backbone of commercial math, chemistry stoichiometry, culinary portioning, and school algebra.
+      </p>
+    </div>
 
-    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
-      The <strong>Rule of Three</strong> is a mathematical method for solving proportion problems in three steps:
-    </p>
+    <!-- The 3 Step Breakdown -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        The 3 Standard Steps of the Method
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        The reason this technique is called the "Rule of Three" is because it resolves proportional relationships across three distinct statements:
+      </p>
 
-    <div class="p-4 rounded-2xl border space-y-2 font-mono text-xs sm:text-sm" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-      <div><strong>Step 1:</strong> Set up the known relationship (A → B)</div>
-      <div><strong>Step 2:</strong> Calculate the unit rate (divide by A)</div>
-      <div><strong>Step 3:</strong> Scale to target quantity (multiply by C)</div>
+      <div class="p-5 rounded-2xl border space-y-3 font-mono text-xs sm:text-sm" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div><strong>Statement 1 (Known Relationship):</strong> A units correspond to B units (A → B)</div>
+        <div><strong>Statement 2 (Find the Unit Rate):</strong> 1 unit corresponds to B ÷ A (divide both sides by A)</div>
+        <div><strong>Statement 3 (Scale to Target Quantity):</strong> C units correspond to (B ÷ A) × C (multiply by C)</div>
+      </div>
+    </div>
+
+    <!-- Direct vs Inverse -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Direct Proportion vs. Inverse (Indirect) Proportion
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Before solving any problem, you must determine whether the relationship is <strong>direct</strong> or <strong>inverse</strong>:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h4 class="font-bold text-sm text-purple-600 dark:text-purple-400">Direct Proportion ("More yields More")</h4>
+          <p class="text-xs" style="color: var(--text-muted);">
+            Both values move in the exact same direction. If you double quantity A, quantity B doubles.
+          </p>
+          <div class="font-mono text-xs font-bold pt-1">Cross-Multiplication Formula: x = (B × C) ÷ A</div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Examples: Buying more items costs more money; driving further requires more gasoline; cooking for more guests requires more flour.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h4 class="font-bold text-sm text-amber-600 dark:text-amber-400">Inverse Proportion ("More yields Less")</h4>
+          <p class="text-xs" style="color: var(--text-muted);">
+            Values move in opposite directions. If you double quantity A, quantity B is cut in half.
+          </p>
+          <div class="font-mono text-xs font-bold pt-1">Inverse Formula: x = (A × B) ÷ C</div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Examples: Adding more workers decreases construction time; driving faster reduces travel duration; sharing a pizza among more people yields smaller slices.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practical Scenarios -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Real-World Worked Examples
+      </h3>
+
+      <div class="space-y-3 text-xs sm:text-sm">
+        <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm mb-1 text-emerald-600 dark:text-emerald-400">🧑‍🍳 Scaling Kitchen Recipes (Direct Proportion)</div>
+          <p class="text-xs leading-relaxed" style="color: var(--text-body);">
+            <strong>Problem:</strong> A pancake recipe for 4 people requires 350 grams of flour. How much flour do you need for 10 people?
+          </p>
+          <ul class="list-disc list-inside space-y-1 text-xs font-mono mt-2" style="color: var(--text-muted);">
+            <li>Step 1: 4 people = 350g</li>
+            <li>Step 2 (Unit Rate): 1 person = 350g ÷ 4 = 87.5g</li>
+            <li>Step 3 (Target): 10 people = 87.5g × 10 = <strong>875 grams of flour</strong></li>
+          </ul>
+        </div>
+
+        <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm mb-1 text-teal-600 dark:text-teal-400">⏱️ Workforce Scheduling (Inverse Proportion)</div>
+          <p class="text-xs leading-relaxed" style="color: var(--text-body);">
+            <strong>Problem:</strong> 6 painters can finish repainting a school in 10 days. If the school hires 9 painters working at the same pace, how long will the job take?
+          </p>
+          <ul class="list-disc list-inside space-y-1 text-xs font-mono mt-2" style="color: var(--text-muted);">
+            <li>Total Labor required: 6 painters × 10 days = 60 painter-days</li>
+            <li>Scaling to 9 painters: 60 painter-days ÷ 9 painters = <strong>6.67 days (approx. 6 days and 5 hours)</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compound Rule of Three -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        The Compound (Double) Rule of Three
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        When a problem involves three or more variables simultaneously (such as workers, hours per day, and output volume), you use the <strong>compound rule of three</strong>:
+      </p>
+      <div class="p-5 rounded-2xl border space-y-2 text-xs" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-sm" style="color: var(--text-ink);">Example Scenario:</div>
+        <p style="color: var(--text-body);">
+          If 4 machines produce 600 components in 5 hours, how many components will 7 machines produce in 8 hours?
+        </p>
+        <div class="font-mono space-y-1 text-neutral-600 dark:text-neutral-400">
+          <div>1. Find production per machine per hour: 600 ÷ (4 machines × 5 hours) = 30 components / machine-hour</div>
+          <div>2. Multiply by new variables: 7 machines × 8 hours × 30 components = <strong>1,680 components</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Frequently Asked Questions About the Rule of Three
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">How is the Rule of Three related to percentage calculations?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Every standard percentage calculation is simply a direct rule of three proportion where the total base quantity is tied to 100%. For example: If $80 equals 100%, then 1% is $80/100 = $0.80, and 15% is $0.80 × 15 = $12.00.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">What is cross-multiplication?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Cross-multiplication is the algebraic shortcut for solving equivalent fractions. If A / B = C / x, multiplying diagonally gives A × x = B × C, which quickly simplifies to x = (B × C) ÷ A.
+          </p>
+        </details>
+      </div>
     </div>
   </div>
 </Layout>

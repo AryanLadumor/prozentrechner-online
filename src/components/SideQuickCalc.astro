@@ -1,0 +1,545 @@
+---
+interface Props {
+  lang?: "de" | "en";
+}
+
+const { lang = "de" } = Astro.props;
+
+const copy = {
+  de: {
+    toggleBtn: "",
+    title: "Taschenrechner testen",
+    close: "Schließen",
+  },
+  en: {
+    toggleBtn: "",
+    title: "Try Calculator",
+    close: "Close",
+  },
+}[lang];
+---
+
+<!-- Floating Side Launcher Tab -->
+<aside
+  aria-label={copy.title}
+  class="fixed right-0 top-1/2 -translate-y-1/2 z-40 select-none"
+>
+  <button
+    id="side-calc-toggle"
+    type="button"
+    class="calc-tab-btn  flex items-center gap-1.5 px-3 py-2.5 rounded-l-2xl border-l border-t border-b shadow-xl font-bold text-xs cursor-pointer transition-all hover:-translate-x-1 active:scale-95 touch-target"
+    aria-expanded="false"
+    aria-controls="side-calc-drawer"
+  >
+  <!-- </svg> -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-4 h-4"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M2 3L2 17C2 18.6569 3.34315 20 5 20H15C16.6569 20 18 18.6569 18 17V3C18 1.34315 16.6569 0 15 0H5C3.34315 0 2 1.34315 2 3ZM5 18C4.44772 18 4 17.5523 4 17L4 3C4 2.44772 4.44772 2 5 2H15C15.5523 2 16 2.44772 16 3V17C16 17.5523 15.5523 18 15 18H5Z"
+        fill="#000000"></path>
+      <path
+        d="M5 7.5V3.5C5 3.22386 5.22386 3 5.5 3L14.5 3C14.7761 3 15 3.22386 15 3.5V7.5C15 7.77614 14.7761 8 14.5 8H5.5C5.22386 8 5 7.77614 5 7.5Z"
+        fill="#000000"></path>
+      <path
+        d="M12 15.7V10.8C12 10.3582 12.3582 10 12.8 10H14.2C14.6418 10 15 10.3582 15 10.8V15.7C15 16.1418 14.6418 16.5 14.2 16.5H12.8C12.3582 16.5 12 16.1418 12 15.7Z"
+        fill="#000000"></path>
+      <path
+        d="M5 12V10.5C5 10.2239 5.22386 10 5.5 10H7C7.27614 10 7.5 10.2239 7.5 10.5V12C7.5 12.2761 7.27614 12.5 7 12.5H5.5C5.22386 12.5 5 12.2761 5 12Z"
+        fill="#000000"></path>
+      <path
+        d="M8.5 12V10.5C8.5 10.2239 8.72386 10 9 10H10.5C10.7761 10 11 10.2239 11 10.5V12C11 12.2761 10.7761 12.5 10.5 12.5H9C8.72386 12.5 8.5 12.2761 8.5 12Z"
+        fill="#000000"></path>
+      <path
+        d="M5 16V14.5C5 14.2239 5.22386 14 5.5 14H7C7.27614 14 7.5 14.2239 7.5 14.5V16C7.5 16.2761 7.27614 16.5 7 16.5H5.5C5.22386 16.5 5 16.2761 5 16Z"
+        fill="#000000"></path>
+      <path
+        d="M8.5 16V14.5C8.5 14.2239 8.72386 14 9 14H10.5C10.7761 14 11 14.2239 11 14.5V16C11 16.2761 10.7761 16.5 10.5 16.5H9C8.72386 16.5 8.5 16.2761 8.5 16Z"
+        fill="#000000"></path>
+    </svg>
+
+    <span class="tracking-wide hidden sm:inline">{copy.toggleBtn}</span>
+  </button>
+
+  <!-- Slide-out Drawer Panel -->
+  <div
+    id="side-calc-drawer"
+    class="fixed right-0 top-1/2 -translate-y-1/2 w-[290px] sm:w-[310px] rounded-l-3xl border-l border-t border-b shadow-2xl transition-all duration-300 translate-x-full opacity-0 pointer-events-none z-50 overflow-hidden calc-drawer"
+  >
+    <div class="calc-shell p-4 rounded-l-3xl">
+      <!-- Title bar -->
+      <div class="flex items-center justify-between mb-3 px-1">
+        <span
+          class="font-display font-black text-sm tracking-tight calc-title-text"
+          >{copy.title}</span
+        >
+        <button
+          id="side-calc-close"
+          type="button"
+          aria-label={copy.close}
+          class="calc-close-btn w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold cursor-pointer transition-all hover:scale-110 active:scale-95"
+          >✕</button
+        >
+      </div>
+
+      <!-- Display -->
+      <div
+        class="calc-display-wrap mb-3 rounded-2xl px-4 py-3 text-right"
+        style="min-height: 62px;"
+      >
+        <div
+          id="calc-expression"
+          class="text-xs font-mono truncate calc-expr-text"
+          style="min-height: 16px;"
+        >
+          &nbsp;
+        </div>
+        <div
+          id="calc-display"
+          class="font-mono font-black text-2xl tracking-tight leading-tight calc-display-text"
+        >
+          0
+        </div>
+      </div>
+
+      <!-- Button Grid: 5 columns -->
+      <div class="grid grid-cols-5 gap-1.5">
+        <!-- Row 1: 7 8 9 ÷ % -->
+        <button class="calc-btn calc-num" data-action="digit" data-val="7"
+          >7</button
+        >
+        <button class="calc-btn calc-num" data-action="digit" data-val="8"
+          >8</button
+        >
+        <button class="calc-btn calc-num" data-action="digit" data-val="9"
+          >9</button
+        >
+        <button class="calc-btn calc-op" data-action="op" data-val="div"
+          >÷</button
+        >
+        <button class="calc-btn calc-op" data-action="percent">%</button>
+
+        <!-- Row 2: 4 5 6 × ⌫ -->
+        <button class="calc-btn calc-num" data-action="digit" data-val="4"
+          >4</button
+        >
+        <button class="calc-btn calc-num" data-action="digit" data-val="5"
+          >5</button
+        >
+        <button class="calc-btn calc-num" data-action="digit" data-val="6"
+          >6</button
+        >
+        <button class="calc-btn calc-op" data-action="op" data-val="mul"
+          >×</button
+        >
+        <button
+          class="calc-btn calc-fn"
+          data-action="backspace"
+          aria-label="Backspace">⌫</button
+        >
+
+        <!-- Row 3: 1 2 3 − C -->
+        <button class="calc-btn calc-num" data-action="digit" data-val="1"
+          >1</button
+        >
+        <button class="calc-btn calc-num" data-action="digit" data-val="2"
+          >2</button
+        >
+        <button class="calc-btn calc-num" data-action="digit" data-val="3"
+          >3</button
+        >
+        <button class="calc-btn calc-op" data-action="op" data-val="sub"
+          >−</button
+        >
+        <button class="calc-btn calc-fn" data-action="clear-entry">C</button>
+
+        <!-- Row 4: 0 , = + AC -->
+        <button class="calc-btn calc-num" data-action="digit" data-val="0"
+          >0</button
+        >
+        <button class="calc-btn calc-num" data-action="decimal">,</button>
+        <button class="calc-btn calc-eq" data-action="equals">=</button>
+        <button class="calc-btn calc-op" data-action="op" data-val="add"
+          >+</button
+        >
+        <button class="calc-btn calc-fn" data-action="all-clear">AC</button>
+
+        <!-- Row 5: x² x³ √ Π -->
+        <button class="calc-btn calc-sci" data-action="sci" data-val="sq"
+          >x²</button
+        >
+        <button class="calc-btn calc-sci" data-action="sci" data-val="cu"
+          >x³</button
+        >
+        <button class="calc-btn calc-sci" data-action="sci" data-val="sqrt"
+          >√</button
+        >
+        <button class="calc-btn calc-sci" data-action="sci" data-val="pi"
+          >Π</button
+        >
+        <div></div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<style>
+  /* ── Floating tab ── */
+  .calc-tab-btn {
+    background-color: var(--accent);
+    color: #fff;
+    border-color: var(--border-hairline);
+  }
+
+  /* ── Drawer container ── */
+  .calc-drawer {
+    border-color: var(--border-hairline);
+    box-shadow: var(--card-shadow);
+  }
+
+  /* ── Shell: card surface so it blends with every theme ── */
+  .calc-shell {
+    background-color: var(--bg-card);
+  }
+
+  /* ── Title bar ── */
+  .calc-title-text {
+    color: var(--text-ink);
+  }
+  .calc-close-btn {
+    background-color: var(--bg-surface-soft);
+    border: 1px solid var(--border-hairline);
+    color: var(--text-muted);
+  }
+  .calc-close-btn:hover {
+    color: var(--text-ink);
+  }
+
+  /* ── Display ── */
+  .calc-display-wrap {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-hairline);
+  }
+  .calc-expr-text {
+    color: var(--text-muted);
+  }
+  .calc-display-text {
+    color: var(--text-ink);
+  }
+
+  /* ── Base button ── */
+  .calc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.875rem;
+    height: 44px;
+    cursor: pointer;
+    border: 1px solid var(--border-hairline);
+    outline: none;
+    transition:
+      transform 80ms ease,
+      filter 80ms ease;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.07),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .calc-btn:active {
+    transform: scale(0.91);
+    filter: brightness(0.88);
+  }
+  .calc-btn:hover {
+    filter: brightness(1.06);
+  }
+
+  /* Number keys — main white/light surface */
+  .calc-num {
+    background-color: var(--bg-surface);
+    color: var(--text-ink);
+  }
+
+  /* Operator keys — soft secondary surface */
+  .calc-op {
+    background-color: var(--bg-surface-soft);
+    color: var(--text-body);
+  }
+
+  /* Function keys (C, AC, ⌫) — badge background */
+  .calc-fn {
+    background-color: var(--badge-bg);
+    color: var(--badge-text);
+    font-size: 0.82rem;
+  }
+
+  /* Equals — accent color, always vivid */
+  .calc-eq {
+    background-color: var(--accent);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Scientific row — uses canvas for contrast against card shell */
+  .calc-sci {
+    background-color: var(--bg-canvas);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    border-color: var(--border-hairline);
+  }
+  .calc-sci:hover {
+    color: var(--text-ink);
+    background-color: var(--bg-surface-soft);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var toggle = document.getElementById("side-calc-toggle");
+    var drawer = document.getElementById("side-calc-drawer");
+    var closeBtn = document.getElementById("side-calc-close");
+    var dispEl = document.getElementById("calc-display");
+    var exprEl = document.getElementById("calc-expression");
+
+    var curVal = "0",
+      operator = null,
+      operand1 = null,
+      waitingOp2 = false,
+      justEq = false;
+
+    function fmt(n) {
+      if (n === "Error") return "Error";
+      return parseFloat(n.toPrecision(12)).toString().replace(".", ",");
+    }
+    function setDisplay(v) {
+      if (dispEl) dispEl.textContent = v;
+    }
+    function setExpr(v) {
+      if (exprEl) exprEl.textContent = v || "\u00a0";
+    }
+
+    function openDrawer() {
+      toggle && toggle.setAttribute("aria-expanded", "true");
+      if (drawer) {
+        drawer.classList.remove(
+          "translate-x-full",
+          "opacity-0",
+          "pointer-events-none",
+        );
+        drawer.classList.add(
+          "translate-x-0",
+          "opacity-100",
+          "pointer-events-auto",
+        );
+      }
+    }
+    function closeDrawer() {
+      toggle && toggle.setAttribute("aria-expanded", "false");
+      if (drawer) {
+        drawer.classList.add(
+          "translate-x-full",
+          "opacity-0",
+          "pointer-events-none",
+        );
+        drawer.classList.remove(
+          "translate-x-0",
+          "opacity-100",
+          "pointer-events-auto",
+        );
+      }
+    }
+    if (toggle)
+      toggle.addEventListener("click", function () {
+        toggle.getAttribute("aria-expanded") === "true"
+          ? closeDrawer()
+          : openDrawer();
+      });
+    if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+
+    function compute(op, a, b) {
+      if (op === "add") return a + b;
+      if (op === "sub") return a - b;
+      if (op === "mul") return a * b;
+      if (op === "div") return b === 0 ? "Error" : a / b;
+      return b;
+    }
+    function opSymbol(op) {
+      return (
+        { add: "+", sub: "\u2212", mul: "\u00d7", div: "\u00f7" }[op] || op
+      );
+    }
+
+    function handle(action, val) {
+      if (action === "all-clear") {
+        curVal = "0";
+        operator = null;
+        operand1 = null;
+        waitingOp2 = false;
+        justEq = false;
+        setDisplay("0");
+        setExpr("");
+        return;
+      }
+      if (action === "clear-entry") {
+        curVal = "0";
+        setDisplay("0");
+        return;
+      }
+      if (action === "backspace") {
+        curVal = curVal.length > 1 ? curVal.slice(0, -1) : "0";
+        setDisplay(curVal.replace(".", ","));
+        return;
+      }
+      if (action === "digit") {
+        if (justEq) {
+          curVal = val;
+          justEq = false;
+          setExpr("");
+        } else if (waitingOp2) {
+          curVal = val;
+          waitingOp2 = false;
+        } else {
+          curVal = curVal === "0" ? val : curVal + val;
+        }
+        setDisplay(curVal.replace(".", ","));
+        return;
+      }
+      if (action === "decimal") {
+        if (justEq) {
+          curVal = "0";
+          justEq = false;
+          setExpr("");
+        }
+        if (waitingOp2) {
+          curVal = "0";
+          waitingOp2 = false;
+        }
+        if (!curVal.includes(".")) curVal += ".";
+        setDisplay(curVal.replace(".", ","));
+        return;
+      }
+      if (action === "percent") {
+        var n = parseFloat(curVal);
+        if (!isNaN(n)) {
+          var res = operand1 !== null ? (operand1 * n) / 100 : n / 100;
+          curVal = String(res);
+          setDisplay(fmt(res));
+        }
+        return;
+      }
+      if (action === "sci") {
+        var n = parseFloat(curVal);
+        if (isNaN(n)) return;
+        var res, label;
+        if (val === "sq") {
+          res = n * n;
+          label = fmt(n) + "\u00b2";
+        }
+        if (val === "cu") {
+          res = n * n * n;
+          label = fmt(n) + "\u00b3";
+        }
+        if (val === "sqrt") {
+          res = Math.sqrt(n);
+          label = "\u221a(" + fmt(n) + ")";
+        }
+        if (val === "pi") {
+          curVal = String(Math.PI);
+          setDisplay("3,14159265");
+          setExpr("\u03a0");
+          return;
+        }
+        curVal = String(res);
+        setDisplay(fmt(res));
+        setExpr(label + " =");
+        justEq = true;
+        return;
+      }
+      if (action === "op") {
+        var n = parseFloat(curVal);
+        if (operand1 !== null && !waitingOp2) {
+          var res = compute(operator, operand1, n);
+          if (res === "Error") {
+            setDisplay("Error");
+            setExpr("");
+            operand1 = null;
+            operator = null;
+            return;
+          }
+          operand1 = res;
+          curVal = String(res);
+          setDisplay(fmt(res));
+        } else {
+          operand1 = n;
+        }
+        operator = val;
+        waitingOp2 = true;
+        justEq = false;
+        setExpr(fmt(operand1) + " " + opSymbol(val));
+        return;
+      }
+      if (action === "equals") {
+        if (operator === null || operand1 === null) return;
+        var n = parseFloat(curVal);
+        var res = compute(operator, operand1, n);
+        var exStr =
+          fmt(operand1) + " " + opSymbol(operator) + " " + fmt(n) + " =";
+        if (res === "Error") {
+          setDisplay("Error");
+          setExpr(exStr);
+        } else {
+          curVal = String(res);
+          setDisplay(fmt(res));
+          setExpr(exStr);
+        }
+        operand1 = null;
+        operator = null;
+        justEq = true;
+        waitingOp2 = false;
+        return;
+      }
+    }
+
+    document.querySelectorAll(".calc-btn[data-action]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        handle(
+          btn.getAttribute("data-action"),
+          btn.getAttribute("data-val") || "",
+        );
+      });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (!toggle || toggle.getAttribute("aria-expanded") !== "true") return;
+      var k = e.key;
+      if (k >= "0" && k <= "9") handle("digit", k);
+      else if (k === "." || k === ",") handle("decimal", "");
+      else if (k === "+") handle("op", "add");
+      else if (k === "-") handle("op", "sub");
+      else if (k === "*") handle("op", "mul");
+      else if (k === "/") {
+        e.preventDefault();
+        handle("op", "div");
+      } else if (k === "%") handle("percent", "");
+      else if (k === "Enter" || k === "=") {
+        e.preventDefault();
+        handle("equals", "");
+      } else if (k === "Backspace") handle("backspace", "");
+      else if (k === "Escape") {
+        handle("all-clear", "");
+        closeDrawer();
+      } else if (k === "Delete") handle("clear-entry", "");
+    });
+
+    setDisplay("0");
+  })();
+</script>

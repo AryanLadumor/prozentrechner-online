@@ -6,13 +6,14 @@ import VatCalc from '../../components/calculators/VatCalc.astro';
 <Layout
   lang="en"
   title="VAT Calculator Online: Value Added Tax, Net to Gross"
-  description="VAT calculator online: add or remove value added tax, convert net to gross and gross to net. Free, with a step-by-step calculation."
+  description="VAT calculator online: add or remove value added tax (VAT / GST), convert net to gross and gross to net with step-by-step math and global tax rates."
   canonicalUrl="https://prozentrechner-online.com/en/vat-calculator"
   alternateUrls={{
     de: "https://prozentrechner-online.com/mehrwertsteuerrechner",
     en: "https://prozentrechner-online.com/en/vat-calculator"
   }}
 >
+  <!-- Breadcrumb & Header -->
   <div class="mb-8">
     <nav class="flex items-center gap-2 text-xs font-semibold mb-3" style="color: var(--text-muted);">
       <a href="/en" class="hover:underline">Home</a>
@@ -21,35 +22,199 @@ import VatCalc from '../../components/calculators/VatCalc.astro';
     </nav>
 
     <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-2" style="color: var(--text-ink);">
-      VAT Calculator: Calculate Value Added Tax
+      Online VAT & Sales Tax Calculator
     </h1>
     <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
-      Calculate VAT (Value Added Tax), convert between net and gross prices with step-by-step calculation. Supports multiple tax rates.
+      Calculate Value Added Tax (VAT), sales tax, and GST with instant step-by-step solutions. Seamlessly convert between net and gross amounts across international tax brackets.
     </p>
   </div>
 
+  <!-- Interactive Tool -->
   <div class="mb-16">
     <VatCalc lang="en" />
   </div>
 
-  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
-      Understanding VAT Calculations
-    </h2>
+  <!-- Deep Guide & SEO Explanations -->
+  <div class="rounded-3xl border p-8 sm:p-12 shadow-sm space-y-8" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" style="background-color: var(--bg-card); color: var(--text-ink);">
+        🏛️ Tax Handbook & Formulas
+      </div>
+      <h2 class="font-display font-black text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
+        Understanding VAT: Net to Gross & Gross to Net Calculations
+      </h2>
+      <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+        <strong>Value Added Tax (VAT)</strong>, known as <em>Goods and Services Tax (GST)</em> in countries like Australia, New Zealand, and Canada, is a consumption tax assessed on the value added at each stage of a product's supply chain. Whether you are an entrepreneur issuing invoices, a freelancer setting rates, or a consumer checking a store receipt, calculating VAT accurately is essential.
+      </p>
+    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <h3 class="font-bold text-sm" style="color: var(--text-ink);">Add VAT (Net → Gross)</h3>
-        <div class="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">
-          Gross = Net × (1 + VAT% ÷ 100)
+    <!-- 1. The Core Formulas -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        The Core Formulas: Adding and Removing VAT
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Converting between net (pre-tax) and gross (including tax) prices requires using reciprocal percentage factors:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h4 class="font-bold text-sm text-teal-600 dark:text-teal-400">1. Adding VAT (Net → Gross)</h4>
+          <div class="font-mono text-xs space-y-1">
+            <div class="font-bold">Gross = Net × (1 + (VAT Rate ÷ 100))</div>
+            <div>VAT Amount = Net × (VAT Rate ÷ 100)</div>
+          </div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Example with 20% VAT: $100.00 Net × 1.20 = <strong>$120.00 Gross</strong> ($20.00 tax).
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h4 class="font-bold text-sm text-purple-600 dark:text-purple-400">2. Removing VAT (Gross → Net)</h4>
+          <div class="font-mono text-xs space-y-1">
+            <div class="font-bold">Net = Gross ÷ (1 + (VAT Rate ÷ 100))</div>
+            <div>VAT Amount = Gross − Net</div>
+          </div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Example with 20% VAT: $120.00 Gross ÷ 1.20 = <strong>$100.00 Net</strong> ($20.00 tax).
+          </p>
         </div>
       </div>
+    </div>
 
-      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-        <h3 class="font-bold text-sm" style="color: var(--text-ink);">Remove VAT (Gross → Net)</h3>
-        <div class="font-mono text-xs font-bold text-purple-600 dark:text-purple-400">
-          Net = Gross ÷ (1 + VAT% ÷ 100)
+    <!-- 2. The Reverse Tax Trap -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        The Reverse VAT Trap: Why Gross − 20% Is Mathematically Wrong
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        One of the most frequent accounting blunders occurs when people attempt to remove tax by subtracting the tax percentage directly from the gross price: <code>$120 − 20% = $96.00</code>. <strong>This gives the wrong answer!</strong>
+      </p>
+
+      <div class="p-5 rounded-2xl border bg-amber-50 dark:bg-amber-950/20 space-y-3" style="border-color: var(--border-hairline);">
+        <div class="font-bold text-sm text-amber-800 dark:text-amber-300">
+          ⚠️ Why the Math Fails:
         </div>
+        <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-body);">
+          When you <strong>add</strong> 20% VAT to a $100 net amount, the 20% is calculated on $100, which equals $20.
+          <br />When you <strong>subtract</strong> 20% from a $120 gross amount, you are calculating 20% of $120, which equals $24! Subtracting $24 leaves you with $96, understating the original net revenue by $4.
+        </p>
+        <div class="p-3 rounded-xl bg-white/60 dark:bg-black/20 font-mono text-xs">
+          <strong>The Golden Accounting Rule:</strong>
+          <br />To extract VAT from a gross amount, <strong>always divide by 1 + (Rate ÷ 100)</strong>.
+          <br />• At 20% VAT: Divide by <strong>1.20</strong> (Tax share = Gross × (20/120) = 16.67% of gross)
+          <br />• At 19% VAT: Divide by <strong>1.19</strong> (Tax share = Gross × (19/119) = 15.97% of gross)
+          <br />• At 10% GST: Divide by <strong>1.10</strong> (Tax share = Gross × (10/110) = 9.09% of gross)
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Global VAT Rates Table -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        International VAT & Sales Tax Rates Comparison
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Standard and reduced tax brackets vary significantly across key global economies:
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr style="background-color: var(--bg-card);">
+              <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Country / Region</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Tax System</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Standard Rate</th>
+              <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">Reduced Rates</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-body);">
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">United Kingdom</th>
+              <td class="p-3">UK VAT</td>
+              <td class="p-3 font-mono font-bold text-teal-600 dark:text-teal-400">20%</td>
+              <td class="p-3">5% (energy, child seats), 0% (food, books)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">Germany</th>
+              <td class="p-3">MwSt / USt</td>
+              <td class="p-3 font-mono font-bold text-teal-600 dark:text-teal-400">19%</td>
+              <td class="p-3">7% (basic food, books, hotel stays)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">France</th>
+              <td class="p-3">TVA</td>
+              <td class="p-3 font-mono font-bold text-teal-600 dark:text-teal-400">20%</td>
+              <td class="p-3">10% (dining, transit), 5.5% (groceries, energy)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">Australia</th>
+              <td class="p-3">GST</td>
+              <td class="p-3 font-mono font-bold text-teal-600 dark:text-teal-400">10%</td>
+              <td class="p-3">0% (fresh food, health, education)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">Canada</th>
+              <td class="p-3">GST / HST / PST</td>
+              <td class="p-3 font-mono font-bold text-teal-600 dark:text-teal-400">5% to 15%</td>
+              <td class="p-3">Varies by province (e.g. Ontario 13% HST, Alberta 5% GST)</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">United States</th>
+              <td class="p-3">State Sales Tax</td>
+              <td class="p-3 font-mono font-bold text-teal-600 dark:text-teal-400">0% to 9.5%</td>
+              <td class="p-3">No federal VAT; determined by state, county & city jurisdictions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. Business & Invoicing -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        VAT in Business & Commercial Invoicing
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm" style="color: var(--text-ink);">Input Tax vs. Output Tax</div>
+          <p class="leading-relaxed text-xs" style="color: var(--text-muted);">
+            VAT-registered businesses collect output tax from customers and pay input tax to vendors. When filing tax returns, businesses only pay the net difference to the tax authority or claim a refund if input tax exceeds output tax.
+          </p>
+        </div>
+        <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm" style="color: var(--text-ink);">B2B Reverse Charge Mechanism</div>
+          <p class="leading-relaxed text-xs" style="color: var(--text-muted);">
+            In cross-border business transactions (e.g., between EU member states), the buyer accounts for both input and output VAT under the reverse charge rule, eliminating the need for the seller to register for VAT in foreign jurisdictions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. FAQ -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Frequently Asked Questions About VAT
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">How do I calculate VAT at 20% on $500?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            If $500 is the net amount, multiply by 0.20 to get $100.00 VAT, giving a gross price of $600.00. If $500 is already the gross amount, divide by 1.20 to get a net price of $416.67, with $83.33 in tax.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">What is the difference between zero-rated and exempt goods?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Zero-rated goods have a 0% tax rate, but the business can still reclaim input tax on production expenses. Exempt goods (such as healthcare and postal services) carry no VAT, but businesses cannot reclaim input tax related to providing them.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Why does the US use Sales Tax instead of VAT?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Retail sales taxes in the US are levied exclusively at the final point of consumer purchase rather than throughout each manufacturing stage. States maintain individual sovereignty over tax rates, exemptions, and local municipal add-ons.
+          </p>
+        </details>
       </div>
     </div>
   </div>

@@ -179,5 +179,70 @@ import SalaryCalc from '../components/calculators/SalaryCalc.astro';
         </tbody>
       </table>
     </div>
+
+    <!-- Grenzsteuersatz & Kalte Progression -->
+    <div class="space-y-4 pt-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Grenzsteuersatz & Kalte Progression: Warum der Grenzsteuersatz entscheidet
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Ein weit verbreiteter Irrtum: Wer eine Gehaltserhöhung erhält, zahlt nicht auf sein <em>gesamtes</em> bisheriges Einkommen den höheren Steuersatz. Deutschland hat ein <strong>progressives Steuersystem</strong> mit Zonen.
+      </p>
+      <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-sm" style="color: var(--text-ink);">💡 Was bedeutet Grenzsteuersatz?</div>
+        <p class="text-xs leading-relaxed" style="color: var(--text-body);">
+          Der Grenzsteuersatz ist der Steuersatz, mit dem <strong>nur der letzte, zusätzlich verdiente Euro</strong> besteuert wird. Liegt Ihr Durchschnittssteuersatz beispielsweise bei 25%, Ihr Grenzsteuersatz aber bei 38%, gehen von 200 € Bruttoerhöhung ca. 38% Steuern (plus Sozialabgaben) ab. Daher verbleiben von 200 € Bruttoerhöhung in Steuerklasse 1 meist rund 100 bis 115 € netto.
+        </p>
+      </div>
+    </div>
+
+    <!-- Steuerfreie Gehaltsextras -->
+    <div class="space-y-4 pt-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Alternative zur Bruttoerhöhung: Steuerfreie Gehaltsextras
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Wenn der Arbeitgeber budgetär bei einer reinen Lohnerhöhung zögert, können steuerfreie Sachbezüge für beide Seiten vorteilhaft sein:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">🎁 50 € Sachbezug (§ 8 Abs. 2 EStG)</div>
+          <p style="color: var(--text-muted);">Gutscheinkarten, Tankgutscheine oder City-Cards bis 50 € monatlich bleiben komplett steuer- und sozialabgabenfrei (600 € netto/Jahr!).</p>
+        </div>
+        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-teal-600 dark:text-teal-400 mb-1">🚆 Deutschlandticket / Jobticket</div>
+          <p style="color: var(--text-muted);">Der Arbeitgeberzuschuss zum Nahverkehr ist nach § 3 Nr. 15 EStG steuerfrei und darf privat unbegrenzt genutzt werden.</p>
+        </div>
+        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-purple-600 dark:text-purple-400 mb-1">👶 Kindergarten-Zuschuss</div>
+          <p style="color: var(--text-muted);">Zuschüsse zur Unterbringung und Betreuung nicht schulpflichtiger Kinder können in unbegrenzter Höhe steuerfrei gewährt werden.</p>
+        </div>
+        <div class="p-3.5 rounded-xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">🚴 Dienstfahrrad (JobRad)</div>
+          <p style="color: var(--text-muted);">Per Gehaltsumwandlung leasen spart über die 0,25%-Regel spürbar Steuern und Sozialabgaben bei hochwertigen E-Bikes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Gehaltsrechner -->
+    <div class="space-y-4 pt-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Häufig gestellte Fragen zur Gehaltserhöhung
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Wie viel Prozent Gehaltserhöhung sind nach 1 Jahr realistisch?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Als Faustregel gelten in Deutschland: 3% bis 5% als jährlicher Standardausgleich für Inflation und Routinegewinn. Bei übernommenen Zusatzaufgaben oder messbaren Erfolgen fordern Angestellte in der Regel 7% bis 12%.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Wann sollte man das Gespräch für mehr Gehalt suchen?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Der beste Zeitpunkt liegt ca. 2 bis 3 Monate vor der jährlichen Budgetplanung des Unternehmens (meist im Herbst) oder unmittelbar nach dem erfolgreichen Abschluss eines wichtigen Meilensteins oder Projekts.
+          </p>
+        </details>
+      </div>
+    </div>
   </div>
 </Layout>

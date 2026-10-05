@@ -164,5 +164,89 @@ import PercentageDiffCalc from '../components/calculators/PercentageDiffCalc.ast
         <span style="color: var(--text-body);"> Prozentpunkte mit Prozent verwechseln. Von 10% auf 15% ist eine Änderung um <strong>5 Prozentpunkte</strong>, aber <strong>+50% relative Steigerung</strong>!</span>
       </div>
     </div>
+
+    <!-- Neuer Deep Dive: Prozent vs Prozentpunkte -->
+    <div class="space-y-4 pt-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Prozent vs. Prozentpunkte: Der entscheidende Unterschied
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Dieser Unterschied führt in Medien, Politik und Finanzberichten fast täglich zu Missverständnissen:
+      </p>
+      <div class="p-5 rounded-2xl border space-y-3" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-sm" style="color: var(--text-ink);">📊 Beispiel Leitzins oder Kreditzins: Anstieg von 2,0% auf 3,0%</div>
+        <ul class="list-disc list-inside space-y-1 text-xs" style="color: var(--text-body);">
+          <li><strong>In Prozentpunkten:</strong> 3,0% − 2,0% = <strong>+1,0 Prozentpunkt</strong> (die einfache arithmetische Differenz).</li>
+          <li><strong>In relativer Prozentänderung:</strong> ((3,0 − 2,0) ÷ 2,0) × 100 = <strong>+50% Steigerung</strong>!</li>
+        </ul>
+        <p class="text-[11px] leading-relaxed" style="color: var(--text-muted);">
+          Für einen Bauherrn bedeutet das: Die Zinslast steigt nicht um „ein Prozent", sondern die zu zahlenden Zinsen verteuern sich um volle 50%!
+        </p>
+      </div>
+    </div>
+
+    <!-- Neuer Deep Dive: Asymmetrie von Gewinn und Verlust -->
+    <div class="space-y-4 pt-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Die Börsen-Falle: Asymmetrie von Verlusten und Gewinnen
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        An der Börse und bei Geldanlagen gilt eine fundamentale mathematische Regel: Ein Verlust verlangt prozentual immer einen deutlich höheren Gewinn, um wieder auf das Ausgangsniveau zu kommen:
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr style="background-color: var(--bg-card);">
+              <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Kursverlust</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Restwert von 100 €</th>
+              <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">Erforderlicher Gewinn für Ausgleich</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-body);">
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono text-red-600 dark:text-red-400 font-bold">− 10%</td>
+              <td class="p-3">90,00 €</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">+ 11,1%</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono text-red-600 dark:text-red-400 font-bold">− 25%</td>
+              <td class="p-3">75,00 €</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">+ 33,3%</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <td class="p-3 font-mono text-red-600 dark:text-red-400 font-bold">− 50%</td>
+              <td class="p-3">50,00 €</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">+ 100,0% (Verdopplung!)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-red-600 dark:text-red-400 font-bold">− 75%</td>
+              <td class="p-3">25,00 €</td>
+              <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">+ 300,0% (Vervierfachung!)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="space-y-4 pt-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Häufig gestellte Fragen zur prozentualen Differenz
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Wie berechnet man die prozentuale Veränderung in Excel?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Schreiben Sie den alten Wert in Zelle A1 und den neuen Wert in Zelle B1. Die Excel-Formel lautet: <code>=(B1-A1)/A1</code>. Formatieren Sie die Zielzelle anschließend als „Prozent", um das Vorzeichen und das %-Symbol korrekt anzuzeigen.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Kann eine prozentuale Veränderung größer als 100% sein?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Ja! Wenn ein Wert von 20 auf 60 steigt, beträgt die Veränderung <code>((60 − 20) ÷ 20) × 100 = +200%</code>. Ein Rückgang kann bei positiven Größen hingegen maximal −100% betragen (Totalverlust auf null).
+          </p>
+        </details>
+      </div>
+    </div>
   </div>
 </Layout>

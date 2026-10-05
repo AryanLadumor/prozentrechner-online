@@ -6,7 +6,7 @@ import DiscountCalc from '../../components/calculators/DiscountCalc.astro';
 <Layout
   lang="en"
   title="Discount Calculator Online: Sale Price & Savings"
-  description="Discount calculator online: work out sale prices, stacked coupons and the total money saved. Free, instant, with step-by-step working."
+  description="Discount calculator online: work out sale prices, stacked coupons, percentage markdowns and money saved. Free, instant, with full step-by-step working."
   canonicalUrl="https://prozentrechner-online.com/en/discount-calculator"
   alternateUrls={{
     de: "https://prozentrechner-online.com/rabattrechner",
@@ -25,7 +25,7 @@ import DiscountCalc from '../../components/calculators/DiscountCalc.astro';
       Online Discount & Sale Calculator
     </h1>
     <p class="text-sm sm:text-base max-w-2xl" style="color: var(--text-muted);">
-      Find out the exact sale price, how much money you save, and compound extra promotional coupons or sales tax in real-time.
+      Find out the exact sale price, how much money you save, and compound extra promotional coupons or sales tax in real-time with step-by-step calculations.
     </p>
   </div>
 
@@ -35,26 +35,222 @@ import DiscountCalc from '../../components/calculators/DiscountCalc.astro';
   </div>
 
   <!-- Deep Guide & SEO Explanations -->
-  <div class="rounded-3xl border p-8 sm:p-10 shadow-sm space-y-6" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
-    <h2 class="font-display font-black text-2xl tracking-tight" style="color: var(--text-ink);">
-      How to Calculate Discounts: Formula & Methods
-    </h2>
-
-    <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
-      A discount represents a percentage reduction from the original list price of a product or service. To calculate a discount by hand:
-    </p>
-
-    <div class="p-4 rounded-2xl border font-mono text-xs sm:text-sm space-y-1" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-      <div class="font-bold text-pink-600 dark:text-pink-400">Discount Amount = Original Price × (Discount% ÷ 100)</div>
-      <div class="font-bold text-emerald-600 dark:text-emerald-400">Final Price = Original Price − Discount Amount</div>
+  <div class="rounded-3xl border p-8 sm:p-12 shadow-sm space-y-8" style="background-color: var(--bg-surface); border-color: var(--border-hairline);">
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" style="background-color: var(--bg-card); color: var(--text-ink);">
+        🏷️ Buyer's Guide & Formula Manual
+      </div>
+      <h2 class="font-display font-black text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
+        How to Calculate Discounts, Markdowns & Savings
+      </h2>
+      <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+        A discount is a percentage or fixed price reduction deducted from the manufacturer's suggested retail price (MSRP) or original sticker price. While calculating discounts may seem simple, retail promotions often involve stacked coupons, tiered volume pricing, and promotional exclusions that can quickly complicate math at checkout.
+      </p>
     </div>
 
-    <h3 class="font-display font-bold text-lg pt-2" style="color: var(--text-ink);">
-      Example: 30% Off an $80 Jacket
-    </h3>
-    <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm" style="color: var(--text-body);">
-      <li>Multiply the original price by 0.30: <code>$80 × 0.30 = $24</code> (Amount Saved).</li>
-      <li>Subtract the savings from the original price: <code>$80 − $24 = $56</code> (Final Sale Price).</li>
-    </ol>
+    <!-- 1. The Core Formulas -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        The Two Methods to Calculate Discounts
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        You can calculate a markdown by hand using either the two-step subtraction method or the single-step direct multiplier method:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm text-pink-600 dark:text-pink-400">Method 1: Two-Step Subtraction</div>
+          <div class="font-mono text-xs space-y-1">
+            <div>1. Savings = Original Price × (Discount% ÷ 100)</div>
+            <div>2. Final Price = Original Price − Savings</div>
+          </div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Best when you specifically want to know the exact dollar amount saved before checkout.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm text-emerald-600 dark:text-emerald-400">Method 2: Direct Multiplier</div>
+          <div class="font-mono text-xs space-y-1">
+            <div>Final Price = Original Price × (1 − (Discount% ÷ 100))</div>
+            <div>Example at 30% off: Final Price = Original Price × 0.70</div>
+          </div>
+          <p class="text-[11px]" style="color: var(--text-muted);">
+            Fastest method for mental calculations and formulas in Excel or Google Sheets.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-sm" style="color: var(--text-ink);">📝 Worked Example: 30% Off an $80 Jacket</div>
+        <p class="text-xs sm:text-sm" style="color: var(--text-body);">
+          Suppose you want to purchase a jacket priced at $80 with a 30% discount tag:
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-xs font-mono" style="color: var(--text-muted);">
+          <li>Step 1 (Calculate Savings): $80 × 0.30 = <strong>$24.00 total savings</strong></li>
+          <li>Step 2 (Deduct from Original): $80 − $24 = <strong>$56.00 checkout price</strong></li>
+          <li>Using the direct multiplier: $80 × 0.70 = <strong>$56.00</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2. Stacked Coupons -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Stacked Discounts: Why 20% Off + 10% Extra Does NOT Equal 30%
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        One of the most widespread retail misconceptions is that multiple percentage discounts add together linearly. When an online retailer advertises "Take 20% off sale items, plus get an extra 10% with code SAVE10", you do <strong>not</strong> receive 30% off!
+      </p>
+
+      <div class="p-5 rounded-2xl border bg-amber-50 dark:bg-amber-950/20 space-y-2" style="border-color: var(--border-hairline);">
+        <div class="font-bold text-sm text-amber-800 dark:text-amber-300">
+          ⚠️ How Compound Discounts Actually Work:
+        </div>
+        <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-body);">
+          Successive discounts apply consecutively to the already reduced balance, never to the original base price:
+        </p>
+        <ol class="list-decimal list-inside space-y-1 text-xs font-mono mt-1" style="color: var(--text-body);">
+          <li>Original Price: $100.00</li>
+          <li>First Discount (20%): $100 − $20 = $80.00 subtotal</li>
+          <li>Second Discount (10% on $80): $80 − ($80 × 0.10) = $80 − $8 = <strong>$72.00 final price</strong></li>
+          <li>Real Total Savings: $100 − $72 = $28 (an <strong>effective 28% discount</strong>, not 30%)</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 3. Reference Table -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Quick Discount Reference Table
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Quickly check your final price and total money saved across popular shopping amounts:
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr style="background-color: var(--bg-card);">
+              <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Discount</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">on $25</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">on $50</th>
+              <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">on $100</th>
+              <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">on $200</th>
+            </tr>
+          </thead>
+          <tbody style="color: var(--text-body);">
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">10% Off</th>
+              <td class="p-3 font-mono">$22.50 (-$2.50)</td>
+              <td class="p-3 font-mono">$45.00 (-$5.00)</td>
+              <td class="p-3 font-mono">$90.00 (-$10.00)</td>
+              <td class="p-3 font-mono">$180.00 (-$20.00)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">20% Off</th>
+              <td class="p-3 font-mono">$20.00 (-$5.00)</td>
+              <td class="p-3 font-mono">$40.00 (-$10.00)</td>
+              <td class="p-3 font-mono">$80.00 (-$20.00)</td>
+              <td class="p-3 font-mono">$160.00 (-$40.00)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">25% Off (1/4 Off)</th>
+              <td class="p-3 font-mono">$18.75 (-$6.25)</td>
+              <td class="p-3 font-mono">$37.50 (-$12.50)</td>
+              <td class="p-3 font-mono">$75.00 (-$25.00)</td>
+              <td class="p-3 font-mono">$150.00 (-$50.00)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">30% Off</th>
+              <td class="p-3 font-mono">$17.50 (-$7.50)</td>
+              <td class="p-3 font-mono">$35.00 (-$15.00)</td>
+              <td class="p-3 font-mono">$70.00 (-$30.00)</td>
+              <td class="p-3 font-mono">$140.00 (-$60.00)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-hairline);">
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">50% Off (Half Price)</th>
+              <td class="p-3 font-mono">$12.50 (-$12.50)</td>
+              <td class="p-3 font-mono">$25.00 (-$25.00)</td>
+              <td class="p-3 font-mono">$50.00 (-$50.00)</td>
+              <td class="p-3 font-mono">$100.00 (-$100.00)</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">70% Off (Clearance)</th>
+              <td class="p-3 font-mono">$7.50 (-$17.50)</td>
+              <td class="p-3 font-mono">$15.00 (-$35.00)</td>
+              <td class="p-3 font-mono">$30.00 (-$70.00)</td>
+              <td class="p-3 font-mono">$60.00 (-$140.00)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. Reverse Discount -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Reverse Discount: How to Find the Original Price
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+        Have you ever spotted an item on sale for $45 with a tag saying "25% Off" and wondered what it originally cost? You can reverse-engineer the original retail price using division:
+      </p>
+
+      <div class="p-5 rounded-2xl border font-mono text-xs sm:text-sm space-y-2" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+        <div class="font-bold text-purple-600 dark:text-purple-400">Formula: Original Price = Sale Price ÷ (1 − (Discount% ÷ 100))</div>
+        <p class="text-xs font-sans text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          Example: An item on sale for $45 with a 25% discount represents 75% (0.75) of the starting price.
+          <br />Calculation: $45 ÷ 0.75 = <strong>$60.00 original price</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- 5. BOGO Promotions Math -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        The Real Math Behind BOGO & Multi-Buy Offers
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="p-4 rounded-2xl border space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm" style="color: var(--text-ink);">Buy One, Get One 50% Off (BOGO 50%)</div>
+          <p style="color: var(--text-muted);">
+            If both items cost $20: You pay $20 + $10 = $30 for two items. Total discount: $10 saved on $40 = <strong>25% effective discount per item</strong>.
+          </p>
+        </div>
+        <div class="p-4 rounded-2xl border space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <div class="font-bold text-sm" style="color: var(--text-ink);">Buy Two, Get One Free (B2G1)</div>
+          <p style="color: var(--text-muted);">
+            Three items for the price of two: You get 3 items for $40 instead of $60. Total discount: $20 saved on $60 = <strong>33.33% effective discount per item</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. FAQs -->
+    <div class="space-y-4">
+      <h3 class="font-display font-extrabold text-xl" style="color: var(--text-ink);">
+        Frequently Asked Questions About Discounts
+      </h3>
+      <div class="space-y-3 text-xs sm:text-sm">
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">How do I calculate 20% off in my head?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Find 10% by shifting the decimal point one digit to the left, then double that figure. For example: 20% of $65 → 10% is $6.50, and $6.50 × 2 = $13.00 off. Your final price is $65 − $13 = $52.00.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">Is sales tax applied before or after a discount?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            In nearly all jurisdictions (including the United States, Canada, and the UK), retail sales tax or VAT is calculated on the discounted net purchase price, not the original retail price. Manufacturer coupons that are later reimbursed may have specific local tax exceptions.
+          </p>
+        </details>
+        <details class="p-4 rounded-2xl border cursor-pointer" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <summary class="font-bold" style="color: var(--text-ink);">What is the difference between markup and margin?</summary>
+          <p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted);">
+            Markup is the percentage added to the cost to arrive at the selling price (e.g., $50 cost + 100% markup = $100 sale price). Margin is the profit expressed as a percentage of the selling price (e.g., $50 profit on $100 sale = 50% profit margin).
+          </p>
+        </details>
+      </div>
+    </div>
   </div>
 </Layout>

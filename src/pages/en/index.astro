@@ -1,6 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import MainPercentageCalc from '../../components/calculators/MainPercentageCalc.astro';
+import DiscountCalc from '../../components/calculators/DiscountCalc.astro';
+import VatCalc from '../../components/calculators/VatCalc.astro';
+import RuleOfThreeCalc from '../../components/calculators/RuleOfThreeCalc.astro';
+import PercentageDiffCalc from '../../components/calculators/PercentageDiffCalc.astro';
+import SalaryCalc from '../../components/calculators/SalaryCalc.astro';
 import FaqSection from '../../components/FaqSection.astro';
 import { useTranslations } from '../../i18n';
 
@@ -10,8 +15,8 @@ const t = useTranslations(lang);
 
 <Layout
   lang="en"
-  title="Percentage Calculator Online: Free Step-by-Step Solutions"
-  description="Percentage calculator online: instant percentage calculations with step-by-step solutions, formulas, discounts, VAT and salary raises. Free, no sign-up."
+  title="Percentage Calculator Online: Free Step-by-Step Math Solutions"
+  description="Online percentage calculator: calculate percentage value, percentage rate, discounts, sales tax, VAT, rule of three proportions and salary raises instantly with worked steps."
   canonicalUrl="https://prozentrechner-online.com/en"
   alternateUrls={{
     de: "https://prozentrechner-online.com/",
@@ -29,68 +34,68 @@ const t = useTranslations(lang);
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
       </span>
-      <span>{t('hero.trustPill')}</span>
+      <span>Live Calculations • Step-by-Step Solutions • 100% Free</span>
     </div>
 
     <!-- Main Headline -->
     <h1 class="font-display font-black text-2.5xl xs:text-3.5xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.12] mb-3 sm:mb-4" style="color: var(--text-ink);">
-      {t('hero.headline')} <br class="hidden sm:inline" />
-      <span style="color: var(--accent);">{t('hero.headlineAccent')}</span>
+      Online Percentage Calculator <br class="hidden sm:inline" />
+      <span style="color: var(--accent);">Instant & Precise with Steps</span>
     </h1>
 
     <p class="text-xs xs:text-sm sm:text-lg leading-relaxed max-w-2xl mx-auto px-2" style="color: var(--text-muted);">
-      {t('hero.subheadline')}
+      Never struggle with percentages again. Enter any two values below for instantaneous answers, clear mathematical formulas, and complete step-by-step working.
     </p>
 
     <!-- Quick Tool Switcher Pills -->
     <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-4 sm:pt-6">
-      <a href="/en#main-calc" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#main-calc" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-ink);">
         <span class="w-4 h-4 rounded flex items-center justify-center font-bold text-[11px] leading-none" style="background-color: var(--accent); color: white;">%</span>
-        <span>{t('hero.mainCalc')}</span>
+        <span>General Calculator</span>
       </a>
-      <a href="/en/discount-calculator#discount-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#discount-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
           <line x1="7" y1="7" x2="7.01" y2="7"></line>
         </svg>
-        <span>{t('hero.discountTool')}</span>
+        <span>Discount & Sale</span>
       </a>
-      <a href="/en/vat-calculator#vat-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#vat-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <line x1="12" y1="1" x2="12" y2="23"></line>
           <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
         </svg>
-        <span>{t('hero.vatTool')}</span>
+        <span>VAT & Sales Tax</span>
       </a>
-      <a href="/en/rule-of-three-calculator#dreisatz-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#dreisatz-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
           <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
           <path d="M7 21h10"></path>
           <path d="M12 3v18"></path>
         </svg>
-        <span>{t('hero.dreisatzTool')}</span>
+        <span>Rule of Three</span>
       </a>
-      <a href="/en/percentage-difference#diff-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#diff-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <line x1="18" y1="20" x2="18" y2="10"></line>
           <line x1="12" y1="20" x2="12" y2="4"></line>
           <line x1="6" y1="20" x2="6" y2="14"></line>
         </svg>
-        <span>{t('hero.diffTool')}</span>
+        <span>% Difference</span>
       </a>
-      <a href="/en/salary-raise-calculator#salary-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
+      <a href="#salary-tool" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold border transition-all hover:scale-105 active:scale-95 shadow-2xs touch-target" style="background-color: var(--bg-surface); border-color: var(--border-hairline); color: var(--text-ink);">
         <svg class="w-3.5 h-3.5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
           <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
         </svg>
-        <span>{t('hero.salaryTool')}</span>
+        <span>Salary Raise</span>
       </a>
     </div>
   </section>
 
-  <!-- ================= MAIN PERCENTAGE CALCULATOR ================= -->
-  <section class="mb-16">
+  <!-- ================= 1. MAIN PERCENTAGE CALCULATOR ================= -->
+  <section id="main-calc" class="mb-16 scroll-mt-20">
     <MainPercentageCalc lang="en" />
   </section>
 
@@ -98,47 +103,409 @@ const t = useTranslations(lang);
   <div class="relative flex py-6 items-center my-8">
     <div class="grow border-t" style="border-color: var(--border-hairline);"></div>
     <span class="shrink mx-4 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full border" style="background-color: var(--bg-card); border-color: var(--border-hairline); color: var(--text-muted);">
-      {t('section.specialized')}
+      Specialized Calculation Tools
     </span>
     <div class="grow border-t" style="border-color: var(--border-hairline);"></div>
   </div>
 
-  <!-- Educational Guide -->
+  <!-- ================= 2. DISCOUNT CALCULATOR ================= -->
+  <section id="discount-tool" class="mb-12 scroll-mt-20">
+    <DiscountCalc lang="en" />
+  </section>
+
+  <!-- ================= 3. VAT CALCULATOR ================= -->
+  <section id="vat-tool" class="mb-12 scroll-mt-20">
+    <VatCalc lang="en" />
+  </section>
+
+  <!-- ================= 4. RULE OF THREE ================= -->
+  <section id="dreisatz-tool" class="mb-12 scroll-mt-20">
+    <RuleOfThreeCalc lang="en" />
+  </section>
+
+  <!-- ================= 5. PERCENTAGE DIFFERENCE ================= -->
+  <section id="diff-tool" class="mb-12 scroll-mt-20">
+    <PercentageDiffCalc lang="en" />
+  </section>
+
+  <!-- ================= 6. SALARY RAISE CALCULATOR ================= -->
+  <section id="salary-tool" class="mb-16 scroll-mt-20">
+    <SalaryCalc lang="en" />
+  </section>
+
+  <!-- ================= 7. EDUCATIONAL MASTER GUIDE ================= -->
   <section class="rounded-3xl border p-8 sm:p-12 shadow-sm transition-all" style="background-color: var(--bg-surface); border-color: var(--border-hairline); box-shadow: var(--card-shadow);">
     <div class="max-w-3xl mx-auto space-y-8">
       <div>
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2" style="background-color: var(--bg-card); color: var(--text-ink);">
-          {t('guide.badge')}
+          📐 Educational Guide & Formula Reference
         </div>
         <h2 class="font-display font-black text-2xl sm:text-3xl tracking-tight" style="color: var(--text-ink);">
-          {t('guide.title')}
+          Online Percentage Calculator: Fast, Free & Step-by-Step
         </h2>
-        <p class="text-sm sm:text-base mt-2 leading-relaxed" style="color: var(--text-muted);" set:html={t('guide.intro')} />
+        <p class="text-sm sm:text-base mt-2 leading-relaxed" style="color: var(--text-muted);">
+          A percentage calculator transforms everyday math dilemmas into clear, verifiable answers. Whether you need to figure out sales tax, determine how much a discount saves you, calculate a salary raise, or check school test scores, our free <strong>online percentage calculator</strong> computes answers in real time and reveals the full mathematical solution.
+        </p>
       </div>
 
-      <!-- Formula Grid Cards -->
+      <!-- What is a Percentage -->
+      <div class="space-y-3">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          What Does "Percent" Mean and How Does It Work?
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          The word <em>percent</em> originates from the Latin <em>per centum</em>, meaning "by the hundred." One percent (1%) represents one part out of one hundred, which can also be written as the fraction <code>1/100</code> or the decimal <code>0.01</code>.
+        </p>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Percentages provide a standardized way to compare proportions regardless of the total quantity involved. Comparing 18 out of 25 to 73 out of 100 is difficult at a glance; converting both to percentages (72% vs. 73%) immediately reveals which share is larger.
+        </p>
+      </div>
+
+      <!-- The 3 Fundamental Formulas -->
+      <div class="space-y-3">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          The Three Fundamental Percentage Formulas
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Every basic percentage problem involves three components: the <strong>Base Value (G)</strong> representing 100%, the <strong>Percentage Rate (p)</strong> expressing the share per hundred, and the <strong>Percentage Value (W)</strong> representing the concrete portion.
+        </p>
+      </div>
+
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="p-4 rounded-2xl border space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-          <div class="font-bold text-xs" style="color: var(--text-ink);">{t('formula.percentageValue')}</div>
-          <div class="font-mono font-bold text-sm text-emerald-600 dark:text-emerald-400">W = (G × p) / 100</div>
-          <div class="text-[11px]" style="color: var(--text-muted);">{t('formula.percentageValueDesc')}</div>
+          <div class="font-bold text-xs" style="color: var(--text-ink);">1. Percentage Value (W)</div>
+          <div class="font-mono font-bold text-sm text-emerald-600 dark:text-emerald-400">W = (G × p) ÷ 100</div>
+          <div class="text-[11px]" style="color: var(--text-muted);">Answers: "What is 15% of $250?" → ($250 × 15) ÷ 100 = <strong>$37.50</strong></div>
         </div>
 
         <div class="p-4 rounded-2xl border space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-          <div class="font-bold text-xs" style="color: var(--text-ink);">{t('formula.percentageRate')}</div>
-          <div class="font-mono font-bold text-sm text-purple-600 dark:text-purple-400">p = (W / G) × 100</div>
-          <div class="text-[11px]" style="color: var(--text-muted);">{t('formula.percentageRateDesc')}</div>
+          <div class="font-bold text-xs" style="color: var(--text-ink);">2. Percentage Rate (p)</div>
+          <div class="font-mono font-bold text-sm text-purple-600 dark:text-purple-400">p = (W ÷ G) × 100</div>
+          <div class="text-[11px]" style="color: var(--text-muted);">Answers: "30 is what % of 250?" → (30 ÷ 250) × 100 = <strong>12%</strong></div>
         </div>
 
         <div class="p-4 rounded-2xl border space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
-          <div class="font-bold text-xs" style="color: var(--text-ink);">{t('formula.baseValue')}</div>
-          <div class="font-mono font-bold text-sm text-amber-600 dark:text-amber-400">G = (W × 100) / p</div>
-          <div class="text-[11px]" style="color: var(--text-muted);">{t('formula.baseValueDesc')}</div>
+          <div class="font-bold text-xs" style="color: var(--text-ink);">3. Base Value (G)</div>
+          <div class="font-mono font-bold text-sm text-amber-600 dark:text-amber-400">G = (W × 100) ÷ p</div>
+          <div class="text-[11px]" style="color: var(--text-muted);">Answers: "$50 is 20% of what?" → ($50 × 100) ÷ 20 = <strong>$250</strong></div>
+        </div>
+      </div>
+
+      <!-- Mastering Everyday Percentage Questions -->
+      <div class="space-y-6 pt-2">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2" style="background-color: var(--bg-surface-soft); color: var(--accent);">
+            Step-by-Step Guides
+          </span>
+          <h3 class="font-display font-black text-xl sm:text-2xl" style="color: var(--text-ink);">
+            5 Everyday Percentage Questions Solved
+          </h3>
+          <p class="text-sm sm:text-base leading-relaxed mt-1" style="color: var(--text-muted);">
+            In daily life, problems don't present themselves as algebra variables. You encounter practical dilemmas while shopping, reviewing salary offers, or budgeting. Here is how to conquer the five most common scenarios:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Question 1 -->
+          <div class="p-5 rounded-2xl border space-y-3" style="background-color: var(--bg-card); border-color: var(--border-hairline);">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center">1</span>
+              <h4 class="font-bold text-sm sm:text-base" style="color: var(--text-ink);">
+                "What is 20% of $350?" (Percentage Value)
+              </h4>
+            </div>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+              <strong>Scenario:</strong> You see a 20% discount on a $350 purchase and want to know your exact dollar savings.
+            </p>
+            <div class="p-3 rounded-xl border text-xs font-mono space-y-1" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+              <div class="text-emerald-600 dark:text-emerald-400 font-bold">W = ($350 × 20) ÷ 100 = $70</div>
+              <div class="text-[11px] font-sans" style="color: var(--text-muted);">Quick Mental Shortcut: 10% is $35. Double it to get 20% = $70.</div>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-5 rounded-2xl border space-y-3" style="background-color: var(--bg-card); border-color: var(--border-hairline);">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold text-xs flex items-center justify-center">2</span>
+              <h4 class="font-bold text-sm sm:text-base" style="color: var(--text-ink);">
+                "What % is 45 out of 60?" (Percentage Share)
+              </h4>
+            </div>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+              <strong>Scenario:</strong> You scored 45 questions correct on a 60-question test or reached 45 sales against a 60-unit target.
+            </p>
+            <div class="p-3 rounded-xl border text-xs font-mono space-y-1" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+              <div class="text-purple-600 dark:text-purple-400 font-bold">Rate = (45 ÷ 60) × 100 = 75%</div>
+              <div class="text-[11px] font-sans" style="color: var(--text-muted);">Fraction Reduction: 45/60 reduces by 15 to 3/4 = 0.75 = 75%.</div>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-5 rounded-2xl border space-y-3" style="background-color: var(--bg-card); border-color: var(--border-hairline);">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold text-xs flex items-center justify-center">3</span>
+              <h4 class="font-bold text-sm sm:text-base" style="color: var(--text-ink);">
+                "$60 is 15% of what total?" (Finding the Base)
+              </h4>
+            </div>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+              <strong>Scenario:</strong> A $60 deposit represents 15% of total project costs. What is the final expected expenditure?
+            </p>
+            <div class="p-3 rounded-xl border text-xs font-mono space-y-1" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+              <div class="text-amber-600 dark:text-amber-400 font-bold">Total = ($60 × 100) ÷ 15 = $400</div>
+              <div class="text-[11px] font-sans" style="color: var(--text-muted);">Rule of Three logic: 15% = $60 → 1% = $4 → 100% = $400.</div>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="p-5 rounded-2xl border space-y-3" style="background-color: var(--bg-card); border-color: var(--border-hairline);">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center">4</span>
+              <h4 class="font-bold text-sm sm:text-base" style="color: var(--text-ink);">
+                "Base Amount ± X%" (Direct Single-Step Multiplier)
+              </h4>
+            </div>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+              <strong>Scenario:</strong> Calculate final totals in a single keypress without recording intermediate numbers.
+            </p>
+            <div class="p-3 rounded-xl border text-xs font-mono space-y-1" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+              <div><strong class="text-teal-600 dark:text-teal-400">+20% Markup / Tax:</strong> $500 × 1.20 = $600</div>
+              <div><strong class="text-pink-600 dark:text-pink-400">−15% Clearance Sale:</strong> $500 × 0.85 = $425</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 5 (Full Width) -->
+        <div class="p-5 rounded-2xl border space-y-3" style="background-color: var(--bg-card); border-color: var(--border-hairline);">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-bold text-xs flex items-center justify-center">5</span>
+            <h4 class="font-bold text-sm sm:text-base" style="color: var(--text-ink);">
+              "Reverse Calculation: $240 is 20% higher than what original price?"
+            </h4>
+          </div>
+          <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+            <strong>The Common Pitfall:</strong> Never subtract 20% from $240 ($240 − $48 = $192 is WRONG). The 20% increase was based on the smaller original price, not the inflated total!
+          </p>
+          <div class="p-3.5 rounded-xl border text-xs font-mono space-y-1.5" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="text-rose-600 dark:text-rose-400 font-bold text-sm">
+              Correct Formula: $240 ÷ 1.20 = $200.00
+            </div>
+            <div class="text-[11px] font-sans" style="color: var(--text-muted);">
+              <strong>Verification:</strong> $200 + 20% ($40) = exactly $240. Always divide by <code>(1 + rate/100)</code> for increases and <code>(1 − rate/100)</code> for discounts.
+            </div>
+          </div>
+        </div>
+
+        <!-- Everyday Applications -->
+        <div class="p-5 rounded-2xl border space-y-3" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+          <h4 class="font-display font-extrabold text-base" style="color: var(--text-ink);">
+            Where Percentages Matter Most in Real Life
+          </h4>
+          <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+            Percentages serve as the universal metric that standardizes comparisons across unequal baselines:
+          </p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm" style="color: var(--text-body);">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold shrink-0">✓</span>
+              <span><strong>Retail & Deals:</strong> Easily evaluate "Buy 2 Get 1 Free" (33.3% savings) versus straight 25% off coupon codes.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold shrink-0">✓</span>
+              <span><strong>Tipping & Hospitality:</strong> Effortlessly compute 15%, 18%, or 20% tips in seconds without phone glare at the dinner table.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold shrink-0">✓</span>
+              <span><strong>Investing & Returns:</strong> Differentiate nominal savings rates from real net yield after inflation and asset capital gains taxes.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold shrink-0">✓</span>
+              <span><strong>Salary Negotiations:</strong> Compare percentage raises with cost-of-living index shifts and tax bracket thresholds.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick Reference Table -->
+      <div class="space-y-4">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Percentage Reference Table: Everyday Portions at a Glance
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Use this cheat sheet to verify common calculations without needing to reach for a calculator:
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs sm:text-sm border-collapse">
+            <thead>
+              <tr style="background-color: var(--bg-card);">
+                <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Rate</th>
+                <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Fraction</th>
+                <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">of $50</th>
+                <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">of $100</th>
+                <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">of $250</th>
+              </tr>
+            </thead>
+            <tbody style="color: var(--text-body);">
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">5%</th>
+                <td class="p-3 font-mono">1/20</td>
+                <td class="p-3 font-mono">$2.50</td>
+                <td class="p-3 font-mono">$5.00</td>
+                <td class="p-3 font-mono">$12.50</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">10%</th>
+                <td class="p-3 font-mono">1/10</td>
+                <td class="p-3 font-mono">$5.00</td>
+                <td class="p-3 font-mono">$10.00</td>
+                <td class="p-3 font-mono">$25.00</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">15% (Tip)</th>
+                <td class="p-3 font-mono">3/20</td>
+                <td class="p-3 font-mono">$7.50</td>
+                <td class="p-3 font-mono">$15.00</td>
+                <td class="p-3 font-mono">$37.50</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">20%</th>
+                <td class="p-3 font-mono">1/5</td>
+                <td class="p-3 font-mono">$10.00</td>
+                <td class="p-3 font-mono">$20.00</td>
+                <td class="p-3 font-mono">$50.00</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">25%</th>
+                <td class="p-3 font-mono">1/4</td>
+                <td class="p-3 font-mono">$12.50</td>
+                <td class="p-3 font-mono">$25.00</td>
+                <td class="p-3 font-mono">$62.50</td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">50%</th>
+                <td class="p-3 font-mono">1/2</td>
+                <td class="p-3 font-mono">$25.00</td>
+                <td class="p-3 font-mono">$50.00</td>
+                <td class="p-3 font-mono">$125.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Mental Math Tricks -->
+      <div class="space-y-4">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Mental Math Secrets: How to Calculate Percentages in Your Head
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Calculating percentages in your head is surprisingly simple once you master these mental math shortcuts:
+        </p>
+
+        <div class="space-y-3">
+          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1 text-purple-600 dark:text-purple-400">🔄 The Reversible Percentage Trick (X% of Y = Y% of X)</div>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+              Because multiplication is commutative, <strong>X% of Y is identical to Y% of X</strong>. When a problem looks intimidating, flip it!
+              <br /><span class="font-semibold text-emerald-600 dark:text-emerald-400">Example:</span> What is 16% of 50? In your head, calculating 16% of 50 is tricky. Flip it to: <em>What is 50% of 16?</em> Half of 16 is <strong>8</strong>. Therefore, 16% of 50 is exactly 8!
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl border" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1 text-teal-600 dark:text-teal-400">🎯 The 10% and 1% Building Block Method</div>
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+              Shift the decimal point to find key benchmarks:
+              <br />• <strong>10%:</strong> Move the decimal 1 place left (10% of $180 = $18).
+              <br />• <strong>1%:</strong> Move the decimal 2 places left (1% of $180 = $1.80).
+              <br />• <strong>15% Tip:</strong> 10% ($18) + half of that for 5% ($9) = <strong>$27</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Excel & Spreadsheet Formulas -->
+      <div class="space-y-4">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Percentage Formulas in Excel & Google Sheets
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Building spreadsheets? Here are the standard formulas used in modern financial models:
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs sm:text-sm border-collapse">
+            <thead>
+              <tr style="background-color: var(--bg-card);">
+                <th scope="col" class="text-left p-3 font-bold rounded-l-xl" style="color: var(--text-ink);">Operation</th>
+                <th scope="col" class="text-left p-3 font-bold" style="color: var(--text-ink);">Formula Syntax</th>
+                <th scope="col" class="text-left p-3 font-bold rounded-r-xl" style="color: var(--text-ink);">Practical Result</th>
+              </tr>
+            </thead>
+            <tbody style="color: var(--text-body);">
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">Calculate Portion</th>
+                <td class="p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">=A1*B1</td>
+                <td class="p-3">Multiplies total in A1 by rate in B1 (e.g., $100 * 20% = $20)</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">Find Percentage Share</th>
+                <td class="p-3 font-mono font-bold text-purple-600 dark:text-purple-400">=A1/B1</td>
+                <td class="p-3">Format cell as % (e.g., 25 / 200 = 12.5%)</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border-hairline);">
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">Apply Discount</th>
+                <td class="p-3 font-mono font-bold text-pink-600 dark:text-pink-400">=A1*(1-B1)</td>
+                <td class="p-3">Deducts percentage B1 from price A1 (e.g., $80 * (1 - 0.3) = $56)</td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-left p-3 font-semibold" style="color: var(--text-ink);">Percentage Growth</th>
+                <td class="p-3 font-mono font-bold text-amber-600 dark:text-amber-400">=(B1-A1)/A1</td>
+                <td class="p-3">Calculates increase/decrease from old A1 to new B1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Real World Use Cases Navigation -->
+      <div class="space-y-4">
+        <h3 class="font-display font-extrabold text-lg" style="color: var(--text-ink);">
+          Explore Our Dedicated Specialized Calculators
+        </h3>
+        <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+          Each specialized calculator provides in-depth tools tailored for specific financial, commercial, and mathematical tasks:
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a href="/en/discount-calculator" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">🏷️ Discount Calculator</div>
+            <div class="text-xs" style="color: var(--text-muted);">Calculate sale markdowns, stacked promotional coupons, and total cash savings.</div>
+          </a>
+          <a href="/en/vat-calculator" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">🏛️ VAT & Sales Tax Calculator</div>
+            <div class="text-xs" style="color: var(--text-muted);">Add or remove VAT/sales tax, convert net to gross and gross to net with precision.</div>
+          </a>
+          <a href="/en/rule-of-three-calculator" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">⚖️ Rule of Three Calculator</div>
+            <div class="text-xs" style="color: var(--text-muted);">Solve direct and inverse proportional problems for recipes, speeds, and unit scaling.</div>
+          </a>
+          <a href="/en/percentage-difference" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">📊 Percentage Difference & Change</div>
+            <div class="text-xs" style="color: var(--text-muted);">Determine percentage growth, decline, and symmetric variance between two figures.</div>
+          </a>
+          <a href="/en/salary-raise-calculator" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">💼 Salary Raise Calculator</div>
+            <div class="text-xs" style="color: var(--text-muted);">Calculate pay increases in dollars, hourly rates, and annual take-home wage projections.</div>
+          </a>
+          <a href="/en/percentage-formula" class="p-4 rounded-2xl border block transition-all hover:scale-[1.02]" style="background-color: var(--bg-surface-soft); border-color: var(--border-hairline);">
+            <div class="font-bold text-sm mb-1" style="color: var(--text-ink);">📐 Percentage Formulas Guide</div>
+            <div class="text-xs" style="color: var(--text-muted);">Master formulas, visual percentage triangles, and solved practice questions.</div>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= SEO FAQ SECTION (with FAQPage JSON-LD) ================= -->
+  <!-- ================= 8. SEO FAQ SECTION (with FAQPage JSON-LD) ================= -->
   <FaqSection lang="en" />
 </Layout>
